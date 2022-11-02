@@ -1,0 +1,9 @@
+{
+  "name": "pick_ui_backend",
+  "version": "1.0.0",
+  "description": "pick_ui will serve a bunch of designed template",
+  "main": "server.js",
+  "repository": "https://github.com/MinhajSadik/Pick_UI",
+  "author": "MinhajSadik",
+  "license": "MIT"
+}
