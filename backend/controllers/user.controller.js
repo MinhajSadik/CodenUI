@@ -1,16 +1,37 @@
+import UserDto from "../dtos/user.dto.js";
 import mailService from "../services/mail.service.js";
+import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
 
 class UserController {
   async registerUser(req, res) {
+    const { email } = req.body;
     try {
-      const existedUser = await userService.findUser(req, res);
+      const existedUser = await userService.findUser(email);
 
-      if (existedUser) return;
-      else {
-        const user = await userService.createUser(req.body);
+      if (existedUser) {
+        return res.status(400).json({
+          message: `User ${email} already exist!`,
+        });
+      } else {
+        const newUser = await userService.createUser(req.body);
 
-        return res.status(201).json(user);
+        const { accessToken } = await tokenService.generateToken({
+          _id: newUser._id,
+          email: newUser.email,
+          role: newUser.role,
+        });
+
+        res.cookie("accessToken", accessToken, {
+          maxAge: 1000 * 60 * 60 * 24 * 30,
+          httpOnly: true,
+        });
+
+        const user = new UserDto(newUser);
+        return res.status(201).json({
+          message: `User ${req.body.name} created successfully`,
+          user,
+        });
       }
     } catch (error) {
       return res.status(500).json({
@@ -18,7 +39,50 @@ class UserController {
       });
     }
   }
-  async loginUser(req, res) {}
+  async loginUser(req, res) {
+    const { email, password } = req.body;
+    try {
+      const user = await userService.findUser(email);
+
+      if (!user) {
+        return res.status(404).json({
+          message: `User not found! create one with ${email} or check again`,
+        });
+      }
+
+      const isPasswordMatched = await userService.comparePassword(
+        password,
+        user.password
+      );
+
+      if (!isPasswordMatched) {
+        return res.status(400).json({
+          message: `Password is not matched!`,
+        });
+      }
+
+      const { accessToken } = await tokenService.generateToken({
+        _id: user._id,
+        email: user.email,
+        role: user.role,
+      });
+
+      res.cookie("accessToken", accessToken, {
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+        httpOnly: true,
+      });
+
+      const modifiedUser = new UserDto(user);
+      return res.status(200).json({
+        message: `User loggedIn successfuly ${email}`,
+        user: modifiedUser,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
 
   async updateUser(req, res) {}
 
@@ -33,7 +97,7 @@ class UserController {
         `,
     };
     try {
-      const existedUser = await mailService.findMail(email);
+      const existedUser = await userService.findUser(email);
 
       if (existedUser) {
         const { email: userEmail } = existedUser;
@@ -45,7 +109,6 @@ class UserController {
         await mailService.sentMail(options);
       }
 
-      // const sentMail = await mailService.sentMail(options);
       return res.status(200).json({
         message: `We sent mail in your accout ${email}`,
       });

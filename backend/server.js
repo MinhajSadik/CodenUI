@@ -5,6 +5,12 @@ const PORT = process.env.PORT || 5000;
 
 await connectDB();
 
+app.all("*", (req, res) => {
+  res.status(404).json({
+    message: `We have trouble to find this route`,
+  });
+});
+
 app.listen(PORT, () => {
-  console.log(`Listend port on ${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
 });

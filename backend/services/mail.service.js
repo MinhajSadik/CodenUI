@@ -2,10 +2,6 @@ import nodeMailer from "nodemailer";
 import UserModel from "../models/user.model.js";
 
 class MailService {
-  async findMail(email) {
-    const existUser = await UserModel.findOne({ email });
-    return existUser;
-  }
   async sentMail(payload) {
     const transporter = nodeMailer.createTransport({
       host: process.env.SMPT_HOST,
