@@ -1,7 +1,13 @@
+import fs from "fs";
+import handlebars from "handlebars";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 import UserDto from "../dtos/user.dto.js";
 import mailService from "../services/mail.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
+
+fs.promises;
 
 class UserController {
   async registerUser(req, res) {
@@ -88,13 +94,30 @@ class UserController {
 
   async sendFileByEmail(req, res) {
     const { email } = req.body;
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+    const zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip");
+
+    const templatePath = path.join(__dirname, "../files/index.html");
+    const templateFile = fs.readFileSync(templatePath, "utf-8");
+    const template = handlebars.compile(templateFile);
+
+    const replacements = {
+      username: "MinhajSadik",
+    };
+    const finalHtml = template(replacements);
+
     const options = {
       email,
       subject: `Welcome ${process.env.APP_NAME} with you`,
-      message: `
-        You have applied a template below we attached         
-        Download Here
-        `,
+      body: finalHtml,
+      attachments: [
+        {
+          name: "text.txt",
+          path: zipPath,
+        },
+      ],
     };
     try {
       const existedUser = await userService.findUser(email);
@@ -102,7 +125,6 @@ class UserController {
       if (existedUser) {
         const { email: userEmail } = existedUser;
         options.email = userEmail;
-        console.log(options);
         await mailService.sentMail(options);
       } else {
         await mailService.saveMail(req.body);

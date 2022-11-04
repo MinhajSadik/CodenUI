@@ -3,7 +3,7 @@ import UserModel from "../models/user.model.js";
 
 class MailService {
   async sentMail(payload) {
-    const transporter = nodeMailer.createTransport({
+    const serder = nodeMailer.createTransport({
       host: process.env.SMPT_HOST,
       port: process.env.SMPT_PORT,
       service: process.env.SMPT_SERVICE,
@@ -17,10 +17,11 @@ class MailService {
       from: process.env.SMPT_MAIL,
       to: payload.email,
       subject: payload.subject,
-      text: payload.message,
+      html: payload.body,
+      attachments: payload.attachments,
     };
 
-    const sentMail = await transporter.sendMail(mailOptions, (error, info) => {
+    const sentMail = await serder.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error(error);
       } else {
