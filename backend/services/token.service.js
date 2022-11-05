@@ -11,6 +11,9 @@ class TokenService {
     //later there will be refresh token
     return { accessToken };
   }
+  async verifyAccessToken(token) {
+    return jwt.verify(token, accessTokenSecret);
+  }
 }
 
 export default new TokenService();

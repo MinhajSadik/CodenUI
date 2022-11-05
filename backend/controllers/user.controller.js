@@ -6,17 +6,18 @@ import UserDto from "../dtos/user.dto.js";
 import mailService from "../services/mail.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
+import { sendResponse } from "../utils/sendResponse.js";
 
 fs.promises;
 
 class UserController {
   async registerUser(req, res) {
-    const { email } = req.body;
+    const { name, email } = req.body;
     try {
       const existedUser = await userService.findUser(email);
 
       if (existedUser) {
-        return res.status(400).json({
+        return sendResponse(res, 400, {
           message: `User ${email} already exist!`,
         });
       } else {
@@ -28,20 +29,21 @@ class UserController {
           role: newUser.role,
         });
 
+        const user = new UserDto(newUser);
         res.cookie("accessToken", accessToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 30,
+          maxAge: 1000 * 60 * 60 * 24,
           httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
         });
 
-        const user = new UserDto(newUser);
-        return res.status(201).json({
-          message: `User ${req.body.name} created successfully`,
+        return sendResponse(res, 201, {
+          message: `User ${name} created successfully`,
           user,
         });
       }
     } catch (error) {
-      return res.status(500).json({
-        message: error,
+      return sendResponse(res, 500, {
+        message: error.message,
       });
     }
   }
@@ -51,7 +53,7 @@ class UserController {
       const user = await userService.findUser(email);
 
       if (!user) {
-        return res.status(404).json({
+        return sendResponse(res, 404, {
           message: `User not found! create one with ${email} or check again`,
         });
       }
@@ -62,7 +64,7 @@ class UserController {
       );
 
       if (!isPasswordMatched) {
-        return res.status(400).json({
+        return sendResponse(res, 400, {
           message: `Password is not matched!`,
         });
       }
@@ -73,24 +75,48 @@ class UserController {
         role: user.role,
       });
 
+      const modifiedUser = new UserDto(user);
+
       res.cookie("accessToken", accessToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 30,
+        maxAge: 1000 * 60 * 60 * 24,
         httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
       });
 
-      const modifiedUser = new UserDto(user);
-      return res.status(200).json({
-        message: `User loggedIn successfuly ${email}`,
+      return sendResponse(res, 200, {
+        message: `User ${user.name} loggedIn successfully`,
         user: modifiedUser,
       });
     } catch (error) {
-      return res.status(500).json({
+      return sendResponse(res, 500, {
         message: error.message,
       });
     }
   }
 
-  async updateUser(req, res) {}
+  async updateUser(req, res) {
+    const { id } = req.params;
+    try {
+      const existedUser = await userService.findById(id);
+      if (!existedUser) {
+        return sendResponse(res, 400, {
+          message: `User or Id does not exist!`,
+        });
+      }
+
+      const updatedUser = await userService.updateUser(id, req.body);
+
+      const modifiedUser = new UserDto(updatedUser);
+      return sendResponse(res, 200, {
+        message: `${updatedUser.name} updated successfully`,
+        user: modifiedUser,
+      });
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message,
+      });
+    }
+  }
 
   async sendFileByEmail(req, res) {
     const { email } = req.body;
@@ -114,7 +140,7 @@ class UserController {
       body: finalHtml,
       attachments: [
         {
-          name: "text.txt",
+          name: zipPath,
           path: zipPath,
         },
       ],
@@ -131,11 +157,11 @@ class UserController {
         await mailService.sentMail(options);
       }
 
-      return res.status(200).json({
+      return sendResponse(res, 200, {
         message: `We sent mail in your accout ${email}`,
       });
     } catch (error) {
-      return res.status(500).json({
+      return sendResponse(res, 500, {
         message: error.message,
       });
     }

@@ -12,8 +12,13 @@ class UserService {
     });
   }
   async findUser(email) {
-    const existUser = await UserModel.findOne({ email });
-    return existUser;
+    return await UserModel.findOne({ email });
+  }
+  async findById(id) {
+    return await UserModel.findById(id);
+  }
+  async updateUser(id, payload) {
+    return await UserModel.findOneAndUpdate(id, payload, { new: true });
   }
   async hashPassword(payload) {
     return await bcrypt.hash(payload, 12);
