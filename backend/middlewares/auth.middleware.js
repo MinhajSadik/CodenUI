@@ -1,5 +1,5 @@
 import tokenService from "../services/token.service.js";
-import { sendResponse } from "../utils/sendResponse.js";
+import { sendResponse } from "../utils/response.util.js";
 
 export default async function (req, res, next) {
   try {
@@ -10,6 +10,7 @@ export default async function (req, res, next) {
         message: "Internal Server Error!",
       });
     }
+
     const userData = await tokenService.verifyAccessToken(accessToken);
     if (!userData) {
       throw new Error("Invalid Credential!");

@@ -6,7 +6,7 @@ import UserDto from "../dtos/user.dto.js";
 import mailService from "../services/mail.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
-import { sendResponse } from "../utils/sendResponse.js";
+import { sendResponse } from "../utils/response.util.js";
 
 fs.promises;
 
