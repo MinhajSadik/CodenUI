@@ -125,7 +125,7 @@ class UserController {
     const __dirname = dirname(__filename);
     const zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip");
 
-    const templatePath = path.join(__dirname, "../files/index.html");
+    const templatePath = path.join(__dirname, "../configs/index.html");
     const templateFile = fs.readFileSync(templatePath, "utf-8");
     const template = handlebars.compile(templateFile);
 

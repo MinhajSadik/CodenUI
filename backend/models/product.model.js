@@ -8,10 +8,9 @@ const productSchema = new Schema(
       trim: true,
     },
     price: {
-      type: String,
+      type: String || Number,
       required: true,
       default: 0,
-      enum: ["free", "premium", 0],
     },
     description: {
       type: String,
@@ -20,7 +19,7 @@ const productSchema = new Schema(
     },
     image: {
       type: String,
-      required: true,
+      required: false,
     },
     viewsCount: {
       type: Number,
@@ -32,9 +31,9 @@ const productSchema = new Schema(
       required: false,
       default: 0,
     },
-    category: {
+    categoryId: {
       type: Schema.Types.ObjectId,
-      ref: "Category",
+      ref: "Product",
       required: false,
     },
   },

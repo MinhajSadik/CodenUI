@@ -7,7 +7,7 @@ const categorySchema = new Schema(
       required: true,
       trim: true,
     },
-    product: {
+    productId: {
       type: Schema.Types.ObjectId,
       ref: "Product",
       required: true,
