@@ -11,10 +11,12 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 //routes
+import categoryRoute from "./routes/category.route.js";
 import productRoute from "./routes/product.route.js";
 import userRoute from "./routes/user.route.js";
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/product", productRoute);
+app.use("/api/v1/category", categoryRoute);
 
 export default app;

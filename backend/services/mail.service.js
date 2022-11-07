@@ -1,5 +1,5 @@
 import nodeMailer from "nodemailer";
-import UserModel from "../models/user.model.js";
+import User from "../models/user.model.js";
 
 class MailService {
   async sentMail(payload) {
@@ -31,7 +31,7 @@ class MailService {
     return sentMail;
   }
   async saveMail(payload) {
-    return await UserModel.create(payload);
+    return await User.create(payload);
   }
 }
 

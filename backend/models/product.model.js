@@ -33,8 +33,7 @@ const productSchema = new Schema(
     },
     categoryId: {
       type: Schema.Types.ObjectId,
-      ref: "Product",
-      required: false,
+      ref: "Category",
     },
   },
   {

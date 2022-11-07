@@ -7,14 +7,16 @@ const categorySchema = new Schema(
       required: true,
       trim: true,
     },
-    productId: {
-      type: Schema.Types.ObjectId,
-      ref: "Product",
-      required: true,
-    },
+    productId: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
   },
   {
     timestamps: true,
+    strict: true,
   }
 );
 
