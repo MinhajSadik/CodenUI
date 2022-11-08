@@ -1,10 +1,20 @@
 import categoryService from "../services/category.service.js";
+import productService from "../services/product.service.js";
 import { sendResponse } from "../utils/response.util.js";
 
 class CategoryController {
   async createCategory(req, res) {
-    const { name } = req.body;
+    const { name, productId } = req.body;
     try {
+      const product = await productService.findById(productId);
+      console.log(product);
+
+      if (product === null && !undefined) {
+        return sendResponse(res, 400, {
+          message: `We could not find product based on your id ${productId}`,
+        });
+      }
+
       const existedCategory = await categoryService.findOne(name);
 
       if (existedCategory?.name === name) {
