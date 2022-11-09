@@ -1,3 +1,5 @@
+import CategoryDto from "../dtos/category.dto.js";
+import ProductDto from "../dtos/product.dto.js";
 import categoryService from "../services/category.service.js";
 import productService from "../services/product.service.js";
 import { sendResponse } from "../utils/response.util.js";
@@ -25,9 +27,10 @@ class CategoryController {
 
       const category = await categoryService.create(req.body);
 
+      const transformed = new CategoryDto(category);
       return sendResponse(res, 201, {
         message: `${name} created successfully`,
-        category,
+        category: transformed,
       });
     } catch (error) {
       return sendResponse(res, 500, {
@@ -44,8 +47,14 @@ class CategoryController {
       });
     }
 
+    const transformed = categories.map((products) => {
+      return products.productId.map((product) => {
+        return new ProductDto(product);
+      });
+    });
+
     return sendResponse(res, 200, {
-      categories,
+      categories: transformed,
     });
   }
 }
