@@ -84,7 +84,11 @@ class ProductController {
         });
       }
 
-      await productService.delete(id, req.body);
+      await productService.delete(id);
+
+      return sendResponse(res, 200, {
+        message: `Product ${product.name} deleted successfully`,
+      });
 
       return sendResponse(res, 200, {
         message: `${name} deleted successfully`,

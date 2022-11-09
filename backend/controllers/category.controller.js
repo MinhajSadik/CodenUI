@@ -80,6 +80,28 @@ class CategoryController {
       });
     }
   }
+  async deleteCategory(req, res) {
+    const { id } = req.params;
+    const { name } = req.body;
+    try {
+      const category = await categoryService.findById(id);
+      if (!category) {
+        return sendResponse(res, 404, {
+          message: `We could not find category based on you ${id}`,
+        });
+      }
+
+      await categoryService.delete(id);
+
+      return sendResponse(res, 200, {
+        message: `Category ${category.name} deleted successfully`,
+      });
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message,
+      });
+    }
+  }
 }
 
 export default new CategoryController();

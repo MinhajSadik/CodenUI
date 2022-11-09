@@ -15,8 +15,8 @@ class ProductService {
   async update(id, payload) {
     return await Product.findByIdAndUpdate(id, payload, { new: true });
   }
-  async delete(id, payload) {
-    return await Product.findByIdAndDelete(id, payload);
+  async delete(id) {
+    return await Product.findByIdAndDelete(id);
   }
 }
 

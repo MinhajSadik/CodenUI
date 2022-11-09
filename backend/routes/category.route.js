@@ -26,4 +26,11 @@ router.put(
   categoryController.updateCategory
 );
 
+router.delete(
+  "/delete/:id",
+  checkAuth,
+  authorizedRole(["admin"]),
+  categoryController.deleteCategory
+);
+
 export default router;
