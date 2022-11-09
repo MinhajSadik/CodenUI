@@ -49,6 +49,30 @@ class ProductController {
       });
     }
   }
+  async updateProduct(req, res) {
+    const { id } = req.params;
+    const { name } = req.body;
+    try {
+      const product = await productService.findById(id);
+
+      if (!product) {
+        return sendResponse(res, 404, {
+          message: `We could not find product based on your ${id}`,
+        });
+      }
+
+      const updatedProduct = await productService.update(id, req.body);
+
+      return sendResponse(res, 200, {
+        message: `Product updated successfully ${name}`,
+        product: updatedProduct,
+      });
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message,
+      });
+    }
+  }
 }
 
 export default new ProductController();

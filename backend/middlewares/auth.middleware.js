@@ -7,7 +7,7 @@ export default async function (req, res, next) {
 
     if (!accessToken) {
       return sendResponse(res, 500, {
-        message: "Internal Server Error!",
+        message: "You have no Credentials!",
       });
     }
 

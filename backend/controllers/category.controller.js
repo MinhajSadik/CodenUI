@@ -1,5 +1,4 @@
 import CategoryDto from "../dtos/category.dto.js";
-import ProductDto from "../dtos/product.dto.js";
 import categoryService from "../services/category.service.js";
 import productService from "../services/product.service.js";
 import { sendResponse } from "../utils/response.util.js";
@@ -11,7 +10,7 @@ class CategoryController {
       const product = await productService.findById(productId);
       console.log(product);
 
-      if (product === null && !undefined) {
+      if (productId && !product) {
         return sendResponse(res, 400, {
           message: `We could not find product based on your id ${productId}`,
         });
@@ -47,10 +46,11 @@ class CategoryController {
       });
     }
 
-    const transformed = categories.map((products) => {
-      return products.productId.map((product) => {
-        return new ProductDto(product);
-      });
+    const transformed = categories.map((category) => {
+      // category.productId.map((product) => {
+      //   return new ProductDto(product);
+      // });
+      return new CategoryDto(category);
     });
 
     return sendResponse(res, 200, {
