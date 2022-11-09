@@ -15,6 +15,9 @@ class ProductService {
   async update(id, payload) {
     return await Product.findByIdAndUpdate(id, payload, { new: true });
   }
+  async delete(id, payload) {
+    return await Product.findByIdAndDelete(id, payload);
+  }
 }
 
 export default new ProductService();

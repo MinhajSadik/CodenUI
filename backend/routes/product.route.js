@@ -26,4 +26,11 @@ router.put(
   productController.updateProduct
 );
 
+router.delete(
+  "/delete/:id",
+  checkAuth,
+  authorizedRole(["admin"]),
+  productController.deleteProduct
+);
+
 export default router;
