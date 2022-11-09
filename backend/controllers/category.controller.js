@@ -57,6 +57,29 @@ class CategoryController {
       categories: transformed,
     });
   }
+  async updateCategory(req, res) {
+    const { id } = req.params;
+    const { name } = req.body;
+    try {
+      const category = await categoryService.findById(id);
+      if (!category) {
+        return sendResponse(res, 404, {
+          message: `We could not find category based on your ${id}`,
+        });
+      }
+
+      const updatedCategory = await categoryService.update(id, req.body);
+
+      return sendResponse(res, 200, {
+        message: `${name} Category updated successfully`,
+        category: updatedCategory,
+      });
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message,
+      });
+    }
+  }
 }
 
 export default new CategoryController();

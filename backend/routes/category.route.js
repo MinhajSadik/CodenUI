@@ -19,4 +19,11 @@ router.get(
   categoryController.findCategory
 );
 
+router.put(
+  "/update/:id",
+  checkAuth,
+  authorizedRole(["admin"]),
+  categoryController.updateCategory
+);
+
 export default router;

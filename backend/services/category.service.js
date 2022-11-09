@@ -15,6 +15,9 @@ class CategoryService {
       path: "productId",
     });
   }
+  async update(id, payload) {
+    return await Category.findByIdAndUpdate(id, payload, { new: true });
+  }
 }
 
 export default new CategoryService();
