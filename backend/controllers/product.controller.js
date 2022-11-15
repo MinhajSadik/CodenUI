@@ -30,7 +30,6 @@ class ProductController {
       });
     }
   }
-
   async findProduct(req, res) {
     try {
       const products = await productService.find({});
@@ -75,23 +74,21 @@ class ProductController {
   }
   async deleteProduct(req, res) {
     const { id } = req.params;
-    const { name } = req.body;
     try {
       const product = await productService.findById(id);
+
       if (!product) {
         return sendResponse(res, 404, {
           message: `We could not find product based on your ${id}`,
         });
       }
 
+      await categoryService.deleteProductId(product.categoryId, id);
+
       await productService.delete(id);
 
       return sendResponse(res, 200, {
         message: `Product ${product.name} deleted successfully`,
-      });
-
-      return sendResponse(res, 200, {
-        message: `${name} deleted successfully`,
       });
     } catch (error) {
       return sendResponse(res, 500, {

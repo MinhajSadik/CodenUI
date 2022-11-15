@@ -7,7 +7,7 @@ await connectDB();
 
 app.all("*", (req, res) => {
   res.status(404).json({
-    message: `We have trouble to find this route`,
+    message: `Hmm. We’re having trouble finding this route`,
   });
 });
 

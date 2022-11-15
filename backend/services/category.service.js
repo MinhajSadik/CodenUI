@@ -21,6 +21,16 @@ class CategoryService {
   async delete(id) {
     return await Category.findByIdAndDelete(id);
   }
+  async deleteProductId(categoryId, productId) {
+    const category = await this.findById(categoryId);
+
+    const cgId = category.productId.map((id) => id).toString();
+
+    const transform = Array.isArray(cgId) ? cgId : [cgId];
+
+    const newValue = transform.map((perId) => perId <= productId);
+    console.log(newValue);
+  }
 }
 
 export default new CategoryService();

@@ -82,7 +82,6 @@ class CategoryController {
   }
   async deleteCategory(req, res) {
     const { id } = req.params;
-    const { name } = req.body;
     try {
       const category = await categoryService.findById(id);
       if (!category) {
