@@ -21,16 +21,20 @@ class CategoryService {
   async delete(id) {
     return await Category.findByIdAndDelete(id);
   }
-  async deleteProductId(cgID, pdID) {
-    const category = await this.findById(cgID);
+  async deleteProductId(categoryID, productID) {
+    const category = await this.findById(categoryID);
 
     const cgId = category.productId.map((id) => id);
 
-    cgId.pop();
-    const transform = Object.assign({}, cgId);
+    const popedId = cgId.pop();
 
-    await this.update(pdID, transform, { new: true });
-    return await category.save();
+    let updateDocument;
+    if (popedId.toString() === productID) {
+      updateDocument = {
+        $set: { productId: cgId },
+      };
+    }
+    return await Category.updateMany({ productID }, updateDocument);
   }
 }
 
