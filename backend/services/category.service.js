@@ -21,15 +21,16 @@ class CategoryService {
   async delete(id) {
     return await Category.findByIdAndDelete(id);
   }
-  async deleteProductId(categoryId, productId) {
-    const category = await this.findById(categoryId);
+  async deleteProductId(cgID, pdID) {
+    const category = await this.findById(cgID);
 
-    const cgId = category.productId.map((id) => id).toString();
+    const cgId = category.productId.map((id) => id);
 
-    const transform = Array.isArray(cgId) ? cgId : [cgId];
+    cgId.pop();
+    const transform = Object.assign({}, cgId);
 
-    const newValue = transform.map((perId) => perId <= productId);
-    console.log(newValue);
+    await this.update(pdID, transform, { new: true });
+    return await category.save();
   }
 }
 
