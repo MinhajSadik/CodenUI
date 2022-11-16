@@ -83,7 +83,7 @@ class ProductController {
         });
       }
 
-      await categoryService.deleteProductId(product.categoryId, id);
+      await categoryService.deleteProductID(product.categoryId, id);
 
       await productService.delete(id);
 
