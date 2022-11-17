@@ -31,6 +31,10 @@ const productSchema = new Schema(
       required: false,
       default: 0,
     },
+    filePath: {
+      type: String,
+      required: false,
+    },
     categoryId: {
       type: Schema.Types.ObjectId,
       ref: "Category",

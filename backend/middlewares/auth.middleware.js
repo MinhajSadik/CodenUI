@@ -7,7 +7,7 @@ export default async function (req, res, next) {
 
     if (!accessToken) {
       return sendResponse(res, 500, {
-        message: "You have no Credentials!",
+        message: "You have no session!",
       });
     }
 
