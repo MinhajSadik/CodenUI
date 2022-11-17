@@ -26,10 +26,10 @@ class CategoryService {
 
     const cgId = category.productId.map((id) => id);
 
-    const popedId = cgId.pop();
+    const removedID = cgId.pop();
 
     let updateDocument;
-    if (popedId.toString() === productID) {
+    if (removedID.toString() === productID) {
       updateDocument = {
         $set: { productId: cgId },
       };
