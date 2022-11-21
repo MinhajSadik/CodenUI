@@ -12,8 +12,8 @@ fs.promises;
 
 class UserController {
   async registerUser(req, res) {
-    const { name, email } = req.body;
     try {
+      const { name, email } = req.body;
       const existedUser = await userService.findUser(email);
 
       if (existedUser) {
@@ -48,8 +48,8 @@ class UserController {
     }
   }
   async loginUser(req, res) {
-    const { email, password } = req.body;
     try {
+      const { email, password } = req.body;
       const user = await userService.findUser(email);
 
       if (!user) {
@@ -95,8 +95,8 @@ class UserController {
   }
 
   async updateUser(req, res) {
-    const { id } = req.params;
     try {
+      const { id } = req.params;
       const existedUser = await userService.findById(id);
       if (!existedUser) {
         return sendResponse(res, 400, {

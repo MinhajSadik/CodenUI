@@ -4,8 +4,8 @@ import productService from "../services/product.service.js";
 import { sendResponse } from "../utils/response.util.js";
 class ProductController {
   async createProduct(req, res) {
-    const { categoryId } = req.body;
     try {
+      const { categoryId } = req.body;
       const category = await categoryService.findById(categoryId);
 
       if (!category) {
@@ -49,9 +49,9 @@ class ProductController {
     }
   }
   async updateProduct(req, res) {
-    const { id } = req.params;
-    const { name } = req.body;
     try {
+      const { id } = req.params;
+      const { name } = req.body;
       const product = await productService.findById(id);
 
       if (!product) {
@@ -73,8 +73,8 @@ class ProductController {
     }
   }
   async deleteProduct(req, res) {
-    const { id } = req.params;
     try {
+      const { id } = req.params;
       const product = await productService.findById(id);
 
       if (!product) {

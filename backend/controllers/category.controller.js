@@ -5,8 +5,8 @@ import { sendResponse } from "../utils/response.util.js";
 
 class CategoryController {
   async createCategory(req, res) {
-    const { name, productId } = req.body;
     try {
+      const { name, productId } = req.body;
       const product = await productService.findById(productId);
       console.log(product);
 
@@ -38,29 +38,35 @@ class CategoryController {
     }
   }
   async findCategory(req, res) {
-    const categories = await categoryService.find({});
+    try {
+      const categories = await categoryService.find({});
 
-    if (!categories.length) {
-      return sendResponse(res, 400, {
-        message: `There are no categories, You may add one!`,
+      if (!categories.length) {
+        return sendResponse(res, 400, {
+          message: `There are no categories, You may add one!`,
+        });
+      }
+
+      const transformed = categories.map((category) => {
+        // category.productId.map((product) => {
+        //   return new ProductDto(product);
+        // });
+        return new CategoryDto(category);
+      });
+
+      return sendResponse(res, 200, {
+        categories: transformed,
+      });
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message,
       });
     }
-
-    const transformed = categories.map((category) => {
-      // category.productId.map((product) => {
-      //   return new ProductDto(product);
-      // });
-      return new CategoryDto(category);
-    });
-
-    return sendResponse(res, 200, {
-      categories: transformed,
-    });
   }
   async updateCategory(req, res) {
-    const { id } = req.params;
-    const { name } = req.body;
     try {
+      const { id } = req.params;
+      const { name } = req.body;
       const category = await categoryService.findById(id);
       if (!category) {
         return sendResponse(res, 404, {
@@ -81,8 +87,8 @@ class CategoryController {
     }
   }
   async deleteCategory(req, res) {
-    const { id } = req.params;
     try {
+      const { id } = req.params;
       const category = await categoryService.findById(id);
       if (!category) {
         return sendResponse(res, 404, {
