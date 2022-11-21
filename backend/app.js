@@ -1,14 +1,21 @@
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import helmet from "helmet";
 import morgan from "morgan";
 
 dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
+app.use(express.json({ limit: "10mb", extended: true }));
 app.use(cookieParser());
-app.use(morgan("dev"));
+app.use(morgan("common"));
+app.use(cors());
 
 //routes
 import categoryRoute from "./routes/category.route.js";
