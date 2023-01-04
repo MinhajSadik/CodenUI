@@ -4,9 +4,9 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Coden UI",
-  "short_name": "Coden UI",
-  "description": "A platform for developer and designer.",
+  "name": "CodenUI",
+  "short_name": "CodenUI",
+  "description": "CodenUI a platform for developer and designer.",
   "icons": [
     {
       "src": "/icon-192x192.png",
