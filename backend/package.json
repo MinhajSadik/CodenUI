@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "server": "nodemon server"
   },
   "repository": "https://github.com/MinhajSadik/Pick_UI",
   "author": "MinhajSadik",
