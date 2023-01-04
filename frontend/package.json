@@ -1,5 +1,5 @@
 {
-  "name": "coden-ui",
+  "name": "coden_ui_frontend",
   "private": true,
   "scripts": {
     "dev": "next dev",
