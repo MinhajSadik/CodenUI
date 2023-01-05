@@ -1,9 +1,11 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-
+import Head from 'next/head';
+import Image from 'next/image';
+import React, { useState } from 'react';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
+  const [loading, setLoading] = useState(false)
+  console.log(loading)
   return (
     <>
       <Head>
@@ -37,11 +39,8 @@ export default function Home() {
             </a>
           </div>
         </div>
-        <h1>
-          We are building Coden UI platform based on
-        </h1>
+        <h1>We are building Coden UI platform based on</h1>
         <div className={styles.center}>
-
           <Image
             className={styles.logo}
             src="/next.svg"
@@ -60,7 +59,6 @@ export default function Home() {
               priority
             />
           </div>
-
         </div>
 
         <div className={styles.grid}>
@@ -84,10 +82,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 >
+            <h2>
               Learn <span>-&gt;</span>
             </h2>
-            <p >
+            <p>
               Learn about Next.js in an interactive course with&nbsp;quizzes!
             </p>
           </a>
@@ -98,10 +96,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 >
+            <h2>
               Templates <span>-&gt;</span>
             </h2>
-            <p >
+            <p>
               Discover and deploy boilerplate example Next.js&nbsp;projects.
             </p>
           </a>
@@ -112,10 +110,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 >
+            <h2>
               Deploy <span>-&gt;</span>
             </h2>
-            <p >
+            <p>
               Instantly deploy your Next.js site to a shareable URL
               with&nbsp;Vercel.
             </p>
@@ -123,5 +121,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  )
+  );
 }
