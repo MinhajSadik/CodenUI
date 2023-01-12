@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstarp CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CU_Fonts Css -->
+    <link rel="stylesheet" href="./assets/css/fonts.css"> 
+    <!-- CU_Style Common Css -->
+    <link rel="stylesheet" href="./assets/css/common.css">
+    <!-- CU_Style Css -->
+     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Bootstarp JS-->
+    <script data-n-head="ssr" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <title>Account Settings</title>
+</head>
+<body>
+    <header>
+        
+  <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="./assets/img/logo/logo-Coden-UI.svg" style="display:none" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./categories_page.html">Coded Templates</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./coded-blocks.html">Coded Blocks</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Email Templates</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Icon
+                <img class="cu_drop_down_arrow" src="./assets/img/icon/down-arrow.svg" alt="down-arrow">
+              </a>
+              <div class="dropdown-menu">
+                <ul class="cu_drop_down_ul">
+                  <li><a class="dropdown-item" href="./icon-pack.html">Pack</a></li>
+                  <li><a class="dropdown-item mt-6" href="./single-icon.html">Single</a></li>
+                 
+                </ul>
+              </div>
+             
+            </li>
+            
+          </ul>
+          <div class="d-flex justify-content-between align-items-center">
+            <a class="cu_Pricing" href="#" class="">Pricing</a>
+            <div>
+                <img class="cu_avatar_icon" src="./assets/img/icon/Avatar-icon.svg" alt="">
+                <img class="cu_account_drop_down_icon" src="./assets/img/icon/down-arrow.svg" alt="">
+                
+                <div class="account_menu">
+                  <ul class="cu_account_drop_down_ul">
+                    <li><a class="dropdown-item account_menu_item" href="./icon-pack.html">Settings</a></li>
+                    <li><a class="dropdown-item account_menu_item mt-6" href="./single-icon.html">Billing</a></li>
+                    <li><a class="dropdown-item account_menu_item mt-6" href="./single-icon.html">Logout</a></li>
+                   
+                  </ul>
+                </div>
+
+
+
+            </div>
+            
+          </div>
+       
+          
+        </div>
+      </div>
+    </nav>
+      
+</header>
+<main>
+    <section>
+        <div class="cu_account_settings_wrapper">
+            <div class="container">
+                <div class="col-lg-6 m-auto pt-40">
+                    <div class="cu_account_settings_box">
+                        <h4 class="cu_account_settings_title" >Account Settings</h4>
+                        <p class="cu_account_settings_text">Manage your profile, password & more.</p>
+
+                    </div>
+                    <div class="cu_account_info_box">
+                        <div class="cu_avatar_box">
+                            <img class="cu_profile_avatar" src="./assets/img/icon/Avatar-icon.svg" alt="">
+                            <a class="cu_upload_avatar_btn" href="">Upload Avater</a>
+
+                        </div>
+                        <p class="cu_profile_info_title mt-25">Profile Information</p>
+                        <div class="cu_profile_info_box">
+                            <form class="row">
+                                <div class="col-lg-12">
+                                <label for="text" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="" placeholder="Monowar H Minar">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="inputEmail4" class="form-label pt-15">Email</label>
+                                    <input type="email" class="form-control" id="inputEmail4" placeholder="mhminar@gmail.com">
+                                  </div>
+                                  <div class="col-12">
+                                    <button type="submit" class="cu_profile_update_btn">Update</button>
+                                  </div>
+                            </form>
+                        </div>
+
+                        <p class="cu_account_pass_title mt-25">Password</p>
+                        <div class="cu_account_pass_box">
+                            <form class="row">
+                                <div class="col-lg-12">
+                                <label for="inputEmail4" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="inputEmail4" class="form-label pt-15">New Password</label>
+                                    <input type="password" class="form-control" id="">
+                                  </div>
+                                <div class="col-md-12">
+                                    <label for="inputEmail4" class="form-label pt-15">Confirm New Password</label>
+                                    <input type="password" class="form-control" id="">
+                                  </div>
+                                  <div class="col-12">
+                                    <button type="submit" class="cu_pass_update_btn">Update Password</button>
+                                  </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>

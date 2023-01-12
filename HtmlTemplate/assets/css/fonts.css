@@ -1,0 +1,37 @@
+@font-face {
+    font-family: eudoxus-sans-800;
+    src: url(../fonts/EudoxusSans-ExtraBold.woff2);
+}
+
+
+@font-face {
+    font-family: eudoxus-sans-700;
+    src: url(../fonts/EudoxusSans-Bold.woff2);
+}
+
+@font-face {
+    font-family: eudoxus-sans-500;
+    src: url(../fonts/EudoxusSans-Medium.woff2);
+}
+
+@font-face {
+    font-family: eudoxus-sans-400;
+    src: url(../fonts/EudoxusSans-Regular.woff2);
+}
+
+@font-face {
+    font-family: eudoxus-sans-300;
+    src: url(../fonts/EudoxusSans-Light.woff2);
+}
+
+
+@font-face {
+    font-family: eudoxus-sans-200;
+    src: url(../fonts/EudoxusSans-ExtraLight.woff2);
+}
+
+
+@font-face {
+    font-family: open-Sauce-Sans-400;
+    src: url(../fonts/openSauceSans/OpenSauceSans-Regular.ttf);
+}

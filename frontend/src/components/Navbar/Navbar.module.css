@@ -1,0 +1,96 @@
+.navbar {
+  background-color: #1d1927;
+  padding: 15px 0;
+  border-bottom: 1px solid #2a2633;
+}
+
+.navbar_brand {
+  padding-top: 0px;
+  padding-bottom: 5px;
+  margin-right: 0px;
+}
+
+.navbar_nav {
+  padding-left: 50px;
+}
+
+.nav_item .nav_link {
+  font-family: eudoxus-sans-500;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  padding-left: 35px !important;
+}
+
+/* dropdown-menu */
+
+.cu_drop_down_arrow {
+  padding-left: 5px;
+}
+
+.dropdown_menu {
+  background-color: #2b2539;
+  padding: 6px;
+  border-radius: 6px;
+  width: 123px;
+}
+
+.cu_drop_down_ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.dropdown_item {
+  font-family: eudoxus-sans-500;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffff;
+  transition: 0.5s;
+  padding-top: 4px;
+  padding-left: 6px;
+  padding-bottom: 4px;
+  border-radius: 6px;
+}
+.dropdown_item:hover {
+  background-color: rgba(109, 88, 245, 0.2);
+  color: #6d58f5;
+}
+
+.cu_sign_in_btn {
+  padding: 8px 25px;
+  background: radial-gradient(
+    314.29% 3484.53% at 35.81% -38.39%,
+    rgba(109, 88, 245, 0.2),
+    rgba(69, 51, 184, 1)
+  );
+  border-radius: 6px;
+  font-family: eudoxus-sans-700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #6d58f5;
+  margin-right: 15px;
+}
+
+.cu_sign_in_btn:hover {
+  color: #6d58f5;
+}
+
+.cu_get_access_btn {
+  padding: 8px 20px;
+  background: radial-gradient(
+    314.29% 3484.53% at 35.81% -38.39%,
+    #6d58f5 0%,
+    #4533b8 100%
+  );
+  border-radius: 6px;
+  font-family: eudoxus-sans-700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fff;
+}
+
+.cu_get_access_btn:hover {
+  color: #fff;
+}

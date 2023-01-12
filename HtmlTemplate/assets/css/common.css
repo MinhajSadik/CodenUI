@@ -1,0 +1,168 @@
+.mt-6{
+    margin-top: 6px;
+}
+
+.pb-10{
+    padding-bottom: 10px;
+}
+
+.pt-15{
+    padding-top: 15px;
+}
+.pt-40{
+    padding-top: 40px;
+}
+
+.pt-60{
+    padding-top: 60px;
+}
+.pt-106{
+    padding-top: 106px;
+}
+
+.mr-5{
+    margin-right: 5px;
+}
+
+.mt-20{
+    margin-top: 20px;
+}
+.mt-25{
+    margin-top: 25px;
+}
+
+.mb-32{
+    margin-bottom: 32px;
+}
+
+.mt-10{
+    margin-top: 10px;
+}
+
+.mt-30{
+    margin-top: 30px;
+}
+
+.mt-35{
+    margin-top: 35px;
+}
+
+
+
+.pr-12{
+    padding-right: 12px;
+}
+
+.pt-16{
+    padding-top: 16px;
+}
+
+
+.pt-29{
+    padding-top: 29px;
+}
+
+.pt-70{
+    padding-top: 70px;
+}
+.pt-76{
+    padding-top: 76px;
+}
+
+.pt-50{
+    padding-top: 50px;
+}
+.mb-50{
+    margin-bottom: 50px;
+}
+
+.pb-75{
+    padding-bottom: 75px;
+}
+.pt-80{
+    padding-top: 80px;
+}
+.pb-100{
+    padding-bottom: 100px;
+}
+
+.pb-110{
+    padding-bottom: 110px;
+}
+
+.pb-65{
+    padding-bottom: 65px;
+}
+
+
+
+.pt-120{
+    padding-top: 120px;
+}
+
+.figma{
+    background: #FF7262;
+}
+
+.bootstarp{
+    background-color: #7E13F8;
+    
+}
+
+.tailwind{
+    background-color: #44A8B3;
+}
+
+.nextjs{
+    background-color: #000000;
+}
+
+.gatsby{
+    background-color: #663399;
+}
+
+.vueJs{
+   background-color: #41B883;
+}
+
+
+.webflow{
+    background-color: #4353FF;
+}
+
+.mailchimp{
+    background-color: #FFE01C;
+    color: #000000 !important;
+}
+
+
+
+
+
+.copy-webflow{
+    background-color: #212121;
+    color: #fff;
+}
+
+.copy-webflow:hover{
+    color: #fff;
+}
+
+.copy-svg{
+    background-color: #FFD2B5;
+    color: #212121;
+}
+
+.copy-svg:hover{
+    color: #212121;
+}
+
+.copy-png{
+    background-color: #B9E09C;
+    color: #212121;
+
+}
+
+.copy-png:hover{
+    color: #212121;
+}
