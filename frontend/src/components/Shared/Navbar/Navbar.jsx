@@ -1,15 +1,15 @@
-import Image from 'next/image';
-import DownArrow from '../../assets/img/icon/downArrow.svg';
-import Logo from '../../assets/img/logo/CodenUILogo.svg';
-import * as classes from './Navbar.module.css';
+// import Image from 'next/image';
+// import DownArrow from '../../assets/img/icon/downArrow.svg';
+// import Logo from '../../assets/img/logo/CodenUILogo.svg';
+// import * as classNamees from './Navbar.module.css';
 
 export default function Navbar() {
   return (
     <header>
-      <nav className={`${classes.navbar} navbar-expand-lg`}>
+      <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <a className={classes.navbar_brand} href="#">
-            <Image src={Logo} alt="Logo" />
+          <a className="navbar-brand" href="#">
+            <img src="./assets/img/logo/logo-Coden-UI.svg" alt="" />
           </a>
           <button
             className="navbar-toggler"
@@ -23,10 +23,10 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className={`${classes.navbar_nav} me-auto mb-2 mb-lg-0`}>
-              <li className={classes.nav_item}>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
                 <a
-                  className={classes.nav_link}
+                  className="nav-link"
                   aria-current="page"
                   href="./categories_page.html"
                 >
@@ -34,9 +34,9 @@ export default function Navbar() {
                 </a>
               </li>
 
-              <li className={classes.nav_item}>
+              <li className="nav-item">
                 <a
-                  className={classes.nav_link}
+                  className="nav-link"
                   aria-current="page"
                   href="./coded-blocks.html"
                 >
@@ -44,29 +44,29 @@ export default function Navbar() {
                 </a>
               </li>
 
-              <li className={classes.nav_item}>
-                <a className={classes.nav_link} aria-current="page" href="#">
+              <li className="nav-item">
+                <a className="nav-link" aria-current="page" href="#">
                   Email Templates
                 </a>
               </li>
 
-              <li className={`${classes.nav_item} dropdown`}>
+              <li className="nav-item dropdown">
                 <a
-                  className={classes.nav_link}
+                  className="nav-link"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Icon
-                  <Image
-                    className={classes.cu_drop_down_arrow}
-                    src={DownArrow}
+                  <img
+                    className="cu_drop_down_arrow"
+                    src="./assets/img/icon/down-arrow.svg"
                     alt="down-arrow"
                   />
                 </a>
-                <div className={classes.dropdown_menu}>
-                  <ul className={classes.cu_drop_down_ul}>
+                <div className="dropdown-menu">
+                  <ul className="cu_drop_down_ul">
                     <li>
                       <a className="dropdown-item" href="./icon-pack.html">
                         Pack
@@ -74,7 +74,7 @@ export default function Navbar() {
                     </li>
                     <li>
                       <a
-                        className={`${classes.dropdown_item} mt-6`}
+                        className="dropdown-item mt-6"
                         href="./single-icon.html"
                       >
                         Single
@@ -85,10 +85,10 @@ export default function Navbar() {
               </li>
             </ul>
             <form className="d-flex" role="search">
-              <a href="#" className={classes.cu_sign_in_btn}>
+              <a href="#" className="cu_sign_in_btn">
                 Sign In
               </a>
-              <a href="#" className={classes.cu_get_access_btn}>
+              <a href="#" className="cu_get_access_btn">
                 Get All Access
               </a>
             </form>
