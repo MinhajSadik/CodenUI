@@ -1,7 +1,6 @@
-// import Image from 'next/image';
-// import DownArrow from '../../assets/img/icon/downArrow.svg';
-// import Logo from '../../assets/img/logo/CodenUILogo.svg';
-// import * as classNamees from './Navbar.module.css';
+import DownArrow from '../../../assets/img/icon/downArrow.svg';
+import Logo from '../../../assets/img/logo/CodenUILogo.svg';
+import NextImage from '../Image/Image';
 
 export default function Navbar() {
   return (
@@ -9,7 +8,7 @@ export default function Navbar() {
       <nav className="navbar navbar-expand-lg">
         <div className="container">
           <a className="navbar-brand" href="#">
-            <img src="./assets/img/logo/logo-Coden-UI.svg" alt="" />
+            <NextImage src={Logo} alt="" />
           </a>
           <button
             className="navbar-toggler"
@@ -28,7 +27,7 @@ export default function Navbar() {
                 <a
                   className="nav-link"
                   aria-current="page"
-                  href="./categories_page.html"
+                  href="coded_template"
                 >
                   Coded Templates
                 </a>
@@ -59,9 +58,9 @@ export default function Navbar() {
                   aria-expanded="false"
                 >
                   Icon
-                  <img
+                  <NextImage
                     className="cu_drop_down_arrow"
-                    src="./assets/img/icon/down-arrow.svg"
+                    src={DownArrow}
                     alt="down-arrow"
                   />
                 </a>

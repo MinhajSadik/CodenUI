@@ -1,6 +1,13 @@
 import Head from 'next/head';
 import React from 'react';
+import Banner from '../src/components/Banner/Banner';
+import CodedBlocks from '../src/components/CodedBlocks/CodedBlocks';
+import CodedTemplates from '../src/components/CodedTemplates/CodedTemplates';
+import EmailTemplates from '../src/components/EmailTemplates/EmailTemplates';
+import Faq from '../src/components/Faq/Faq';
+import Icons from '../src/components/Icons/Icons';
 import Layout from '../src/components/Layout/Layout';
+import Pricing from '../src/components/Pricing/Pricing';
 
 export default function Home() {
   return (
@@ -13,6 +20,13 @@ export default function Home() {
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <Layout>
+        <Banner />
+        <CodedTemplates />
+        <EmailTemplates />
+        <Icons />
+        <CodedBlocks />
+        <Pricing />
+        <Faq />
       </Layout>
     </>
   );

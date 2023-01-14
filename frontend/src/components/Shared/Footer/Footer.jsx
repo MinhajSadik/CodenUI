@@ -1,4 +1,11 @@
 import React from 'react';
+import Facebook from '../../../assets/img/icon/facebook.svg';
+import Twitter from '../../../assets/img/icon/Instagram.svg';
+import LinkedIn from '../../../assets/img/icon/Linkedin.svg';
+import RightArrow from '../../../assets/img/icon/right_arrow.svg';
+import Instagram from '../../../assets/img/icon/Twitter.svg';
+import Logo from '../../../assets/img/logo/CodenUILogo.svg';
+import NextImage from '../Image/Image';
 
 export default function Footer() {
   return (
@@ -8,10 +15,9 @@ export default function Footer() {
           <div className="row pb-65 sm-pb-0">
             <div className="col-lg-4 order-1 order-lg-1">
               <div className="cu_footer_info">
-                <img
+                <NextImage
                   className="cu_footer_logo"
-                  style={{ display: 'none' }}
-                  src="./assets/img/logo/logo-Coden-UI.svg"
+                  src={Logo}
                   alt="cu_footer_logo"
                 />
                 <p className="cu_footer_text">
@@ -24,34 +30,22 @@ export default function Footer() {
                     <ul className="cu_footer_social_items d-flex">
                       <li className="cu_footer_social_item">
                         <a href="#">
-                          <img
-                            src="./assets/img/icon/facebook.svg"
-                            alt="facebook"
-                          />
+                          <NextImage src={Facebook} alt="facebook" />
                         </a>
                       </li>
                       <li className="cu_footer_social_item">
                         <a href="#">
-                          <img
-                            src="./assets/img/icon/Linkedin.svg"
-                            alt="linkedin"
-                          />
+                          <NextImage src={LinkedIn} alt="linkedin" />
                         </a>
                       </li>
                       <li className="cu_footer_social_item">
                         <a href="#">
-                          <img
-                            src="./assets/img/icon/Twitter.svg"
-                            alt="twitter.svg"
-                          />
+                          <NextImage src={Twitter} alt="twitter.svg" />
                         </a>
                       </li>
                       <li className="cu_footer_social_item">
                         <a href="#">
-                          <img
-                            src="./assets/img/icon/Instagram.svg"
-                            alt="instagram.svg"
-                          />
+                          <NextImage src={Instagram} alt="instagram.svg" />
                         </a>
                       </li>
                     </ul>
@@ -127,7 +121,7 @@ export default function Footer() {
                     type="button"
                     id="button-addon2"
                   >
-                    <img src="./assets/img/icon/right_arrow.svg" alt="" />
+                    <NextImage src={RightArrow} alt="Arrow" />
                   </button>
                 </div>
               </div>
