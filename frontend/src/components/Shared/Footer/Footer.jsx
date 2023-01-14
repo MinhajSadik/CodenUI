@@ -5,7 +5,7 @@ import LinkedIn from '../../../assets/img/icon/Linkedin.svg';
 import RightArrow from '../../../assets/img/icon/right_arrow.svg';
 import Instagram from '../../../assets/img/icon/Twitter.svg';
 import Logo from '../../../assets/img/logo/CodenUILogo.svg';
-import NextImage from '../Image/Image';
+import NextImage from '../Image/NextImage';
 
 export default function Footer() {
   return (

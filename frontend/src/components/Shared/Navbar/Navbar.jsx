@@ -1,15 +1,16 @@
 import DownArrow from '../../../assets/img/icon/downArrow.svg';
 import Logo from '../../../assets/img/logo/CodenUILogo.svg';
-import NextImage from '../Image/Image';
+import NextImage from '../Image/NextImage';
+import NextLink from '../Link/NextLink';
 
 export default function Navbar() {
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <a className="navbar-brand" href="#">
-            <NextImage src={Logo} alt="" />
-          </a>
+          <NextLink href="/" className="navbar-brand">
+            <NextImage src={Logo} alt="logo" />
+          </NextLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -24,35 +25,39 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a
+                <NextLink
                   className="nav-link"
                   aria-current="page"
-                  href="coded_template"
+                  href="coded_templates"
                 >
                   Coded Templates
-                </a>
+                </NextLink>
               </li>
 
               <li className="nav-item">
-                <a
+                <NextLink
                   className="nav-link"
                   aria-current="page"
-                  href="./coded-blocks.html"
+                  href="coded_blocks"
                 >
                   Coded Blocks
-                </a>
+                </NextLink>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">
+                <NextLink
+                  className="nav-link"
+                  aria-current="page"
+                  href="email_templates"
+                >
                   Email Templates
-                </a>
+                </NextLink>
               </li>
 
               <li className="nav-item dropdown">
-                <a
+                <NextLink
                   className="nav-link"
-                  href="#"
+                  href="icons"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -63,33 +68,33 @@ export default function Navbar() {
                     src={DownArrow}
                     alt="down-arrow"
                   />
-                </a>
+                </NextLink>
                 <div className="dropdown-menu">
                   <ul className="cu_drop_down_ul">
                     <li>
-                      <a className="dropdown-item" href="./icon-pack.html">
+                      <NextLink className="dropdown-item" href="icon_pack">
                         Pack
-                      </a>
+                      </NextLink>
                     </li>
                     <li>
-                      <a
+                      <NextLink
                         className="dropdown-item mt-6"
-                        href="./single-icon.html"
+                        href="single_icon"
                       >
                         Single
-                      </a>
+                      </NextLink>
                     </li>
                   </ul>
                 </div>
               </li>
             </ul>
             <form className="d-flex" role="search">
-              <a href="#" className="cu_sign_in_btn">
+              <NextLink href="/login" className="cu_sign_in_btn">
                 Sign In
-              </a>
-              <a href="#" className="cu_get_access_btn">
+              </NextLink>
+              <NextLink href="all_access" className="cu_get_access_btn">
                 Get All Access
-              </a>
+              </NextLink>
             </form>
           </div>
         </div>

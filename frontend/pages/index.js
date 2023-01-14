@@ -6,8 +6,8 @@ import CodedTemplates from '../src/components/CodedTemplates/CodedTemplates';
 import EmailTemplates from '../src/components/EmailTemplates/EmailTemplates';
 import Faq from '../src/components/Faq/Faq';
 import Icons from '../src/components/Icons/Icons';
-import Layout from '../src/components/Layout/Layout';
 import Pricing from '../src/components/Pricing/Pricing';
+import Layout from '../src/components/Shared/Layout/Layout';
 
 export default function Home() {
   return (

@@ -8,7 +8,7 @@ import NextJs from '../../assets/img/icon/nextjs-icon.svg';
 import Tailwind from '../../assets/img/icon/Tailwind-css-icon.svg';
 import VueJs from '../../assets/img/icon/vueJs-icon.svg';
 import WebFlow from '../../assets/img/icon/Webflow-icon.svg';
-import NextImage from '../Shared/Image/Image';
+import NextImage from '../Shared/Image/NextImage';
 
 export default function Icons() {
   return (

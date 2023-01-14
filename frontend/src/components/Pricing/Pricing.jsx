@@ -3,7 +3,7 @@ import Crown from '../../assets/img/icon/Crown.svg';
 import DimondIcon from '../../assets/img/icon/lifetime_deal-diamond-icon.svg';
 import LIcon from '../../assets/img/icon/l_list_icon.svg';
 import PIcon from '../../assets/img/icon/p_list_icon.svg';
-import NextImage from '../Shared/Image/Image';
+import NextImage from '../Shared/Image/NextImage';
 
 export default function Pricing() {
   return (
