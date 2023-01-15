@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React from 'react';
-import Search from '../src/assets/img/icon/hero-search-icon.svg';
 import Banner from '../src/components/Shared/Banner/Banner';
 import Layout from '../src/components/Shared/Layout/Layout';
 
@@ -15,7 +14,7 @@ export default function coded_templates() {
                 <link rel="manifest" href="/manifest.json" />
             </Head>
             <Layout>
-                <Banner url={Search} title="Coded Templates" />
+                <Banner title="Coded Templates" />
             </Layout>
         </>
     )

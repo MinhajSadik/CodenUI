@@ -1,8 +1,9 @@
 import React from 'react';
+import Search from '../../../assets/img/icon/hero-search-icon.svg';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 
-export default function Banner({ url, title }) {
+export default function Banner({ title }) {
   return (
     <section>
       <div className="cu_banner_wrapper">
@@ -15,7 +16,7 @@ export default function Banner({ url, title }) {
             placeholder="Search templates..."
           />
           <NextLink href="search" className="cu_banner_search_bar">
-            <NextImage className="cu_banner_serach_icon" src={url} alt="" />
+            <NextImage className="cu_banner_serach_icon" src={Search} alt="" />
             Search
           </NextLink>
         </div>
