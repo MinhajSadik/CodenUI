@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import CodedTemplates from '../src/components/CodedTemplates/CodedTemplates';
 import Banner from '../src/components/Shared/Banner/Banner';
 import Layout from '../src/components/Shared/Layout/Layout';
 
@@ -15,6 +16,7 @@ export default function coded_templates() {
             </Head>
             <Layout>
                 <Banner title="Coded Templates" />
+                <CodedTemplates />
             </Layout>
         </>
     )

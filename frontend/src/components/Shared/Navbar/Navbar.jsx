@@ -57,7 +57,7 @@ export default function Navbar() {
               <li className="nav-item dropdown">
                 <NextLink
                   className="nav-link"
-                  href="icons"
+                  href=""
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
