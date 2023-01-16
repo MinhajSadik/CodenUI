@@ -3,7 +3,7 @@ import Logo from '../../../assets/img/logo/CodenUILogo.svg';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 
-export default function Navbar() {
+export default function Navbar({ handleLoginToggle }) {
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
@@ -28,7 +28,7 @@ export default function Navbar() {
                 <NextLink
                   className="nav-link"
                   aria-current="page"
-                  href="coded_templates"
+                  href="coded-templates"
                 >
                   Coded Templates
                 </NextLink>
@@ -38,7 +38,7 @@ export default function Navbar() {
                 <NextLink
                   className="nav-link"
                   aria-current="page"
-                  href="coded_blocks"
+                  href="coded-blocks"
                 >
                   Coded Blocks
                 </NextLink>
@@ -48,7 +48,7 @@ export default function Navbar() {
                 <NextLink
                   className="nav-link"
                   aria-current="page"
-                  href="email_templates"
+                  href="email-templates"
                 >
                   Email Templates
                 </NextLink>
@@ -57,7 +57,7 @@ export default function Navbar() {
               <li className="nav-item dropdown">
                 <NextLink
                   className="nav-link"
-                  href=""
+                  href="/"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -69,17 +69,17 @@ export default function Navbar() {
                     alt="down-arrow"
                   />
                 </NextLink>
-                <div className="dropdown-menu">
+                <div className="dropdown_icon">
                   <ul className="cu_drop_down_ul">
                     <li>
-                      <NextLink className="dropdown-item" href="icon_pack">
+                      <NextLink className="dropdown-item" href="icon-pack">
                         Pack
                       </NextLink>
                     </li>
                     <li>
                       <NextLink
                         className="dropdown-item mt-6"
-                        href="single_icon"
+                        href="single-icon"
                       >
                         Single
                       </NextLink>
@@ -88,14 +88,18 @@ export default function Navbar() {
                 </div>
               </li>
             </ul>
-            <form className="d-flex" role="search">
-              <NextLink href="/login" className="cu_sign_in_btn">
+            <div className="d-flex">
+              <button
+                type="button"
+                className="cu_sign_in_btn"
+                onClick={handleLoginToggle}
+              >
                 Sign In
-              </NextLink>
-              <NextLink href="all_access" className="cu_get_access_btn">
+              </button>
+              <NextLink href="all-access" className="cu_get_access_btn">
                 Get All Access
               </NextLink>
-            </form>
+            </div>
           </div>
         </div>
       </nav>

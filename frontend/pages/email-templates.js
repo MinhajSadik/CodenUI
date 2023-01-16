@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
+import EmailTemplates from '../src/components/EmailTemplates/EmailTemplates'
+import Banner from '../src/components/Shared/Banner/Banner'
 import Layout from '../src/components/Shared/Layout/Layout'
 
 export default function email_templates() {
@@ -13,7 +15,8 @@ export default function email_templates() {
                 <link rel="manifest" href="/manifest.json" />
             </Head>
             <Layout>
-
+                <Banner title="Email Templates" />
+                <EmailTemplates />
             </Layout>
         </>
     )

@@ -198,12 +198,22 @@ a {
   margin-left: 5px;
   width: 15px;
 }
+.dropdown {
+  position: relative;
+}
 
-.dropdown-menu {
+.dropdown_icon {
   background-color: #2b2539;
   padding: 6px;
   border-radius: 6px;
   width: 123px;
+  position: absolute;
+  display: none;
+  z-index: 99;
+}
+
+.dropdown:hover .dropdown_icon {
+  display: block;
 }
 
 .cu_drop_down_ul {
@@ -226,6 +236,10 @@ a {
   background-color: rgba(109, 88, 245, 0.2);
   color: #6d58f5;
 }
+
+/* .dropdown-item:hover .dropdown-menu {
+  display: block;
+} */
 
 .cu_sign_in_btn {
   padding: 8px 25px;
@@ -2594,22 +2608,33 @@ a {
 /* sign-in-page */
 
 .cu_sing_in_wrapper {
-  position: relative;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .cu_sign_in {
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 8%);
+  transform: translate(-50%, 8%); */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin: 100px auto;
   padding: 35px 30px 40px;
   background-color: #ffffff;
   border-radius: 12px;
   width: 460px;
 }
-#overlay {
+
+/* #overlay {
   background-color: rgba(0, 0, 0, 0.6);
-}
+} */
 
 .cu_form_label {
   font-family: eudoxus-sans-500;

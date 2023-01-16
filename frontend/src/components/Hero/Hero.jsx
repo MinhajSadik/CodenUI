@@ -10,7 +10,7 @@ import vueJs from '../../assets/img/icon/vueJs-icon.svg';
 import WebFlow from '../../assets/img/icon/Webflow-icon.svg';
 import NextImage from '../Shared/Image/NextImage';
 
-export default function Banner() {
+export default function Hero() {
   return (
     <section>
       <div className="cu_hero_wrapper">
