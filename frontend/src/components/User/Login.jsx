@@ -60,13 +60,13 @@ export default function Login({ handleRegisterToggle }) {
           </div>
           <p className="cu_form_msg_text mt-20">
             Don’t have an account?{' '}
-            <button
+            <a
               type="button"
               className="color-red"
               onClick={handleRegisterToggle}
             >
               Sign Up
-            </button>{' '}
+            </a>{' '}
           </p>
         </form>
       </div>
