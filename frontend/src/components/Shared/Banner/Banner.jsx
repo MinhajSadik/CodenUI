@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import Search from '../../../assets/img/icon/hero-search-icon.svg';
+import imagePath from '../../../../utils/imagePath';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
-
 export default function Banner({ title }) {
   return (
     <section>
@@ -16,7 +16,11 @@ export default function Banner({ title }) {
             placeholder="Search templates..."
           />
           <NextLink href="search" className="cu_banner_search_bar">
-            <NextImage className="cu_banner_serach_icon" src={Search} alt="" />
+            <NextImage
+              className="cu_banner_serach_icon"
+              src={imagePath.Search}
+              alt=""
+            />
             Search
           </NextLink>
         </div>
@@ -24,3 +28,7 @@ export default function Banner({ title }) {
     </section>
   );
 }
+
+Banner.propTypes = {
+  title: PropTypes.string,
+};

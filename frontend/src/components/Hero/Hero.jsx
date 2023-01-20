@@ -1,13 +1,5 @@
 import React from 'react';
-import Bootstrap from '../../assets/img/icon/Bootstrap-icon.svg';
-import Figma from '../../assets/img/icon/Figma-icon.svg';
-import Gatsby from '../../assets/img/icon/Gatsby-icon.svg';
-import SearchIcon from '../../assets/img/icon/hero-search-icon.svg';
-import HTML from '../../assets/img/icon/HTML-icon.svg';
-import Nextjs from '../../assets/img/icon/nextjs-icon.svg';
-import Tailwind from '../../assets/img/icon/Tailwind-css-icon.svg';
-import vueJs from '../../assets/img/icon/vueJs-icon.svg';
-import WebFlow from '../../assets/img/icon/Webflow-icon.svg';
+import imagePath from '../../../utils/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 
 export default function Hero() {
@@ -28,50 +20,82 @@ export default function Hero() {
 
             <div className="cu_tem_version">
               <a className="cu_tem_version_link" href="#">
-                <NextImage className="cu_tem_icon" src={Figma} alt="figma" />
+                <NextImage
+                  className="cu_tem_icon"
+                  src={imagePath.Figma}
+                  alt="figma"
+                />
                 <div className="cu_tooltip">
                   <p className="cu_tooltip_text">Figma</p>
                 </div>
               </a>
 
               <a className="cu_tem_version_link" href="#">
-                <NextImage className="cu_tem_icon" src={HTML} alt="" />
+                <NextImage
+                  className="cu_tem_icon"
+                  src={imagePath.HTML}
+                  alt=""
+                />
                 <div className="cu_tooltip">
                   <p className="cu_tooltip_text">HTML</p>
                 </div>
               </a>
               <a className="cu_tem_version_link" href="#">
-                <NextImage className="cu_tem_icon" src={Bootstrap} alt="" />
+                <NextImage
+                  className="cu_tem_icon"
+                  src={imagePath.Bootstrap}
+                  alt=""
+                />
                 <div className="cu_tooltip">
                   <p className="cu_tooltip_text">Bootstrap</p>
                 </div>
               </a>
               <a className="cu_tem_version_link" href="#">
-                <NextImage className="cu_tem_icon" src={Tailwind} alt="" />
+                <NextImage
+                  className="cu_tem_icon"
+                  src={imagePath.Tailwind}
+                  alt=""
+                />
                 <div className="cu_tooltip">
                   <p className="cu_tooltip_text">Tailwind</p>
                 </div>
               </a>
               <a className="cu_tem_version_link" href="#">
-                <NextImage className="cu_tem_icon" src={WebFlow} alt="" />
+                <NextImage
+                  className="cu_tem_icon"
+                  src={imagePath.WebFlow}
+                  alt=""
+                />
                 <div className="cu_tooltip">
                   <p className="cu_tooltip_text">Webflow</p>
                 </div>
               </a>
               <a className="cu_tem_version_link" href="#">
-                <NextImage className="cu_tem_icon" src={Nextjs} alt="" />
+                <NextImage
+                  className="cu_tem_icon"
+                  src={imagePath.Nextjs}
+                  alt=""
+                />
                 <div className="cu_tooltip">
                   <p className="cu_tooltip_text">Nextjs</p>
                 </div>
               </a>
               <a className="cu_tem_version_link" href="#">
-                <NextImage className="cu_tem_icon" src={Gatsby} alt="" />
+                <NextImage
+                  className="cu_tem_icon"
+                  src={imagePath.Gatsby}
+                  alt=""
+                />
                 <div className="cu_tooltip">
                   <p className="cu_tooltip_text">Gatsby</p>
                 </div>
               </a>
               <a className="cu_tem_version_link" href="#">
-                <NextImage className="cu_tem_icon" src={vueJs} alt="" />
+                <NextImage
+                  className="cu_tem_icon"
+                  src={imagePath.VueJs}
+                  alt=""
+                />
                 <div className="cu_tooltip">
                   <p className="cu_tooltip_text">vueJs</p>
                 </div>
@@ -85,7 +109,11 @@ export default function Hero() {
                 placeholder="Search templates..."
               />
               <a href="#" className="cu_serach_bar">
-                <NextImage className="cu_serach_icon" src={SearchIcon} alt="" />
+                <NextImage
+                  className="cu_serach_icon"
+                  src={imagePath.Search}
+                  alt=""
+                />
                 Search
               </a>
             </div>

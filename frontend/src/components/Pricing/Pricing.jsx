@@ -1,8 +1,5 @@
 import React from 'react';
-import Crown from '../../assets/img/icon/Crown.svg';
-import DimondIcon from '../../assets/img/icon/lifetime_deal-diamond-icon.svg';
-import LIcon from '../../assets/img/icon/l_list_icon.svg';
-import PIcon from '../../assets/img/icon/p_list_icon.svg';
+import imagePath from '../../../utils/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 
 export default function Pricing() {
@@ -24,7 +21,7 @@ export default function Pricing() {
               <div className="cu_pricing_pack_limit d-flex">
                 <NextImage
                   className="cu_pricing_pack_icon"
-                  src={Crown}
+                  src={imagePath.CrownIcon}
                   alt="crown"
                 />
                 <h6 className="cu_pricing_pack_limit_title">Yearly</h6>
@@ -37,7 +34,7 @@ export default function Pricing() {
                 <li className="cu_package_item">
                   <NextImage
                     className="cu_list_icon"
-                    src={PIcon}
+                    src={imagePath.PIcon}
                     alt="p_list_icon.svg"
                   />
                   Quality Resources
@@ -45,7 +42,7 @@ export default function Pricing() {
                 <li className="cu_package_item pt-16">
                   <NextImage
                     className="cu_list_icon"
-                    src={PIcon}
+                    src={imagePath.PIcon}
                     alt="p_list_icon.svg"
                   />
                   Clean Code
@@ -53,7 +50,7 @@ export default function Pricing() {
                 <li className="cu_package_item pt-16">
                   <NextImage
                     className="cu_list_icon"
-                    src={PIcon}
+                    src={imagePath.PIcon}
                     alt="p_list_icon.svg"
                   />
                   Responsive All Device
@@ -61,7 +58,7 @@ export default function Pricing() {
                 <li className="cu_package_item pt-16">
                   <NextImage
                     className="cu_list_icon"
-                    src={PIcon}
+                    src={imagePath.PIcon}
                     alt="p_list_icon.svg"
                   />
                   Multiple File Format
@@ -69,7 +66,7 @@ export default function Pricing() {
                 <li className="cu_package_item pt-16">
                   <NextImage
                     className="cu_list_icon"
-                    src={PIcon}
+                    src={imagePath.PIcon}
                     alt="p_list_icon.svg"
                   />
                   Tons of Icons
@@ -77,7 +74,7 @@ export default function Pricing() {
                 <li className="cu_package_item pt-16">
                   <NextImage
                     className="cu_list_icon"
-                    src={PIcon}
+                    src={imagePath.PIcon}
                     alt="p_list_icon.svg"
                   />
                   Single User Licenses
@@ -85,7 +82,7 @@ export default function Pricing() {
                 <li className="cu_package_item pt-16">
                   <NextImage
                     className="cu_list_icon"
-                    src={PIcon}
+                    src={imagePath.PIcon}
                     alt="p_list_icon.svg"
                   />
                   Icon Download/Copy
@@ -94,7 +91,7 @@ export default function Pricing() {
                 <li className="cu_package_item pt-16">
                   <NextImage
                     className="cu_list_icon"
-                    src={PIcon}
+                    src={imagePath.PIcon}
                     alt="p_list_icon.svg"
                   />
                   Others Category Download
@@ -103,7 +100,7 @@ export default function Pricing() {
                 <li className="cu_package_item pt-16">
                   <NextImage
                     className="cu_list_icon"
-                    src={PIcon}
+                    src={imagePath.PIcon}
                     alt="p_list_icon.svg"
                   />
                   Premium support
@@ -121,7 +118,7 @@ export default function Pricing() {
               <div className="cu_pricing_pack_limit d-flex">
                 <NextImage
                   className="cu_ld_pricing_pack_icon"
-                  src={DimondIcon}
+                  src={imagePath.DimondIcon}
                   alt="lifetime_deal-diamond-icon"
                 />
                 <h6 className="cu_ld_pricing_pack_limit_title">
@@ -138,7 +135,7 @@ export default function Pricing() {
                 <li className="cu_ld_package_item">
                   <NextImage
                     className="cu_ld_list_icon"
-                    src={LIcon}
+                    src={imagePath.LIcon}
                     alt="l_list_icon.svg"
                   />
                   Quality Resources
@@ -146,7 +143,7 @@ export default function Pricing() {
                 <li className="cu_ld_package_item pt-16">
                   <NextImage
                     className="cu_ld_list_icon"
-                    src={LIcon}
+                    src={imagePath.LIcon}
                     alt="l_list_icon.svg"
                   />
                   Clean Code
@@ -154,7 +151,7 @@ export default function Pricing() {
                 <li className="cu_ld_package_item pt-16">
                   <NextImage
                     className="cu_ld_list_icon"
-                    src={LIcon}
+                    src={imagePath.LIcon}
                     alt="l_list_icon.svg"
                   />
                   Responsive All Device
@@ -162,7 +159,7 @@ export default function Pricing() {
                 <li className="cu_ld_package_item pt-16">
                   <NextImage
                     className="cu_ld_list_icon"
-                    src={LIcon}
+                    src={imagePath.LIcon}
                     alt="l_list_icon.svg"
                   />
                   Multiple File Format
@@ -170,7 +167,7 @@ export default function Pricing() {
                 <li className="cu_ld_package_item pt-16">
                   <NextImage
                     className="cu_ld_list_icon"
-                    src={LIcon}
+                    src={imagePath.LIcon}
                     alt="l_list_icon.svg"
                   />
                   Tons of Icons
@@ -178,7 +175,7 @@ export default function Pricing() {
                 <li className="cu_ld_package_item pt-16">
                   <NextImage
                     className="cu_ld_list_icon"
-                    src={LIcon}
+                    src={imagePath.LIcon}
                     alt="l_list_icon.svg"
                   />
                   Single User Licenses
@@ -186,7 +183,7 @@ export default function Pricing() {
                 <li className="cu_ld_package_item pt-16">
                   <NextImage
                     className="cu_ld_list_icon"
-                    src={LIcon}
+                    src={imagePath.LIcon}
                     alt="l_list_icon.svg"
                   />
                   Icon Download/Copy
@@ -195,7 +192,7 @@ export default function Pricing() {
                 <li className="cu_ld_package_item pt-16">
                   <NextImage
                     className="cu_ld_list_icon"
-                    src={LIcon}
+                    src={imagePath.LIcon}
                     alt="l_list_icon.svg"
                   />
                   Others Category Download
@@ -204,7 +201,7 @@ export default function Pricing() {
                 <li className="cu_ld_package_item pt-16">
                   <NextImage
                     className="cu_ld_list_icon"
-                    src={LIcon}
+                    src={imagePath.LIcon}
                     alt="l_list_icon.svg"
                   />
                   Premium support
