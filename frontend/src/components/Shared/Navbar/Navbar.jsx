@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
-import AvatarIcon from '../../../assets/img/icon/Avatar-icon.svg';
-import DownArrow from '../../../assets/img/icon/downArrow.svg';
-import Logo from '../../../assets/img/logo/CodenUILogo.svg';
+import imagePath from '../../../../utils/imagePath';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 
@@ -12,7 +10,7 @@ export default function Navbar({ handleLoginToggle }) {
       <nav className="navbar navbar-expand-lg">
         <div className="container">
           <NextLink href="/" className="navbar-brand">
-            <NextImage src={Logo} alt="logo" />
+            <NextImage src={imagePath.Logo} alt="logo" />
           </NextLink>
           <button
             className="navbar-toggler"
@@ -68,7 +66,7 @@ export default function Navbar({ handleLoginToggle }) {
                   Icon
                   <NextImage
                     className="cu_drop_down_arrow"
-                    src={DownArrow}
+                    src={imagePath.DownArrow}
                     alt="down-arrow"
                   />
                 </NextLink>
@@ -99,12 +97,12 @@ export default function Navbar({ handleLoginToggle }) {
                 <div>
                   <NextImage
                     className="cu_avatar_icon"
-                    src={AvatarIcon}
+                    src={imagePath.Avatar}
                     alt="avataricon"
                   />
                   <NextImage
                     className="cu_account_drop_down_icon"
-                    src={DownArrow}
+                    src={imagePath.DownArrow}
                     alt="downArrow"
                   />
 

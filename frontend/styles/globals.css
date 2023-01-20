@@ -1,3 +1,38 @@
+@font-face {
+  font-family: eudoxus-sans-800;
+  src: url(../src/assets/fonts/EudoxusSans-ExtraBold.woff2);
+}
+
+@font-face {
+  font-family: eudoxus-sans-700;
+  src: url(../src/assets/fonts/EudoxusSans-Bold.woff2);
+}
+
+@font-face {
+  font-family: eudoxus-sans-500;
+  src: url(../src/assets/fonts/EudoxusSans-Medium.woff2);
+}
+
+@font-face {
+  font-family: eudoxus-sans-400;
+  src: url(../src/assets/fonts/EudoxusSans-Regular.woff2);
+}
+
+@font-face {
+  font-family: eudoxus-sans-300;
+  src: url(../src/assets/fonts/EudoxusSans-Light.woff2);
+}
+
+@font-face {
+  font-family: eudoxus-sans-200;
+  src: url(../src/assets/fonts/EudoxusSans-ExtraLight.woff2);
+}
+
+@font-face {
+  font-family: open-Sauce-Sans-400;
+  src: url(../src/assets/fonts/openSauceSans/OpenSauceSans-Regular.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -183,7 +218,7 @@ a {
 }
 
 .nav-item .nav-link {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -293,7 +328,7 @@ a {
 
 .cu_hero_title {
   max-width: 860px;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 50px;
   line-height: 64px;
   color: #ffffff;
@@ -416,7 +451,7 @@ a {
 }
 
 .cu_coded_tem_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 26px;
   line-height: 36px;
   color: #212121;
@@ -453,7 +488,7 @@ a {
 }
 
 .cu_coded_tem_free_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -472,7 +507,7 @@ a {
 }
 
 .cu_coded_tem_pre_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -481,7 +516,7 @@ a {
 }
 
 .cu_coded_tem_card_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #000000;
@@ -491,7 +526,7 @@ a {
 }
 
 .cu_coded_tem_card_footer_text {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #7e7e7e;
@@ -524,7 +559,7 @@ a {
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
@@ -539,7 +574,7 @@ a {
 /* cu_em_tem_wrapper start */
 
 .cu_em_tem_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 26px;
   line-height: 36px;
   color: #212121;
@@ -576,7 +611,7 @@ a {
 }
 
 .cu_em_tem_free_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -595,7 +630,7 @@ a {
 }
 
 .cu_em_tem_pre_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -604,7 +639,7 @@ a {
 }
 
 .cu_em_tem_card_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #000000;
@@ -614,7 +649,7 @@ a {
 }
 
 .cu_em_tem_card_footer_text {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #7e7e7e;
@@ -647,7 +682,7 @@ a {
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
@@ -662,7 +697,7 @@ a {
 /* cu_Icon_wrapper start */
 
 .cu_icon_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 26px;
   line-height: 36px;
   color: #212121;
@@ -699,7 +734,7 @@ a {
 }
 
 .cu_icon_free_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -718,7 +753,7 @@ a {
 }
 
 .cu_icon_pre_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -727,7 +762,7 @@ a {
 }
 
 .cu_icon_card_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #000000;
@@ -737,7 +772,7 @@ a {
 }
 
 .cu_icon_card_footer_text {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #7e7e7e;
@@ -769,7 +804,7 @@ a {
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
@@ -782,7 +817,7 @@ a {
 /* cu_coded_blocks_wrapper Start */
 
 .cu_coded_blocks_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 26px;
   line-height: 36px;
   color: #212121;
@@ -819,7 +854,7 @@ a {
 }
 
 .cu_coded_blocks_free_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -838,7 +873,7 @@ a {
 }
 
 .cu_coded_blocks_pre_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -847,7 +882,7 @@ a {
 }
 
 .cu_coded_blocks_card_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #000000;
@@ -857,7 +892,7 @@ a {
 }
 
 .cu_coded_blocks_card_footer_text {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #7e7e7e;
@@ -910,7 +945,7 @@ a {
 
 .cu_pricing_plan_title {
   max-width: 430px;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 40px;
   line-height: 50px;
   color: #212121;
@@ -1086,7 +1121,7 @@ a {
 /* faq_wrapper start */
 
 .cu_faq_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 40px;
   line-height: 50px;
   color: #212121;
@@ -1100,7 +1135,7 @@ a {
   margin-top: 10px;
 }
 .accordion-button {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 20px;
   line-height: 30px;
   color: #212121;
@@ -1113,7 +1148,7 @@ a {
 }
 
 .cu_accordion_body_text {
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 14px;
   line-height: 22px;
   color: #7e7e7e;
@@ -1129,7 +1164,7 @@ a {
 }
 
 .cu_footer_text {
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 14px;
   line-height: 22px;
   color: #7e7e7e;
@@ -1138,7 +1173,7 @@ a {
 }
 
 .cu_footer_social_link_title {
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 14px;
   line-height: 22px;
   color: #ffffff;
@@ -1160,7 +1195,7 @@ a {
 }
 
 .cu_list_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 18px;
   line-height: 28px;
   color: #ffffff;
@@ -1177,7 +1212,7 @@ a {
 }
 
 .cu_footer_list_item_link {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #989898;
@@ -1188,7 +1223,7 @@ a {
 }
 
 .cu_newsletter_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 18px;
   line-height: 28px;
   color: #ffffff;
@@ -1201,7 +1236,7 @@ a {
   padding-bottom: 11px;
   padding-left: 15px;
   padding-right: 75px;
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 12px;
   line-height: 18px;
   color: #4a4a4a;
@@ -1216,7 +1251,7 @@ a {
   padding-top: 11px;
   padding-bottom: 11px;
   padding-left: 15px;
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 12px;
   line-height: 18px;
   color: #4a4a4a;
@@ -1235,7 +1270,7 @@ a {
 }
 
 .cu_footer_copyrights {
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -1259,7 +1294,7 @@ a {
 }
 
 .cu_banner_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 26px;
   line-height: 36px;
   color: #ffffff;
@@ -1283,7 +1318,7 @@ a {
   padding-top: 14px;
   padding-left: 20px;
   padding-bottom: 14px;
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 16px;
   line-height: 24px;
   color: #5b5b5b;
@@ -1296,7 +1331,7 @@ a {
 .cu_banner_search_bar {
   padding: 10px 20px;
   background-color: rgba(109, 88, 245, 0.1);
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
@@ -1344,7 +1379,7 @@ a {
 }
 
 .cu_coded_category_free_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -1363,7 +1398,7 @@ a {
 }
 
 .cu_coded_category_pre_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -1372,7 +1407,7 @@ a {
 }
 
 .cu_coded_category_card_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #000000;
@@ -1382,7 +1417,7 @@ a {
 }
 
 .cu_coded_category_card_footer_text {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #7e7e7e;
@@ -1411,7 +1446,7 @@ a {
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
@@ -1429,7 +1464,7 @@ a {
   background-color: rgba(109, 88, 245, 0.1);
   border-radius: 6px;
   padding: 7px 13px 7px 10px;
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #6d58f5;
@@ -1447,7 +1482,7 @@ a {
   background: #10b981;
   border-radius: 6px;
   padding: 7px 15px;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   color: #ffffff;
@@ -1462,14 +1497,14 @@ a {
 }
 
 .cu_product_overview_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 20px;
   line-height: 30px;
   color: #212121;
 }
 
 .cu_product_overview_text {
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 14px;
   line-height: 22px;
   color: #7e7e7e;
@@ -1477,7 +1512,7 @@ a {
 }
 
 .cu_single_page_product_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 32px;
   line-height: 42px;
   color: #212121;
@@ -1501,7 +1536,7 @@ a {
 }
 
 .cu_single_product_version_name {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
@@ -1510,7 +1545,7 @@ a {
 }
 
 .cu_download_btn {
-  /* font-family: eudoxus-sans-500; interfontmissing */
+  font-family: eudoxus-sans-500; /*interfontmissing*/
   font-size: 14px;
   line-height: 22px;
   color: #ffffff;
@@ -1523,14 +1558,14 @@ a {
 }
 
 .cu_social_share_text {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
 
 .cu_copy_link_btn {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 12px;
   line-height: 18px;
   color: #c9c9c9;
@@ -1549,14 +1584,14 @@ a {
 }
 
 .cu_tags_text_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
 
 .cu_tag {
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 12px;
   line-height: 18px;
   color: #c8c8c8;
@@ -1584,7 +1619,7 @@ a {
 }
 
 .cu_icon_pack_title {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 26px;
   line-height: 36px;
   color: #ffffff;
@@ -1608,7 +1643,7 @@ a {
   padding-top: 14px;
   padding-left: 20px;
   padding-bottom: 14px;
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 16px;
   line-height: 24px;
   color: #5b5b5b;
@@ -1621,7 +1656,7 @@ a {
 .cu_icon_pack_search_bar {
   padding: 10px 20px;
   background-color: rgba(109, 88, 245, 0.1);
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
@@ -1670,7 +1705,7 @@ a {
 }
 
 .cu_icon_pack_free_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -1689,7 +1724,7 @@ a {
 }
 
 .cu_icon_pack_pre_text {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -1698,7 +1733,7 @@ a {
 }
 
 .cu_icon_pack_card_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #000000;
@@ -1708,7 +1743,7 @@ a {
 }
 
 .cu_icon_pack_card_footer_text {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #7e7e7e;
@@ -1737,7 +1772,7 @@ a {
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 16px;
   line-height: 24px;
   text-align: center;

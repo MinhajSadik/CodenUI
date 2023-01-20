@@ -1,11 +1,5 @@
 import React from 'react';
-import FigmaSq from '../../assets/img/icon/Figma-sq.svg';
-import PngIconSq from '../../assets/img/icon/png-icon-sq.svg';
-import PopupIcon from '../../assets/img/icon/popup-icon.svg';
-import BackIcon from '../../assets/img/icon/single-icon-pack-back.svg';
-import SvgIconSq from '../../assets/img/icon/svg-icon-sq.svg';
-import AddWallet from '../../assets/img/icon/wallet-add.svg';
-import WebFlowSq from '../../assets/img/icon/Webflow-sq.svg';
+import imagePath from '../../../utils/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
@@ -21,7 +15,7 @@ export default function SingleIcon() {
                 <NextLink href="">
                   <NextImage
                     className="cu_single_back_icon"
-                    src={BackIcon}
+                    src={imagePath.BackIcon}
                     alt="backIcon"
                   />
                 </NextLink>
@@ -55,15 +49,15 @@ export default function SingleIcon() {
                   />
                   <NextImage
                     className="cu_single_icon_card_img"
-                    src={AddWallet}
+                    src={imagePath.AddWallet}
                     onClick={() => console.log(open)}
                     alt=""
                   />
                   {open && (
-                    <div id="popup" className="cu_single_icon_popup ">
+                    <div id="popup" className="cu_single_icon_popup">
                       <NextImage
                         className="cu_selected_icon"
-                        src={PopupIcon}
+                        src={imagePath.PopupIcon}
                         alt="popup"
                       />
                       <p className="cu_icon_name">Arrow Left</p>
@@ -76,7 +70,7 @@ export default function SingleIcon() {
                           >
                             <NextImage
                               className="cu_icon_webflow"
-                              src={WebFlowSq}
+                              src={imagePath.WebFlowSq}
                               alt=""
                             />
                             Copy for Webflow
@@ -87,7 +81,7 @@ export default function SingleIcon() {
                           >
                             <NextImage
                               className="cu_icon_figma"
-                              src={FigmaSq}
+                              src={imagePath.FigmaSq}
                               alt=""
                             />
                             Copy for Figma
@@ -101,7 +95,7 @@ export default function SingleIcon() {
                           >
                             <NextImage
                               className="cu_icon_webflow"
-                              src={SvgIconSq}
+                              src={imagePath.SvgIconSq}
                               alt="svgIcon"
                             />
                             Download as SVG
@@ -112,7 +106,7 @@ export default function SingleIcon() {
                           >
                             <NextImage
                               className="cu_icon_figma"
-                              src={PngIconSq}
+                              src={imagePath.PngIconSq}
                               alt="pngIcon"
                             />
                             Download as PNG

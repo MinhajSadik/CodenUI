@@ -1,8 +1,7 @@
-import localFont from '@next/font/local';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.css';
 
-const myFont = localFont({ src: '../src/assets/fonts/EudoxusSans-Medium.woff2' })
+// const myFont = localFont({ src: '../src/assets/fonts/EudoxusSans-Medium.woff2' })
 
 // const myFont = localFont({
 //   src: [
@@ -22,7 +21,7 @@ const myFont = localFont({ src: '../src/assets/fonts/EudoxusSans-Medium.woff2' }
 
 export default function App({ Component, pageProps }) {
   return (
-    <main className={myFont.className}>
+    <main>
       <Component {...pageProps} />
     </main>
   );

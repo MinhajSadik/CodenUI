@@ -1,10 +1,5 @@
 import React from 'react';
-import Facebook from '../../../assets/img/icon/facebook.svg';
-import Twitter from '../../../assets/img/icon/Instagram.svg';
-import LinkedIn from '../../../assets/img/icon/Linkedin.svg';
-import RightArrow from '../../../assets/img/icon/right_arrow.svg';
-import Instagram from '../../../assets/img/icon/Twitter.svg';
-import Logo from '../../../assets/img/logo/CodenUILogo.svg';
+import imagePath from '../../../../utils/imagePath';
 import NextImage from '../Image/NextImage';
 
 export default function Footer() {
@@ -17,7 +12,7 @@ export default function Footer() {
               <div className="cu_footer_info">
                 <NextImage
                   className="cu_footer_logo"
-                  src={Logo}
+                  src={imagePath.Logo}
                   alt="cu_footer_logo"
                 />
                 <p className="cu_footer_text">
@@ -30,22 +25,28 @@ export default function Footer() {
                     <ul className="cu_footer_social_items d-flex">
                       <li className="cu_footer_social_item">
                         <a href="#">
-                          <NextImage src={Facebook} alt="facebook" />
+                          <NextImage src={imagePath.Facebook} alt="facebook" />
                         </a>
                       </li>
                       <li className="cu_footer_social_item">
                         <a href="#">
-                          <NextImage src={LinkedIn} alt="linkedin" />
+                          <NextImage src={imagePath.LinkedIn} alt="linkedin" />
                         </a>
                       </li>
                       <li className="cu_footer_social_item">
                         <a href="#">
-                          <NextImage src={Twitter} alt="twitter.svg" />
+                          <NextImage
+                            src={imagePath.Twitter}
+                            alt="twitter.svg"
+                          />
                         </a>
                       </li>
                       <li className="cu_footer_social_item">
                         <a href="#">
-                          <NextImage src={Instagram} alt="instagram.svg" />
+                          <NextImage
+                            src={imagePath.Instagram}
+                            alt="instagram.svg"
+                          />
                         </a>
                       </li>
                     </ul>
@@ -121,7 +122,7 @@ export default function Footer() {
                     type="button"
                     id="button-addon2"
                   >
-                    <NextImage src={RightArrow} alt="Arrow" />
+                    <NextImage src={imagePath.RightArrow} alt="Arrow" />
                   </button>
                 </div>
               </div>

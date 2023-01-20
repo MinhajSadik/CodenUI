@@ -1,14 +1,6 @@
 import React from 'react';
-import Bootstrap from '../../assets/img/icon/Bootstrap-icon.svg';
-import Figma from '../../assets/img/icon/Figma-icon.svg';
-import Gatsby from '../../assets/img/icon/Gatsby-icon.svg';
-import HTML from '../../assets/img/icon/HTML-icon.svg';
-import NextJs from '../../assets/img/icon/nextjs-icon.svg';
-import Tailwind from '../../assets/img/icon/Tailwind-css-icon.svg';
-import VueJs from '../../assets/img/icon/vueJs-icon.svg';
-import WebFlow from '../../assets/img/icon/Webflow-icon.svg';
-import CodedBlocks2 from '../../assets/img/media/coded-blocks-2.jpg';
-import CodedBlocksPre from '../../assets/img/media/coded-blocks-pre.jpg';
+import imagePath from '../../../utils/imagePath';
+
 import NextImage from '../Shared/Image/NextImage';
 
 export default function CodedBlocks() {
@@ -25,7 +17,7 @@ export default function CodedBlocks() {
                 <div className="cu_coded_blocks_card_fea_img">
                   <NextImage
                     className="cu_coded_blocks_card_img"
-                    src={CodedBlocks2}
+                    src={imagePath.CodedBlocks2}
                     alt="codedblocks"
                   />
                 </div>
@@ -45,56 +37,56 @@ export default function CodedBlocks() {
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Figma}
+                          src={imagePath.Figma}
                           alt="figma"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={HTML}
+                          src={imagePath.HTML}
                           alt="html"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Bootstrap}
+                          src={imagePath.Bootstrap}
                           alt="bootstrap"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Tailwind}
+                          src={imagePath.Tailwind}
                           alt="tailwind"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={WebFlow}
+                          src={imagePath.WebFlow}
                           alt="webFlow"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={NextJs}
+                          src={imagePath.NextJs}
                           alt="nextJs"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Gatsby}
+                          src={imagePath.Gatsby}
                           alt="gatsby"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={VueJs}
+                          src={imagePath.VueJs}
                           alt="vueJs"
                         />
                       </a>
@@ -108,7 +100,7 @@ export default function CodedBlocks() {
                 <div className="cu_coded_blocks_card_fea_img">
                   <NextImage
                     className="cu_coded_blocks_card_img"
-                    src={CodedBlocksPre}
+                    src={imagePath.CodedBlocksPre}
                     alt="codedBlocksPre"
                   />
                 </div>
@@ -128,56 +120,56 @@ export default function CodedBlocks() {
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Figma}
+                          src={imagePath.Figma}
                           alt="figma"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={HTML}
+                          src={imagePath.HTML}
                           alt="html"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Bootstrap}
+                          src={imagePath.Bootstrap}
                           alt="bootstrap"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Tailwind}
+                          src={imagePath.Tailwind}
                           alt="tailwind"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={WebFlow}
+                          src={imagePath.WebFlow}
                           alt="webFlow"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={NextJs}
+                          src={imagePath.NextJs}
                           alt="nextJs"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Gatsby}
+                          src={imagePath.Gatsby}
                           alt="gatsby"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={VueJs}
+                          src={imagePath.VueJs}
                           alt="vueJs"
                         />
                       </a>
@@ -191,7 +183,7 @@ export default function CodedBlocks() {
                 <div className="cu_coded_blocks_card_fea_img">
                   <NextImage
                     className="cu_coded_blocks_card_img"
-                    src={CodedBlocks2}
+                    src={imagePath.CodedBlocks2}
                     alt="codedBlocks"
                   />
                 </div>
@@ -211,56 +203,56 @@ export default function CodedBlocks() {
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Figma}
+                          src={imagePath.Figma}
                           alt="figma"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={HTML}
+                          src={imagePath.HTML}
                           alt="html"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Bootstrap}
+                          src={imagePath.Bootstrap}
                           alt="bootstrap"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Tailwind}
+                          src={imagePath.Tailwind}
                           alt="tailwind"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={WebFlow}
+                          src={imagePath.WebFlow}
                           alt="webFlow"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={NextJs}
+                          src={imagePath.NextJs}
                           alt="nextJs"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={Gatsby}
+                          src={imagePath.Gatsby}
                           alt="gatsby"
                         />
                       </a>
                       <a href="#" className="cu_coded_tem_card_version_link">
                         <NextImage
                           className="cu_coded_tem_card_version_img"
-                          src={VueJs}
+                          src={imagePath.VueJs}
                           alt="vueJs"
                         />
                       </a>
