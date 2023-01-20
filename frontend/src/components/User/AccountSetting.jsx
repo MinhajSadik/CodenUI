@@ -1,4 +1,7 @@
 import React from 'react';
+import AvatarIcon from '../../assets/img/icon/Avatar-icon.svg';
+import NextImage from '../Shared/Image/NextImage';
+import NextLink from '../Shared/Link/NextLink';
 
 export default function AccountSetting() {
   return (
@@ -14,14 +17,14 @@ export default function AccountSetting() {
             </div>
             <div class="cu_account_info_box">
               <div class="cu_avatar_box">
-                <img
+                <NextImage
                   class="cu_profile_avatar"
-                  src="./assets/img/icon/Avatar-icon.svg"
-                  alt=""
+                  src={AvatarIcon}
+                  alt="avatar"
                 />
-                <a class="cu_upload_avatar_btn" href="">
+                <NextLink class="cu_upload_avatar_btn" href="">
                   Upload Avater
-                </a>
+                </NextLink>
               </div>
               <p class="cu_profile_info_title mt-25">Profile Information</p>
               <div class="cu_profile_info_box">

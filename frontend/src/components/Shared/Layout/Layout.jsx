@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 
 export default function Layout({ children }) {
-  const router = useRouter();
+  const { pathname } = useRouter();
   const [loginOpened, setLoginOpened] = useState(false);
   const [registerOpened, setRegisterOpened] = useState(false);
 
@@ -29,7 +29,7 @@ export default function Layout({ children }) {
       {registerOpened && <Register handleLoginToggle={handleLoginToggle} />}
       <main>{children}</main>
 
-      {router.pathname === '/' && <Footer />}
+      {pathname === '/' && <Footer />}
     </>
   );
 }

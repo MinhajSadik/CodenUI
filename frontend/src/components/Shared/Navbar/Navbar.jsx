@@ -1,9 +1,12 @@
+import { useRouter } from 'next/router';
+import AvatarIcon from '../../../assets/img/icon/Avatar-icon.svg';
 import DownArrow from '../../../assets/img/icon/downArrow.svg';
 import Logo from '../../../assets/img/logo/CodenUILogo.svg';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 
 export default function Navbar({ handleLoginToggle }) {
+  const { pathname } = useRouter();
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
@@ -88,18 +91,67 @@ export default function Navbar({ handleLoginToggle }) {
                 </div>
               </li>
             </ul>
-            <div className="d-flex">
-              <button
-                type="button"
-                className="cu_sign_in_btn"
-                onClick={handleLoginToggle}
-              >
-                Sign In
-              </button>
-              <NextLink href="all-access" className="cu_get_access_btn">
-                Get All Access
-              </NextLink>
-            </div>
+            {pathname === '/account-setting' ? (
+              <div className="d-flex justify-content-between align-items-center">
+                <NextLink href="/pricing" className="cu_Pricing">
+                  Pricing
+                </NextLink>
+                <div>
+                  <NextImage
+                    className="cu_avatar_icon"
+                    src={AvatarIcon}
+                    alt="avataricon"
+                  />
+                  <NextImage
+                    className="cu_account_drop_down_icon"
+                    src={DownArrow}
+                    alt="downArrow"
+                  />
+
+                  <div className="account_menu">
+                    <ul className="cu_account_drop_down_ul">
+                      <li>
+                        <NextLink
+                          href="setting"
+                          className="dropdown-item account_menu_item"
+                        >
+                          Settings
+                        </NextLink>
+                      </li>
+                      <li>
+                        <NextLink
+                          href="/billing"
+                          className="dropdown-item account_menu_item mt-6"
+                        >
+                          Billing
+                        </NextLink>
+                      </li>
+                      <li>
+                        <NextLink
+                          href=""
+                          className="dropdown-item account_menu_item mt-6"
+                        >
+                          Logout
+                        </NextLink>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="d-flex">
+                <button
+                  type="button"
+                  className="cu_sign_in_btn"
+                  onClick={handleLoginToggle}
+                >
+                  Sign In
+                </button>
+                <NextLink href="all-access" className="cu_get_access_btn">
+                  Get All Access
+                </NextLink>
+              </div>
+            )}
           </div>
         </div>
       </nav>
