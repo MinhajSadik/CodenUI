@@ -1,7 +1,9 @@
+import { useRouter } from 'next/router'
 import React from 'react'
 import { AppContext } from '../contexts/contexts'
 
 export default function AppProvider({ children }) {
+    const { pathname } = useRouter()
     const [open, setOpen] = React.useState(false)
     const [opened, setOpened] = React.useState(false)
 
@@ -25,7 +27,8 @@ export default function AppProvider({ children }) {
         setOpened,
         handleOpen,
         handleClose,
-        handleSwitch
+        handleSwitch,
+        pathname
     }
     return (
         <AppContext.Provider value={toggleInfo}>

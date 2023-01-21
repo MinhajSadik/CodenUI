@@ -1,10 +1,8 @@
-import { useRouter } from 'next/router';
 import imagePath from '../../../assets/img/imagePath';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 
-export default function Navbar({ handleOpen }) {
-  const { pathname } = useRouter();
+export default function Navbar({ handleOpen, pathname }) {
   return (
     <header>
       <nav className="navbar navbar-expand-lg">

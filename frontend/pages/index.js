@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 import CodedBlocks from '../src/components/CodedBlocks/CodedBlocks';
 import CodedTemplates from '../src/components/CodedTemplates/CodedTemplates';
@@ -10,6 +11,7 @@ import Pricing from '../src/components/Pricing/Pricing';
 import Layout from '../src/components/Shared/Layout/Layout';
 
 export default function Home() {
+  const { pathname } = useRouter()
   return (
     <>
       <Head>
@@ -21,10 +23,10 @@ export default function Home() {
       </Head>
       <Layout>
         <Hero />
-        <CodedTemplates />
-        <EmailTemplates />
-        <IconPack />
-        <CodedBlocks />
+        <CodedTemplates pathname={pathname} />
+        <EmailTemplates pathname={pathname} />
+        <IconPack pathname={pathname} />
+        <CodedBlocks pathname={pathname} />
         <Pricing />
         <Faq />
       </Layout>

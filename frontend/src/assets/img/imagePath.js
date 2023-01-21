@@ -4,6 +4,7 @@ export default {
     Avatar: require("./icon/Avatar-icon.svg"),
     DownArrow: require("./icon/downArrow.svg"),
     RightArrow: require("./icon/right_arrow.svg"),
+    LeftArrow: require("./icon/left-arrow.svg"),
     // social 
     Facebook: require("./icon/facebook.svg"),
     Twitter: require("./icon/Twitter.svg"),

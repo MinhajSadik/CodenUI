@@ -449,7 +449,7 @@ a {
 
 /* cu_coded_tem_wrapper Start */
 .cu_coded_tem_wrapper {
-  padding-top: 40px;
+  padding-top: 76px;
 }
 
 .cu_coded_tem_title {
@@ -1785,9 +1785,6 @@ a {
 }
 
 /* single-icon-page */
-
-.cu_single_icon_wrapper {
-}
 
 .cu_single_icon_pack_bannar {
   background-image: url(../src/assets/img/media/single_page_icons_banner.jpg);

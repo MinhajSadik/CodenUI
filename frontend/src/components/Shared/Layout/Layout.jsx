@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { AppContext } from '../../../contexts/contexts';
 import AppProvider from '../../../providers/AppProvider';
@@ -8,12 +7,12 @@ import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 
 export default function Layout({ children }) {
-  const { open, opened, handleOpen, handleSwitch } = useContext(AppContext);
-  const { pathname } = useRouter();
+  const { open, opened, handleOpen, handleSwitch, pathname } =
+    useContext(AppContext);
 
   return (
     <AppProvider>
-      <Navbar handleOpen={handleOpen} />
+      <Navbar handleOpen={handleOpen} pathname={pathname} />
 
       {open && <Login handleSwitch={handleSwitch} />}
 
