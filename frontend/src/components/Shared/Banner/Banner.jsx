@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import imagePath from '../../../../utils/imagePath';
+import imagePath from '../../../assets/img/imagePath';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 export default function Banner({ title }) {

@@ -5,12 +5,11 @@ import CodedTemplates from '../src/components/CodedTemplates/CodedTemplates';
 import EmailTemplates from '../src/components/EmailTemplates/EmailTemplates';
 import Faq from '../src/components/Faq/Faq';
 import Hero from '../src/components/Hero/Hero';
-import Icons from '../src/components/Icons/Icons';
+import IconPack from '../src/components/IconPack/IconPack';
 import Pricing from '../src/components/Pricing/Pricing';
 import Layout from '../src/components/Shared/Layout/Layout';
 
 export default function Home() {
-
   return (
     <>
       <Head>
@@ -24,7 +23,7 @@ export default function Home() {
         <Hero />
         <CodedTemplates />
         <EmailTemplates />
-        <Icons />
+        <IconPack />
         <CodedBlocks />
         <Pricing />
         <Faq />

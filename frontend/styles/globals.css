@@ -177,6 +177,7 @@ a {
 .copy-webflow {
   background-color: #212121;
   color: #fff;
+  margin-right: 5px;
 }
 
 .copy-webflow:hover {
@@ -186,6 +187,7 @@ a {
 .copy-svg {
   background-color: #ffd2b5;
   color: #212121;
+  margin-right: 5px;
 }
 
 .copy-svg:hover {
@@ -925,7 +927,7 @@ a {
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
@@ -953,7 +955,7 @@ a {
 }
 
 .cu_pricing_plan_text {
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 16px;
   line-height: 24px;
   color: #7e7e7e;
@@ -977,14 +979,14 @@ a {
 }
 
 .cu_pricing_pack_limit_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 20px;
   line-height: 30px;
   color: #212121;
 }
 
 .cu_pricing_pack_limit_text {
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 20px;
   line-height: 30px;
   color: #7e7e7e;
@@ -994,7 +996,7 @@ a {
 }
 
 .cu_pricing_pack_limit_text_span {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 36px;
   line-height: 4px;
   color: #212121;
@@ -1007,7 +1009,7 @@ a {
 }
 
 .cu_package_item {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 15px;
   line-height: 24px;
   color: #212121;
@@ -1032,7 +1034,7 @@ a {
   border-radius: 6px;
   padding-top: 16px;
   padding-bottom: 16px;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
@@ -1058,14 +1060,14 @@ a {
 }
 
 .cu_ld_pricing_pack_limit_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 20px;
   line-height: 30px;
   color: #ffffff;
 }
 
 .cu_ld_pricing_pack_limit_text {
-  /* font-family: eudoxus-sans-400; */
+  font-family: eudoxus-sans-400;
   font-size: 20px;
   line-height: 30px;
   color: #ffffff;
@@ -1075,7 +1077,7 @@ a {
 }
 
 .cu_ld_pricing_pack_limit_text_span {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 36px;
   line-height: 4px;
   color: #ffffff;
@@ -1088,7 +1090,7 @@ a {
 }
 
 .cu_ld_package_item {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 15px;
   line-height: 24px;
   color: #fff;
@@ -1108,7 +1110,7 @@ a {
   border-radius: 6px;
   padding-top: 16px;
   padding-bottom: 16px;
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
@@ -1784,6 +1786,9 @@ a {
 
 /* single-icon-page */
 
+.cu_single_icon_wrapper {
+}
+
 .cu_single_icon_pack_bannar {
   background-image: url(../src/assets/img/media/single_page_icons_banner.jpg);
   background-position: center;
@@ -1805,7 +1810,7 @@ a {
   background-color: #6d58f5;
   border-radius: 24px;
   padding: 7px 25px;
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
@@ -1817,7 +1822,7 @@ a {
 }
 
 .cu_switch_style_solid {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #000000;
@@ -1832,7 +1837,7 @@ a {
 }
 
 .cu_switch_style_duotone {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #000000;
@@ -1850,12 +1855,22 @@ a {
   background-color: #f9f9f9;
   border-radius: 10px;
   padding: 50px 70px;
+  cursor: pointer;
 }
 .cu_single_icon {
   position: relative;
 }
-
+.cu_single_icon_popup_wrapper {
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 .cu_single_icon_popup {
+  z-index: 99;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -1863,6 +1878,7 @@ a {
   background-color: #fff;
   padding: 73px 25px 35px;
   border-radius: 20px;
+  width: 465px;
 }
 
 #popup {
@@ -1881,8 +1897,8 @@ a {
 
 .cu_selected_icon {
   position: absolute;
-  top: -125px;
-  left: -60px;
+  top: -50px;
+  left: 37%;
   box-shadow: 0px 10px 10px rgba(170, 170, 170, 0.2);
 }
 
@@ -1894,7 +1910,7 @@ a {
 }
 
 .cu_icon_pack_single_text {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
@@ -1904,7 +1920,7 @@ a {
 
 .cu_icon_copy_btn {
   padding: 7px 39px 7px 5px;
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   border-radius: 6px;
@@ -1933,19 +1949,19 @@ a {
   border-radius: 10px;
 }
 .cu_order_details_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
 }
 .cu_product_details {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
 .cu_product_name {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 18px;
   line-height: 30px;
   color: #5b5b5b;
@@ -1955,14 +1971,14 @@ a {
   margin-right: 8px;
 }
 .cu_product_price {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 20px;
   line-height: 30px;
   color: #6d58f5;
 }
 
 .cu_personal_info_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
@@ -1974,7 +1990,7 @@ a {
   border-radius: 10px;
 }
 .form-label {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #8d8d8d;
@@ -1988,7 +2004,7 @@ a {
   color: rgba(205, 205, 205, 1);
 }
 .cu_form_msg_text {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
@@ -2005,7 +2021,7 @@ a {
   border-radius: 6px;
   color: #ffffff;
   border: none;
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
 }
@@ -2025,19 +2041,19 @@ a {
   border-radius: 10px;
 }
 .cu_order_details_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
 }
 .cu_product_details {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
 .cu_product_name {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 18px;
   line-height: 30px;
   color: #5b5b5b;
@@ -2047,14 +2063,14 @@ a {
   margin-right: 8px;
 }
 .cu_product_price {
-  /* font-family: eudoxus-sans-700; */
+  font-family: eudoxus-sans-700;
   font-size: 20px;
   line-height: 30px;
   color: #6d58f5;
 }
 
 .cu_checkout_after_personal_info_title {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
@@ -2066,7 +2082,7 @@ a {
   border-radius: 10px;
 }
 .cu_checkout_after_name {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
@@ -2075,7 +2091,7 @@ a {
   color: rgba(141, 141, 141, 1);
 }
 .cu_checkout_after_email {
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
@@ -2091,7 +2107,7 @@ a {
   border-radius: 6px;
   color: #ffffff;
   border: none;
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
 }
@@ -2101,7 +2117,7 @@ a {
 
 .cu_Pricing {
   margin-right: 60px;
-  /* font-family: eudoxus-sans-500; */
+  font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
@@ -2136,7 +2152,7 @@ a {
   padding: 6px;
   border-radius: 12px;
   width: 161px;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 .cu_account_drop_down_ul {

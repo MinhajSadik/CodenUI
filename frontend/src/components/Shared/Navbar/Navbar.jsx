@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import imagePath from '../../../../utils/imagePath';
+import imagePath from '../../../assets/img/imagePath';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 
-export default function Navbar({ handleLoginToggle }) {
+export default function Navbar({ handleOpen }) {
   const { pathname } = useRouter();
   return (
     <header>
@@ -141,7 +141,7 @@ export default function Navbar({ handleLoginToggle }) {
                 <button
                   type="button"
                   className="cu_sign_in_btn"
-                  onClick={handleLoginToggle}
+                  onClick={handleOpen}
                 >
                   Sign In
                 </button>

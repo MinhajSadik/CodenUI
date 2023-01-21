@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import AppProvider from '../src/providers/AppProvider';
 import '../styles/globals.css';
 
 // const myFont = localFont({ src: '../src/assets/fonts/EudoxusSans-Medium.woff2' })
@@ -21,8 +22,8 @@ import '../styles/globals.css';
 
 export default function App({ Component, pageProps }) {
   return (
-    <main>
+    <AppProvider>
       <Component {...pageProps} />
-    </main>
+    </AppProvider>
   );
 }

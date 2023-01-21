@@ -1,9 +1,9 @@
 import React from 'react';
-import imagePath from '../../../utils/imagePath';
 import Figma from '../../assets/img/icon/Figma-icon.svg';
 import PngIcon from '../../assets/img/icon/icon-pack-png-icon.svg';
 import SvgIcon from '../../assets/img/icon/icon-pack-svg-icon.svg';
 import WebFlow from '../../assets/img/icon/Webflow-icon.svg';
+import imagePath from '../../assets/img/imagePath';
 import IconPackFea from '../../assets/img/media/icon-pack-fea.jpg';
 import NextImage from '../Shared/Image/NextImage';
 

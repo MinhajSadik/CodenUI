@@ -3,7 +3,7 @@ import GoogleIcon from '../../assets/img/icon/logos_google-icon.svg';
 import Logo from '../../assets/img/logo/CodenUILogo.svg';
 import NextImage from '../Shared/Image/NextImage';
 
-export default function Login({ handleRegisterToggle }) {
+export default function Login({ handleSwitch }) {
   return (
     <div className="cu_sing_in_wrapper">
       <div className="cu_sign_in">
@@ -60,11 +60,7 @@ export default function Login({ handleRegisterToggle }) {
           </div>
           <p className="cu_form_msg_text mt-20">
             Don’t have an account?{' '}
-            <a
-              type="button"
-              className="color-red"
-              onClick={handleRegisterToggle}
-            >
+            <a type="button" className="color-red" onClick={handleSwitch}>
               Sign Up
             </a>{' '}
           </p>

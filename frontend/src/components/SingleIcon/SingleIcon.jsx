@@ -1,13 +1,14 @@
-import React from 'react';
-import imagePath from '../../../utils/imagePath';
+import React, { useContext } from 'react';
+import imagePath from '../../assets/img/imagePath';
+import { AppContext } from '../../contexts/contexts';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
 export default function SingleIcon() {
-  const [open, setOpen] = React.useState(false);
+  const { open, handleOpen, handleClose } = useContext(AppContext);
   return (
     <section>
-      <div className="cu_icon_pack_wrapper pt-76 pb-100">
+      <div className="cu_single_icon_wrapper pt-76 pb-100">
         <div className="container">
           <div className="row gy-4 mb-50">
             <div className="col-lg-3 ">
@@ -17,6 +18,7 @@ export default function SingleIcon() {
                     className="cu_single_back_icon"
                     src={imagePath.BackIcon}
                     alt="backIcon"
+                    onClick={handleClose}
                   />
                 </NextLink>
                 <p className="cu_icon_pack_single_text">
@@ -42,75 +44,73 @@ export default function SingleIcon() {
             <div className="col-lg-2">
               <div className="cu_single_icon_card  text-center">
                 <div className="cu_single_icon_card_fea_img">
-                  <NextLink
-                    id="action"
-                    className="cu_single_icon popup "
-                    href=""
-                  />
+                  <NextLink id="action" className="cu_single_icon" href="" />
                   <NextImage
                     className="cu_single_icon_card_img"
+                    onClick={handleOpen}
                     src={imagePath.AddWallet}
-                    onClick={() => console.log(open)}
-                    alt=""
+                    alt="wallet"
                   />
                   {open && (
-                    <div id="popup" className="cu_single_icon_popup">
-                      <NextImage
-                        className="cu_selected_icon"
-                        src={imagePath.PopupIcon}
-                        alt="popup"
-                      />
-                      <p className="cu_icon_name">Arrow Left</p>
+                    <div className="cu_single_icon_popup_wrapper">
+                      <div className="cu_single_icon_popup">
+                        <NextImage
+                          className="cu_selected_icon"
+                          src={imagePath.PopupIcon}
+                          alt="popup"
+                        />
+                        <p className="cu_icon_name">Arrow Left</p>
 
-                      <div className="cu_icon_copy_box">
-                        <div className="">
-                          <NextLink
-                            href=""
-                            className="cu_icon_copy_btn copy-webflow"
-                          >
-                            <NextImage
-                              className="cu_icon_webflow"
-                              src={imagePath.WebFlowSq}
-                              alt=""
-                            />
-                            Copy for Webflow
-                          </NextLink>
-                          <NextLink
-                            href=""
-                            className="cu_icon_copy_btn copy-webflow"
-                          >
-                            <NextImage
-                              className="cu_icon_figma"
-                              src={imagePath.FigmaSq}
-                              alt=""
-                            />
-                            Copy for Figma
-                          </NextLink>
-                        </div>
+                        <div className="cu_icon_copy_box">
+                          <div className="">
+                            <NextLink
+                              href=""
+                              className="cu_icon_copy_btn copy-webflow"
+                            >
+                              <NextImage
+                                className="cu_icon_webflow"
+                                src={imagePath.WebFlowSq}
+                                alt=""
+                              />
+                              Copy for Webflow
+                            </NextLink>
+                            <NextLink
+                              href=""
+                              className="cu_icon_copy_btn copy-webflow"
+                            >
+                              <NextImage
+                                className="cu_icon_figma"
+                                src={imagePath.FigmaSq}
+                                alt=""
+                              />
+                              Copy for Figma
+                            </NextLink>
+                          </div>
 
-                        <div className="mt-20">
-                          <NextLink
-                            href=""
-                            className="cu_icon_copy_btn copy-svg"
-                          >
-                            <NextImage
-                              className="cu_icon_webflow"
-                              src={imagePath.SvgIconSq}
-                              alt="svgIcon"
-                            />
-                            Download as SVG
-                          </NextLink>
-                          <NextLink
-                            href=""
-                            className="cu_icon_copy_btn copy-png"
-                          >
-                            <NextImage
-                              className="cu_icon_figma"
-                              src={imagePath.PngIconSq}
-                              alt="pngIcon"
-                            />
-                            Download as PNG
-                          </NextLink>
+                          <div className="mt-20">
+                            <NextLink
+                              href=""
+                              className="cu_icon_copy_btn copy-svg"
+                            >
+                              <NextImage
+                                className="cu_icon_webflow"
+                                src={imagePath.SvgIconSq}
+                                alt="svgIcon"
+                              />
+                              Download as SVG
+                            </NextLink>
+                            <NextLink
+                              href=""
+                              className="cu_icon_copy_btn copy-png"
+                            >
+                              <NextImage
+                                className="cu_icon_figma"
+                                src={imagePath.PngIconSq}
+                                alt="pngIcon"
+                              />
+                              Download as PNG
+                            </NextLink>
+                          </div>
                         </div>
                       </div>
                     </div>
