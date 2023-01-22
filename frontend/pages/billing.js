@@ -1,11 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
-import Layout from '../src/components/Shared/Layout/Layout'
-import BillingBasic from '../src/components/User/Subscription/BillingBasic'
-import BillingLifetime from '../src/components/User/Subscription/BillingLifetime'
-import BillingYearly from '../src/components/User/Subscription/BillingYearly'
-
-
+import { Layout, BillingBasic, BillingYearly, BillingLifetime } from '../src/components'
 export default function billing() {
     return (
         <>

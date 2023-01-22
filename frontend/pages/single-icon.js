@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
-import Banner from '../src/components/Shared/Banner/Banner'
-import Layout from '../src/components/Shared/Layout/Layout'
-import SingleIcon from '../src/components/SingleIcon/SingleIcon'
+
+import { Banner, Layout, SingleIcon } from '../src/components'
 
 export default function single_icon() {
     return (

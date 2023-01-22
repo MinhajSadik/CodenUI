@@ -1,14 +1,8 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import CodedBlocks from '../src/components/CodedBlocks/CodedBlocks';
-import CodedTemplates from '../src/components/CodedTemplates/CodedTemplates';
-import EmailTemplates from '../src/components/EmailTemplates/EmailTemplates';
-import Faq from '../src/components/Faq/Faq';
-import Hero from '../src/components/Hero/Hero';
-import IconPack from '../src/components/IconPack/IconPack';
-import Pricing from '../src/components/Pricing/Pricing';
-import Layout from '../src/components/Shared/Layout/Layout';
+import { CodedBlocks, CodedTemplates, EmailTemplates, Faq, Hero, IconPack, Layout, Pricing } from '../src/components';
+
 
 export default function Home() {
   const { route } = useRouter()

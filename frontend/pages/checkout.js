@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import ChckoutBeforeLogin from '../src/components/User/ChckoutBeforeLogin';
-import CheckoutAfterLogin from '../src/components/User/CheckoutAfterLogin';
+import { ChckoutBeforeLogin, CheckoutAfterLogin } from '../src/components'
 
 export default function checkout() {
     return (

@@ -73,7 +73,7 @@ export default function Hero() {
               <a className="cu_tem_version_link" href="#">
                 <NextImage
                   className="cu_tem_icon"
-                  src={imagePath.Nextjs}
+                  src={imagePath.NextJs}
                   alt=""
                 />
                 <div className="cu_tooltip">

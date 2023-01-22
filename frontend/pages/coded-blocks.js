@@ -1,9 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import CodedBlocks from '../src/components/CodedBlocks/CodedBlocks';
-import Banner from '../src/components/Shared/Banner/Banner';
-import Layout from '../src/components/Shared/Layout/Layout';
-
+import { Banner, CodedBlocks, Layout } from '../src/components';
 export default function coded_blocks() {
     return (
         <>

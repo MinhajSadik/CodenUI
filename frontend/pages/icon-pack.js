@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
-import IconPack from '../src/components/IconPack/IconPack'
-import Banner from '../src/components/Shared/Banner/Banner'
-import Layout from '../src/components/Shared/Layout/Layout'
+import { Banner, IconPack, Layout } from '../src/components'
 
 export default function icon_pack() {
     return (

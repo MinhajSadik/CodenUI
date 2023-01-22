@@ -1,7 +1,6 @@
-import React from 'react';
 import Head from 'next/head';
-import Layout from '../src/components/Shared/Layout/Layout';
-import AccountSetting from '../src/components/User/AccountSetting';
+import React from 'react';
+import { AccountSetting, Layout } from '../src/components';
 
 export default function account_setting() {
     return (
