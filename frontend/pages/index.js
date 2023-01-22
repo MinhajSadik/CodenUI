@@ -11,7 +11,7 @@ import Pricing from '../src/components/Pricing/Pricing';
 import Layout from '../src/components/Shared/Layout/Layout';
 
 export default function Home() {
-  const { pathname } = useRouter()
+  const { route } = useRouter()
   return (
     <>
       <Head>
@@ -23,10 +23,10 @@ export default function Home() {
       </Head>
       <Layout>
         <Hero />
-        <CodedTemplates pathname={pathname} />
-        <EmailTemplates pathname={pathname} />
-        <IconPack pathname={pathname} />
-        <CodedBlocks pathname={pathname} />
+        <CodedTemplates route={route} />
+        <EmailTemplates route={route} />
+        <IconPack route={route} />
+        <CodedBlocks route={route} />
         <Pricing />
         <Faq />
       </Layout>

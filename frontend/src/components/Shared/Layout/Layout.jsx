@@ -7,19 +7,19 @@ import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 
 export default function Layout({ children }) {
-  const { open, opened, handleOpen, handleSwitch, pathname } =
+  const { open, opened, handleOpen, handleSwitch, route } =
     useContext(AppContext);
 
   return (
     <AppProvider>
-      <Navbar handleOpen={handleOpen} pathname={pathname} />
+      <Navbar handleOpen={handleOpen} route={route} />
 
       {open && <Login handleSwitch={handleSwitch} />}
 
       {opened && <Register handleSwitch={handleSwitch} />}
       <main>{children}</main>
 
-      {pathname === '/' && <Footer />}
+      {route === '/' && <Footer />}
     </AppProvider>
   );
 }

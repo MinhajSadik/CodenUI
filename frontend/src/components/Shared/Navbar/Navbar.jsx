@@ -2,7 +2,7 @@ import imagePath from '../../../assets/img/imagePath';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 
-export default function Navbar({ handleOpen, pathname }) {
+export default function Navbar({ handleOpen, route }) {
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
@@ -87,7 +87,7 @@ export default function Navbar({ handleOpen, pathname }) {
                 </div>
               </li>
             </ul>
-            {pathname === '/account-setting' ? (
+            {route === '/account-setting' ? (
               <div className="d-flex justify-content-between align-items-center">
                 <NextLink href="/pricing" className="cu_Pricing">
                   Pricing

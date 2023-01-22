@@ -3,7 +3,7 @@ import React from 'react'
 import { AppContext } from '../contexts/contexts'
 
 export default function AppProvider({ children }) {
-    const { pathname } = useRouter()
+    const { pathname: route } = useRouter()
     const [open, setOpen] = React.useState(false)
     const [opened, setOpened] = React.useState(false)
 
@@ -13,6 +13,7 @@ export default function AppProvider({ children }) {
 
     function handleClose() {
         setOpen(false)
+        setOpened(false)
     }
 
     function handleSwitch() {
@@ -28,7 +29,7 @@ export default function AppProvider({ children }) {
         handleOpen,
         handleClose,
         handleSwitch,
-        pathname
+        route
     }
     return (
         <AppContext.Provider value={toggleInfo}>

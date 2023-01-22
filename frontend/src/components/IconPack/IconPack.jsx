@@ -3,13 +3,13 @@ import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
-export default function IconPack({ pathname }) {
+export default function IconPack({ route }) {
   return (
     <section className="cu_icon_pack_wrapper pt-76">
       <div className="container">
-        {pathname === '/' && (
+        {route === '/' && (
           <div className="cu_coded_blocks_textbox">
-            <h2 className="cu_coded_blocks_title">Icons</h2>
+            <h2 className="cu_coded_blocks_title">Icon Pack</h2>
           </div>
         )}
         <div className="row gy-4 mb-50">

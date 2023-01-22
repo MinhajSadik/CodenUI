@@ -3,11 +3,11 @@ import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
-export default function CodedBlocks({ pathname }) {
+export default function CodedBlocks({ route }) {
   return (
     <section className="cu_coded_blocks_wrapper pt-76 pb-100">
       <div className="container">
-        {pathname === '/' && (
+        {route === '/' && (
           <div className="cu_coded_blocks_textbox">
             <h2 className="cu_coded_blocks_title">Coded Blocks</h2>
           </div>
