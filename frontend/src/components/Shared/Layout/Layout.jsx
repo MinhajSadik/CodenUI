@@ -9,6 +9,7 @@ import Navbar from '../Navbar/Navbar';
 export default function Layout({ children }) {
   const { open, opened, handleOpen, handleSwitch, route } =
     useContext(AppContext);
+  const matchedRoute = route === '/' || route === '/pricing';
 
   return (
     <AppProvider>
@@ -19,7 +20,7 @@ export default function Layout({ children }) {
       {opened && <Register handleSwitch={handleSwitch} />}
       <main>{children}</main>
 
-      {route === '/' && <Footer />}
+      {matchedRoute && <Footer />}
     </AppProvider>
   );
 }

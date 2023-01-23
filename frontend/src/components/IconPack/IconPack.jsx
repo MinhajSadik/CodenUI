@@ -15,26 +15,30 @@ export default function IconPack({ route }) {
         <div className="row gy-4 mb-50">
           <div className="col-lg-4">
             <div className="cu_icon_pack_card">
-              <div className="cu_icon_pack_card_fea_img">
-                <NextImage
-                  className="cu_icon_pack_card_img"
-                  src={imagePath.IconPackFea}
-                  alt="iconpackfea"
-                />
-              </div>
-
-              <div className="cu_icon_pack_card_details">
-                <div className="cu_icon_pack_free">
-                  <p className="cu_icon_pack_free_text">Free</p>
+              <NextLink href="/icon-pack/single">
+                <div className="cu_icon_pack_card_fea_img">
+                  <NextImage
+                    className="cu_icon_pack_card_img"
+                    src={imagePath.IconPackFea}
+                    alt="iconpackfea"
+                  />
                 </div>
-                <h4 className="cu_icon_pack_card_title">
-                  Business Management Web UI Kit
-                </h4>
+              </NextLink>
+              <div className="cu_icon_pack_card_details">
+                <NextLink href="/icon-pack/single">
+                  <div className="cu_icon_pack_free">
+                    <p className="cu_icon_pack_free_text">Free</p>
+                  </div>
+                  <h4 className="cu_icon_pack_card_title">
+                    Business Management Web UI Kit
+                  </h4>
+                </NextLink>
+
                 <div className="cu_icon_pack_card_footer d-flex align-items-center">
                   <p className="cu_icon_pack_card_footer_text">Source Files:</p>
                   <div className="cu_icon_pack_card_version">
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -44,7 +48,7 @@ export default function IconPack({ route }) {
                       />
                     </NextLink>
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -54,7 +58,7 @@ export default function IconPack({ route }) {
                       />
                     </NextLink>
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -64,7 +68,7 @@ export default function IconPack({ route }) {
                       />
                     </NextLink>
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -81,26 +85,30 @@ export default function IconPack({ route }) {
 
           <div className="col-lg-4">
             <div className="cu_icon_pack_card">
-              <div className="cu_icon_pack_card_fea_img">
-                <NextImage
-                  className="cu_icon_pack_card_img"
-                  src={imagePath.IconPackFea}
-                  alt="iconpackfea"
-                />
-              </div>
-
-              <div className="cu_icon_pack_card_details">
-                <div className="cu_icon_pack_free">
-                  <p className="cu_icon_pack_free_text">Free</p>
+              <NextLink href="/icon-pack/single">
+                <div className="cu_icon_pack_card_fea_img">
+                  <NextImage
+                    className="cu_icon_pack_card_img"
+                    src={imagePath.IconPackFea}
+                    alt="iconpackfea"
+                  />
                 </div>
-                <h4 className="cu_icon_pack_card_title">
-                  Business Management Web UI Kit
-                </h4>
+              </NextLink>
+              <div className="cu_icon_pack_card_details">
+                <NextLink href="/icon-pack/single">
+                  <div className="cu_icon_pack_free">
+                    <p className="cu_icon_pack_free_text">Free</p>
+                  </div>
+                  <h4 className="cu_icon_pack_card_title">
+                    Business Management Web UI Kit
+                  </h4>
+                </NextLink>
+
                 <div className="cu_icon_pack_card_footer d-flex align-items-center">
                   <p className="cu_icon_pack_card_footer_text">Source Files:</p>
                   <div className="cu_icon_pack_card_version">
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -110,7 +118,7 @@ export default function IconPack({ route }) {
                       />
                     </NextLink>
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -120,7 +128,7 @@ export default function IconPack({ route }) {
                       />
                     </NextLink>
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -130,7 +138,7 @@ export default function IconPack({ route }) {
                       />
                     </NextLink>
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -147,26 +155,30 @@ export default function IconPack({ route }) {
 
           <div className="col-lg-4">
             <div className="cu_icon_pack_card">
-              <div className="cu_icon_pack_card_fea_img">
-                <NextImage
-                  className="cu_icon_pack_card_img"
-                  src={imagePath.IconPackFea}
-                  alt="iconpackfea"
-                />
-              </div>
-
-              <div className="cu_icon_pack_card_details">
-                <div className="cu_icon_pack_free">
-                  <p className="cu_icon_pack_free_text">Free</p>
+              <NextLink href="/icon-pack/single">
+                <div className="cu_icon_pack_card_fea_img">
+                  <NextImage
+                    className="cu_icon_pack_card_img"
+                    src={imagePath.IconPackFea}
+                    alt="iconpackfea"
+                  />
                 </div>
-                <h4 className="cu_icon_pack_card_title">
-                  Business Management Web UI Kit
-                </h4>
+              </NextLink>
+              <div className="cu_icon_pack_card_details">
+                <NextLink href="/icon-pack/single">
+                  <div className="cu_icon_pack_free">
+                    <p className="cu_icon_pack_free_text">Free</p>
+                  </div>
+                  <h4 className="cu_icon_pack_card_title">
+                    Business Management Web UI Kit
+                  </h4>
+                </NextLink>
+
                 <div className="cu_icon_pack_card_footer d-flex align-items-center">
                   <p className="cu_icon_pack_card_footer_text">Source Files:</p>
                   <div className="cu_icon_pack_card_version">
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -176,7 +188,7 @@ export default function IconPack({ route }) {
                       />
                     </NextLink>
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -186,7 +198,7 @@ export default function IconPack({ route }) {
                       />
                     </NextLink>
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage
@@ -196,7 +208,7 @@ export default function IconPack({ route }) {
                       />
                     </NextLink>
                     <NextLink
-                      href="#"
+                      href=""
                       className="cu_icon_pack_card_version_link"
                     >
                       <NextImage

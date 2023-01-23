@@ -4,6 +4,7 @@ export { default as EmailTemplates } from "./EmailTemplates/EmailTemplates";
 export { default as Faq } from "./Faq/Faq";
 export { default as Hero } from "./Hero/Hero";
 export { default as IconPack } from "./IconPack/IconPack";
+export { default as Icons } from "./Icons/Icons";
 export { default as Pricing } from "./Pricing/Pricing";
 export { default as Banner } from "./Shared/Banner/Banner";
 export { default as Layout } from "./Shared/Layout/Layout";

@@ -6,6 +6,7 @@ import { CodedBlocks, CodedTemplates, EmailTemplates, Faq, Hero, IconPack, Layou
 
 export default function Home() {
   const { route } = useRouter()
+
   return (
     <>
       <Head>

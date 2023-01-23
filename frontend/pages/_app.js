@@ -2,6 +2,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import AppProvider from '../src/providers/AppProvider';
 import '../styles/globals.css';
 
+export default function App({ Component, pageProps }) {
+  return (
+    <AppProvider>
+      <Component {...pageProps} />
+    </AppProvider>
+  );
+}
+
 // const myFont = localFont({ src: '../src/assets/fonts/EudoxusSans-Medium.woff2' })
 
 // const myFont = localFont({
@@ -18,12 +26,3 @@ import '../styles/globals.css';
 //     },
 //   ],
 // })
-
-
-export default function App({ Component, pageProps }) {
-  return (
-    <AppProvider>
-      <Component {...pageProps} />
-    </AppProvider>
-  );
-}

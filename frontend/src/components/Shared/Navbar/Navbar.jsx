@@ -27,7 +27,7 @@ export default function Navbar({ handleOpen, route }) {
                 <NextLink
                   className="nav-link"
                   aria-current="page"
-                  href="coded-templates"
+                  href="/coded-templates"
                 >
                   Coded Templates
                 </NextLink>
@@ -37,7 +37,7 @@ export default function Navbar({ handleOpen, route }) {
                 <NextLink
                   className="nav-link"
                   aria-current="page"
-                  href="coded-blocks"
+                  href="/coded-blocks"
                 >
                   Coded Blocks
                 </NextLink>
@@ -47,7 +47,7 @@ export default function Navbar({ handleOpen, route }) {
                 <NextLink
                   className="nav-link"
                   aria-current="page"
-                  href="email-templates"
+                  href="/email-templates"
                 >
                   Email Templates
                 </NextLink>
@@ -56,7 +56,7 @@ export default function Navbar({ handleOpen, route }) {
               <li className="nav-item dropdown">
                 <NextLink
                   className="nav-link"
-                  href="/"
+                  href=""
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -71,14 +71,14 @@ export default function Navbar({ handleOpen, route }) {
                 <div className="dropdown_icon">
                   <ul className="cu_drop_down_ul">
                     <li>
-                      <NextLink className="dropdown-item" href="icon-pack">
+                      <NextLink className="dropdown-item" href="/icon-pack">
                         Pack
                       </NextLink>
                     </li>
                     <li>
                       <NextLink
                         className="dropdown-item mt-6"
-                        href="single-icon"
+                        href="/single-icons"
                       >
                         Single
                       </NextLink>
@@ -87,7 +87,7 @@ export default function Navbar({ handleOpen, route }) {
                 </div>
               </li>
             </ul>
-            {route === '/account-setting' ? (
+            {route === 'account-setting' ? (
               <div className="d-flex justify-content-between align-items-center">
                 <NextLink href="/pricing" className="cu_Pricing">
                   Pricing

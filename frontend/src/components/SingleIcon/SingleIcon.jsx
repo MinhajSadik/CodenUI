@@ -6,12 +6,13 @@ import NextLink from '../Shared/Link/NextLink';
 
 export default function SingleIcon() {
   const { open, handleOpen, handleClose } = useContext(AppContext);
+
   return (
     <section>
       <div className="cu_single_icon_wrapper pt-76 pb-100">
         <div className="container">
           <div className="row gy-4 mb-50">
-            <div className="col-lg-3 ">
+            <div className="col-lg-3">
               <div className="d-flex justify-content-center align-items-center">
                 <NextLink href="">
                   <NextImage
@@ -42,12 +43,14 @@ export default function SingleIcon() {
             </div>
 
             <div className="col-lg-2">
-              <div className="cu_single_icon_card  text-center">
+              <div
+                className="cu_single_icon_card  text-center"
+                onClick={handleOpen}
+              >
                 <div className="cu_single_icon_card_fea_img">
                   <NextLink id="action" className="cu_single_icon" href="" />
                   <NextImage
                     className="cu_single_icon_card_img"
-                    onClick={handleOpen}
                     src={imagePath.AddWallet}
                     alt="wallet"
                   />
