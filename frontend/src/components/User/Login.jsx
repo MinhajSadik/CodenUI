@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../../redux/feature/userSlice';
 import GoogleIcon from '../../assets/img/icon/logos_google-icon.svg';
 import Logo from '../../assets/img/logo/CodenUILogo.svg';
 import NextImage from '../Shared/Image/NextImage';
 
+const initState = {
+  email: '',
+  password: '',
+};
+
 export default function Login({ handleSwitch }) {
+  const dispatch = useDispatch();
+  const [userInfo, setUserInfo] = useState(initState);
+
+  function handleLogin(e) {
+    e.preventDefault();
+    dispatch(loginUser(userInfo));
+    console.log('clicking');
+  }
+
+  function onInputChange(e) {
+    const { name, value } = e.target;
+    setUserInfo({
+      ...userInfo,
+      [name]: value,
+    });
+  }
+
   return (
     <div className="cu_sing_in_wrapper">
       <div className="cu_sign_in">
@@ -32,14 +56,30 @@ export default function Login({ handleSwitch }) {
             <label htmlFor="inputEmail4" className="cu_form_label mt-25">
               Email
             </label>
-            <input type="email" className="form-control" id="" required />
+            <input
+              type="email"
+              name="email"
+              // value={email}
+              onChange={onInputChange}
+              className="form-control"
+              id=""
+              required
+            />
           </div>
           <div className="col-md-12">
             <label htmlFor="" className="cu_form_label mt-20">
               {' '}
               Password
             </label>
-            <input type="Password" className="form-control" id="" required />
+            <input
+              type="password"
+              name="password"
+              // value={password}
+              onChange={onInputChange}
+              className="form-control"
+              id=""
+              required
+            />
           </div>
           <div className="d-flex justify-content-between align-items-center pt-15">
             <div>
@@ -54,7 +94,11 @@ export default function Login({ handleSwitch }) {
           </div>
 
           <div className="col-12">
-            <button type="submit" className="w-100 cu_log_in_btn">
+            <button
+              type="submit"
+              className="w-100 cu_log_in_btn"
+              onClick={handleLogin}
+            >
               Login
             </button>
           </div>
