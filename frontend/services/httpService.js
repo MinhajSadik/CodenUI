@@ -1,22 +1,10 @@
 import axios from 'axios'
 
 const { PROD_APP_URL } = process.env
-const responseBody = (response) => response.data.data
 
-const API = axios.create({
-    baseURL: "http://localhost:5000/api/v1/",
-    withCredentials: true,
-    headers: {
-        "Content-type": "application/json",
-        Accept: "application/json",
-    },
-})
-
-export const login = (loginInfo) => API.post('user/login', loginInfo)
-
+const responseBody = (response) => response.data
 const instance = axios.create({
-    baseURL: "http://localhost:5000/api/v1/",
-    withCredentials: true,
+    baseURL: "http://localhost:5000/api/v1",
     headers: {
         "Content-type": "application/json",
         Accept: "application/json",
@@ -32,6 +20,4 @@ const requests = {
 }
 
 
-
-// export default requests
-export default API
+export default requests

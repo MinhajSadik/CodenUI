@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../../redux/feature/userSlice';
 import GoogleIcon from '../../assets/img/icon/logos_google-icon.svg';
 import Logo from '../../assets/img/logo/CodenUILogo.svg';
 import NextImage from '../Shared/Image/NextImage';
 
+const initState = {
+  name: '',
+  email: '',
+  password: '',
+};
+
 export default function Register({ handleSwitch }) {
+  const dispatch = useDispatch();
+  const [newUserInfo, setNewUserInfo] = useState(initState);
+
+  function onInputChange(e) {
+    const { name, value } = e.target;
+    setNewUserInfo({
+      ...newUserInfo,
+      [name]: value,
+    });
+  }
+
+  function handleRegister(e) {
+    e.preventDefault();
+    dispatch(registerUser(newUserInfo));
+  }
   return (
     <div className="cu_sing_up_wrapper">
       <div className="cu_sign_up" style={{ width: '460px' }}>
@@ -32,20 +55,41 @@ export default function Register({ handleSwitch }) {
             <label htmlFor="text" className="cu_form_label mt-25">
               Name*
             </label>
-            <input type="text" className="form-control" id="" required />
+            <input
+              type="text"
+              name="name"
+              onChange={onInputChange}
+              className="form-control"
+              id=""
+              required
+            />
           </div>
           <div className="col-md-12">
             <label htmlFor="inputEmail4" className="cu_form_label mt-20">
               Email*
             </label>
-            <input type="email" className="form-control" id="" required />
+            <input
+              type="email"
+              name="email"
+              onChange={onInputChange}
+              className="form-control"
+              id=""
+              required
+            />
           </div>
           <div className="col-md-12">
             <label htmlFor="" className="cu_form_label mt-20">
               {' '}
               Password*
             </label>
-            <input type="Password" className="form-control" id="" required />
+            <input
+              type="password"
+              name="password"
+              onChange={onInputChange}
+              className="form-control"
+              id=""
+              required
+            />
           </div>
 
           <div className="col-lg-12 justify-content-start align-items-center ">
@@ -63,7 +107,11 @@ export default function Register({ handleSwitch }) {
           </div>
 
           <div className="col-12">
-            <button type="submit" className="w-100 cu_profile_update_btn">
+            <button
+              type="submit"
+              onClick={handleRegister}
+              className="w-100 cu_profile_update_btn"
+            >
               Sign Up
             </button>
           </div>
