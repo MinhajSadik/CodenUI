@@ -52,7 +52,6 @@ class UserController {
       const { email, password } = req.body;
       const user = await userService.findUser(email);
 
-      console.log(email, password)
       if (!user) {
         return sendResponse(res, 404, {
           message: `User not found! create one with ${email} or check again`,
