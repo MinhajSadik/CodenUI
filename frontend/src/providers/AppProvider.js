@@ -33,14 +33,15 @@ export default function AppProvider({ children }) {
 
     const toggleInfo = {
         open,
+        route,
         opened,
         setOpen,
+        loggedIn,
         setOpened,
         handleOpen,
         handleClose,
         handleSwitch,
-        route,
-        loggedIn
+
     }
     return (
         <AppContext.Provider value={toggleInfo}>

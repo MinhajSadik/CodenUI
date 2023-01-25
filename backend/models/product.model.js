@@ -31,9 +31,13 @@ const productSchema = new Schema(
       required: false,
       default: 0,
     },
-    filePath: {
+    thumbnail: {
       type: String,
       required: false,
+    },
+    productId: {
+      type: Number,
+      default: 1,
     },
     categoryId: {
       type: Schema.Types.ObjectId,
@@ -44,23 +48,6 @@ const productSchema = new Schema(
     timestamps: true,
   }
 );
-
-// productSchema.pre("save", async function (next) {
-//   if (this.SubCategory) {
-//     try {
-//       const check = await SubCategory.findById(this.SubCategory);
-//       if (
-//         !check ||
-//         JSON.stringify(check.Category) !== JSON.stringify(this.Category)
-//       ) {
-//         throw new Error("Check your Category and/or SubCategory");
-//       }
-//     } catch (error) {
-//       throw error;
-//     }
-//   }
-//   next();
-// });
 
 const Product = model("Product", productSchema);
 

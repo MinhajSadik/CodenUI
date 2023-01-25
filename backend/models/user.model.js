@@ -23,21 +23,16 @@ const userSchema = new Schema(
       type: String,
       required: false,
     },
-    country: {
-      type: String,
-      required: false,
-      trim: true,
-    },
-    profession: {
-      type: String,
-      required: false,
-      trim: true,
-    },
     role: {
       type: String,
-      default: "basic",
-      enum: ["basic", "admin"],
+      default: "user",
+      enum: ["user", "admin"],
     },
+    plan: {
+      type: String,
+      default: 'basic',
+      enum: ['basic', 'monthly', 'yearly', 'lifetime']
+    }
   },
   {
     timestamps: true,

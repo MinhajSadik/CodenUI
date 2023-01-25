@@ -7,13 +7,13 @@ import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 
 export default function Layout({ children }) {
-  const { open, opened, handleOpen, handleSwitch, route } =
+  const { open, opened, handleOpen, handleSwitch, route, loggedIn } =
     useContext(AppContext);
   const matchedRoute = route === '/' || route === '/pricing';
 
   return (
     <AppProvider>
-      <Navbar handleOpen={handleOpen} route={route} />
+      <Navbar handleOpen={handleOpen} loggedIn={loggedIn} />
 
       {open && <Login handleSwitch={handleSwitch} />}
 

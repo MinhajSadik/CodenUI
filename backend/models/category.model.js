@@ -7,6 +7,10 @@ const categorySchema = new Schema(
       required: true,
       trim: true,
     },
+    categoryId: {
+      type: Number,
+      default: 1,
+    },
     productId: [
       {
         type: Schema.Types.ObjectId,

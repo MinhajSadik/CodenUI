@@ -23,17 +23,16 @@ class UserController {
       } else {
         const newUser = await userService.createUser(req.body);
 
-        const { accessToken } = await tokenService.generateToken({
+        const { accessToken } = await tokenService.generateTokens({
           _id: newUser._id,
           email: newUser.email,
-          role: newUser.role,
+          plan: newUser.plan,
         });
 
         const user = new UserDto(newUser);
         res.cookie("accessToken", accessToken, {
           maxAge: 1000 * 60 * 60 * 24,
           httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
         });
 
         return sendResponse(res, 201, {
@@ -69,18 +68,18 @@ class UserController {
         });
       }
 
-      const { accessToken } = await tokenService.generateToken({
+      const { accessToken } = await tokenService.generateTokens({
         _id: user._id,
         email: user.email,
-        role: user.role,
+        plan: user.plan,
       });
 
       const modifiedUser = new UserDto(user);
 
+
       res.cookie("accessToken", accessToken, {
         maxAge: 1000 * 60 * 60 * 24,
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
       });
 
       return sendResponse(res, 200, {
@@ -165,6 +164,10 @@ class UserController {
         message: error.message,
       });
     }
+  }
+
+  async refresh(req, res) {
+
   }
 }
 

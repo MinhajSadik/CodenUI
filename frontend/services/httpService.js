@@ -3,6 +3,7 @@ import axios from 'axios'
 const { PROD_APP_URL } = process.env
 
 const responseBody = (response) => response.data
+
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/v1",
     headers: {
