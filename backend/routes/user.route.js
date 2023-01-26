@@ -15,4 +15,6 @@ router.post(
   userController.sendFileByEmail
 );
 
+router.get("/refresh", userController.refresh)
+
 export default router;

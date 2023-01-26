@@ -23,15 +23,23 @@ class UserController {
       } else {
         const newUser = await userService.createUser(req.body);
 
-        const { accessToken } = await tokenService.generateTokens({
+        const { accessToken, refreshToken } = await tokenService.generateTokens({
           _id: newUser._id,
           email: newUser.email,
           plan: newUser.plan,
         });
 
         const user = new UserDto(newUser);
+
+        await tokenService.storeRefreshToken(user.id, refreshToken)
+
         res.cookie("accessToken", accessToken, {
-          maxAge: 1000 * 60 * 60 * 24,
+          maxAge: 1000 * 60 * 60 * 24 * 60,
+          httpOnly: true,
+        });
+
+        res.cookie("refreshToken", refreshToken, {
+          maxAge: 1000 * 60 * 60 * 24 * 7,
           httpOnly: true,
         });
 
@@ -46,6 +54,7 @@ class UserController {
       });
     }
   }
+
   async loginUser(req, res) {
     try {
       const { email, password } = req.body;
@@ -68,17 +77,24 @@ class UserController {
         });
       }
 
-      const { accessToken } = await tokenService.generateTokens({
+      const { accessToken, refreshToken } = await tokenService.generateTokens({
         _id: user._id,
         email: user.email,
         plan: user.plan,
       });
 
+      await tokenService.updateRefreshToken(user._id, refreshToken)
+
       const modifiedUser = new UserDto(user);
 
 
       res.cookie("accessToken", accessToken, {
-        maxAge: 1000 * 60 * 60 * 24,
+        maxAge: 1000 * 60 * 60 * 24 * 60,
+        httpOnly: true,
+      });
+
+      res.cookie("refreshToken", refreshToken, {
+        maxAge: 1000 * 60 * 60 * 24 * 7,
         httpOnly: true,
       });
 
@@ -167,7 +183,67 @@ class UserController {
   }
 
   async refresh(req, res) {
+    const { refreshToken: refreshTokenFromCookies } = req.cookies;
 
+    let userData;
+    try {
+      //check if token is valid
+      userData = await tokenService.verifyRefreshToken(refreshTokenFromCookies)
+
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+
+    try {
+      //check if token is in db
+      const token = await tokenService.findRefreshToken(
+        userData._id,
+        refreshTokenFromCookies
+      );
+
+
+      if (!token) {
+        return sendResponse(res, 401, {
+          message: "Invalid Token"
+        })
+      }
+
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+
+
+    const user = await userService.findById({ _id: userData._id })
+
+
+    if (!user) {
+      return sendResponse(res, 404, {
+        message: "No user found!"
+      })
+    }
+
+    const { accessToken, refreshToken } = await tokenService.generateTokens({
+      _id: userData._id,
+    })
+
+  }
+
+  async logout(req, res) {
+    const { refreshToken } = req.cookies
+
+    //deleted refresh token from db
+    await tokenService.removeToken(refreshToken);
+
+    res.clearCookies("refreshToken")
+    res.clearCookies("accessToken")
+
+    return sendResponse(res, 200, {
+      message: `User LoggedIn Successfully!`
+    })
   }
 }
 

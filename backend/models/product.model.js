@@ -37,7 +37,7 @@ const productSchema = new Schema(
     },
     productId: {
       type: Number,
-      default: 1,
+      default: 1001,
     },
     categoryId: {
       type: Schema.Types.ObjectId,
