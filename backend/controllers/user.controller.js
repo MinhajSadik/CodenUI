@@ -26,7 +26,7 @@ class UserController {
         const { accessToken, refreshToken } = await tokenService.generateTokens({
           _id: newUser._id,
           email: newUser.email,
-          plan: newUser.plan,
+          role: newUser.role,
         });
 
         const user = new UserDto(newUser);
@@ -80,7 +80,7 @@ class UserController {
       const { accessToken, refreshToken } = await tokenService.generateTokens({
         _id: user._id,
         email: user.email,
-        plan: user.plan,
+        role: user.role,
       });
 
       await tokenService.updateRefreshToken(user._id, refreshToken)
@@ -184,12 +184,11 @@ class UserController {
 
   async refresh(req, res) {
     const { refreshToken: refreshTokenFromCookies } = req.cookies;
-
     let userData;
+
     try {
       //check if token is valid
       userData = await tokenService.verifyRefreshToken(refreshTokenFromCookies)
-
     } catch (error) {
       return sendResponse(res, 500, {
         message: error.message
@@ -203,22 +202,19 @@ class UserController {
         refreshTokenFromCookies
       );
 
-
       if (!token) {
         return sendResponse(res, 401, {
           message: "Invalid Token"
         })
       }
-
     } catch (error) {
       return sendResponse(res, 500, {
         message: error.message
       })
     }
 
-
+    //check if valid user
     const user = await userService.findById({ _id: userData._id })
-
 
     if (!user) {
       return sendResponse(res, 404, {
@@ -228,8 +224,35 @@ class UserController {
 
     const { accessToken, refreshToken } = await tokenService.generateTokens({
       _id: userData._id,
+      email: userData.email,
+      role: userData.role,
     })
 
+    //update refresh token
+    try {
+      await tokenService.updateRefreshToken(userData._id, refreshToken)
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+
+    res.cookie("refreshToken", refreshToken, {
+      maxAge: 1000 * 60 * 60 * 24 * 30,
+      httpOnly: true,
+    });
+
+    res.cookie("accessToken", accessToken, {
+      maxAge: 1000 * 60 * 60 * 24 * 30,
+      httpOnly: true,
+    });
+
+    const modifiedUser = new UserDto(user)
+
+    return sendResponse(res, 200, {
+      user: modifiedUser,
+      loggedIn: true
+    })
   }
 
   async logout(req, res) {

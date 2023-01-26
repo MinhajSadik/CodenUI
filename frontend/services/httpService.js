@@ -21,4 +21,29 @@ const requests = {
 }
 
 
+instance.interceptors.response.use((config) => {
+    return config
+}, async (error) => {
+    const originalRequest = error.config;
+
+    if (
+        error.response.status === 401 &&
+        originalRequest &&
+        !originalRequest._isRetry
+    ) {
+        originalRequest.isRetry = true
+
+        try {
+            await axios.get(`${process.env.APP_API_URL}/api/v1/user/refresh`, {
+                withCredentials: true,
+            })
+            return instance.request(originalRequest)
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    throw error
+})
+
+
 export default requests

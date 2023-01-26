@@ -38,7 +38,17 @@ const userSlice = createSlice({
         error: ""
     },
 
-    reducers: {},
+    reducers: {
+        setUser(state, action) {
+            const { user } = action.payload;
+
+            state.user = user;
+
+            if (user === null) {
+                state.loggedIn = false;
+            } state.loggedIn = true;
+        },
+    },
 
     extraReducers: (builder) => {
         builder
@@ -69,5 +79,6 @@ const userSlice = createSlice({
     }
 })
 
+export const { setUser } = userSlice.actions;
 
 export default userSlice.reducer

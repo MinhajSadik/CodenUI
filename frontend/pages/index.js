@@ -4,6 +4,7 @@ import React from 'react';
 import { CodedBlocks, CodedTemplates, EmailTemplates, Faq, Hero, IconPack, Layout, Pricing } from '../src/components';
 
 
+
 export default function Home() {
   const { route } = useRouter()
 
