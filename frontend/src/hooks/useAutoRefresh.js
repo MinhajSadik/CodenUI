@@ -8,6 +8,7 @@ export function useAutoRefresh() {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     useEffect(() => {
+
         (async () => {
             try {
                 const { data } = await axios.get(`${process.env.APP_API_URL}/api/v1/user/refresh`, {

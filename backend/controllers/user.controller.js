@@ -86,18 +86,16 @@ class UserController {
 
       await tokenService.updateRefreshToken(user._id, refreshToken)
 
-
       const modifiedUser = new UserDto(user);
 
-
       res.cookie("accessToken", accessToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 30,
+        maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
         secure: true,
       });
 
       res.cookie("refreshToken", refreshToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 30,
+        maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
         secure: true,
       });
@@ -246,13 +244,13 @@ class UserController {
       }
 
       res.cookie("refreshToken", refreshToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 30,
+        maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
         secure: true,
       });
 
       res.cookie("accessToken", accessToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 30,
+        maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
         secure: true,
       });
