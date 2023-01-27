@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../../contexts/contexts';
-import useAutoRefresh from '../../../hooks/useAutoRefresh';
+import { useAutoRefresh } from '../../../hooks/useAutoRefresh';
 import AppProvider from '../../../providers/AppProvider';
 import Login from '../../User/Login';
 import Register from '../../User/Register';

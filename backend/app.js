@@ -15,7 +15,10 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(express.json({ limit: "10mb", extended: true }));
 app.use(cookieParser());
 app.use(morgan("common"));
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+}));
 
 //routes
 import categoryRoute from "./routes/category.route.js";

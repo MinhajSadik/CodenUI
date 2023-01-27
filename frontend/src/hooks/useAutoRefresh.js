@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from "../../redux/feature/userSlice";
 
 
-function useAutoRefresh() {
+export function useAutoRefresh() {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -20,11 +20,10 @@ function useAutoRefresh() {
                 console.error(error.message);
                 setLoading(false);
             }
-        });
+        })()
     }, []);
 
     return { loading };
 };
 
 
-export default useAutoRefresh

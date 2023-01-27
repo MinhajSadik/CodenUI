@@ -5,15 +5,18 @@ import Token from "../models/refresh.model.js";
 dotenv.config();
 const accessTokenSecret = process.env.JWT_ACCESS_TOKEN_SECRET;
 const refreshTokenSecret = process.env.JWT_REFRESH_TOKEN_SECRET
+const accessExpireIn = process.env.ACCESS_EXPIRES_IN
+const refreshExpireIn = process.env.REFRESH_EXPIRES_IN
+
 
 class TokenService {
   async generateTokens(payload) {
     const accessToken = jwt.sign(payload, accessTokenSecret, {
-      expiresIn: process.env.ACCESS_EXPIRES_IN,
+      expiresIn: accessExpireIn,
     });
 
     const refreshToken = jwt.sign(payload, refreshTokenSecret, {
-      expiresIn: process.env.REFRESH_EXPIRES_IN,
+      expiresIn: refreshExpireIn,
     });
 
     return { accessToken, refreshToken };

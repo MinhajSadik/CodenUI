@@ -14,7 +14,7 @@ export default function AppProvider({ children }) {
         if (loggedIn) {
             setOpen(false)
             setOpened(false)
-        }
+        } else setOpen(true)
     }, [loggedIn])
 
     function handleOpen() {

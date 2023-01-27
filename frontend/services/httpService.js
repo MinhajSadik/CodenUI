@@ -6,6 +6,7 @@ const responseBody = (response) => response.data
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/v1",
+    withCredentials: true,
     headers: {
         "Content-type": "application/json",
         Accept: "application/json",

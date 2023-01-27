@@ -21,6 +21,7 @@ class UserController {
           message: `User ${email} already exist!`,
         });
       } else {
+
         const newUser = await userService.createUser(req.body);
 
         const { accessToken, refreshToken } = await tokenService.generateTokens({
@@ -34,12 +35,12 @@ class UserController {
         await tokenService.storeRefreshToken(user.id, refreshToken)
 
         res.cookie("accessToken", accessToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 60,
+          maxAge: 1000 * 60 * 60 * 24 * 30,
           httpOnly: true,
         });
 
         res.cookie("refreshToken", refreshToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 7,
+          maxAge: 1000 * 60 * 60 * 24 * 30,
           httpOnly: true,
         });
 
@@ -85,17 +86,20 @@ class UserController {
 
       await tokenService.updateRefreshToken(user._id, refreshToken)
 
+
       const modifiedUser = new UserDto(user);
 
 
       res.cookie("accessToken", accessToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 60,
+        maxAge: 1000 * 60 * 60 * 24 * 30,
         httpOnly: true,
+        secure: true,
       });
 
       res.cookie("refreshToken", refreshToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 30,
         httpOnly: true,
+        secure: true,
       });
 
       return sendResponse(res, 200, {
@@ -186,73 +190,85 @@ class UserController {
     const { refreshToken: refreshTokenFromCookies } = req.cookies;
     let userData;
 
-    try {
-      //check if token is valid
-      userData = await tokenService.verifyRefreshToken(refreshTokenFromCookies)
-    } catch (error) {
-      return sendResponse(res, 500, {
-        message: error.message
-      })
-    }
 
-    try {
-      //check if token is in db
-      const token = await tokenService.findRefreshToken(
-        userData._id,
-        refreshTokenFromCookies
-      );
+    if (refreshTokenFromCookies) {
+      try {
+        //check if token is valid
+        userData = await tokenService.verifyRefreshToken(refreshTokenFromCookies)
 
-      if (!token) {
-        return sendResponse(res, 401, {
-          message: "Invalid Token"
+      } catch (error) {
+        return sendResponse(res, 500, {
+          message: error.message
         })
       }
-    } catch (error) {
-      return sendResponse(res, 500, {
-        message: error.message
+
+      try {
+        //check if token is in db
+        const token = await tokenService.findRefreshToken(
+          userData._id,
+          refreshTokenFromCookies
+        );
+
+        if (!token) {
+          return sendResponse(res, 401, {
+            message: "Invalid Token"
+          })
+        }
+      } catch (error) {
+        return sendResponse(res, 500, {
+          message: error.message
+        })
+      }
+
+
+      //check if valid user
+      const user = await userService.findById({ _id: userData._id })
+
+      if (!user) {
+        return sendResponse(res, 404, {
+          message: "No user found!"
+        })
+      }
+
+      const { accessToken, refreshToken } = await tokenService.generateTokens({
+        _id: userData._id,
+        email: userData.email,
+        role: userData.role,
+      })
+
+      //update refresh token
+      try {
+        await tokenService.updateRefreshToken(userData._id, refreshToken)
+      } catch (error) {
+        return sendResponse(res, 500, {
+          message: error.message
+        })
+      }
+
+      res.cookie("refreshToken", refreshToken, {
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+        httpOnly: true,
+        secure: true,
+      });
+
+      res.cookie("accessToken", accessToken, {
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+        httpOnly: true,
+        secure: true,
+      });
+
+      const modifiedUser = new UserDto(user)
+
+      return sendResponse(res, 200, {
+        user: modifiedUser,
+        loggedIn: true
       })
     }
-
-    //check if valid user
-    const user = await userService.findById({ _id: userData._id })
-
-    if (!user) {
+    else {
       return sendResponse(res, 404, {
-        message: "No user found!"
+        message: `Your session is over!`
       })
     }
-
-    const { accessToken, refreshToken } = await tokenService.generateTokens({
-      _id: userData._id,
-      email: userData.email,
-      role: userData.role,
-    })
-
-    //update refresh token
-    try {
-      await tokenService.updateRefreshToken(userData._id, refreshToken)
-    } catch (error) {
-      return sendResponse(res, 500, {
-        message: error.message
-      })
-    }
-
-    res.cookie("refreshToken", refreshToken, {
-      maxAge: 1000 * 60 * 60 * 24 * 30,
-      httpOnly: true,
-    });
-
-    res.cookie("accessToken", accessToken, {
-      maxAge: 1000 * 60 * 60 * 24 * 30,
-      httpOnly: true,
-    });
-
-    const modifiedUser = new UserDto(user)
-
-    return sendResponse(res, 200, {
-      user: modifiedUser,
-      loggedIn: true
-    })
   }
 
   async logout(req, res) {
