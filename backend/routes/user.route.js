@@ -14,7 +14,7 @@ router.post(
   authorizedRole(["admin"]),
   userController.sendFileByEmail
 );
-
+router.post("/logout", userController.logout)
 router.get("/refresh", userController.refresh)
 
 export default router;

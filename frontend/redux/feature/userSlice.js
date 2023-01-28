@@ -28,6 +28,18 @@ export const registerUser = createAsyncThunk(
     }
 );
 
+export const logoutUser = createAsyncThunk(
+    "user/logout",
+    async (_, { rejectWithValue }) => {
+        try {
+            return await userService.logout();
+        } catch (error) {
+            console.log({ error })
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const userSlice = createSlice({
     name: "user",
 
@@ -73,6 +85,17 @@ const userSlice = createSlice({
                 state.user = payload
             })
             .addCase(registerUser.rejected, (state, { payload }) => {
+                state.loading = false
+                state.error = payload
+            })
+            .addCase(logoutUser.pending, (state,) => {
+                state.loading = true
+            })
+            .addCase(logoutUser.fulfilled, (state,) => {
+                state.loading = false
+                state.loggedIn = false
+            })
+            .addCase(logoutUser.rejected, (state, { payload }) => {
                 state.loading = false
                 state.error = payload
             })

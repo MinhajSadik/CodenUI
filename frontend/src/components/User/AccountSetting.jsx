@@ -6,82 +6,82 @@ import NextLink from '../Shared/Link/NextLink';
 export default function AccountSetting() {
   return (
     <section>
-      <div class="cu_account_settings_wrapper">
-        <div class="container">
-          <div class="col-lg-6 m-auto pt-40">
-            <div class="cu_account_settings_box">
-              <h4 class="cu_account_settings_title">Account Settings</h4>
-              <p class="cu_account_settings_text">
+      <div className="cu_account_settings_wrapper">
+        <div className="container">
+          <div className="col-lg-6 m-auto pt-40">
+            <div className="cu_account_settings_box">
+              <h4 className="cu_account_settings_title">Account Settings</h4>
+              <p className="cu_account_settings_text">
                 Manage your profile, password & more.
               </p>
             </div>
-            <div class="cu_account_info_box">
-              <div class="cu_avatar_box">
+            <div className="cu_account_info_box">
+              <div className="cu_avatar_box">
                 <NextImage
-                  class="cu_profile_avatar"
+                  className="cu_profile_avatar"
                   src={AvatarIcon}
                   alt="avatar"
                 />
-                <NextLink class="cu_upload_avatar_btn" href="">
+                <NextLink className="cu_upload_avatar_btn" href="">
                   Upload Avater
                 </NextLink>
               </div>
-              <p class="cu_profile_info_title mt-25">Profile Information</p>
-              <div class="cu_profile_info_box">
-                <form class="row">
-                  <div class="col-lg-12">
-                    <label htmlFor="text" class="form-label">
+              <p className="cu_profile_info_title mt-25">Profile Information</p>
+              <div className="cu_profile_info_box">
+                <form className="row">
+                  <div className="col-lg-12">
+                    <label htmlFor="text" className="form-label">
                       Name
                     </label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       id=""
                       placeholder="Monowar H Minar"
                     />
                   </div>
-                  <div class="col-md-12">
-                    <label htmlFor="inputEmail4" class="form-label pt-15">
+                  <div className="col-md-12">
+                    <label htmlFor="inputEmail4" className="form-label pt-15">
                       Email
                     </label>
                     <input
                       type="email"
-                      class="form-control"
+                      className="form-control"
                       id="inputEmail4"
                       placeholder="mhminar@gmail.com"
                     />
                   </div>
-                  <div class="col-12">
-                    <button type="submit" class="cu_profile_update_btn">
+                  <div className="col-12">
+                    <button type="submit" className="cu_profile_update_btn">
                       Update
                     </button>
                   </div>
                 </form>
               </div>
 
-              <p class="cu_account_pass_title mt-25">Password</p>
-              <div class="cu_account_pass_box">
-                <form class="row">
-                  <div class="col-lg-12">
-                    <label htmlFor="inputEmail4" class="form-label">
+              <p className="cu_account_pass_title mt-25">Password</p>
+              <div className="cu_account_pass_box">
+                <form className="row">
+                  <div className="col-lg-12">
+                    <label htmlFor="inputEmail4" className="form-label">
                       Current Password
                     </label>
-                    <input type="password" class="form-control" id="" />
+                    <input type="password" className="form-control" id="" />
                   </div>
-                  <div class="col-md-12">
-                    <label htmlFor="inputEmail4" class="form-label pt-15">
+                  <div className="col-md-12">
+                    <label htmlFor="inputEmail4" className="form-label pt-15">
                       New Password
                     </label>
-                    <input type="password" class="form-control" id="" />
+                    <input type="password" className="form-control" id="" />
                   </div>
-                  <div class="col-md-12">
-                    <label htmlFor="inputEmail4" class="form-label pt-15">
+                  <div className="col-md-12">
+                    <label htmlFor="inputEmail4" className="form-label pt-15">
                       Confirm New Password
                     </label>
-                    <input type="password" class="form-control" id="" />
+                    <input type="password" className="form-control" id="" />
                   </div>
-                  <div class="col-12">
-                    <button type="submit" class="cu_pass_update_btn">
+                  <div className="col-12">
+                    <button type="submit" className="cu_pass_update_btn">
                       Update Password
                     </button>
                   </div>

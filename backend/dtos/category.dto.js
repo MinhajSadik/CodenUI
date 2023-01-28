@@ -1,12 +1,12 @@
 class CategoryDto {
   id;
   name;
-  productId;
+  products;
 
   constructor(category) {
     this.id = category._id;
     this.name = category.name;
-    this.productId = category.productId;
+    this.products = category.products;
   }
 }
 

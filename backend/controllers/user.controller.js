@@ -91,13 +91,11 @@ class UserController {
       res.cookie("accessToken", accessToken, {
         maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
-        secure: true,
       });
 
       res.cookie("refreshToken", refreshToken, {
         maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
-        secure: true,
       });
 
       return sendResponse(res, 200, {
@@ -246,13 +244,11 @@ class UserController {
       res.cookie("refreshToken", refreshToken, {
         maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
-        secure: true,
       });
 
       res.cookie("accessToken", accessToken, {
         maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
-        secure: true,
       });
 
       const modifiedUser = new UserDto(user)
@@ -275,8 +271,8 @@ class UserController {
     //deleted refresh token from db
     await tokenService.removeToken(refreshToken);
 
-    res.clearCookies("refreshToken")
-    res.clearCookies("accessToken")
+    res.clearCookie("refreshToken")
+    res.clearCookie("accessToken")
 
     return sendResponse(res, 200, {
       message: `User LoggedIn Successfully!`

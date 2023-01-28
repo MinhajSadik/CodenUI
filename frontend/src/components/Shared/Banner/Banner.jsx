@@ -8,7 +8,6 @@ export default function Banner({ title }) {
     <section>
       <div className="cu_banner_wrapper">
         <h1 className="cu_banner_title text-center pt-50"> {title} </h1>
-
         <div className="cu_banner_search_box">
           <input
             type="text"

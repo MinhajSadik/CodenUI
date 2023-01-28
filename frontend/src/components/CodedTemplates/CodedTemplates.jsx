@@ -12,6 +12,7 @@ export default function CodedTemplates({ route }) {
             <h2 className="cu_coded_blocks_title">Coded Templates</h2>
           </div>
         )}
+
         <div className="row gy-4 mb-32">
           <div className="col-lg-4 sm-mt-20">
             <div className="cu_coded_tem_card">

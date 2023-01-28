@@ -14,6 +14,9 @@ class UserService {
     sendMail(mailInfo) {
         return requests.post('/user/sendMail', mailInfo)
     }
+    logout() {
+        return requests.post('/user/logout')
+    }
 }
 
 

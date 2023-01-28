@@ -11,7 +11,7 @@ const categorySchema = new Schema(
       type: Number,
       default: 1001,
     },
-    productId: [
+    products: [
       {
         type: Schema.Types.ObjectId,
         ref: "Product",

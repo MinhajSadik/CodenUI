@@ -12,8 +12,11 @@ class CategoryService {
   }
   async find() {
     return await Category.find({}).populate({
-      path: "productId",
-    });
+      path: "products",
+    })
+    // .sort({
+    //   createdAt: -1,
+    // })
   }
   async update(id, payload) {
     return await Category.findByIdAndUpdate(id, payload, { new: true });
@@ -24,7 +27,7 @@ class CategoryService {
   async deleteProductID(categoryID, productID) {
     const category = await this.findById(categoryID);
 
-    const cgId = category.productId.map((id) => id);
+    const cgId = category.products.map((id) => id);
 
     const removedID = cgId.pop();
 

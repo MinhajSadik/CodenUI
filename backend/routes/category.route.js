@@ -14,7 +14,7 @@ router.post(
 
 router.get(
   "/getAll",
-  checkAuth,
+  // checkAuth,
   authorizedRole(["admin"]),
   categoryController.findCategory
 );

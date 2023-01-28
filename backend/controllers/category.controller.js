@@ -8,7 +8,6 @@ class CategoryController {
     try {
       const { name, productId } = req.body;
       const product = await productService.findById(productId);
-      console.log(product);
 
       if (productId && !product) {
         return sendResponse(res, 400, {
@@ -48,9 +47,6 @@ class CategoryController {
       }
 
       const transformed = categories.map((category) => {
-        // category.productId.map((product) => {
-        //   return new ProductDto(product);
-        // });
         return new CategoryDto(category);
       });
 

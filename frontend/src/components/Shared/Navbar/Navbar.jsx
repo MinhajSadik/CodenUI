@@ -1,8 +1,13 @@
+import { logoutUser } from '../../../../redux/feature/userSlice';
 import imagePath from '../../../assets/img/imagePath';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 
-export default function Navbar({ handleOpen, loggedIn }) {
+export default function Navbar({ handleOpen, loggedIn, dispatch }) {
+  function handleLogout() {
+    dispatch(logoutUser());
+  }
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
@@ -122,7 +127,7 @@ export default function Navbar({ handleOpen, loggedIn }) {
                           Billing
                         </NextLink>
                       </li>
-                      <li>
+                      <li onClick={handleLogout}>
                         <NextLink
                           href=""
                           className="dropdown-item account_menu_item mt-6"

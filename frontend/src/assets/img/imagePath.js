@@ -5,6 +5,7 @@ export default {
     DownArrow: require("./icon/downArrow.svg"),
     RightArrow: require("./icon/right_arrow.svg"),
     LeftArrow: require("./icon/left-arrow.svg"),
+    BannerBg: require("./media/category_banner_bg.svg"),
     // social 
     Facebook: require("./icon/facebook.svg"),
     Twitter: require("./icon/Twitter.svg"),

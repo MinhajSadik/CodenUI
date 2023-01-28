@@ -16,7 +16,7 @@ class ProductController {
 
       const product = await productService.create(req.body);
       const newProduct = await product.save();
-      category.productId.push(newProduct._id);
+      category.products.push(newProduct._id);
       await category.save();
 
       const transformed = new ProductDto(newProduct);

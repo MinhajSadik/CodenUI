@@ -31,10 +31,6 @@ const productSchema = new Schema(
       required: false,
       default: 0,
     },
-    thumbnail: {
-      type: String,
-      required: false,
-    },
     productId: {
       type: Number,
       default: 1001,

@@ -7,7 +7,10 @@ class ProductService {
   async find() {
     return await Product.find({}).populate({
       path: "categoryId",
-    });
+    })
+      .sort({
+        createdAt: -1
+      })
   }
   async findById(id) {
     return await Product.findById(id);

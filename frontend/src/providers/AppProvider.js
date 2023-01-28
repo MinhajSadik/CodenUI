@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AppContext } from '../contexts/contexts'
 
 export default function AppProvider({ children }) {
-    const { loggedIn } = useSelector((state) => state.user)
+    const dispatch = useDispatch()
+    const { loggedIn, user } = useSelector((state) => state.user)
 
     const { pathname: route } = useRouter()
     const [open, setOpen] = useState(false)
@@ -14,7 +15,8 @@ export default function AppProvider({ children }) {
         if (loggedIn) {
             setOpen(false)
             setOpened(false)
-        } else setOpen(true)
+        }
+        // else setOpen(true)
     }, [loggedIn])
 
     function handleOpen() {
@@ -32,16 +34,17 @@ export default function AppProvider({ children }) {
     }
 
     const toggleInfo = {
+        user,
         open,
         route,
         opened,
         setOpen,
+        dispatch,
         loggedIn,
         setOpened,
         handleOpen,
         handleClose,
         handleSwitch,
-
     }
     return (
         <AppContext.Provider value={toggleInfo}>
