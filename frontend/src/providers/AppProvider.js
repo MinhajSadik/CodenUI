@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { AppContext } from '../contexts/contexts'
 
 export default function AppProvider({ children }) {
-    const dispatch = useDispatch()
-    const { loggedIn, user } = useSelector((state) => state.user)
+    const { loggedIn, loading, user } = useSelector((state) => state.user)
 
     const { pathname: route } = useRouter()
     const [open, setOpen] = useState(false)
@@ -38,8 +37,8 @@ export default function AppProvider({ children }) {
         open,
         route,
         opened,
+        loading,
         setOpen,
-        dispatch,
         loggedIn,
         setOpened,
         handleOpen,

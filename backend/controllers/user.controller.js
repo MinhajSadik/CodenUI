@@ -78,15 +78,32 @@ class UserController {
         });
       }
 
+      const { refreshToken: refreshTokenFromCookies } = req.cookies;
       const { accessToken, refreshToken } = await tokenService.generateTokens({
         _id: user._id,
         email: user.email,
         role: user.role,
       });
 
-      await tokenService.updateRefreshToken(user._id, refreshToken)
+      try {
+        //check if token is in db
+        const token = await tokenService.findRefreshToken(
+          user._id,
+          refreshTokenFromCookies
+        );
 
-      const modifiedUser = new UserDto(user);
+        if (!token) {
+          await tokenService.storeRefreshToken(user._id, refreshToken)
+        }
+        await tokenService.updateRefreshToken(user._id, refreshToken)
+
+
+      } catch (error) {
+        return sendResponse(res, 500, {
+          message: error.message
+        })
+      }
+
 
       res.cookie("accessToken", accessToken, {
         maxAge: 1000 * 60 * 60 * 24 * 3,
@@ -100,7 +117,7 @@ class UserController {
 
       return sendResponse(res, 200, {
         message: `User ${user.name} loggedIn successfully`,
-        user: modifiedUser,
+        user: new UserDto(user)
       });
     } catch (error) {
       return sendResponse(res, 500, {

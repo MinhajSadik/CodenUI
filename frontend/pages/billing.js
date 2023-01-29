@@ -1,7 +1,10 @@
 import Head from 'next/head'
-import React from 'react'
-import { Layout, BillingBasic, BillingYearly, BillingLifetime } from '../src/components'
+import React, { useContext } from 'react'
+import { BillingBasic, BillingLifetime, BillingYearly, Layout } from '../src/components'
+import { AppContext } from '../src/contexts/contexts'
 export default function billing() {
+    const { user: { plan } } = useContext(AppContext)
+
     return (
         <>
             <Head>
@@ -10,9 +13,9 @@ export default function billing() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <Layout>
-                <BillingBasic />
-                <BillingYearly />
-                <BillingLifetime />
+                {
+                    plan === "basic" ? <BillingBasic /> : plan === "yearly" ? <BillingYearly /> : <BillingLifetime />
+                }
             </Layout>
         </>
     )

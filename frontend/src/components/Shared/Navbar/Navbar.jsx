@@ -1,9 +1,11 @@
+import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../../../redux/feature/userSlice';
 import imagePath from '../../../assets/img/imagePath';
 import NextImage from '../Image/NextImage';
 import NextLink from '../Link/NextLink';
 
-export default function Navbar({ handleOpen, loggedIn, dispatch }) {
+export default function Navbar({ handleOpen, loggedIn }) {
+  const dispatch = useDispatch();
   function handleLogout() {
     dispatch(logoutUser());
   }

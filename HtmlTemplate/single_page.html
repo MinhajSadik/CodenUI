@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./assets/css/common.css">
     <!-- CU_Style Css -->
      <link rel="stylesheet" href="./assets/css/style.css">
+     <!-- CU_Responsive Css -->
+     <link rel="stylesheet" href="./assets/css/responsive.css">
     <!-- Bootstarp JS-->
     <script data-n-head="ssr" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <title>Single Page</title>
@@ -76,7 +78,7 @@
   <main>
 
     <section>
-        <div class="cu_single_page_wrapper pb-115">
+        <div class="cu_single_page_wrapper">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 ">
@@ -88,14 +90,7 @@
                             <img class="cu_single_page_prev_img w-100" src="./assets/img/media/single-page-preview.svg" alt="">
                         </div>
                      
-                        <div class="cu_single_page_product_overview_box mt-35">
-                            <h3 class="cu_product_overview_title">Overview</h3>
-                            <p class="cu_product_overview_text">Collection of Lottie animations & vector illustrations for your medical-themed project. Perfect match for Mobile UI Application, Landing page, Website or your Webflow Template.</p>
-                            <p class="cu_product_overview_text">Tell your story about Doctor appointment, Insurance, Online Consultation, Diagnosis, Laboratory, Medical Marihuana, 404 or 500 Error with 10 different hero animations.</p>
-                            <p class="cu_product_overview_text">Package includes 22 perfectly crafted spot illustrations well suited with hero illustrations to elevate your product even further.</p>
-                            <p class="cu_product_overview_text">
-                                Dr. Vector was created for Designers, Developers, Design Agencies, Startups to speed up their workflow and provide a high-quality user experience on their project.</p>
-                        </div>
+                        
 
                     </div> <!--col-lg-8-->
 
@@ -221,6 +216,19 @@
                             </div>
                         </div>
                     </div> <!--col-lg-4-->
+
+                    <div class="col-lg-8">
+                       
+                      <div class="cu_single_page_product_overview_box mt-35">
+                        <h3 class="cu_product_overview_title">Overview</h3>
+                        <p class="cu_product_overview_text">Collection of Lottie animations & vector illustrations for your medical-themed project. Perfect match for Mobile UI Application, Landing page, Website or your Webflow Template.</p>
+                        <p class="cu_product_overview_text">Tell your story about Doctor appointment, Insurance, Online Consultation, Diagnosis, Laboratory, Medical Marihuana, 404 or 500 Error with 10 different hero animations.</p>
+                        <p class="cu_product_overview_text">Package includes 22 perfectly crafted spot illustrations well suited with hero illustrations to elevate your product even further.</p>
+                        <p class="cu_product_overview_text sm-mb-60">
+                            Dr. Vector was created for Designers, Developers, Design Agencies, Startups to speed up their workflow and provide a high-quality user experience on their project.</p>
+                    </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -230,13 +238,14 @@
   </main>
 
 
+  <!-- cu_Footer_wrapper_start-->
   <footer>
            
     <div class="cu_footer_wrapper pt-50">
          
       <div class="container">
-        <div class="row pb-115">
-          <div class="col-lg-4">
+        <div class="row pb-65 sm-pb-0">
+          <div class="col-lg-4 order-1 order-lg-1 ">
             <div class="cu_footer_info">
                <img class="cu_footer_logo" style="display:none" src="./assets/img/logo/logo-Coden-UI.svg" alt="cu_footer_logo">
                <p class="cu_footer_text">Coden UI is a design and code-based platform that helps people grow their businesses with tons of ready-made templates.</p>
@@ -254,7 +263,7 @@
             </div>
           </div>
 
-          <div class="col-lg-2 offset-1">
+          <div class="col-lg-2 offset-lg-1 order-3 order-lg-2">
             <div class="cu_footer_list">
               <h5 class="cu_list_title">Categories</h5>
               <ul class="cu_footer_list_items">
@@ -266,7 +275,7 @@
             </div>
           </div>
 
-          <div class="col-lg-2">
+          <div class="col-lg-2 order-4 order-lg-3">
                 
             <div class="cu_footer_list">
               <h5 class="cu_list_title">Company</h5>
@@ -279,11 +288,11 @@
 
           </div>
 
-          <div class="col-lg-3">
+          <div class="col-lg-3 order-2 order-lg-4">
             <div class="cu_footer_newsletter">
               <h5 class="cu_newsletter_title">Newsletter</h5>
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" class="cu_form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src="./assets/img/icon/right_arrow.svg" alt=""></button>
               </div>
             </div>

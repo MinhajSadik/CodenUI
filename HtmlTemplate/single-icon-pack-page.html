@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./assets/css/common.css">
     <!-- CU_Style Css -->
      <link rel="stylesheet" href="./assets/css/style.css">
+     <!-- CU_Responsive Css -->
+     <link rel="stylesheet" href="./assets/css/responsive.css">
     <!-- Bootstarp JS-->
     <script data-n-head="ssr" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <title>Single Icon pack page</title>
@@ -77,12 +79,12 @@
     <section>
       <div class="cu_banner_wrapper">
           <h1 class="cu_banner_title text-center pt-50">Icons</h1>
-
-          <div class="cu_banner_search_box">
-              <input type="text" id="cu_banner_search" placeholder="Search templates...">
-              <a href="#" class="cu_banner_search_bar"><img class="cu_banner_serach_icon" src="./assets/img/icon/hero-search-icon.svg" alt="">Search</a>
-           </div>
       </div>
+
+      <div class="cu_banner_search_box">
+        <input type="text" id="cu_banner_search" placeholder="Search templates...">
+        <a href="#" class="cu_banner_search_bar"><img class="cu_banner_serach_icon" src="./assets/img/icon/hero-search-icon.svg" alt="">Search</a>
+     </div>
   </section>
     
     
@@ -91,14 +93,14 @@
           <div class="container">
             <div class="row gy-4 mb-50">
                 
-                <div class="col-lg-3 ">
+                <div class="col-lg-3  ">
                     <div class="d-flex justify-content-center align-items-center">
                         <a  href="./icon-pack.html"><img  class="cu_single_back_icon" src="./assets/img/icon/single-icon-pack-back.svg" alt=""></a>
                         <p class="cu_icon_pack_single_text">Weather Icon Pack (30 Icons)</p>
                     </div>
                 </div>
     
-                <div class="col-lg-4 offset-5">
+                <div class="col-lg-4 offset-lg-5">
                     <div class="cu_switch_box">
                         <a href="#" class="cu_switch_style_outline">Outline</a>
                         <a href="" class="cu_switch_style_solid">Solid</a>
@@ -106,7 +108,7 @@
                     </div>
                 </div>
     
-              <div class="col-lg-2">
+              <div class="col-lg-2 col-md-3 col-sm-4 col-6">
                 <div class="cu_single_icon_card  text-center">
                   <div class="cu_single_icon_card_fea_img">
                     <a id="action" class="cu_single_icon popup " href="#">
@@ -114,21 +116,22 @@
                         
                         <div id="popup" class="cu_single_icon_popup ">
                             <img class="cu_selected_icon" src="./assets/img/icon/popup-icon.svg" alt="">
+                            <img  class="cu_close_icon" src="./assets/img/icon/close-line.svg" alt="close">
                             <p class="cu_icon_name">Arrow Left</p>
     
                             <div class="cu_icon_copy_box">
     
                                 <div class="">
-                                    <a class="cu_icon_copy_btn copy-webflow">
-                                        <img class="cu_icon_webflow" src="./assets/img/icon/Webflow-sq.svg" alt="">Copy for Webflow</a>
-                                    <a class="cu_icon_copy_btn copy-webflow">
+                                    <a class="cu_icon_copy_btn copy-webflow ">
+                                        <img class="cu_icon_webflow " src="./assets/img/icon/Webflow-sq.svg" alt="">Copy for Webflow</a>
+                                    <a class="cu_icon_copy_btn copy-webflow sm-mt-15">
                                         <img class="cu_icon_figma" src="./assets/img/icon/Figma-sq.svg" alt="">Copy for Figma</a>
                                 </div>
     
-                                <div class="mt-20">
+                                <div class="mt-20 sm-mt-15">
                                     <a class="cu_icon_copy_btn copy-svg">
                                         <img class="cu_icon_webflow" src="./assets/img/icon/svg-icon-sq.svg" alt="">Download as SVG</a>
-                                    <a class="cu_icon_copy_btn copy-png">
+                                    <a class="cu_icon_copy_btn copy-png sm-mt-15">
                                         <img class="cu_icon_figma" src="./assets/img/icon/png-icon-sq.svg" alt="">Download as PNG</a>
                                 </div>
                                 
@@ -142,6 +145,88 @@
                   </div>
                 </div>
               </div><!--col-lg-2-->
+
+
+              <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                <div class="cu_single_icon_card  text-center">
+                  <div class="cu_single_icon_card_fea_img">
+                    <a id="action" class="cu_single_icon popup " href="#">
+                        <img class="cu_single_icon_card_img" src="./assets/img/icon/wallet-add.svg" alt="">
+                        
+                        <div id="popup" class="cu_single_icon_popup ">
+                            <img class="cu_selected_icon" src="./assets/img/icon/popup-icon.svg" alt="">
+                            <p class="cu_icon_name">Arrow Left</p>
+    
+                            <div class="cu_icon_copy_box">
+    
+                                <div class="">
+                                    <a class="cu_icon_copy_btn copy-webflow ">
+                                        <img class="cu_icon_webflow " src="./assets/img/icon/Webflow-sq.svg" alt="">Copy for Webflow</a>
+                                    <a class="cu_icon_copy_btn copy-webflow sm-mt-15">
+                                        <img class="cu_icon_figma" src="./assets/img/icon/Figma-sq.svg" alt="">Copy for Figma</a>
+                                </div>
+    
+                                <div class="mt-20 sm-mt-15">
+                                    <a class="cu_icon_copy_btn copy-svg">
+                                        <img class="cu_icon_webflow" src="./assets/img/icon/svg-icon-sq.svg" alt="">Download as SVG</a>
+                                    <a class="cu_icon_copy_btn copy-png sm-mt-15">
+                                        <img class="cu_icon_figma" src="./assets/img/icon/png-icon-sq.svg" alt="">Download as PNG</a>
+                                </div>
+                                
+    
+                                
+                            </div>
+                        </div>
+    
+                    </a>
+                    
+                  </div>
+                </div>
+              </div><!--col-lg-2-->
+
+
+
+              <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                <div class="cu_single_icon_card  text-center">
+                  <div class="cu_single_icon_card_fea_img">
+                    <a id="action" class="cu_single_icon popup " href="#">
+                        <img class="cu_single_icon_card_img" src="./assets/img/icon/wallet-add.svg" alt="">
+                        
+                        <div id="popup" class="cu_single_icon_popup ">
+                            <img class="cu_selected_icon" src="./assets/img/icon/popup-icon.svg" alt="">
+                            <p class="cu_icon_name">Arrow Left</p>
+    
+                            <div class="cu_icon_copy_box">
+    
+                                <div class="">
+                                    <a class="cu_icon_copy_btn copy-webflow ">
+                                        <img class="cu_icon_webflow " src="./assets/img/icon/Webflow-sq.svg" alt="">Copy for Webflow</a>
+                                    <a class="cu_icon_copy_btn copy-webflow sm-mt-15">
+                                        <img class="cu_icon_figma" src="./assets/img/icon/Figma-sq.svg" alt="">Copy for Figma</a>
+                                </div>
+    
+                                <div class="mt-20 sm-mt-15">
+                                    <a class="cu_icon_copy_btn copy-svg">
+                                        <img class="cu_icon_webflow" src="./assets/img/icon/svg-icon-sq.svg" alt="">Download as SVG</a>
+                                    <a class="cu_icon_copy_btn copy-png sm-mt-15">
+                                        <img class="cu_icon_figma" src="./assets/img/icon/png-icon-sq.svg" alt="">Download as PNG</a>
+                                </div>
+                                
+    
+                                
+                            </div>
+                        </div>
+    
+                    </a>
+                    
+                  </div>
+                </div>
+              </div><!--col-lg-2-->
+
+              
+
+
+              
               
              
     
@@ -157,7 +242,7 @@
     
           </div>
         </div>
-    </section>
+      </section>
 </main>
 
 
@@ -172,8 +257,8 @@
     <div class="cu_footer_wrapper pt-50">
          
       <div class="container">
-        <div class="row pb-115">
-          <div class="col-lg-4">
+        <div class="row pb-65 sm-pb-0">
+          <div class="col-lg-4 order-1 order-lg-1 ">
             <div class="cu_footer_info">
                <img class="cu_footer_logo" style="display:none" src="./assets/img/logo/logo-Coden-UI.svg" alt="cu_footer_logo">
                <p class="cu_footer_text">Coden UI is a design and code-based platform that helps people grow their businesses with tons of ready-made templates.</p>
@@ -191,7 +276,7 @@
             </div>
           </div>
 
-          <div class="col-lg-2 offset-1">
+          <div class="col-lg-2 offset-lg-1 order-3 order-lg-2">
             <div class="cu_footer_list">
               <h5 class="cu_list_title">Categories</h5>
               <ul class="cu_footer_list_items">
@@ -203,7 +288,7 @@
             </div>
           </div>
 
-          <div class="col-lg-2">
+          <div class="col-lg-2 order-4 order-lg-3">
                 
             <div class="cu_footer_list">
               <h5 class="cu_list_title">Company</h5>
@@ -216,11 +301,11 @@
 
           </div>
 
-          <div class="col-lg-3">
+          <div class="col-lg-3 order-2 order-lg-4">
             <div class="cu_footer_newsletter">
               <h5 class="cu_newsletter_title">Newsletter</h5>
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" class="cu_form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src="./assets/img/icon/right_arrow.svg" alt=""></button>
               </div>
             </div>

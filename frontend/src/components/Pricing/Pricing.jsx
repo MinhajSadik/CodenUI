@@ -1,8 +1,9 @@
 import React from 'react';
+import withRoute from '../../../utils/withRoute';
 import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 
-export default function Pricing() {
+function Pricing() {
   return (
     <section className="cu_pricing_plan_wrapper pt-70 pb-110">
       <div className="container">
@@ -217,3 +218,5 @@ export default function Pricing() {
     </section>
   );
 }
+
+export default withRoute(Pricing);
