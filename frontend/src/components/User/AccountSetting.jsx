@@ -1,9 +1,10 @@
 import React from 'react';
 import AvatarIcon from '../../assets/img/icon/Avatar-icon.svg';
+import { withRouter } from '../../components';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
-export default function AccountSetting() {
+function AccountSetting() {
   return (
     <section>
       <div className="cu_account_settings_wrapper">
@@ -94,3 +95,5 @@ export default function AccountSetting() {
     </section>
   );
 }
+
+export default withRouter(AccountSetting);

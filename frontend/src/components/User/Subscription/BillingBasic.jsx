@@ -1,7 +1,8 @@
 import React from 'react';
+import { withRouter } from '../../../components';
 import NextLink from '../../Shared/Link/NextLink';
 
-export default function BillingBasic() {
+function BillingBasic() {
   return (
     <section className="cu_billing_wrapper">
       <div className="container">
@@ -25,3 +26,5 @@ export default function BillingBasic() {
     </section>
   );
 }
+
+export default withRouter(BillingBasic);

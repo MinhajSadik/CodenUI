@@ -17,7 +17,6 @@ export default function Login({ handleSwitch }) {
   function handleLogin(e) {
     e.preventDefault();
     dispatch(loginUser(userInfo));
-    console.log('clicking');
   }
 
   function onInputChange(e) {

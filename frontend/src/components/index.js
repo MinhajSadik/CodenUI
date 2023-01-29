@@ -1,3 +1,4 @@
+export { default as withRouter } from '../utils/withRouter';
 export { default as CodedBlocks } from "./CodedBlocks/CodedBlocks";
 export { default as CodedTemplates } from "./CodedTemplates/CodedTemplates";
 export { default as EmailTemplates } from "./EmailTemplates/EmailTemplates";
@@ -10,8 +11,8 @@ export { default as Banner } from "./Shared/Banner/Banner";
 export { default as Layout } from "./Shared/Layout/Layout";
 export { default as SingleIcon } from "./SingleIcon/SingleIcon";
 export { default as AccountSetting } from "./User/AccountSetting";
-export { default as ChckoutBeforeLogin } from "./User/ChckoutBeforeLogin";
 export { default as CheckoutAfterLogin } from "./User/CheckoutAfterLogin";
+export { default as CheckoutBeforeLogin } from "./User/CheckoutBeforeLogin";
 export { default as BillingBasic } from "./User/Subscription/BillingBasic";
 export { default as BillingLifetime } from "./User/Subscription/BillingLifetime";
 export { default as BillingYearly } from "./User/Subscription/BillingYearly";

@@ -6,6 +6,7 @@ import NextLink from '../Link/NextLink';
 
 export default function Navbar({ handleOpen, loggedIn }) {
   const dispatch = useDispatch();
+
   function handleLogout() {
     dispatch(logoutUser());
   }

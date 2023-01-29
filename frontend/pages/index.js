@@ -1,12 +1,13 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useContext } from 'react';
 import { CodedBlocks, CodedTemplates, EmailTemplates, Faq, Hero, IconPack, Layout, Pricing } from '../src/components';
+import { AppContext } from '../src/contexts/contexts';
 
 
 
 export default function Home() {
-  const { route } = useRouter()
+  const { router } = useContext(AppContext)
+  const { pathname: route } = router;
 
   return (
     <>

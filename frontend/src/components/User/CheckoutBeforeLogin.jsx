@@ -3,7 +3,7 @@ import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
-export default function ChckoutBeforeLogin() {
+export default function CheckoutBeforeLogin() {
   return (
     <section className="cu_checkout_page_wrapper">
       <div className="container pt-60">
@@ -45,7 +45,7 @@ export default function ChckoutBeforeLogin() {
           <div className="cu_personal_info_box">
             <form className="row g-3">
               <div className="col-md-6">
-                <label for="name" className="form-label">
+                <label htmlFor="name" className="form-label">
                   Name
                 </label>
                 <input
@@ -57,7 +57,7 @@ export default function ChckoutBeforeLogin() {
               </div>
 
               <div className="col-md-6">
-                <label for="email" className="form-label">
+                <label htmlFor="email" className="form-label">
                   Email
                 </label>
                 <input
@@ -68,7 +68,7 @@ export default function ChckoutBeforeLogin() {
                 />
               </div>
               <div className="col-md-6">
-                <label for="password" className="form-label">
+                <label htmlFor="password" className="form-label">
                   Password
                 </label>
                 <input
@@ -80,7 +80,7 @@ export default function ChckoutBeforeLogin() {
               </div>
 
               <div className="col-md-6">
-                <label for="password" className="form-label">
+                <label htmlFor="password" className="form-label">
                   Confirm Password
                 </label>
                 <input

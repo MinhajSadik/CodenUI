@@ -6,9 +6,10 @@ import { AppContext } from '../contexts/contexts'
 export default function AppProvider({ children }) {
     const { loggedIn, loading, user } = useSelector((state) => state.user)
 
-    const { pathname: route } = useRouter()
+    const router = useRouter()
     const [open, setOpen] = useState(false)
     const [opened, setOpened] = useState(false)
+    console.log(open)
 
     useEffect(() => {
         if (loggedIn) {
@@ -35,7 +36,7 @@ export default function AppProvider({ children }) {
     const toggleInfo = {
         user,
         open,
-        route,
+        router,
         opened,
         loading,
         setOpen,
