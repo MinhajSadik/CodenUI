@@ -4,19 +4,22 @@ import { AppContext } from "../contexts/contexts"
 export default function withRouter(Component) {
     return (props) => {
         const { loggedIn, setOpen, router } = useContext(AppContext)
-        const { pathname: route } = router
 
         if (typeof window !== 'undefined') {
             useEffect(() => {
                 if (!loggedIn) {
                     setOpen(true)
-                    router.push(-1)
+                    router.push("/")
+
+                } else {
+                    return <Component {...props} />
                 }
+
             }, [loggedIn])
         }
 
 
-        return <Component {...props} />
+        return null
     }
 }
 

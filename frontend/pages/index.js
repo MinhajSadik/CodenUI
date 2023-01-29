@@ -6,8 +6,7 @@ import { AppContext } from '../src/contexts/contexts';
 
 
 export default function Home() {
-  const { router } = useContext(AppContext)
-  const { pathname: route } = router;
+  const { route } = useContext(AppContext)
 
   return (
     <>

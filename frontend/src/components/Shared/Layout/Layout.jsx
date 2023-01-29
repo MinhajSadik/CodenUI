@@ -9,9 +9,8 @@ import Navbar from '../Navbar/Navbar';
 
 export default function Layout({ children }) {
   const { loading } = useAutoRefresh();
-  const { open, opened, handleOpen, handleSwitch, router, loggedIn } =
+  const { open, opened, handleOpen, handleSwitch, route, loggedIn } =
     useContext(AppContext);
-  const { pathname: route } = router;
   const matchedRoute = route === '/' || route === '/pricing';
 
   return (
