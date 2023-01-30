@@ -4,6 +4,7 @@ class ProductDto {
   price;
   image;
   productId;
+  // categoryId;
   viewsCount;
   description;
   downloadCount;
@@ -14,6 +15,7 @@ class ProductDto {
     this.image = product.image;
     this.price = product.price;
     this.productId = product.productId;
+    // this.categoryId = product.categoryId;
     this.viewsCount = product.viewsCount;
     this.description = product.description;
     this.downloadCount = product.downloadCount;

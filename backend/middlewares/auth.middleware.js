@@ -18,7 +18,6 @@ export default async function (req, res, next) {
 
 
     req.user = userData;
-    console.log(req.user)
     return next();
   } catch (error) {
     return sendResponse(res, 500, {

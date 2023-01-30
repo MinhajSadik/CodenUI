@@ -1,6 +1,5 @@
 import React from 'react';
 import imagePath from '../../assets/img/imagePath';
-import { withRouter } from '../../components';
 import NextImage from '../Shared/Image/NextImage';
 
 function Pricing() {
@@ -219,4 +218,4 @@ function Pricing() {
   );
 }
 
-export default withRouter(Pricing);
+export default Pricing;

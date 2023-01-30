@@ -7,6 +7,7 @@ import { setUser } from "../../redux/feature/userSlice";
 export function useAutoRefresh() {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         (async () => {
             try {

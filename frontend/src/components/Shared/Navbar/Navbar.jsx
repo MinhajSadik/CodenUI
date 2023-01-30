@@ -151,7 +151,7 @@ export default function Navbar({ handleOpen, loggedIn }) {
                 >
                   Sign In
                 </button>
-                <NextLink href="all-access" className="cu_get_access_btn">
+                <NextLink href="/pricing" className="cu_get_access_btn">
                   Get All Access
                 </NextLink>
               </div>

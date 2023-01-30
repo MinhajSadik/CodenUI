@@ -15,7 +15,10 @@ class ProductController {
       }
 
       const product = await productService.create(req.body);
+
       const newProduct = await product.save();
+      await productService.incrementProductId(newProduct._id)
+
       category.products.push(newProduct._id);
       await category.save();
 
