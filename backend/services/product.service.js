@@ -7,13 +7,14 @@ class ProductService {
   async find() {
     return await Product.find({}).populate({
       path: "categoryId",
-    })
+    }).select("-products")
       .sort({
         createdAt: -1
       })
   }
   async incrementProductId(id) {
-    return await Product.updateOne({
+    return await Product.findOneAndUpdate({
+      _id: id,
     },
       {
         $inc: {

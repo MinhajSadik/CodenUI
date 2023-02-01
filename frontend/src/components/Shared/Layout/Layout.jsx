@@ -9,7 +9,7 @@ import Navbar from '../Navbar/Navbar';
 
 export default function Layout({ children }) {
   const { loading } = useAutoRefresh();
-  const { open, opened, handleOpen, handleSwitch, route, loggedIn } =
+  const { open, opened, handleOpen, handleSwitch, route, router, loggedIn } =
     useContext(AppContext);
   const matchedRoute = route === '/' || route === '/pricing';
 
@@ -19,7 +19,7 @@ export default function Layout({ children }) {
         <h1>Loading...</h1>
       ) : (
         <>
-          <Navbar handleOpen={handleOpen} loggedIn={loggedIn} />
+          <Navbar handleOpen={handleOpen} loggedIn={loggedIn} router={router} />
 
           {open && <Login handleSwitch={handleSwitch} />}
 

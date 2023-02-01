@@ -1,6 +1,7 @@
 import React from 'react';
+import { withRouter } from '../../../components';
 
-export default function BillingLifetime() {
+function BillingLifetime() {
   return (
     <section className="cu_billing_paid_lifetime_wrapper">
       <div className="container">
@@ -35,3 +36,5 @@ export default function BillingLifetime() {
     </section>
   );
 }
+
+export default withRouter(BillingLifetime);

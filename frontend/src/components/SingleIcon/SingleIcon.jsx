@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
 import imagePath from '../../assets/img/imagePath';
 import { AppContext } from '../../contexts/contexts';
+import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
 export default function SingleIcon() {
   const { open, handleOpen, handleClose } = useContext(AppContext);
+  const { copyStatus, copy } = useCopyToClipboard('coden ui copy', 3000);
+
+  console.log(copyStatus);
 
   return (
     <section>
@@ -67,6 +71,7 @@ export default function SingleIcon() {
                         <div className="cu_icon_copy_box">
                           <div className="">
                             <NextLink
+                              onClick={copy}
                               href=""
                               className="cu_icon_copy_btn copy-webflow"
                             >

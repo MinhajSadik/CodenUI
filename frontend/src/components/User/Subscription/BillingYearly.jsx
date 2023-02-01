@@ -1,7 +1,8 @@
 import React from 'react';
+import { withRouter } from '../../../components';
 import NextLink from '../../Shared/Link/NextLink';
 
-export default function BillingYearly() {
+function BillingYearly() {
   return (
     <section className="cu_billing_paid_wrapper">
       <div className="container">
@@ -42,3 +43,5 @@ export default function BillingYearly() {
     </section>
   );
 }
+
+export default withRouter(BillingYearly);
