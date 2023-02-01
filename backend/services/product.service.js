@@ -12,21 +12,7 @@ class ProductService {
         createdAt: -1
       })
   }
-  async incrementProductId(id) {
-    return await Product.findOneAndUpdate({
-      _id: id,
-    },
-      {
-        $inc: {
-          productId: 1,
-          "metrics.orders": 1
-        }
-      },
-      {
-        upsert: true,
-        returnDocument: true,
-      })
-  }
+
   async findById(id) {
     return await Product.findById(id);
   }

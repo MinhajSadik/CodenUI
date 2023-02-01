@@ -16,16 +16,12 @@ class ProductController {
 
       const product = await productService.create(req.body);
 
-      const newProduct = await product.save();
-      await productService.incrementProductId(newProduct._id)
-
-      category.products.push(newProduct._id);
+      category.products.push(product._id);
       await category.save();
 
-      const transformed = new ProductDto(newProduct);
       return sendResponse(res, 201, {
         message: `${product.name} created successfully~`,
-        product: transformed,
+        product: new ProductDto(product),
       });
     } catch (error) {
       return sendResponse(res, 500, {

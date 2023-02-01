@@ -33,7 +33,7 @@ const productSchema = new Schema(
     },
     productId: {
       type: Number,
-      default: 1001,
+      default: 1000,
     },
     categoryId: {
       type: Schema.Types.ObjectId,
@@ -44,6 +44,11 @@ const productSchema = new Schema(
     timestamps: true,
   }
 );
+
+productSchema.pre("save", async function (next) {
+  this.productId = this.productId + 1
+  return next();
+})
 
 const Product = model("Product", productSchema);
 

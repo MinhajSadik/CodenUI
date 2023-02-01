@@ -9,7 +9,7 @@ const categorySchema = new Schema(
     },
     categoryId: {
       type: Number,
-      default: 1001,
+      default: 1000,
     },
     products: [
       {
