@@ -39,6 +39,12 @@ const productSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Category",
     },
+    stackThumbnails: {
+
+    },
+    tags: {
+
+    }
   },
   {
     timestamps: true,
