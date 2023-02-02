@@ -1,10 +1,11 @@
 import Product from "../models/product.model.js";
 
 class ProductService {
-  async create(payload) {
+  async createProduct(payload) {
     return await Product.create(payload);
   }
-  async find() {
+
+  async findProducts() {
     return await Product.find({}).populate({
       path: "categoryId",
     }).select("-products")
@@ -13,13 +14,18 @@ class ProductService {
       })
   }
 
-  async findById(id) {
+  async findProduct(payload) {
+    return await Product.findOne(payload)
+  }
+
+  async findProductById(id) {
     return await Product.findById(id);
   }
-  async update(id, payload) {
+
+  async updateProduct(id, payload) {
     return await Product.findByIdAndUpdate(id, payload, { new: true });
   }
-  async delete(id) {
+  async deleteProduct(id) {
     return await Product.findByIdAndDelete(id);
   }
 }

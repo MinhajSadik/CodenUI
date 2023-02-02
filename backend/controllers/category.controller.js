@@ -7,7 +7,7 @@ class CategoryController {
   async createCategory(req, res) {
     try {
       const { name, productId } = req.body;
-      const product = await productService.findById(productId);
+      const product = await productService.findProductById(productId);
 
       if (productId && !product) {
         return sendResponse(res, 400, {
@@ -15,7 +15,7 @@ class CategoryController {
         });
       }
 
-      const existedCategory = await categoryService.findOne(name);
+      const existedCategory = await categoryService.findCategory(name);
 
       if (existedCategory?.name === name) {
         return sendResponse(res, 400, {
@@ -23,12 +23,12 @@ class CategoryController {
         });
       }
 
-      const category = await categoryService.create(req.body);
+      const category = await categoryService.createCategory(req.body);
 
-      const transformed = new CategoryDto(category);
+
       return sendResponse(res, 201, {
         message: `${name} created successfully`,
-        category: transformed,
+        category: new CategoryDto(category)
       });
     } catch (error) {
       return sendResponse(res, 500, {
@@ -38,7 +38,7 @@ class CategoryController {
   }
   async findCategory(req, res) {
     try {
-      const categories = await categoryService.find({});
+      const categories = await categoryService.findCategories({});
 
       if (!categories.length) {
         return sendResponse(res, 400, {
@@ -63,14 +63,14 @@ class CategoryController {
     try {
       const { id } = req.params;
       const { name } = req.body;
-      const category = await categoryService.findById(id);
+      const category = await categoryService.findCategoryById(id);
       if (!category) {
         return sendResponse(res, 404, {
           message: `We could not find category based on your ${id}`,
         });
       }
 
-      const updatedCategory = await categoryService.update(id, req.body);
+      const updatedCategory = await categoryService.updateCategory(id, req.body);
 
       return sendResponse(res, 200, {
         message: `${name} Category updated successfully`,
@@ -85,14 +85,14 @@ class CategoryController {
   async deleteCategory(req, res) {
     try {
       const { id } = req.params;
-      const category = await categoryService.findById(id);
+      const category = await categoryService.findCategoryById(id);
       if (!category) {
         return sendResponse(res, 404, {
           message: `We could not find category based on you ${id}`,
         });
       }
 
-      await categoryService.delete(id);
+      await categoryService.deleteCategory(id);
 
       return sendResponse(res, 200, {
         message: `Category ${category.name} deleted successfully`,

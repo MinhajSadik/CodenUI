@@ -5,8 +5,15 @@ import { sendResponse } from "../utils/response.util.js";
 class ProductController {
   async createProduct(req, res) {
     try {
-      const { categoryId } = req.body;
-      const category = await categoryService.findById(categoryId);
+      const { categoryId, name } = req.body;
+      const category = await categoryService.findCategoryById(categoryId);
+      const sameProduct = await productService.findProduct({ name })
+
+      if (sameProduct !== null) {
+        return sendResponse(res, 400, {
+          message: `Already we have same product, please change your product information...`
+        })
+      }
 
       if (!category) {
         return sendResponse(res, 400, {
@@ -14,7 +21,7 @@ class ProductController {
         });
       }
 
-      const product = await productService.create(req.body);
+      const product = await productService.createProduct(req.body);
 
       category.products.push(product._id);
       await category.save();
@@ -29,9 +36,10 @@ class ProductController {
       });
     }
   }
+
   async findProduct(req, res) {
     try {
-      const products = await productService.find({});
+      const products = await productService.findProducts({});
 
       const transformed = products.map((product) => {
         return new ProductDto(product);
@@ -47,11 +55,12 @@ class ProductController {
       });
     }
   }
+
   async updateProduct(req, res) {
     try {
       const { id } = req.params;
       const { name } = req.body;
-      const product = await productService.findById(id);
+      const product = await productService.findProductById(id);
 
       if (!product) {
         return sendResponse(res, 404, {
@@ -59,7 +68,7 @@ class ProductController {
         });
       }
 
-      const updatedProduct = await productService.update(id, req.body);
+      const updatedProduct = await productService.updateProduct(id, req.body);
 
       return sendResponse(res, 200, {
         message: `Product updated successfully ${name}`,
@@ -71,10 +80,11 @@ class ProductController {
       });
     }
   }
+
   async deleteProduct(req, res) {
     try {
       const { id } = req.params;
-      const product = await productService.findById(id);
+      const product = await productService.findProductById(id);
 
       if (!product) {
         return sendResponse(res, 404, {
@@ -84,7 +94,8 @@ class ProductController {
 
       await categoryService.deleteProductID(product.categoryId, id);
 
-      await productService.delete(id);
+      await productService.deleteProduct(id);
+
 
       return sendResponse(res, 200, {
         message: `Product ${product.name} deleted successfully`,

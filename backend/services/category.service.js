@@ -1,27 +1,24 @@
 import Category from "../models/category.model.js";
 
 class CategoryService {
-  async create(payload) {
+  async createCategory(payload) {
     return await Category.create(payload);
   }
-  async findById(id) {
+  async findCategoryById(id) {
     return await Category.findById(id);
   }
-  async findOne(name) {
+  async findCategory(name) {
     return await Category.findOne({ name });
   }
-  async find() {
+  async findCategories() {
     return await Category.find({}).populate({
       path: "products",
     })
-    // .sort({
-    //   createdAt: -1,
-    // })
   }
-  async update(id, payload) {
+  async updateCategory(id, payload) {
     return await Category.findByIdAndUpdate(id, payload, { new: true });
   }
-  async delete(id) {
+  async deleteCategory(id) {
     return await Category.findByIdAndDelete(id);
   }
   async deleteProductID(categoryID, productID) {

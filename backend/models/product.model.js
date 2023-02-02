@@ -46,8 +46,19 @@ const productSchema = new Schema(
 );
 
 productSchema.pre("save", async function (next) {
-  this.productId = this.productId + 1
-  return next();
+  const productId = this.getChanges().$set.productId
+  try {
+    const product = await Product.findOne({}).sort({ _id: -1 })
+
+    if (product === null) {
+      return this.productId = productId + 1
+    }
+    else {
+      return this.productId = product.productId + 1
+    }
+  } catch (error) {
+    return next(error.message)
+  }
 })
 
 const Product = model("Product", productSchema);
