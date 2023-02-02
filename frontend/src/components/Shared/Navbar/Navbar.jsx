@@ -101,7 +101,7 @@ export default function Navbar({ handleOpen, loggedIn, router }) {
                 <NextLink href="/pricing" className="cu_Pricing">
                   Pricing
                 </NextLink>
-                <div>
+                <div className="cu_avatar_wrapper">
                   <NextImage
                     className="cu_avatar_icon"
                     src={imagePath.Avatar}
@@ -112,35 +112,34 @@ export default function Navbar({ handleOpen, loggedIn, router }) {
                     src={imagePath.DownArrow}
                     alt="downArrow"
                   />
-
-                  <div className="account_menu">
-                    <ul className="cu_account_drop_down_ul">
-                      <li>
-                        <NextLink
-                          href="account-setting"
-                          className="dropdown-item account_menu_item"
-                        >
-                          Settings
-                        </NextLink>
-                      </li>
-                      <li>
-                        <NextLink
-                          href="/billing"
-                          className="dropdown-item account_menu_item mt-6"
-                        >
-                          Billing
-                        </NextLink>
-                      </li>
-                      <li onClick={handleLogout}>
-                        <NextLink
-                          href=""
-                          className="dropdown-item account_menu_item mt-6"
-                        >
-                          Logout
-                        </NextLink>
-                      </li>
-                    </ul>
-                  </div>
+                </div>
+                <div className="account_menu">
+                  <ul className="cu_account_drop_down_ul">
+                    <li>
+                      <NextLink
+                        href="account-setting"
+                        className="dropdown-item account_menu_item"
+                      >
+                        Settings
+                      </NextLink>
+                    </li>
+                    <li>
+                      <NextLink
+                        href="/billing"
+                        className="dropdown-item account_menu_item mt-6"
+                      >
+                        Billing
+                      </NextLink>
+                    </li>
+                    <li onClick={handleLogout}>
+                      <NextLink
+                        href=""
+                        className="dropdown-item account_menu_item mt-6"
+                      >
+                        Logout
+                      </NextLink>
+                    </li>
+                  </ul>
                 </div>
               </div>
             ) : (

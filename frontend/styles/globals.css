@@ -291,6 +291,7 @@ a {
   line-height: 24px;
   color: #6d58f5;
   margin-right: 15px;
+  border: none;
 }
 
 .cu_sign_in_btn:hover {
@@ -2122,20 +2123,14 @@ a {
 .cu_Pricing:hover {
   color: #ffffff;
 }
-.cu_avatar_icon:hover .account_menu {
-  margin-right: 2px;
-  cursor: pointer;
-  visibility: visible;
-}
 
 /* account drowpdown menu */
-.cu_account_drop_down_icon {
-  cursor: pointer;
+.cu_avatar_wrapper {
   position: relative;
 }
 
-.cu_account_drop_down_icon:hover .account_menu {
-  visibility: visible;
+.cu_account_drop_down_icon {
+  cursor: pointer;
 }
 
 .account_menu {
@@ -2149,7 +2144,13 @@ a {
   padding: 6px;
   border-radius: 12px;
   width: 161px;
-  /* visibility: hidden; */
+  display: none;
+}
+
+.cu_avatar_icon:hover .account_menu {
+  margin-right: 2px;
+  cursor: pointer;
+  display: block;
 }
 
 .cu_account_drop_down_ul {
