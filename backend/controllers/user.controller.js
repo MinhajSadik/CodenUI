@@ -295,6 +295,7 @@ class UserController {
       message: `User LoggedIn Successfully!`
     })
   }
+  
 }
 
 export default new UserController();

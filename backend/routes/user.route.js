@@ -16,5 +16,6 @@ router.post(
 );
 router.post("/logout", userController.logout)
 router.get("/refresh", userController.refresh)
+router.post('/password/forgot')
 
 export default router;

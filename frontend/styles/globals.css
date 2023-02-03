@@ -2722,12 +2722,18 @@ a {
 /* forget password  */
 
 .cu_forget_pass_wrapper {
-  position: relative;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .cu_forget_pass {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, 8%);
   padding: 40px 30px 30px;

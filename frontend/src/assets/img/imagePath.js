@@ -6,6 +6,8 @@ export default {
     RightArrow: require("./icon/right_arrow.svg"),
     LeftArrow: require("./icon/left-arrow.svg"),
     BannerBg: require("./media/category_banner_bg.svg"),
+    ForgotPassIcon: require("./icon/forget_pass_icon.svg"),
+    ForgotPassBackArrow: require("./icon/forget-pass-back-arrow.svg"),
     // social 
     Facebook: require("./icon/facebook.svg"),
     Twitter: require("./icon/Twitter.svg"),
