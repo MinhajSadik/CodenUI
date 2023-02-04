@@ -36,15 +36,17 @@ class CategoryController {
       });
     }
   }
-  async findCategory(req, res) {
+  async findCategories(req, res) {
+    const { page = 1, limit = 1 } = req.query
     try {
-      const categories = await categoryService.findCategories({});
+      const categories = await categoryService.findCategories(page, limit)
 
       if (!categories.length) {
         return sendResponse(res, 400, {
           message: `There are no categories, You may add one!`,
         });
       }
+
 
       const transformed = categories.map((category) => {
         return new CategoryDto(category);

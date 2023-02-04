@@ -16,7 +16,7 @@ router.get(
   "/getAll",
   // checkAuth,
   authorizedRole(["admin"]),
-  categoryController.findCategory
+  categoryController.findCategories
 );
 
 router.put(

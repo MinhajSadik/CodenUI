@@ -17,7 +17,7 @@ export default {
     Bootstrap: require("./icon/Bootstrap-icon.svg"),
     Figma: require("./icon/Figma-icon.svg"),
     Gatsby: require("./icon/Gatsby-icon.svg"),
-    HTML: require("./icon/HTML-icon.svg"),
+    Html: require("./icon/HTML-icon.svg"),
     NextJs: require("./icon/nextjs-icon.svg"),
     Tailwind: require("./icon/Tailwind-css-icon.svg"),
     VueJs: require("./icon/vueJs-icon.svg"),

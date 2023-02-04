@@ -50,7 +50,7 @@ export default function CodedTemplates({ route }) {
                     >
                       <NextImage
                         className="cu_coded_tem_card_version_img"
-                        src={imagePath.HTML}
+                        src={imagePath.Html}
                         alt="html"
                       />
                     </NextLink>
@@ -156,7 +156,7 @@ export default function CodedTemplates({ route }) {
                     >
                       <NextImage
                         className="cu_coded_tem_card_version_img"
-                        src={imagePath.HTML}
+                        src={imagePath.Html}
                         alt="html"
                       />
                     </NextLink>
@@ -262,7 +262,7 @@ export default function CodedTemplates({ route }) {
                     >
                       <NextImage
                         className="cu_coded_tem_card_version_img"
-                        src={imagePath.HTML}
+                        src={imagePath.Html}
                         alt="html"
                       />
                     </NextLink>

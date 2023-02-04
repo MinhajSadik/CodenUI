@@ -10,10 +10,12 @@ class CategoryService {
   async findCategory(name) {
     return await Category.findOne({ name });
   }
-  async findCategories() {
-    return await Category.find({}).populate({
-      path: "products",
-    })
+  async findCategories(page, limit) {
+    return await Category.find({}).limit(limit * 1)
+      .skip((page - 1) * limit)
+      .populate({
+        path: "products",
+      }).exec()
   }
   async updateCategory(id, payload) {
     return await Category.findByIdAndUpdate(id, payload, { new: true });
@@ -35,6 +37,9 @@ class CategoryService {
       };
     }
     return await Category.updateMany({ productID }, updateDocument);
+  }
+  async countDocuments() {
+    return await Category.countDocuments();
   }
 }
 
