@@ -19,6 +19,7 @@ router.get(
   categoryController.findCategories
 );
 
+
 router.put(
   "/update/:id",
   checkAuth,

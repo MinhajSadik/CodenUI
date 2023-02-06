@@ -40,10 +40,8 @@ const productSchema = new Schema(
       ref: "Category",
     },
     stackThumbnails: {
-
     },
     tags: {
-
     }
   },
   {

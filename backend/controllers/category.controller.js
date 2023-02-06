@@ -15,7 +15,7 @@ class CategoryController {
         });
       }
 
-      const existedCategory = await categoryService.findCategory(name);
+      const existedCategory = await categoryService.findCategoryByName(name);
 
       if (existedCategory?.name === name) {
         return sendResponse(res, 400, {
@@ -37,16 +37,18 @@ class CategoryController {
     }
   }
   async findCategories(req, res) {
-    const { page = 1, limit = 1 } = req.query
+    const { page = 1 } = req.query
+    const limit = 1
+
     try {
       const categories = await categoryService.findCategories(page, limit)
+      // const productListByCategoryIdPaginated = await ProductModel.find({ categoryId: id }).limit(10).skip((req.query['page'] - 1) * 10);
 
       if (!categories.length) {
         return sendResponse(res, 400, {
           message: `There are no categories, You may add one!`,
         });
       }
-
 
       const transformed = categories.map((category) => {
         return new CategoryDto(category);
@@ -61,6 +63,7 @@ class CategoryController {
       });
     }
   }
+
   async updateCategory(req, res) {
     try {
       const { id } = req.params;
