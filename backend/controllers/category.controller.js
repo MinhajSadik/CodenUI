@@ -1,6 +1,8 @@
 import CategoryDto from "../dtos/category.dto.js";
+import ProductDto from "../dtos/product.dto.js";
 import categoryService from "../services/category.service.js";
 import productService from "../services/product.service.js";
+import { upperCaseWords } from "../utils/helpers.js";
 import { sendResponse } from "../utils/response.util.js";
 
 class CategoryController {
@@ -36,6 +38,30 @@ class CategoryController {
       });
     }
   }
+
+  async findCategoryByName(req, res) {
+    const { name } = req.params
+
+    try {
+      const [first, second] = name.split("-")
+      const categoryName = upperCaseWords(first + " " + second)
+
+      const category = await categoryService.findCategoryByName(categoryName)
+
+      const transfromed = category.products.map((products) => new ProductDto(products))
+
+      return sendResponse(res, 200, {
+        message: `${category.name} successfully fetched!`,
+        category: transfromed
+      })
+
+    } catch (error) {
+      return sendResponse(res, 200, {
+        message: error.message,
+      })
+    }
+  }
+
   async findCategories(req, res) {
     const { page = 1 } = req.query
     const limit = 1
@@ -87,6 +113,7 @@ class CategoryController {
       });
     }
   }
+
   async deleteCategory(req, res) {
     try {
       const { id } = req.params;

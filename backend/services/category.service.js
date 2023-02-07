@@ -8,7 +8,11 @@ class CategoryService {
     return await Category.findById(id);
   }
   async findCategoryByName(name) {
-    return await Category.findOne({ name });
+    return await Category.findOne({ name }).populate({
+      path: "products"
+    }).sort({
+      _id: -1
+    }).exec()
   }
   async findCategories(page, limit) {
     return await Category
