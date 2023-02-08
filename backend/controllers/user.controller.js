@@ -322,7 +322,7 @@ class UserController {
       const options = {
         email,
         subject: `${process.env.APP_NAME} Forgot Password OTP`,
-        message: `You are receiving this email because you (or someone else) has requested the reset of a password, therefore you have got this OTP ${otp}.`
+        body: `You are receiving this email because you (or someone else) has requested the reset of a password, therefore you have got this OTP ${otp}`
       };
 
       await mailService.sentMail(options)

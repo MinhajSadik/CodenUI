@@ -17,7 +17,7 @@ class MailService {
       from: process.env.SMPT_MAIL,
       to: payload.email,
       subject: payload.subject,
-      message: payload.message,
+      text: payload.body,
       // html: payload.body,
       // attachments: payload.attachments,
     };
