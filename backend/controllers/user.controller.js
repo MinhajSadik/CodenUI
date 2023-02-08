@@ -3,7 +3,9 @@ import handlebars from "handlebars";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import UserDto from "../dtos/user.dto.js";
+import hashService from "../services/hash.service.js";
 import mailService from "../services/mail.service.js";
+import otpService from "../services/otp.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
 import { sendResponse } from "../utils/response.util.js";
@@ -164,6 +166,7 @@ class UserController {
     const replacements = {
       username: "MinhajSadik",
     };
+
     const finalHtml = template(replacements);
 
     const options = {
@@ -177,6 +180,7 @@ class UserController {
         },
       ],
     };
+
     try {
       const existedUser = await userService.findUser(email);
 
@@ -294,6 +298,45 @@ class UserController {
     return sendResponse(res, 200, {
       message: `User LoggedIn Successfully!`
     })
+  }
+
+  async forgotPassword(req, res) {
+    const { email } = req.body
+    try {
+      const user = await userService.findUser(email)
+
+      console.log(user)
+
+      if (!user) {
+        return sendResponse(res, 404, {
+          message: `There are no user with email ${email}`
+        })
+      }
+
+      const otp = await otpService.generateOtp()
+      const hashData = await hashService.hash(email, otp)
+
+      const hashed = await hashService.hashOtp(hashData)
+      const [, , , expires] = hashData.split(".")
+
+      const options = {
+        email,
+        subject: `${process.env.APP_NAME} Forgot Password OTP`,
+        message: `You are receiving this email because you (or someone else) has requested the reset of a password, therefore you have got this OTP ${otp}.`
+      };
+
+      await mailService.sentMail(options)
+
+      return sendResponse(res, 200, {
+        message: `Email sent to ${email}`,
+        hashed: `${hashed}.${expires}`,
+        email
+      })
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
   }
 
 }

@@ -17,18 +17,12 @@ class MailService {
       from: process.env.SMPT_MAIL,
       to: payload.email,
       subject: payload.subject,
-      html: payload.body,
-      attachments: payload.attachments,
+      message: payload.message,
+      // html: payload.body,
+      // attachments: payload.attachments,
     };
 
-    const sentMail = await serder.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log("Email sent:", info.response);
-      }
-    });
-    return sentMail;
+    return await serder.sendMail(mailOptions);
   }
   async saveMail(payload) {
     return await User.create(payload);

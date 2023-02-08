@@ -48,6 +48,12 @@ class CategoryController {
 
       const category = await categoryService.findCategoryByName(categoryName)
 
+      if (!category) {
+        return sendResponse(res, 404, {
+          message: `There are no categories included ${name}`
+        })
+      }
+
       const transfromed = category.products.map((products) => new ProductDto(products))
 
       return sendResponse(res, 200, {
