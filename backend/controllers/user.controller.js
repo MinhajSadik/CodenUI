@@ -9,6 +9,15 @@ import otpService from "../services/otp.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
 import { sendResponse } from "../utils/response.util.js";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip");
+const docMailPath = path.join(__dirname, "../configs/doc.mail.html");
+const otpMailPath = path.join(__dirname, "../configs/otp.mail.html");
+const docFile = fs.readFileSync(docMailPath, "utf-8");
+const otpFile = fs.readFileSync(otpMailPath, "utf-8");
+const docTemplate = handlebars.compile(docFile);
+const otpTemplate = handlebars.compile(otpFile);
 
 fs.promises;
 
@@ -155,24 +164,17 @@ class UserController {
   async sendFileByEmail(req, res) {
     const { email } = req.body;
 
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-    const zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip");
 
-    const templatePath = path.join(__dirname, "../configs/index.html");
-    const templateFile = fs.readFileSync(templatePath, "utf-8");
-    const template = handlebars.compile(templateFile);
-
-    const replacements = {
-      username: "MinhajSadik",
+    const sendDataToHtml = {
+      name: "MinhajSadik",
     };
 
-    const finalHtml = template(replacements);
+    const docData = docTemplate(sendDataToHtml);
 
     const options = {
       email,
       subject: `Welcome ${process.env.APP_NAME} with you`,
-      body: finalHtml,
+      html: docData,
       attachments: [
         {
           name: zipPath,
@@ -304,9 +306,6 @@ class UserController {
     const { email } = req.body
     try {
       const user = await userService.findUser(email)
-
-      console.log(user)
-
       if (!user) {
         return sendResponse(res, 404, {
           message: `There are no user with email ${email}`
@@ -319,10 +318,17 @@ class UserController {
       const hashed = await hashService.hashOtp(hashData)
       const [, , , expires] = hashData.split(".")
 
+
+      const sendDataToHtml = {
+        otp
+      };
+
+      const otpData = otpTemplate(sendDataToHtml);
+
       const options = {
         email,
         subject: `${process.env.APP_NAME} Forgot Password OTP`,
-        body: `You are receiving this email because you (or someone else) has requested the reset of a password, therefore you have got this OTP ${otp}`
+        html: otpData,
       };
 
       await mailService.sentMail(options)
@@ -334,6 +340,17 @@ class UserController {
       })
     } catch (error) {
       return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+  }
+
+  async verifyOtp(req, res) {
+    const { otp, hash, email } = req.body
+    try {
+
+    } catch (error) {
+      return sendResponse(res, 200, {
         message: error.message
       })
     }

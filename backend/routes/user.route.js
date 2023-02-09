@@ -10,7 +10,7 @@ router.post("/login", userController.loginUser);
 router.put("/update/:id", checkAuth, userController.updateUser);
 router.post(
   "/sendMail",
-  checkAuth,
+  // checkAuth,
   authorizedRole(["admin"]),
   userController.sendFileByEmail
 );

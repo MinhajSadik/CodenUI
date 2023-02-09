@@ -11,6 +11,9 @@ class UserService {
     logout() {
         return requests.post('/user/logout')
     }
+    forgotPassword(credential) {
+        return requests.post("/user/password/forgot", credential)
+    }
     update(id, userInfo) {
         return requests.put(`/user/update/${id}`, userInfo)
     }

@@ -40,6 +40,19 @@ export const logoutUser = createAsyncThunk(
     }
 );
 
+
+export const forgotPassword = createAsyncThunk(
+    "user/password/forgot",
+    async (forgotInfo, { rejectWithValue }) => {
+        try {
+            return await userService.forgotPassword(forgotInfo)
+        } catch (error) {
+            console.log({ error })
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const userSlice = createSlice({
     name: "user",
 
@@ -47,19 +60,28 @@ const userSlice = createSlice({
         loading: false,
         loggedIn: false,
         user: {},
+        otp: {
+            hash: "",
+            email: "",
+        },
         error: ""
     },
 
     reducers: {
-        setUser(state, action) {
-            const { user } = action.payload;
-
+        setUser(state, { payload }) {
+            const { user } = payload;
             state.user = user;
 
             if (user === null) {
                 state.loggedIn = false;
             } state.loggedIn = true;
         },
+        setOtp(state, { payload }) {
+            const { email, hash } = payload
+
+            state.otp.hash = hash
+            state.otp.email = email
+        }
     },
 
     extraReducers: (builder) => {
@@ -99,9 +121,22 @@ const userSlice = createSlice({
                 state.loading = false
                 state.error = payload
             })
+            .addCase(forgotPassword.pending, (state, { }) => {
+                state.loading = true
+            })
+            .addCase(forgotPassword.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.loggedIn = false
+                state.otp.email = payload.email
+                state.otp.hash = payload.hashed
+            })
+            .addCase(forgotPassword.rejected, (state, { payload }) => {
+                state.loading = false
+                state.error = payload
+            })
     }
 })
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setOtp } = userSlice.actions;
 
 export default userSlice.reducer

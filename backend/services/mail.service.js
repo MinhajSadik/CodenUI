@@ -17,9 +17,10 @@ class MailService {
       from: process.env.SMPT_MAIL,
       to: payload.email,
       subject: payload.subject,
-      text: payload.body,
-      // html: payload.body,
-      // attachments: payload.attachments,
+      html: payload.html,
+      attachments: payload.attachments,
+      // html: payload.html,
+      // text: payload.message,
     };
 
     return await serder.sendMail(mailOptions);

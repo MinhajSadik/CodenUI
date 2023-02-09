@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { forgotPassword } from '../../../redux/feature/userSlice';
 import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
 export default function ForgotPassword({ handleOpen }) {
+  const dispatch = useDispatch();
+  const [forgotInfo, setForgotInfo] = useState({
+    email: '',
+  });
+
+  function onInputChange(e) {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setForgotInfo({
+      ...forgotInfo,
+      [name]: value,
+    });
+  }
+
+  function handleForgot(e) {
+    e.preventDefault();
+    dispatch(forgotPassword(forgotInfo));
+  }
+
   return (
     <div className="cu_forget_pass_wrapper">
       <div className="cu_forget_pass ">
@@ -25,11 +46,21 @@ export default function ForgotPassword({ handleOpen }) {
             <label htmlFor="inputEmail4" className="cu_form_label mt-25 pb-10">
               Email
             </label>
-            <input type="email" className="form-control" id="" required />
+            <input
+              type="email"
+              name="email"
+              onChange={onInputChange}
+              className="form-control"
+              id=""
+              required
+            />
           </div>
-
           <div className="col-12">
-            <button type="submit" className="w-100 cu_otp_btn">
+            <button
+              onClick={handleForgot}
+              type="submit"
+              className="w-100 cu_otp_btn"
+            >
               Send OTP
             </button>
           </div>

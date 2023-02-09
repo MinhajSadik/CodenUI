@@ -59,7 +59,6 @@ export default function Login({ handleSwitch, openOthers }) {
             <input
               type="email"
               name="email"
-              // value={email}
               onChange={onInputChange}
               className="form-control"
               id=""
@@ -74,7 +73,6 @@ export default function Login({ handleSwitch, openOthers }) {
             <input
               type="password"
               name="password"
-              // value={password}
               onChange={onInputChange}
               className="form-control"
               id=""
