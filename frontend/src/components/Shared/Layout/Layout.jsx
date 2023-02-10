@@ -3,6 +3,7 @@ import { AppContext } from '../../../contexts/contexts';
 import AppProvider from '../../../providers/AppProvider';
 import ForgotPassword from '../../User/ForgotPassword';
 import Login from '../../User/Login';
+import Otp from '../../User/Otp';
 import Register from '../../User/Register';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
@@ -33,6 +34,7 @@ export default function Layout({ children }) {
           )}
 
           {others && <ForgotPassword handleOpen={handleOpen} />}
+          <Otp />
 
           {opened && <Register handleSwitch={handleSwitch} />}
           <main>{children}</main>

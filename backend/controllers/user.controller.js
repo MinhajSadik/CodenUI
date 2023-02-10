@@ -318,7 +318,6 @@ class UserController {
       const hashed = await hashService.hashOtp(hashData)
       const [, , , expires] = hashData.split(".")
 
-
       const sendDataToHtml = {
         otp
       };
@@ -348,7 +347,27 @@ class UserController {
   async verifyOtp(req, res) {
     const { otp, hash, email } = req.body
     try {
+      const [hashedOtp, expires] = hash.split(".")
 
+      if (Date.now() > +expires) {
+        return sendResponse(res, 400, {
+          message: "OTP expired!"
+        })
+      }
+
+      const data = `${email}.${otp}.${expires}`
+
+      const isValid = await otpService.verifyOtp(hashedOtp, data)
+
+      if (!isValid) {
+        return sendResponse(res, 400, {
+          message: "Invalid OTP"
+        })
+      }
+
+      return sendResponse(res, 200, {
+        message: "otp verified successfully"
+      })
     } catch (error) {
       return sendResponse(res, 200, {
         message: error.message

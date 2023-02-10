@@ -22,12 +22,14 @@ export default function ForgotPassword({ handleOpen }) {
 
   function handleForgot(e) {
     e.preventDefault();
-    dispatch(forgotPassword(forgotInfo));
+    if (forgotInfo.email) {
+      dispatch(forgotPassword(forgotInfo));
+    }
   }
 
   return (
     <div className="cu_forget_pass_wrapper">
-      <div className="cu_forget_pass ">
+      <div className="cu_forget_pass">
         <div className="cu_forget_pass_icon_box text-center">
           <NextImage
             className="cu_forget_pass_icon "
@@ -52,7 +54,7 @@ export default function ForgotPassword({ handleOpen }) {
               onChange={onInputChange}
               className="form-control"
               id=""
-              required
+              required="true"
             />
           </div>
           <div className="col-12">
@@ -60,6 +62,7 @@ export default function ForgotPassword({ handleOpen }) {
               onClick={handleForgot}
               type="submit"
               className="w-100 cu_otp_btn"
+              required
             >
               Send OTP
             </button>

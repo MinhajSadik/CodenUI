@@ -2898,7 +2898,6 @@ a {
 }
 
 /* success-reset-pasword */
-
 .cu_success_pass_wrapper {
   position: relative;
 }
@@ -2998,12 +2997,18 @@ a {
 /* O T P  */
 
 .cu_otp_wrapper {
-  position: relative;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .cu_otp {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, 8%);
   padding: 40px 30px 30px;
