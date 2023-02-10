@@ -11,7 +11,7 @@ const initState = {
   password: '',
 };
 
-export default function Login({ handleSwitch, openOthers }) {
+export default function Login({ handleSwitch, handleForgotOpen }) {
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState(initState);
 
@@ -86,7 +86,11 @@ export default function Login({ handleSwitch, openOthers }) {
                 Remember me{' '}
               </label>
             </div>
-            <NextLink className="cu_forgot_btn" href="" onClick={openOthers}>
+            <NextLink
+              className="cu_forgot_btn"
+              href=""
+              onClick={handleForgotOpen}
+            >
               Forget password?
             </NextLink>
           </div>

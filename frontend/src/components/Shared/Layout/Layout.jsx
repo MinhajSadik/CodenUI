@@ -12,9 +12,11 @@ export default function Layout({ children }) {
   const {
     loading,
     open,
-    openOthers,
+    otpOpen,
+    handleForgotClose,
+    handleForgotOpen,
     opened,
-    others,
+    forgotOpen,
     handleOpen,
     handleSwitch,
     route,
@@ -30,11 +32,19 @@ export default function Layout({ children }) {
           <Navbar handleOpen={handleOpen} loggedIn={loggedIn} router={router} />
 
           {open && (
-            <Login handleSwitch={handleSwitch} openOthers={openOthers} />
+            <Login
+              handleSwitch={handleSwitch}
+              handleForgotOpen={handleForgotOpen}
+            />
           )}
 
-          {others && <ForgotPassword handleOpen={handleOpen} />}
-          <Otp />
+          {forgotOpen && (
+            <ForgotPassword
+              handleOpen={handleOpen}
+              handleForgotClose={handleForgotClose}
+            />
+          )}
+          {otpOpen && <Otp handleOpen={handleOpen} />}
 
           {opened && <Register handleSwitch={handleSwitch} />}
           <main>{children}</main>

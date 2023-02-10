@@ -3,22 +3,44 @@ import { useSelector } from 'react-redux';
 import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 
-export default function Otp() {
+export default function Otp({ handleOpen }) {
   const { email } = useSelector((state) => state.user.otp);
-  const [otp, setOtp] = useState({
-    otp: 0,
+  const [otpInfo, setOtpInfo] = useState({
+    otp1: '',
+    otp2: '',
+    otp3: '',
+    otp4: '',
   });
+
+  const { otp1, otp2, otp3, otp4 } = otpInfo;
 
   function onInputChange(e) {
     const { name, value } = e.target;
-    setOtp({
-      ...otp,
+    setOtpInfo({
+      ...otpInfo,
       [name]: value,
     });
   }
 
   function handleVerify(e) {
-    console.log('verify', otp);
+    if (otp1 && otp2 && otp3 && otp4) {
+      const OTPs = Object.values(otpInfo).join('');
+      console.log(OTPs);
+    }
+  }
+
+  function autoFocus(e) {
+    if (e.key === 'Delete' || e.key === 'Backspace') {
+      const next = e.target.tabIndex - 2;
+      if (next > -1) {
+        e.target.form.elements[next].focus();
+      }
+    } else {
+      const next = e.target.tabIndex;
+      if (next < 4) {
+        e.target.form.elements[next].focus();
+      }
+    }
   }
 
   return (
@@ -43,11 +65,14 @@ export default function Otp() {
               <input
                 type="text"
                 className="form-control cu_otp_input cu_active"
-                id="otp"
-                name="otp"
+                id="otp1"
+                name="otp1"
+                value={otp1}
+                tabIndex="1"
                 required
                 placeholder="0"
                 onChange={onInputChange}
+                onKeyUp={autoFocus}
               />
             </div>
 
@@ -55,11 +80,14 @@ export default function Otp() {
               <input
                 type="text"
                 className="form-control cu_otp_input"
-                id="otp"
-                name="otp"
+                id="otp2"
+                name="otp2"
+                value={otp2}
+                tabIndex="2"
                 required
                 placeholder="0"
                 onChange={onInputChange}
+                onKeyUp={autoFocus}
               />
             </div>
 
@@ -67,11 +95,14 @@ export default function Otp() {
               <input
                 type="text"
                 className="form-control cu_otp_input"
-                id="otp"
-                name="otp"
+                id="otp3"
+                name="otp3"
+                value={otp3}
+                tabIndex="3"
                 required
                 placeholder="0"
                 onChange={onInputChange}
+                onKeyUp={autoFocus}
               />
             </div>
 
@@ -79,11 +110,14 @@ export default function Otp() {
               <input
                 type="text"
                 className="form-control cu_otp_input"
-                id="otp"
-                name="otp"
+                id="otp4"
+                name="otp4"
+                value={otp4}
+                tabIndex="4"
                 required
                 placeholder="0"
                 onChange={onInputChange}
+                onKeyUp={autoFocus}
               />
             </div>
 
@@ -105,7 +139,9 @@ export default function Otp() {
         <p className="cu_otp_form_msg_text text-center mt-20">
           {' '}
           <NextImage src={imagePath.ForgotPassBackArrow} alt="" />{' '}
-          <a className="">Back to Login</a>{' '}
+          <a className="" onClick={handleOpen}>
+            Back to Login
+          </a>{' '}
         </p>
       </div>
     </div>

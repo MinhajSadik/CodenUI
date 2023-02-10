@@ -19,27 +19,39 @@ export default function AppProvider({ children }) {
     const { pathname: route } = router
     const [open, setOpen] = useState(false)
     const [opened, setOpened] = useState(false)
-    const [others, setOthers] = useState(false)
+    const [forgotOpen, setForgotOpen] = useState(false)
+    const [otpOpen, setOtpOpen] = useState(false)
+
 
     useEffect(() => {
         if (loggedIn) {
             setOpen(false)
             setOpened(false)
         }
+        // else setOpen(true)
         dispatch(findCategories())
         dispatch(findProducts())
-        // else setOpen(true)
     }, [loggedIn])
 
-    function openOthers() {
+    // function handleOtp() {
+    //     setOtpOpen(true)
+    // }
+
+    function handleForgotOpen() {
         setOpen(false)
         setOpened(false)
-        setOthers(true)
+        setForgotOpen(true)
+    }
+
+    function handleForgotClose() {
+        setForgotOpen(false)
+        setOtpOpen(true)
     }
 
     function handleOpen() {
         setOpen(true)
-        setOthers(false)
+        setForgotOpen(false)
+        setOtpOpen(false)
     }
 
     function handleClose() {
@@ -57,13 +69,15 @@ export default function AppProvider({ children }) {
         open,
         route,
         router,
-        others,
+        forgotOpen,
+        otpOpen,
         opened,
         loading,
         loggedIn,
         products,
         categories,
-        openOthers,
+        handleForgotOpen,
+        handleForgotClose,
         handleOpen,
         handleClose,
         handleSwitch,

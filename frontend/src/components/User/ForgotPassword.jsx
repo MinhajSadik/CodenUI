@@ -5,7 +5,7 @@ import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
-export default function ForgotPassword({ handleOpen }) {
+export default function ForgotPassword({ handleOpen, handleForgotClose }) {
   const dispatch = useDispatch();
   const [forgotInfo, setForgotInfo] = useState({
     email: '',
@@ -24,6 +24,7 @@ export default function ForgotPassword({ handleOpen }) {
     e.preventDefault();
     if (forgotInfo.email) {
       dispatch(forgotPassword(forgotInfo));
+      handleForgotClose();
     }
   }
 
@@ -54,7 +55,7 @@ export default function ForgotPassword({ handleOpen }) {
               onChange={onInputChange}
               className="form-control"
               id=""
-              required="true"
+              required
             />
           </div>
           <div className="col-12">
