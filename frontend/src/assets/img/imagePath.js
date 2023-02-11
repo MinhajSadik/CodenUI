@@ -8,6 +8,8 @@ export default {
     BannerBg: require("./media/category_banner_bg.svg"),
     ForgotPassIcon: require("./icon/forget_pass_icon.svg"),
     ForgotPassBackArrow: require("./icon/forget-pass-back-arrow.svg"),
+    EyeIcon: require("./icon/eye.svg"),
+    EyeOffIcon: require("./icon/eye-off.svg"),
     // social 
     Facebook: require("./icon/facebook.svg"),
     Twitter: require("./icon/Twitter.svg"),

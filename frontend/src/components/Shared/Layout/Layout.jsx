@@ -3,6 +3,7 @@ import { AppContext } from '../../../contexts/contexts';
 import AppProvider from '../../../providers/AppProvider';
 import ForgotPassword from '../../User/ForgotPassword';
 import Login from '../../User/Login';
+import NewPassword from '../../User/NewPassword';
 import Otp from '../../User/Otp';
 import Register from '../../User/Register';
 import Footer from '../Footer/Footer';
@@ -13,8 +14,10 @@ export default function Layout({ children }) {
     loading,
     open,
     otpOpen,
-    handleForgotClose,
-    handleForgotOpen,
+    handleCloseForgot,
+    handleOpenForgot,
+    handleCloseOtp,
+    newPassOpen,
     opened,
     forgotOpen,
     handleOpen,
@@ -31,22 +34,27 @@ export default function Layout({ children }) {
         <>
           <Navbar handleOpen={handleOpen} loggedIn={loggedIn} router={router} />
 
+          {opened && <Register handleSwitch={handleSwitch} />}
           {open && (
             <Login
               handleSwitch={handleSwitch}
-              handleForgotOpen={handleForgotOpen}
+              handleOpenForgot={handleOpenForgot}
             />
           )}
 
           {forgotOpen && (
             <ForgotPassword
               handleOpen={handleOpen}
-              handleForgotClose={handleForgotClose}
+              handleCloseForgot={handleCloseForgot}
             />
           )}
-          {otpOpen && <Otp handleOpen={handleOpen} />}
 
-          {opened && <Register handleSwitch={handleSwitch} />}
+          {otpOpen && (
+            <Otp handleOpen={handleOpen} handleCloseOtp={handleCloseOtp} />
+          )}
+
+          {newPassOpen && <NewPassword handleOpen={handleOpen} />}
+
           <main>{children}</main>
 
           {matchedRoute && <Footer />}

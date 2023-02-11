@@ -5,7 +5,7 @@ import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
-export default function ForgotPassword({ handleOpen, handleForgotClose }) {
+export default function ForgotPassword({ handleOpen, handleCloseForgot }) {
   const dispatch = useDispatch();
   const [forgotInfo, setForgotInfo] = useState({
     email: '',
@@ -24,7 +24,7 @@ export default function ForgotPassword({ handleOpen, handleForgotClose }) {
     e.preventDefault();
     if (forgotInfo.email) {
       dispatch(forgotPassword(forgotInfo));
-      handleForgotClose();
+      handleCloseForgot();
     }
   }
 

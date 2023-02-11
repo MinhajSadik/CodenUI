@@ -9,8 +9,8 @@ export const loginUser = createAsyncThunk(
             const { user } = await userService.login(loginInfo);
             return user
         } catch (error) {
-            console.log({ error })
-            return rejectWithValue(error.message);
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
         }
     }
 );
@@ -22,8 +22,8 @@ export const registerUser = createAsyncThunk(
             const { user } = await userService.register(registerInfo);
             return user
         } catch (error) {
-            console.log({ error })
-            return rejectWithValue(error.message);
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
         }
     }
 );
@@ -34,8 +34,8 @@ export const logoutUser = createAsyncThunk(
         try {
             return await userService.logout();
         } catch (error) {
-            console.log({ error })
-            return rejectWithValue(error.message);
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
         }
     }
 );
@@ -47,11 +47,25 @@ export const forgotPassword = createAsyncThunk(
         try {
             return await userService.forgotPassword(forgotInfo)
         } catch (error) {
-            console.log({ error })
-            return rejectWithValue(error.message);
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
         }
     }
 );
+
+export const verifyOtp = createAsyncThunk(
+    "user/otp/verify",
+    async (otpInfo, { rejectWithValue }) => {
+        try {
+            return await userService.verifyOtp(otpInfo)
+        } catch (error) {
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+);
+
+
 
 const userSlice = createSlice({
     name: "user",
@@ -63,8 +77,11 @@ const userSlice = createSlice({
         otp: {
             hash: "",
             email: "",
+            forgotten: false,
+            verified: false
         },
-        error: ""
+        error: "",
+
     },
 
     reducers: {
@@ -123,16 +140,33 @@ const userSlice = createSlice({
             })
             .addCase(forgotPassword.pending, (state, { }) => {
                 state.loading = true
+                state.otp.forgotten = false
             })
             .addCase(forgotPassword.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.loggedIn = false
                 state.otp.email = payload.email
                 state.otp.hash = payload.hashed
+                state.otp.forgotten = payload.forgotten
             })
             .addCase(forgotPassword.rejected, (state, { payload }) => {
                 state.loading = false
                 state.error = payload
+                state.otp.forgotten = false
+            })
+            .addCase(verifyOtp.pending, (state, { }) => {
+                state.loading = true
+                state.otp.verified = false
+            })
+            .addCase(verifyOtp.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.loggedIn = false
+                state.otp.verified = payload.verified
+            })
+            .addCase(verifyOtp.rejected, (state, { payload }) => {
+                state.loading = false
+                state.error = payload
+                state.otp.verified = false
             })
     }
 })

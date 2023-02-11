@@ -11,7 +11,7 @@ const initState = {
   password: '',
 };
 
-export default function Login({ handleSwitch, handleForgotOpen }) {
+export default function Login({ handleSwitch, handleOpenForgot }) {
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState(initState);
 
@@ -89,7 +89,7 @@ export default function Login({ handleSwitch, handleForgotOpen }) {
             <NextLink
               className="cu_forgot_btn"
               href=""
-              onClick={handleForgotOpen}
+              onClick={handleOpenForgot}
             >
               Forget password?
             </NextLink>

@@ -2797,12 +2797,18 @@ a {
 /* new password */
 
 .cu_new_pass_wrapper {
-  position: relative;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .cu_new_pass {
   position: absolute;
-  top: 50%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, 8%);
   padding: 40px 30px 30px;
@@ -2841,7 +2847,7 @@ a {
   font-family: eudoxus-sans-500;
   font-size: 12px;
   line-height: 18px;
-  color: #f24e1e;
+  /* color: #f24e1e; */
   visibility: hidden;
 }
 

@@ -10,17 +10,21 @@ export default function AppProvider({ children }) {
     const { loading } = useAutoRefresh()
     const dispatch = useDispatch()
 
-    const { loggedIn, user, products, categories } = useSelector((state) => ({
+    const { loggedIn, loading: appLoading, user, verified, forgotten, products, categories } = useSelector((state) => ({
         ...state.user,
         ...state.product,
-        ...state.category
+        ...state.category,
+        ...state.user.otp
     }))
+
+
     const router = useRouter()
     const { pathname: route } = router
     const [open, setOpen] = useState(false)
     const [opened, setOpened] = useState(false)
     const [forgotOpen, setForgotOpen] = useState(false)
     const [otpOpen, setOtpOpen] = useState(false)
+    const [newPassOpen, setNewPassOpen] = useState(false)
 
 
     useEffect(() => {
@@ -33,25 +37,38 @@ export default function AppProvider({ children }) {
         dispatch(findProducts())
     }, [loggedIn])
 
-    // function handleOtp() {
-    //     setOtpOpen(true)
-    // }
-
-    function handleForgotOpen() {
+    function handleOpenForgot() {
         setOpen(false)
         setOpened(false)
         setForgotOpen(true)
     }
 
-    function handleForgotClose() {
-        setForgotOpen(false)
-        setOtpOpen(true)
+    function handleCloseForgot() {
+        if (forgotten) {
+            setForgotOpen(false)
+            setOtpOpen(true)
+        }
     }
+
+    function handleCloseOtp() {
+        if (forgotten && verified) {
+            setOtpOpen(false)
+            setNewPassOpen(true)
+        }
+    }
+
+    useEffect(() => {
+        handleCloseForgot()
+        handleCloseOtp()
+    }, [forgotten, verified])
+
+
 
     function handleOpen() {
         setOpen(true)
         setForgotOpen(false)
         setOtpOpen(false)
+        setNewPassOpen(false)
     }
 
     function handleClose() {
@@ -70,14 +87,16 @@ export default function AppProvider({ children }) {
         route,
         router,
         forgotOpen,
+        newPassOpen,
         otpOpen,
         opened,
         loading,
         loggedIn,
         products,
         categories,
-        handleForgotOpen,
-        handleForgotClose,
+        handleCloseOtp,
+        handleOpenForgot,
+        handleCloseForgot,
         handleOpen,
         handleClose,
         handleSwitch,

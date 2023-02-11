@@ -56,7 +56,7 @@ class UserController {
         });
 
         return sendResponse(res, 201, {
-          message: `User ${name} created successfully`,
+          message: `${name} Your account created successfully`,
           user,
         });
       }
@@ -333,9 +333,10 @@ class UserController {
       await mailService.sentMail(options)
 
       return sendResponse(res, 200, {
-        message: `Email sent to ${email}`,
+        email,
+        forgotten: true,
         hashed: `${hashed}.${expires}`,
-        email
+        message: `Email sent to ${email}`,
       })
     } catch (error) {
       return sendResponse(res, 500, {
@@ -366,7 +367,8 @@ class UserController {
       }
 
       return sendResponse(res, 200, {
-        message: "otp verified successfully"
+        message: "otp verified successfully",
+        verified: true
       })
     } catch (error) {
       return sendResponse(res, 200, {
@@ -375,6 +377,35 @@ class UserController {
     }
   }
 
+  async setNewPassword(req, res) {
+    const { email, password, confirmPassword } = req.body
+    try {
+      const user = await userService.findUser({ email })
+
+      const isPasswordMatched = await userService.comparePassword(
+        password,
+        user.password
+      );
+
+      if (isPasswordMatched) {
+        return sendResponse(res, 400, {
+          message: 'Your new password must be different to previoulsy used passwords',
+        });
+      }
+
+      if (password !== confirmPassword) {
+        return sendResponse(res, 400, {
+          message: 'Password is not matched'
+        })
+      }
+
+
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+  }
 }
 
 export default new UserController();

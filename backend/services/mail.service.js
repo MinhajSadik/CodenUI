@@ -1,5 +1,5 @@
 import nodeMailer from "nodemailer";
-import User from "../models/user.model.js";
+import Subscriber from "../models/subscriber.model.js";
 
 class MailService {
   async sentMail(payload) {
@@ -26,7 +26,7 @@ class MailService {
     return await serder.sendMail(mailOptions);
   }
   async saveMail(payload) {
-    return await User.create(payload);
+    return await Subscriber.create(payload);
   }
 }
 

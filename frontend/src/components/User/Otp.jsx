@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { verifyOtp } from '../../../redux/feature/userSlice';
 import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
+import NextLink from '../Shared/Link/NextLink';
 
-export default function Otp({ handleOpen }) {
-  const { email } = useSelector((state) => state.user.otp);
+export default function Otp({ handleOpen, handleCloseOtp }) {
+  const dispatch = useDispatch();
+  const { email, hash } = useSelector((state) => state.user.otp);
   const [otpInfo, setOtpInfo] = useState({
     otp1: '',
     otp2: '',
@@ -22,13 +25,6 @@ export default function Otp({ handleOpen }) {
     });
   }
 
-  function handleVerify(e) {
-    if (otp1 && otp2 && otp3 && otp4) {
-      const OTPs = Object.values(otpInfo).join('');
-      console.log(OTPs);
-    }
-  }
-
   function autoFocus(e) {
     if (e.key === 'Delete' || e.key === 'Backspace') {
       const next = e.target.tabIndex - 2;
@@ -40,6 +36,14 @@ export default function Otp({ handleOpen }) {
       if (next < 4) {
         e.target.form.elements[next].focus();
       }
+    }
+  }
+
+  function handleVerify(e) {
+    const otp = Object.values(otpInfo).join('');
+    if (otp1 && otp2 && otp3 && otp4) {
+      dispatch(verifyOtp({ otp, hash, email }));
+      handleCloseOtp();
     }
   }
 
@@ -139,9 +143,9 @@ export default function Otp({ handleOpen }) {
         <p className="cu_otp_form_msg_text text-center mt-20">
           {' '}
           <NextImage src={imagePath.ForgotPassBackArrow} alt="" />{' '}
-          <a className="" onClick={handleOpen}>
+          <NextLink href="" className="" onClick={handleOpen}>
             Back to Login
-          </a>{' '}
+          </NextLink>{' '}
         </p>
       </div>
     </div>

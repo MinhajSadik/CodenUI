@@ -13,7 +13,7 @@ const connectDB = async () => {
   };
 
   try {
-    await mongoose.connect(DB_URL, options, mongoose.set('strictQuery', false));
+    mongoose.connect(DB_URL, options, mongoose.set('strictQuery', false));
     console.log(`Database Connected Successfully...`);
   } catch (error) {
     console.error(error.message);
