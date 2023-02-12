@@ -6,6 +6,7 @@ import Login from '../../User/Login';
 import NewPassword from '../../User/NewPassword';
 import Otp from '../../User/Otp';
 import Register from '../../User/Register';
+import ResetPasswordSucess from '../../User/ResetPasswordSucess';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 
@@ -15,10 +16,13 @@ export default function Layout({ children }) {
     open,
     otpOpen,
     handleCloseForgot,
+    handleCloseNewPassword,
     handleOpenForgot,
     handleCloseOtp,
     newPassOpen,
     opened,
+    appLoading,
+    successOpen,
     forgotOpen,
     handleOpen,
     handleSwitch,
@@ -53,7 +57,14 @@ export default function Layout({ children }) {
             <Otp handleOpen={handleOpen} handleCloseOtp={handleCloseOtp} />
           )}
 
-          {newPassOpen && <NewPassword handleOpen={handleOpen} />}
+          {newPassOpen && (
+            <NewPassword
+              handleOpen={handleOpen}
+              handleCloseNewPassword={handleCloseNewPassword}
+            />
+          )}
+
+          <ResetPasswordSucess handleOpen={handleOpen} />
 
           <main>{children}</main>
 

@@ -10,6 +10,7 @@ export default {
     ForgotPassBackArrow: require("./icon/forget-pass-back-arrow.svg"),
     EyeIcon: require("./icon/eye.svg"),
     EyeOffIcon: require("./icon/eye-off.svg"),
+    SuccessIcon: require("./icon/success.svg"),
     // social 
     Facebook: require("./icon/facebook.svg"),
     Twitter: require("./icon/Twitter.svg"),

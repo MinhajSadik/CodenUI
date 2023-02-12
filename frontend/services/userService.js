@@ -17,6 +17,9 @@ class UserService {
     verifyOtp(otpInfo) {
         return requests.post("/user/otp/verify", otpInfo)
     }
+    setNewPassword(passwordInfo) {
+        return requests.post('/user/password/new', passwordInfo)
+    }
     update(id, userInfo) {
         return requests.put(`/user/update/${id}`, userInfo)
     }

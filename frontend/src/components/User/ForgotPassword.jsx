@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword } from '../../../redux/feature/userSlice';
 import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
 export default function ForgotPassword({ handleOpen, handleCloseForgot }) {
+  const { loading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [forgotInfo, setForgotInfo] = useState({
     email: '',
@@ -65,7 +66,7 @@ export default function ForgotPassword({ handleOpen, handleCloseForgot }) {
               className="w-100 cu_otp_btn"
               required
             >
-              Send OTP
+              {loading ? 'Sending OTP...' : 'Send OTP'}
             </button>
           </div>
           <p className="cu_fp_form_msg_text text-center mt-20">

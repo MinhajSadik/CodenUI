@@ -1,14 +1,40 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNewPassword } from '../../../redux/feature/userSlice';
 import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/Image/NextImage';
 import NextLink from '../Shared/Link/NextLink';
 
-export default function NewPassword({ handleOpen }) {
+export default function NewPassword({ handleOpen, handleCloseNewPassword }) {
+  const dispatch = useDispatch();
+  const { loading, email } = useSelector((state) => ({
+    ...state.user,
+    ...state.user.otp,
+  }));
+
+  console.log(email);
   const [passwordInfo, setPasswordInfo] = useState({
     password: '',
     confirmPassword: '',
   });
+
   const { password, confirmPassword } = passwordInfo;
+
+  function onInputChange(e) {
+    const { name, value } = e.target;
+    setPasswordInfo({
+      ...passwordInfo,
+      [name]: value,
+    });
+  }
+
+  function handleNewPassword(e) {
+    e.preventDefault();
+    if (password && confirmPassword) {
+      dispatch(setNewPassword({ email, password, confirmPassword }));
+      handleCloseNewPassword();
+    }
+  }
   return (
     <div className="cu_new_pass_wrapper">
       <div className="cu_new_pass">
@@ -34,9 +60,12 @@ export default function NewPassword({ handleOpen }) {
               Password*
             </label>
             <input
+              id="password"
               type="password"
+              name="password"
+              value={password}
+              onChange={onInputChange}
               className="form-control cu_pass_d_match"
-              id=""
               required
               placeholder="Password "
             />
@@ -55,17 +84,24 @@ export default function NewPassword({ handleOpen }) {
               Confirm Password*
             </label>
             <input
+              id="confirmPassword"
               type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={onInputChange}
               className="form-control cu_icon_position"
-              id=""
               required
               placeholder="Confirm password"
             />
           </div>
 
           <div className="col-12">
-            <button type="submit" className="w-100 cu_reset_btn">
-              Reset Password
+            <button
+              onClick={handleNewPassword}
+              type="submit"
+              className="w-100 cu_reset_btn"
+            >
+              {loading ? 'Reseting Password...' : 'Reset Password'}
             </button>
           </div>
           <p className="cu_np_form_msg_text text-center mt-20">

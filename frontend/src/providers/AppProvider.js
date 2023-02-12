@@ -10,13 +10,12 @@ export default function AppProvider({ children }) {
     const { loading } = useAutoRefresh()
     const dispatch = useDispatch()
 
-    const { loggedIn, loading: appLoading, user, verified, forgotten, products, categories } = useSelector((state) => ({
+    const { loggedIn, loading: appLoading, user, verified, forgotten, newPassword, products, categories } = useSelector((state) => ({
         ...state.user,
         ...state.product,
         ...state.category,
         ...state.user.otp
     }))
-
 
     const router = useRouter()
     const { pathname: route } = router
@@ -25,6 +24,7 @@ export default function AppProvider({ children }) {
     const [forgotOpen, setForgotOpen] = useState(false)
     const [otpOpen, setOtpOpen] = useState(false)
     const [newPassOpen, setNewPassOpen] = useState(false)
+    const [successOpen, setSuccessOpen] = useState(false)
 
 
     useEffect(() => {
@@ -57,10 +57,19 @@ export default function AppProvider({ children }) {
         }
     }
 
+    function handleCloseNewPassword() {
+        if (forgotten && verified && newPassword) {
+            // if (newPassword) {
+            setNewPassOpen(false)
+            setSuccessOpen(true)
+        }
+    }
+
     useEffect(() => {
         handleCloseForgot()
         handleCloseOtp()
-    }, [forgotten, verified])
+        handleCloseNewPassword()
+    }, [forgotten, verified, newPassword])
 
 
 
@@ -69,6 +78,7 @@ export default function AppProvider({ children }) {
         setForgotOpen(false)
         setOtpOpen(false)
         setNewPassOpen(false)
+        setSuccessOpen(false)
     }
 
     function handleClose() {
@@ -81,28 +91,31 @@ export default function AppProvider({ children }) {
         setOpened((prevOpened) => !prevOpened)
     }
 
-    const toggleInfo = {
+    const appInfo = {
         user,
         open,
         route,
         router,
-        forgotOpen,
-        newPassOpen,
         otpOpen,
         opened,
         loading,
         loggedIn,
         products,
+        handleOpen,
         categories,
+        forgotOpen,
+        appLoading,
+        newPassOpen,
+        handleClose,
+        successOpen,
+        handleSwitch,
         handleCloseOtp,
         handleOpenForgot,
         handleCloseForgot,
-        handleOpen,
-        handleClose,
-        handleSwitch,
+        handleCloseNewPassword,
     }
     return (
-        <AppContext.Provider value={toggleInfo}>
+        <AppContext.Provider value={appInfo}>
             {children}
         </AppContext.Provider>
     )

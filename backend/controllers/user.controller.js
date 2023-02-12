@@ -380,14 +380,15 @@ class UserController {
   async setNewPassword(req, res) {
     const { email, password, confirmPassword } = req.body
     try {
-      const user = await userService.findUser({ email })
+      const user = await userService.findUser(email)
 
-      const isPasswordMatched = await userService.comparePassword(
+
+      const isPrevPassUsed = await userService.comparePassword(
         password,
         user.password
       );
 
-      if (isPasswordMatched) {
+      if (isPrevPassUsed) {
         return sendResponse(res, 400, {
           message: 'Your new password must be different to previoulsy used passwords',
         });
@@ -400,6 +401,16 @@ class UserController {
       }
 
 
+
+      const hashedPassword = await userService.hashPassword(password)
+
+      user.password = hashedPassword
+      await user.save()
+
+      return sendResponse(res, 200, {
+        newPassword: true,
+        message: "Your password changed successfully",
+      })
     } catch (error) {
       return sendResponse(res, 500, {
         message: error.message

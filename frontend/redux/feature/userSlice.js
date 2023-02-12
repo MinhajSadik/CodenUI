@@ -66,6 +66,20 @@ export const verifyOtp = createAsyncThunk(
 );
 
 
+export const setNewPassword = createAsyncThunk(
+    "user/password/new",
+    async (passwordInfo, { rejectWithValue }) => {
+        try {
+            return await userService.setNewPassword(passwordInfo)
+        } catch (error) {
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+);
+
+
+
 
 const userSlice = createSlice({
     name: "user",
@@ -78,7 +92,8 @@ const userSlice = createSlice({
             hash: "",
             email: "",
             forgotten: false,
-            verified: false
+            verified: false,
+            newPassword: false
         },
         error: "",
 
@@ -167,6 +182,20 @@ const userSlice = createSlice({
                 state.loading = false
                 state.error = payload
                 state.otp.verified = false
+            })
+            .addCase(setNewPassword.pending, (state, { }) => {
+                state.loading = true
+                state.otp.newPassword = false
+            })
+            .addCase(setNewPassword.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.loggedIn = false
+                state.otp.newPassword = payload.newPassword
+            })
+            .addCase(setNewPassword.rejected, (state, { payload }) => {
+                state.loading = false
+                state.error = payload
+                state.otp.newPassword = false
             })
     }
 })

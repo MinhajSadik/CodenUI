@@ -7,7 +7,10 @@ import NextLink from '../Shared/Link/NextLink';
 
 export default function Otp({ handleOpen, handleCloseOtp }) {
   const dispatch = useDispatch();
-  const { email, hash } = useSelector((state) => state.user.otp);
+  const { loading, email, hash } = useSelector((state) => ({
+    ...state.user,
+    ...state.user.otp,
+  }));
   const [otpInfo, setOtpInfo] = useState({
     otp1: '',
     otp2: '',
@@ -137,7 +140,7 @@ export default function Otp({ handleOpen, handleCloseOtp }) {
             type="submit"
             className="w-100 cu_verify_btn"
           >
-            Verify
+            {loading ? 'Verifing...' : 'Verify'}
           </button>
         </div>
         <p className="cu_otp_form_msg_text text-center mt-20">
