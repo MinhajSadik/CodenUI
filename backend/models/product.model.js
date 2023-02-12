@@ -17,7 +17,7 @@ const productSchema = new Schema(
       required: true,
       trim: true,
     },
-    image: {
+    thumbnail: {
       type: String,
       required: false,
     },
@@ -39,6 +39,10 @@ const productSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Category",
     },
+    stackThumbnails: {
+    },
+    tags: {
+    }
   },
   {
     timestamps: true,

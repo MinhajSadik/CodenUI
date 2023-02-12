@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const Remote_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pu4qt.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+const Remote_URL = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_PART_ONE},${process.env.DB_PART_TWO},${process.env.DB_PART_THREE}/${process.env.DB_NAME}?ssl=true&replicaSet=atlas-9mf38a-shard-0&authSource=admin&retryWrites=true&w=majority`;
 
 const Local_URL = `mongodb://127.0.0.1:27017/${process.env.DB_NAME}`;
 
@@ -13,7 +13,7 @@ const connectDB = async () => {
   };
 
   try {
-    await mongoose.connect(DB_URL, options, mongoose.set('strictQuery', false));
+    mongoose.connect(DB_URL, options, mongoose.set('strictQuery', false));
     console.log(`Database Connected Successfully...`);
   } catch (error) {
     console.error(error.message);

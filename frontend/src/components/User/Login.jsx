@@ -4,13 +4,14 @@ import { loginUser } from '../../../redux/feature/userSlice';
 import GoogleIcon from '../../assets/img/icon/logos_google-icon.svg';
 import Logo from '../../assets/img/logo/CodenUILogo.svg';
 import NextImage from '../Shared/Image/NextImage';
+import NextLink from '../Shared/Link/NextLink';
 
 const initState = {
   email: '',
   password: '',
 };
 
-export default function Login({ handleSwitch }) {
+export default function Login({ handleSwitch, handleOpenForgot }) {
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState(initState);
 
@@ -58,7 +59,6 @@ export default function Login({ handleSwitch }) {
             <input
               type="email"
               name="email"
-              // value={email}
               onChange={onInputChange}
               className="form-control"
               id=""
@@ -73,7 +73,6 @@ export default function Login({ handleSwitch }) {
             <input
               type="password"
               name="password"
-              // value={password}
               onChange={onInputChange}
               className="form-control"
               id=""
@@ -87,9 +86,13 @@ export default function Login({ handleSwitch }) {
                 Remember me{' '}
               </label>
             </div>
-            <a className="cu_forgot_btn" href="">
+            <NextLink
+              className="cu_forgot_btn"
+              href=""
+              onClick={handleOpenForgot}
+            >
               Forget password?
-            </a>
+            </NextLink>
           </div>
 
           <div className="col-12">

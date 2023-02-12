@@ -37,9 +37,12 @@ class ProductController {
     }
   }
 
-  async findProduct(req, res) {
+  async findProducts(req, res) {
+    const { page = 1 } = req.query
+    const limit = 1
+
     try {
-      const products = await productService.findProducts({});
+      const products = await productService.findProducts(page, limit);
 
       const transformed = products.map((product) => {
         return new ProductDto(product);

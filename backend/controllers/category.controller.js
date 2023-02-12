@@ -1,6 +1,8 @@
 import CategoryDto from "../dtos/category.dto.js";
+import ProductDto from "../dtos/product.dto.js";
 import categoryService from "../services/category.service.js";
 import productService from "../services/product.service.js";
+import { upperCaseWords } from "../utils/helpers.js";
 import { sendResponse } from "../utils/response.util.js";
 
 class CategoryController {
@@ -15,7 +17,7 @@ class CategoryController {
         });
       }
 
-      const existedCategory = await categoryService.findCategory(name);
+      const existedCategory = await categoryService.findCategoryByName(name);
 
       if (existedCategory?.name === name) {
         return sendResponse(res, 400, {
@@ -36,9 +38,43 @@ class CategoryController {
       });
     }
   }
-  async findCategory(req, res) {
+
+  async findCategoryByName(req, res) {
+    const { name } = req.params
+
     try {
-      const categories = await categoryService.findCategories({});
+      const [first, second] = name.split("-")
+      const categoryName = upperCaseWords(first + " " + second)
+
+      const category = await categoryService.findCategoryByName(categoryName)
+
+      if (!category) {
+        return sendResponse(res, 404, {
+          message: `There are no categories included ${name}`
+        })
+      }
+
+      const transfromed = category.products.map((products) => new ProductDto(products))
+
+      return sendResponse(res, 200, {
+        message: `${category.name} successfully fetched!`,
+        category: transfromed
+      })
+
+    } catch (error) {
+      return sendResponse(res, 200, {
+        message: error.message,
+      })
+    }
+  }
+
+  async findCategories(req, res) {
+    const { page = 1 } = req.query
+    const limit = 1
+
+    try {
+      const categories = await categoryService.findCategories(page, limit)
+      // const productListByCategoryIdPaginated = await ProductModel.find({ categoryId: id }).limit(10).skip((req.query['page'] - 1) * 10);
 
       if (!categories.length) {
         return sendResponse(res, 400, {
@@ -59,6 +95,7 @@ class CategoryController {
       });
     }
   }
+
   async updateCategory(req, res) {
     try {
       const { id } = req.params;
@@ -82,6 +119,7 @@ class CategoryController {
       });
     }
   }
+
   async deleteCategory(req, res) {
     try {
       const { id } = req.params;

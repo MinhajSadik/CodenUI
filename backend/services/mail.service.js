@@ -1,5 +1,5 @@
 import nodeMailer from "nodemailer";
-import User from "../models/user.model.js";
+import Subscriber from "../models/subscriber.model.js";
 
 class MailService {
   async sentMail(payload) {
@@ -17,21 +17,16 @@ class MailService {
       from: process.env.SMPT_MAIL,
       to: payload.email,
       subject: payload.subject,
-      html: payload.body,
+      html: payload.html,
       attachments: payload.attachments,
+      // html: payload.html,
+      // text: payload.message,
     };
 
-    const sentMail = await serder.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log("Email sent:", info.response);
-      }
-    });
-    return sentMail;
+    return await serder.sendMail(mailOptions);
   }
   async saveMail(payload) {
-    return await User.create(payload);
+    return await Subscriber.create(payload);
   }
 }
 

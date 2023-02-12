@@ -3,10 +3,21 @@ import handlebars from "handlebars";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import UserDto from "../dtos/user.dto.js";
+import hashService from "../services/hash.service.js";
 import mailService from "../services/mail.service.js";
+import otpService from "../services/otp.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
 import { sendResponse } from "../utils/response.util.js";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip");
+const docMailPath = path.join(__dirname, "../configs/doc.mail.html");
+const otpMailPath = path.join(__dirname, "../configs/otp.mail.html");
+const docFile = fs.readFileSync(docMailPath, "utf-8");
+const otpFile = fs.readFileSync(otpMailPath, "utf-8");
+const docTemplate = handlebars.compile(docFile);
+const otpTemplate = handlebars.compile(otpFile);
 
 fs.promises;
 
@@ -45,7 +56,7 @@ class UserController {
         });
 
         return sendResponse(res, 201, {
-          message: `User ${name} created successfully`,
+          message: `${name} Your account created successfully`,
           user,
         });
       }
@@ -153,23 +164,17 @@ class UserController {
   async sendFileByEmail(req, res) {
     const { email } = req.body;
 
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-    const zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip");
 
-    const templatePath = path.join(__dirname, "../configs/index.html");
-    const templateFile = fs.readFileSync(templatePath, "utf-8");
-    const template = handlebars.compile(templateFile);
-
-    const replacements = {
-      username: "MinhajSadik",
+    const sendDataToHtml = {
+      name: "MinhajSadik",
     };
-    const finalHtml = template(replacements);
+
+    const docData = docTemplate(sendDataToHtml);
 
     const options = {
       email,
       subject: `Welcome ${process.env.APP_NAME} with you`,
-      body: finalHtml,
+      html: docData,
       attachments: [
         {
           name: zipPath,
@@ -177,6 +182,7 @@ class UserController {
         },
       ],
     };
+
     try {
       const existedUser = await userService.findUser(email);
 
@@ -294,6 +300,122 @@ class UserController {
     return sendResponse(res, 200, {
       message: `User LoggedIn Successfully!`
     })
+  }
+
+  async forgotPassword(req, res) {
+    const { email } = req.body
+    try {
+      const user = await userService.findUser(email)
+      if (!user) {
+        return sendResponse(res, 404, {
+          message: `There are no user with email ${email}`
+        })
+      }
+
+      const otp = await otpService.generateOtp()
+      const hashData = await hashService.hash(email, otp)
+
+      const hashed = await hashService.hashOtp(hashData)
+      const [, , , expires] = hashData.split(".")
+
+      const sendDataToHtml = {
+        otp
+      };
+
+      const otpData = otpTemplate(sendDataToHtml);
+
+      const options = {
+        email,
+        subject: `${process.env.APP_NAME} Forgot Password OTP`,
+        html: otpData,
+      };
+
+      await mailService.sentMail(options)
+
+      return sendResponse(res, 200, {
+        email,
+        forgotten: true,
+        hashed: `${hashed}.${expires}`,
+        message: `Email sent to ${email}`,
+      })
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+  }
+
+  async verifyOtp(req, res) {
+    const { otp, hash, email } = req.body
+    try {
+      const [hashedOtp, expires] = hash.split(".")
+
+      if (Date.now() > +expires) {
+        return sendResponse(res, 400, {
+          message: "OTP expired!"
+        })
+      }
+
+      const data = `${email}.${otp}.${expires}`
+
+      const isValid = await otpService.verifyOtp(hashedOtp, data)
+
+      if (!isValid) {
+        return sendResponse(res, 400, {
+          message: "Invalid OTP"
+        })
+      }
+
+      return sendResponse(res, 200, {
+        message: "otp verified successfully",
+        verified: true
+      })
+    } catch (error) {
+      return sendResponse(res, 200, {
+        message: error.message
+      })
+    }
+  }
+
+  async setNewPassword(req, res) {
+    const { email, password, confirmPassword } = req.body
+    try {
+      const user = await userService.findUser(email)
+
+
+      const isPrevPassUsed = await userService.comparePassword(
+        password,
+        user.password
+      );
+
+      if (isPrevPassUsed) {
+        return sendResponse(res, 400, {
+          message: 'Your new password must be different to previoulsy used passwords',
+        });
+      }
+
+      if (password !== confirmPassword) {
+        return sendResponse(res, 400, {
+          message: 'Password is not matched'
+        })
+      }
+
+
+
+      const hashedPassword = await userService.hashPassword(password)
+
+      user.password = hashedPassword
+      await user.save()
+
+      return sendResponse(res, 200, {
+        newPassword: true,
+        message: "Your password changed successfully",
+      })
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
   }
 }
 

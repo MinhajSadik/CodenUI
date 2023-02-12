@@ -8,14 +8,23 @@ class UserService {
     register(registerInfo) {
         return requests.post('/user/register', registerInfo)
     }
+    logout() {
+        return requests.post('/user/logout')
+    }
+    forgotPassword(credential) {
+        return requests.post("/user/password/forgot", credential)
+    }
+    verifyOtp(otpInfo) {
+        return requests.post("/user/otp/verify", otpInfo)
+    }
+    setNewPassword(passwordInfo) {
+        return requests.post('/user/password/new', passwordInfo)
+    }
     update(id, userInfo) {
         return requests.put(`/user/update/${id}`, userInfo)
     }
     sendMail(mailInfo) {
         return requests.post('/user/sendMail', mailInfo)
-    }
-    logout() {
-        return requests.post('/user/logout')
     }
 }
 

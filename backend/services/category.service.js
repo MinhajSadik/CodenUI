@@ -7,13 +7,28 @@ class CategoryService {
   async findCategoryById(id) {
     return await Category.findById(id);
   }
-  async findCategory(name) {
-    return await Category.findOne({ name });
+  async findCategoryByName(name) {
+    return await Category.findOne({ name }).populate({
+      path: "products"
+    }).sort({
+      _id: -1
+    }).exec()
   }
-  async findCategories() {
-    return await Category.find({}).populate({
-      path: "products",
-    })
+  async findCategories(page, limit) {
+    return await Category
+      // .aggregate([
+      //   {
+      //     "$unwind": "$products"
+      //   },
+      //   {
+      //     "$limit": 2
+      //   }
+      // ])
+      .find({})
+      // .limit(limit)
+      .populate({
+        path: "products",
+      }).skip((page * limit) - limit).limit(limit).exec()
   }
   async updateCategory(id, payload) {
     return await Category.findByIdAndUpdate(id, payload, { new: true });
@@ -35,6 +50,9 @@ class CategoryService {
       };
     }
     return await Category.updateMany({ productID }, updateDocument);
+  }
+  async countDocuments() {
+    return await Category.countDocuments();
   }
 }
 

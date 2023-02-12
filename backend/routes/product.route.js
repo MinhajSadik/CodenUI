@@ -16,7 +16,7 @@ router.get(
   "/getAll",
   // checkAuth,
   authorizedRole(["admin"]),
-  productController.findProduct
+  productController.findProducts
 );
 
 router.put(

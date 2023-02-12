@@ -1,67 +1,115 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNewPassword } from '../../../redux/feature/userSlice';
+import imagePath from '../../assets/img/imagePath';
+import NextImage from '../Shared/Image/NextImage';
+import NextLink from '../Shared/Link/NextLink';
 
-export default function NewPassword() {
+export default function NewPassword({ handleOpen, handleCloseNewPassword }) {
+  const dispatch = useDispatch();
+  const { loading, email } = useSelector((state) => ({
+    ...state.user,
+    ...state.user.otp,
+  }));
+
+  console.log(email);
+  const [passwordInfo, setPasswordInfo] = useState({
+    password: '',
+    confirmPassword: '',
+  });
+
+  const { password, confirmPassword } = passwordInfo;
+
+  function onInputChange(e) {
+    const { name, value } = e.target;
+    setPasswordInfo({
+      ...passwordInfo,
+      [name]: value,
+    });
+  }
+
+  function handleNewPassword(e) {
+    e.preventDefault();
+    if (password && confirmPassword) {
+      dispatch(setNewPassword({ email, password, confirmPassword }));
+      handleCloseNewPassword();
+    }
+  }
   return (
-    <div class="cu_new_pass_wrapper">
-      <div class="cu_new_pass ">
-        <div class="cu_new_pass_icon_box text-center">
-          <img
-            class="cu_new_pass_icon "
-            src="./assets/img/icon/forget_pass_icon.svg"
+    <div className="cu_new_pass_wrapper">
+      <div className="cu_new_pass">
+        <div className="cu_new_pass_icon_box text-center">
+          <NextImage
+            className="cu_new_pass_icon "
+            src={imagePath.ForgotPassIcon}
             alt="icon"
           />
         </div>
-        <h4 class="cu_np_title text-center mt-25">Set new password</h4>
-        <p class="cu_np_text text-center pt-15">
+        <h4 className="cu_np_title text-center mt-25">Set new password</h4>
+        <p className="cu_np_text text-center pt-15">
           Your new password must be different to previoulsy used passwords
         </p>
-        <form class="row">
-          <div class="col-md-12 cu_icon_position">
-            <img
-              class="cu_input_icon_eye"
-              src="./assets/img/icon/eye.svg"
+        <form className="row">
+          <div className="col-md-12 cu_icon_position">
+            <NextImage
+              className="cu_input_icon_eye"
+              src={imagePath.EyeIcon}
               alt=""
             />
-            <label htmlFor="inputEmail4" class="cu_form_label mt-25 pb-10">
+            <label htmlFor="inputEmail4" className="cu_form_label mt-25 pb-10">
               Password*
             </label>
             <input
+              id="password"
               type="password"
-              class="form-control cu_pass_d_match"
-              id=""
+              name="password"
+              value={password}
+              onChange={onInputChange}
+              className="form-control cu_pass_d_match"
               required
-              placeholder="Password didn’t match"
+              placeholder="Password "
             />
-            <p class="cu_pass_length_text">Password must be 8 characters</p>
+            {password && (
+              <p className="cu_pass_length_text">
+                Password must be 8 characters
+              </p>
+            )}
 
-            <img
-              class="cu_input_icon_eye_off"
-              src="./assets/img/icon/eye-off.svg"
+            <NextImage
+              className="cu_input_icon_eye_off"
+              src={imagePath.EyeOffIcon}
               alt=""
             />
-            <label htmlFor="inputEmail4" class="cu_form_label pt-15 pb-10">
+            <label htmlFor="inputEmail4" className="cu_form_label pt-15 pb-10">
               Confirm Password*
             </label>
             <input
+              id="confirmPassword"
               type="password"
-              class="form-control cu_icon_position"
-              id=""
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={onInputChange}
+              className="form-control cu_icon_position"
               required
+              placeholder="Confirm password"
             />
           </div>
 
-          <div class="col-12">
-            <button type="submit" class="w-100 cu_reset_btn">
-              Reset Password
+          <div className="col-12">
+            <button
+              onClick={handleNewPassword}
+              type="submit"
+              className="w-100 cu_reset_btn"
+            >
+              {loading ? 'Reseting Password...' : 'Reset Password'}
             </button>
           </div>
-          <p class="cu_np_form_msg_text text-center mt-20">
+          <p className="cu_np_form_msg_text text-center mt-20">
             {' '}
-            <img
-              src="./assets/img/icon/forget-pass-back-arrow.svg"
-              alt=""
-            />{' '}
-            <a class="">Back to Login</a>{' '}
+            <NextImage src={imagePath.ForgotPassBackArrow} alt="" />{' '}
+            <NextLink href="" className="" onClick={handleOpen}>
+              Back to Login
+            </NextLink>{' '}
           </p>
         </form>
       </div>
