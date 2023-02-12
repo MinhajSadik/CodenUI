@@ -1,14 +1,16 @@
 import React, { useContext } from 'react';
+import {
+  Footer,
+  ForgotPassword,
+  Login,
+  Navbar,
+  NewPassword,
+  Otp,
+  Register,
+  ResetPasswordSucess,
+} from '../../../components';
 import { AppContext } from '../../../contexts/contexts';
 import AppProvider from '../../../providers/AppProvider';
-import ForgotPassword from '../../User/ForgotPassword';
-import Login from '../../User/Login';
-import NewPassword from '../../User/NewPassword';
-import Otp from '../../User/Otp';
-import Register from '../../User/Register';
-import ResetPasswordSucess from '../../User/ResetPasswordSucess';
-import Footer from '../Footer/Footer';
-import Navbar from '../Navbar/Navbar';
 
 export default function Layout({ children }) {
   const {
@@ -64,7 +66,7 @@ export default function Layout({ children }) {
             />
           )}
 
-          <ResetPasswordSucess handleOpen={handleOpen} />
+          {successOpen && <ResetPasswordSucess handleOpen={handleOpen} />}
 
           <main>{children}</main>
 
