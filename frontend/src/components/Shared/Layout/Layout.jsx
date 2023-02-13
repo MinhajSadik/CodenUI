@@ -41,6 +41,7 @@ function Layout({ children }) {
           <Navbar handleOpen={handleOpen} loggedIn={loggedIn} router={router} />
 
           {opened && <Register handleSwitch={handleSwitch} />}
+
           {open && (
             <Login
               handleSwitch={handleSwitch}

@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updatePassword } from '../../../redux/feature/userSlice';
 import AvatarIcon from '../../assets/img/icon/Avatar-icon.svg';
 import { withRouter } from '../../components';
 import NextImage from '../Shared/NextImage/NextImage';
 
-function AccountSetting() {
+const initialState = {
+  currentPassword: '',
+  newPassword: '',
+  confirmPassword: '',
+};
+
+function AccountSetting({ email }) {
+  const dispatch = useDispatch();
+  const [passwordInfo, setPasswordInfo] = useState(initialState);
+  const { currentPassword, newPassword, confirmPassword } = passwordInfo;
+
+  function onInputChange(e) {
+    const { name, value } = e.target;
+    setPasswordInfo({
+      ...passwordInfo,
+      [name]: value,
+    });
+  }
+
+  function handleUpdatePassword(e) {
+    e.preventDefault();
+
+    if (currentPassword && newPassword && confirmPassword) {
+      dispatch(
+        updatePassword({ email, currentPassword, newPassword, confirmPassword })
+      );
+    }
+    setPasswordInfo(initialState);
+  }
+
   return (
     <section className="cu_account_settings_wrapper">
       <div className="container">
@@ -21,7 +52,6 @@ function AccountSetting() {
                 src={AvatarIcon}
                 alt="avatar"
               />
-              {/* <NextLink className="cu_upload_avatar_btn" href=""></NextLink> */}
               <label htmlFor="avatar" className="cu_upload_avatar_btn">
                 Upload Avater
               </label>
@@ -72,22 +102,47 @@ function AccountSetting() {
                   <label htmlFor="inputEmail4" className="form-label">
                     Current Password
                   </label>
-                  <input type="password" className="form-control" id="" />
+                  <input
+                    type="password"
+                    id="currentPassword"
+                    value={currentPassword}
+                    name="currentPassword"
+                    className="form-control"
+                    onChange={onInputChange}
+                  />
                 </div>
                 <div className="col-md-12">
                   <label htmlFor="inputEmail4" className="form-label pt-15">
                     New Password
                   </label>
-                  <input type="password" className="form-control" id="" />
+                  <input
+                    type="password"
+                    id="newPassword"
+                    name="newPassword"
+                    value={newPassword}
+                    onChange={onInputChange}
+                    className="form-control"
+                  />
                 </div>
                 <div className="col-md-12">
                   <label htmlFor="inputEmail4" className="form-label pt-15">
                     Confirm New Password
                   </label>
-                  <input type="password" className="form-control" id="" />
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={onInputChange}
+                    className="form-control"
+                  />
                 </div>
                 <div className="col-12">
-                  <button type="submit" className="cu_pass_update_btn">
+                  <button
+                    onClick={handleUpdatePassword}
+                    type="submit"
+                    className="cu_pass_update_btn"
+                  >
                     Update Password
                   </button>
                 </div>

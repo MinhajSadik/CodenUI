@@ -26,6 +26,9 @@ export default function ForgotPassword({ handleOpen, handleCloseForgot }) {
     if (forgotInfo.email) {
       dispatch(forgotPassword(forgotInfo));
       handleCloseForgot();
+      setForgotInfo({
+        email: '',
+      });
     }
   }
 
@@ -53,6 +56,7 @@ export default function ForgotPassword({ handleOpen, handleCloseForgot }) {
             <input
               type="email"
               name="email"
+              value={forgotInfo.email}
               onChange={onInputChange}
               className="form-control"
               id=""

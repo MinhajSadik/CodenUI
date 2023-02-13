@@ -377,7 +377,7 @@ class UserController {
     }
   }
 
-  async setNewPassword(req, res) {
+  async resetPassword(req, res) {
     const { email, password, confirmPassword } = req.body
     try {
       const user = await userService.findUser(email)
@@ -402,7 +402,7 @@ class UserController {
 
 
 
-      const hashedPassword = await userService.hashPassword(password)
+      const hashedPassword = await hashService.hashPassword(password)
 
       user.password = hashedPassword
       await user.save()
@@ -415,6 +415,47 @@ class UserController {
       return sendResponse(res, 500, {
         message: error.message
       })
+    }
+  }
+
+  async updatePassword(req, res) {
+    const { email, currentPassword, newPassword, confirmPassword } = req.body
+    try {
+      const user = await userService.findUser(email)
+
+      if (!user) {
+        return sendResponse(res, 404, {
+          message: `We could not find any user with ${email}`
+        })
+      }
+
+
+      const isPrevPasswordMached = await userService.comparePassword(currentPassword, user.password)
+
+      if (!isPrevPasswordMached) {
+        return sendResponse(res, 400, {
+          message: "Your password is not matched with previous password"
+        })
+      }
+
+      if (newPassword !== confirmPassword) {
+        return sendResponse(res, 400, {
+          message: "Your password is not matched"
+        })
+      }
+
+      if (isPrevPasswordMached && newPassword === confirmPassword) {
+        const hashPassword = await hashService.hashPassword(confirmPassword)
+        user.password = hashPassword
+        await user.save()
+      }
+
+      return sendResponse(res, 200, {
+        user,
+        message: "Your password changed successfully"
+      })
+    } catch (error) {
+
     }
   }
 }

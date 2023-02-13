@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../redux/feature/userSlice';
@@ -6,14 +7,16 @@ import Logo from '../../assets/img/logo/CodenUILogo.svg';
 import NextImage from '../Shared/NextImage/NextImage';
 import NextLink from '../Shared/NextLink/NextLink';
 
-const initState = {
+const initialState = {
   email: '',
   password: '',
 };
 
 export default function Login({ handleSwitch, handleOpenForgot }) {
+  const router = useRouter();
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState(initState);
+  const [userInfo, setUserInfo] = useState(initialState);
+  const { email, password } = userInfo;
 
   function onInputChange(e) {
     const { name, value } = e.target;
@@ -25,7 +28,11 @@ export default function Login({ handleSwitch, handleOpenForgot }) {
 
   function handleLogin(e) {
     e.preventDefault();
-    dispatch(loginUser(userInfo));
+    if (email && password) {
+      dispatch(loginUser(userInfo));
+      router.push('/');
+    }
+    setUserInfo(initialState);
   }
 
   return (
@@ -59,6 +66,7 @@ export default function Login({ handleSwitch, handleOpenForgot }) {
             <input
               type="email"
               name="email"
+              value={email}
               onChange={onInputChange}
               className="form-control"
               id=""
@@ -73,6 +81,7 @@ export default function Login({ handleSwitch, handleOpenForgot }) {
             <input
               type="password"
               name="password"
+              value={password}
               onChange={onInputChange}
               className="form-control"
               id=""

@@ -5,19 +5,20 @@ import imagePath from '../../assets/img/imagePath';
 import NextImage from '../Shared/NextImage/NextImage';
 import NextLink from '../Shared/NextLink/NextLink';
 
+const initialState = {
+  otp1: '',
+  otp2: '',
+  otp3: '',
+  otp4: '',
+};
+
 export default function Otp({ handleOpen, handleCloseOtp }) {
   const dispatch = useDispatch();
+  const [otpInfo, setOtpInfo] = useState(initialState);
   const { loading, email, hash } = useSelector((state) => ({
     ...state.user,
     ...state.user.otp,
   }));
-  const [otpInfo, setOtpInfo] = useState({
-    otp1: '',
-    otp2: '',
-    otp3: '',
-    otp4: '',
-  });
-
   const { otp1, otp2, otp3, otp4 } = otpInfo;
 
   function onInputChange(e) {
@@ -47,6 +48,7 @@ export default function Otp({ handleOpen, handleCloseOtp }) {
     if (otp1 && otp2 && otp3 && otp4) {
       dispatch(verifyOtp({ otp, hash, email }));
       handleCloseOtp();
+      setOtpInfo(initialState);
     }
   }
 

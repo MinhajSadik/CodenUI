@@ -66,17 +66,33 @@ export const verifyOtp = createAsyncThunk(
 );
 
 
-export const setNewPassword = createAsyncThunk(
-    "user/password/new",
+export const resetPassword = createAsyncThunk(
+    "user/password/reset",
     async (passwordInfo, { rejectWithValue }) => {
         try {
-            return await userService.setNewPassword(passwordInfo)
+            return await userService.resetPassword(passwordInfo)
         } catch (error) {
             console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
 );
+
+
+export const updatePassword = createAsyncThunk(
+    "user/password/update",
+    async (passwordInfo, { rejectWithValue }) => {
+        try {
+            return await userService.updatePassword(passwordInfo)
+        } catch (error) {
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+);
+
+
+
 
 
 
@@ -96,7 +112,6 @@ const userSlice = createSlice({
             newPassword: false
         },
         error: "",
-
     },
 
     reducers: {
@@ -107,12 +122,6 @@ const userSlice = createSlice({
             if (user === null) {
                 state.loggedIn = false;
             } state.loggedIn = true;
-        },
-        setOtp(state, { payload }) {
-            const { email, hash } = payload
-
-            state.otp.hash = hash
-            state.otp.email = email
         }
     },
 
@@ -130,7 +139,7 @@ const userSlice = createSlice({
                 state.error = payload
                 state.loading = false
             })
-            .addCase(registerUser.pending, (state,) => {
+            .addCase(registerUser.pending, (state, { payload }) => {
                 state.loading = true
             })
             .addCase(registerUser.fulfilled, (state, { payload }) => {
@@ -142,10 +151,10 @@ const userSlice = createSlice({
                 state.loading = false
                 state.error = payload
             })
-            .addCase(logoutUser.pending, (state,) => {
+            .addCase(logoutUser.pending, (state, { payload }) => {
                 state.loading = true
             })
-            .addCase(logoutUser.fulfilled, (state,) => {
+            .addCase(logoutUser.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.loggedIn = false
             })
@@ -153,7 +162,7 @@ const userSlice = createSlice({
                 state.loading = false
                 state.error = payload
             })
-            .addCase(forgotPassword.pending, (state, { }) => {
+            .addCase(forgotPassword.pending, (state, { payload }) => {
                 state.loading = true
                 state.otp.forgotten = false
             })
@@ -169,7 +178,7 @@ const userSlice = createSlice({
                 state.error = payload
                 state.otp.forgotten = false
             })
-            .addCase(verifyOtp.pending, (state, { }) => {
+            .addCase(verifyOtp.pending, (state, { payload }) => {
                 state.loading = true
                 state.otp.verified = false
             })
@@ -183,19 +192,30 @@ const userSlice = createSlice({
                 state.error = payload
                 state.otp.verified = false
             })
-            .addCase(setNewPassword.pending, (state, { }) => {
+            .addCase(resetPassword.pending, (state, { payload }) => {
                 state.loading = true
                 state.otp.newPassword = false
             })
-            .addCase(setNewPassword.fulfilled, (state, { payload }) => {
+            .addCase(resetPassword.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.loggedIn = false
                 state.otp.newPassword = payload.newPassword
             })
-            .addCase(setNewPassword.rejected, (state, { payload }) => {
+            .addCase(resetPassword.rejected, (state, { payload }) => {
                 state.loading = false
                 state.error = payload
                 state.otp.newPassword = false
+            })
+            .addCase(updatePassword.pending, (state, { payload }) => {
+                state.loading = true
+            })
+            .addCase(updatePassword.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.user = payload
+            })
+            .addCase(updatePassword.rejected, (state, { payload }) => {
+                state.loading = false
+                state.error = payload
             })
     }
 })

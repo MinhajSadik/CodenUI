@@ -18,6 +18,7 @@ router.post("/logout", userController.logout)
 router.get("/refresh", userController.refresh)
 router.post('/password/forgot', userController.forgotPassword)
 router.post('/otp/verify', userController.verifyOtp)
-router.post('/password/new', userController.setNewPassword)
+router.post('/password/reset', userController.resetPassword)
+router.post('/password/update', userController.updatePassword)
 
 export default router;
