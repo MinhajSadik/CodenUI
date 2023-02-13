@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import imagePath from '../../assets/img/imagePath';
 import { AppContext } from '../../contexts/contexts';
 import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
-import NextImage from '../Shared/Image/NextImage';
-import NextLink from '../Shared/Link/NextLink';
+import NextImage from '../Shared/NextImage/NextImage';
+import NextLink from '../Shared/NextLink/NextLink';
 
 export default function SingleIcon() {
   const { open, handleOpen, handleClose } = useContext(AppContext);

@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../../../redux/feature/userSlice';
 import imagePath from '../../../assets/img/imagePath';
-import NextImage from '../Image/NextImage';
-import NextLink from '../Link/NextLink';
+import NextImage from '../NextImage/NextImage';
+import NextLink from '../NextLink/NextLink';
 
 export default function Navbar({ handleOpen, loggedIn, router }) {
   const dispatch = useDispatch();

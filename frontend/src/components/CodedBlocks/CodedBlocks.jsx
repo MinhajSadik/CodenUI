@@ -1,7 +1,7 @@
 import React from 'react';
 import imagePath from '../../assets/img/imagePath';
-import NextImage from '../Shared/Image/NextImage';
-import NextLink from '../Shared/Link/NextLink';
+import NextImage from '../Shared/NextImage/NextImage';
+import NextLink from '../Shared/NextLink/NextLink';
 
 export default function CodedBlocks({ route }) {
   return (

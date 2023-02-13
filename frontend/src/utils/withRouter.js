@@ -5,14 +5,11 @@ export default function withRouter(Component) {
     return (props) => {
         const { loggedIn, router } = useContext(AppContext)
 
-        if (typeof window !== 'undefined') {
+        if (typeof window !== 'undefined' && !loggedIn) {
             useEffect(() => {
-                if (!loggedIn) {
-                    router.push("/")
-                }
+                router.push("/login")
             }, [loggedIn])
         }
-
 
         return <Component {...props} />
 

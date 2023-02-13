@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import {
   Footer,
   ForgotPassword,
@@ -12,7 +12,7 @@ import {
 import { AppContext } from '../../../contexts/contexts';
 import AppProvider from '../../../providers/AppProvider';
 
-export default function Layout({ children }) {
+function Layout({ children }) {
   const {
     loading,
     open,
@@ -76,3 +76,5 @@ export default function Layout({ children }) {
     </AppProvider>
   );
 }
+
+export default memo(Layout);

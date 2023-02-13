@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../redux/feature/userSlice';
 import GoogleIcon from '../../assets/img/icon/logos_google-icon.svg';
 import Logo from '../../assets/img/logo/CodenUILogo.svg';
-import NextImage from '../Shared/Image/NextImage';
-import NextLink from '../Shared/Link/NextLink';
+import NextImage from '../Shared/NextImage/NextImage';
+import NextLink from '../Shared/NextLink/NextLink';
 
 const initState = {
   email: '',
@@ -15,17 +15,17 @@ export default function Login({ handleSwitch, handleOpenForgot }) {
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState(initState);
 
-  function handleLogin(e) {
-    e.preventDefault();
-    dispatch(loginUser(userInfo));
-  }
-
   function onInputChange(e) {
     const { name, value } = e.target;
     setUserInfo({
       ...userInfo,
       [name]: value,
     });
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    dispatch(loginUser(userInfo));
   }
 
   return (

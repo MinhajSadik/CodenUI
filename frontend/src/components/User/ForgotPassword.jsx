@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword } from '../../../redux/feature/userSlice';
 import imagePath from '../../assets/img/imagePath';
-import NextImage from '../Shared/Image/NextImage';
-import NextLink from '../Shared/Link/NextLink';
+import NextImage from '../Shared/NextImage/NextImage';
+import NextLink from '../Shared/NextLink/NextLink';
 
 export default function ForgotPassword({ handleOpen, handleCloseForgot }) {
   const { loading } = useSelector((state) => state.user);

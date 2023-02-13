@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../redux/feature/userSlice';
 import GoogleIcon from '../../assets/img/icon/logos_google-icon.svg';
 import Logo from '../../assets/img/logo/CodenUILogo.svg';
-import NextImage from '../Shared/Image/NextImage';
+import NextImage from '../Shared/NextImage/NextImage';
 
 const initState = {
   name: '',

@@ -1,6 +1,6 @@
 import React from 'react';
 import imagePath from '../../../assets/img/imagePath';
-import NextImage from '../Image/NextImage';
+import NextImage from '../NextImage/NextImage';
 
 export default function Footer() {
   return (

@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useContext } from 'react';
 import { CheckoutAfterLogin, CheckoutBeforeLogin } from '../src/components';
+import { AppContext } from '../src/contexts/contexts';
 
 export default function checkout() {
-
+    const { loggedIn } = useContext(AppContext)
     return (
         <>
             <Head>
