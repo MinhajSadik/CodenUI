@@ -9,11 +9,28 @@ export const findCategories = createAsyncThunk(
             const { categories } = await categoryService.findCategories()
             return categories
         } catch (error) {
-            console.log({ error })
-            return rejectWithValue(error.message);
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
         }
     }
 );
+
+
+export const findCategoryByName = createAsyncThunk(
+    "category/getOne/:name",
+    async (categoryName, { rejectWithValue }) => {
+        try {
+            return await categoryService.findCategoryByName(categoryName)
+        } catch (error) {
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+);
+
+
+
+
 
 const categorySlice = createSlice({
     name: "category",

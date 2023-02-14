@@ -81,7 +81,7 @@ function AccountSetting({ email }) {
                     type="text"
                     className="form-control"
                     id=""
-                    placeholder="Monowar H Minar"
+                    placeholder={user?.name}
                   />
                 </div>
                 <div className="col-md-12">
@@ -92,7 +92,7 @@ function AccountSetting({ email }) {
                     type="email"
                     className="form-control"
                     id="inputEmail4"
-                    placeholder="mhminar@gmail.com"
+                    placeholder={user?.email}
                   />
                 </div>
                 <div className="col-12">

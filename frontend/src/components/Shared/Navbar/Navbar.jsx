@@ -103,11 +103,6 @@ export default function Navbar({ handleOpen, loggedIn, router, user }) {
                   Pricing
                 </NextLink>
                 <div className="cu_avatar_wrapper">
-                  {/* <NextImage
-                    className="cu_avatar_icon"
-                    src={imagePath.Avatar}
-                    alt="avataricon"
-                  /> */}
                   {user.avatar ? (
                     <NextImage
                       className="cu_avatar_icon"
@@ -129,7 +124,7 @@ export default function Navbar({ handleOpen, loggedIn, router, user }) {
                   <ul className="cu_account_drop_down_ul">
                     <li>
                       <NextLink
-                        href="account-setting"
+                        href="/account-setting"
                         className="dropdown-item account_menu_item"
                       >
                         Settings

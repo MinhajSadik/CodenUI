@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router'
 import React, { memo, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { findCategories } from '../../redux/feature/categorySlice'
+import { findCategories, findCategoryByName } from '../../redux/feature/categorySlice'
 import { findProducts } from '../../redux/feature/productSlice'
 import { AppContext } from '../contexts/contexts'
 import { useAutoRefresh } from '../hooks/useAutoRefresh'
+import { removeUnused } from '../utils/removeUnused'
 
 function AppProvider({ children }) {
     const router = useRouter()
@@ -25,6 +26,8 @@ function AppProvider({ children }) {
         ...state.user.otp
     }))
 
+    // const unUsed = removeUnused(route, "/")
+
 
     useEffect(() => {
         if (loggedIn) {
@@ -34,6 +37,7 @@ function AppProvider({ children }) {
         // else setOpen(true)
         dispatch(findCategories())
         dispatch(findProducts())
+        dispatch(findCategoryByName(removeUnused(route, "/")))
     }, [loggedIn])
 
     function handleOpenForgot() {

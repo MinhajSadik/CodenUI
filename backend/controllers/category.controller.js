@@ -44,9 +44,10 @@ class CategoryController {
 
     try {
       const [first, second] = name.split("-")
-      const categoryName = upperCaseWords(first + " " + second)
+      const upperCategoryName = upperCaseWords(first + " " + second)
+      const lowerCategoryName = first + " " + second
 
-      const category = await categoryService.findCategoryByName(categoryName)
+      const category = await categoryService.findCategoryByName(upperCategoryName, lowerCategoryName)
 
       if (!category) {
         return sendResponse(res, 404, {
