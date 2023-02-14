@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updatePassword } from '../../../redux/feature/userSlice';
-import AvatarIcon from '../../assets/img/icon/Avatar-icon.svg';
+import imagePath from '../../assets/img/imagePath';
 import { withRouter } from '../../components';
+import { upperCaseName } from '../../utils/upperCaseName';
 import NextImage from '../Shared/NextImage/NextImage';
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
 
 function AccountSetting({ email }) {
   const dispatch = useDispatch();
+  const { loading, user } = useSelector((state) => state.user);
   const [passwordInfo, setPasswordInfo] = useState(initialState);
   const { currentPassword, newPassword, confirmPassword } = passwordInfo;
 
@@ -26,7 +28,6 @@ function AccountSetting({ email }) {
 
   function handleUpdatePassword(e) {
     e.preventDefault();
-
     if (currentPassword && newPassword && confirmPassword) {
       dispatch(
         updatePassword({ email, currentPassword, newPassword, confirmPassword })
@@ -47,11 +48,18 @@ function AccountSetting({ email }) {
           </div>
           <div className="cu_account_info_box">
             <div className="cu_avatar_box">
-              <NextImage
-                className="cu_profile_avatar"
-                src={AvatarIcon}
-                alt="avatar"
-              />
+              {user.avatar ? (
+                <NextImage
+                  className="cu_profile_avatar"
+                  src={imagePath.Avatar}
+                  alt="avatar"
+                />
+              ) : (
+                <div className="cu_profile_name_word">
+                  <span>{upperCaseName(user.name)}</span>
+                </div>
+              )}
+
               <label htmlFor="avatar" className="cu_upload_avatar_btn">
                 Upload Avater
               </label>
@@ -143,7 +151,7 @@ function AccountSetting({ email }) {
                     type="submit"
                     className="cu_pass_update_btn"
                   >
-                    Update Password
+                    {loading ? 'Updating...' : 'Update Password'}
                   </button>
                 </div>
               </form>

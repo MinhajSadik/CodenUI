@@ -1,4 +1,4 @@
-export { default as withRouter } from '../utils/withRouter';
+export { default as withRouter } from '../hoc/withRouter';
 export { default as CodedBlocks } from "./CodedBlocks/CodedBlocks";
 export { default as CodedTemplates } from "./CodedTemplates/CodedTemplates";
 export { default as EmailTemplates } from "./EmailTemplates/EmailTemplates";

@@ -16,6 +16,7 @@ function Layout({ children }) {
   const {
     loading,
     open,
+    user,
     otpOpen,
     handleCloseForgot,
     handleCloseNewPassword,
@@ -38,7 +39,12 @@ function Layout({ children }) {
     <AppProvider>
       {!loading && (
         <>
-          <Navbar handleOpen={handleOpen} loggedIn={loggedIn} router={router} />
+          <Navbar
+            user={user}
+            handleOpen={handleOpen}
+            loggedIn={loggedIn}
+            router={router}
+          />
 
           {opened && <Register handleSwitch={handleSwitch} />}
 

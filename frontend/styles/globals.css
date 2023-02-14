@@ -2153,6 +2153,19 @@ a {
   display: block;
 }
 
+.cu_avatar_name_word {
+  font-family: '';
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #004d3c;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  line-height: 3rem;
+  margin: 1px 0;
+}
+
 .cu_account_drop_down_ul {
   padding-left: 0;
   list-style: none;
@@ -2215,6 +2228,19 @@ a {
   width: 80px;
   height: 80px;
   margin-right: 20px;
+}
+
+.cu_profile_name_word {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 140px;
+  height: 150px;
+  border-radius: 50%;
+  background: #004d3c;
+  font-size: 3.5rem;
+  color: #fff;
+  text-align: center;
+  line-height: 10rem;
+  margin: 2rem 0;
 }
 
 .cu_upload_avatar_btn {

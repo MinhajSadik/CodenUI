@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../../../redux/feature/userSlice';
 import imagePath from '../../../assets/img/imagePath';
+import { upperCaseName } from '../../../utils/upperCaseName';
 import NextImage from '../NextImage/NextImage';
 import NextLink from '../NextLink/NextLink';
 
-export default function Navbar({ handleOpen, loggedIn, router }) {
+export default function Navbar({ handleOpen, loggedIn, router, user }) {
   const dispatch = useDispatch();
 
   function handleLogout() {
@@ -102,11 +103,22 @@ export default function Navbar({ handleOpen, loggedIn, router }) {
                   Pricing
                 </NextLink>
                 <div className="cu_avatar_wrapper">
-                  <NextImage
+                  {/* <NextImage
                     className="cu_avatar_icon"
                     src={imagePath.Avatar}
                     alt="avataricon"
-                  />
+                  /> */}
+                  {user.avatar ? (
+                    <NextImage
+                      className="cu_avatar_icon"
+                      src={imagePath.Avatar}
+                      alt="avatar"
+                    />
+                  ) : (
+                    <div className="cu_avatar_name_word">
+                      <span>{upperCaseName(user.name)}</span>
+                    </div>
+                  )}
                   <NextImage
                     className="cu_account_drop_down_icon"
                     src={imagePath.DownArrow}

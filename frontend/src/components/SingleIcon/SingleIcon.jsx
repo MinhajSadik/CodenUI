@@ -7,7 +7,7 @@ import NextLink from '../Shared/NextLink/NextLink';
 
 export default function SingleIcon() {
   const { open, handleOpen, handleClose } = useContext(AppContext);
-  const { copyStatus, copy } = useCopyToClipboard('coden ui copy', 3000);
+  const { copyStatus, copy } = useCopyToClipboard('CODENUI');
 
   console.log(copyStatus);
 
@@ -80,7 +80,7 @@ export default function SingleIcon() {
                                 src={imagePath.WebFlowSq}
                                 alt=""
                               />
-                              Copy for Webflow
+                              {!copyStatus && 'Copy for Webflow'}
                             </NextLink>
                             <NextLink
                               href=""
