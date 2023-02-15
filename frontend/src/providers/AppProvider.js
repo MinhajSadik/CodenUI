@@ -19,7 +19,7 @@ function AppProvider({ children }) {
     const [newPassOpen, setNewPassOpen] = useState(false)
     const [successOpen, setSuccessOpen] = useState(false)
 
-    const { loggedIn, loading: appLoading, user, verified, forgotten, newPassword, products, categories } = useSelector((state) => ({
+    const { loggedIn, loading: appLoading, error, success, user, verified, forgotten, newPassword, products, categories } = useSelector((state) => ({
         ...state.user,
         ...state.product,
         ...state.category,
@@ -34,8 +34,10 @@ function AppProvider({ children }) {
         // else setOpen(true)
         dispatch(findCategories())
         dispatch(findProducts())
-        dispatch(findCategoryByName(removeUnused(route, "/")))
-    }, [loggedIn])
+        if (route !== '/') {
+            dispatch(findCategoryByName(removeUnused(route, "/")))
+        }
+    }, [loggedIn, route, error])
 
     function handleOpenForgot() {
         setOpen(false)
@@ -93,6 +95,8 @@ function AppProvider({ children }) {
 
     const appInfo = {
         user,
+        error,
+        success,
         open,
         route,
         router,

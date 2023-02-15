@@ -40,10 +40,9 @@ class CategoryController {
   }
 
   async findCategoryByName(req, res) {
-    const { name } = req.params
-
+    const { categoryName } = req.params
     try {
-      const [first, second] = name.split("-")
+      const [first, second] = categoryName.split("-")
       const upperCategoryName = upperCaseWords(first + " " + second)
       const lowerCategoryName = first + " " + second
 
@@ -51,7 +50,7 @@ class CategoryController {
 
       if (!category) {
         return sendResponse(res, 404, {
-          message: `There are no categories included ${name}`
+          message: `There are no categories included ${categoryName}`
         })
       }
 

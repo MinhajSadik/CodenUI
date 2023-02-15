@@ -1,4 +1,4 @@
 
 export function upperCaseName(name) {
-    return name.split(" ").map((name) => name[0]).join('').toUpperCase()
+    return name?.split(" ").map((name) => name).join('').toUpperCase()
 }

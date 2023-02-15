@@ -207,6 +207,7 @@ a {
   background-color: #1d1927;
   padding: 15px 0;
   border-bottom: 1px solid #2a2633;
+  position: relative;
 }
 
 .navbar-brand {
@@ -3420,4 +3421,38 @@ a {
 
 .cu_go_to_home_btn:hover {
   color: #ffffff;
+}
+
+.cu_success_updated_message_box {
+  background-color: #30c562;
+  z-index: 999;
+  width: auto;
+  position: absolute;
+  padding: 3px 20px;
+  right: 0;
+}
+
+.cu_success_updated_message_text {
+  font-family: eudoxus-sans-700;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+  padding: 10px 0;
+}
+
+.cu_reached_your_daily_limit_message_box {
+  z-index: 999;
+  width: auto;
+  background-color: #f24e1e;
+  position: absolute;
+  padding: 3px 20px;
+  right: 0;
+}
+
+.cu_reached_your_daily_limit_message_text {
+  font-family: eudoxus-sans-700;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+  padding: 10px 0;
 }

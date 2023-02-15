@@ -38,8 +38,10 @@ const categorySlice = createSlice({
     initialState: {
         category: {},
         categories: [],
+        categoryProducts: [],
         loading: false,
-        error: ""
+        success: "",
+        error: "",
     },
 
     reducers: {},
@@ -51,9 +53,22 @@ const categorySlice = createSlice({
             })
             .addCase(findCategories.fulfilled, (state, { payload }) => {
                 state.loading = false
+                state.success = payload.message
                 state.categories = payload
             })
             .addCase(findCategories.rejected, (state, { payload }) => {
+                state.error = payload
+                state.loading = false
+            })
+            .addCase(findCategoryByName.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(findCategoryByName.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.success = payload.message
+                state.categoryProducts = payload
+            })
+            .addCase(findCategoryByName.rejected, (state, { payload }) => {
                 state.error = payload
                 state.loading = false
             })
