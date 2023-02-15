@@ -92,6 +92,17 @@ export const updatePassword = createAsyncThunk(
 );
 
 
+export const subscriber = createAsyncThunk(
+    "user/subscriber",
+    async (subscriberInfo, { rejectWithValue }) => {
+        try {
+            return await userService.subscriber(subscriberInfo)
+        } catch (error) {
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+);
 
 
 
@@ -214,6 +225,17 @@ const userSlice = createSlice({
                 state.user = payload
             })
             .addCase(updatePassword.rejected, (state, { payload }) => {
+                state.loading = false
+                state.error = payload
+            })
+            .addCase(subscriber.pending, (state, { payload }) => {
+                state.loading = true
+            })
+            .addCase(subscriber.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.user = payload
+            })
+            .addCase(subscriber.rejected, (state, { payload }) => {
                 state.loading = false
                 state.error = payload
             })

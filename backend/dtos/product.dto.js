@@ -12,8 +12,8 @@ class ProductDto {
   constructor(product) {
     this.id = product._id;
     this.name = product.name;
-    this.image = product.image;
     this.price = product.price;
+    this.image = product.image;
     this.productId = product.productId;
     this.categoryId = product.categoryId;
     this.viewsCount = product.viewsCount;

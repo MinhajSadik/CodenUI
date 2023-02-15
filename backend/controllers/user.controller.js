@@ -455,7 +455,33 @@ class UserController {
         message: "Your password changed successfully"
       })
     } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+  }
 
+  async subscriber(req, res) {
+    const { email } = req.body
+    try {
+      const existedUser = await userService.findUser(email)
+
+      if (existedUser) {
+        return sendResponse(res, 400, {
+          message: "You are already subscribed"
+        })
+      }
+
+      const user = await mailService.saveMail({ email })
+
+      return sendResponse(res, 200, {
+        message: "You are a subscriber to our newsletter",
+        user
+      })
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
     }
   }
 }

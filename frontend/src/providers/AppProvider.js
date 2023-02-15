@@ -26,9 +26,6 @@ function AppProvider({ children }) {
         ...state.user.otp
     }))
 
-    // const unUsed = removeUnused(route, "/")
-
-
     useEffect(() => {
         if (loggedIn) {
             setOpen(false)

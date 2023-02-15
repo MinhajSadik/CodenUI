@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { subscriber } from '../../../../redux/feature/userSlice';
 import imagePath from '../../../assets/img/imagePath';
 import NextImage from '../NextImage/NextImage';
-
+const initialState = {
+  email: '',
+};
 export default function Footer() {
+  const dispatch = useDispatch();
+  const [subscriberInfo, setSubscriberInfo] = useState(initialState);
+  const { email } = subscriberInfo;
+
+  function onInputChange(e) {
+    const { name, value } = e.target;
+    setSubscriberInfo({
+      ...subscriberInfo,
+      [name]: value,
+    });
+  }
+
+  function handleSubscriber(e) {
+    e.preventDefault();
+    if (email) {
+      dispatch(subscriber({ email }));
+      setSubscriberInfo(initialState);
+    }
+  }
+
   return (
     <footer>
       <div className="cu_footer_wrapper pt-50">
@@ -111,7 +135,11 @@ export default function Footer() {
                 <h5 className="cu_newsletter_title">Newsletter</h5>
                 <div className="input-group mb-3">
                   <input
+                    id="email"
                     type="text"
+                    name="email"
+                    value={email}
+                    onChange={onInputChange}
                     className="cu_form-control"
                     placeholder="Your email"
                     aria-label="Recipient's username"
@@ -121,6 +149,7 @@ export default function Footer() {
                     className="btn btn-outline-secondary"
                     type="button"
                     id="button-addon2"
+                    onClick={handleSubscriber}
                   >
                     <NextImage src={imagePath.RightArrow} alt="Arrow" />
                   </button>

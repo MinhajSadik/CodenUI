@@ -17,7 +17,7 @@ export const findCategories = createAsyncThunk(
 
 
 export const findCategoryByName = createAsyncThunk(
-    "category/getOne/:name",
+    "category/getOne/:categoryName",
     async (categoryName, { rejectWithValue }) => {
         try {
             return await categoryService.findCategoryByName(categoryName)

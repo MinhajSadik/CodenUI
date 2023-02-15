@@ -13,7 +13,7 @@ router.post(
 );
 
 router.get(
-  "/getOne/:name",
+  "/getOne/:categoryName",
   categoryController.findCategoryByName
 );
 
