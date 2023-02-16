@@ -322,7 +322,7 @@ a {
 /* <!--Homepage_hero_wrapper--> */
 
 .cu_hero_wrapper {
-  background-image: url(../src/assets/img/Frame.jpg);
+  background-image: url(../src/assets/images/Frame.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1046,7 +1046,7 @@ a {
 /* Life-Time_pricing_card */
 
 .cu_ld_pricing_card {
-  background-image: url(../src/assets/img/media/ld_price.svg);
+  background-image: url(../src/assets/images/media/ld_price.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1161,7 +1161,7 @@ a {
 /* cu_footer_wrapper_start */
 
 .cu_footer_wrapper {
-  background-image: url(../src/assets/img/media/footer-bg.jpg);
+  background-image: url(../src/assets/images/media/footer-bg.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1290,7 +1290,7 @@ a {
 /* cu_category_bannar */
 
 .cu_banner_wrapper {
-  background-image: url(../src/assets/img/media/category_banner_bg.svg);
+  background-image: url(../src/assets/images/media/category_banner_bg.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1615,7 +1615,7 @@ a {
 /* icon-pack-banner */
 
 .cu_icon_pack_bannar {
-  background-image: url(../src/assets/img/media/category_banner_bg.svg);
+  background-image: url(../src/assets/images/media/category_banner_bg.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1789,7 +1789,7 @@ a {
 /* single-icon-page */
 
 .cu_single_icon_pack_bannar {
-  background-image: url(../src/assets/img/media/single_page_icons_banner.jpg);
+  background-image: url(../src/assets/images/media/single_page_icons_banner.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2145,7 +2145,7 @@ a {
   padding: 6px;
   border-radius: 12px;
   width: 161px;
-  display: none;
+  /* display: none; */
 }
 
 .cu_avatar_icon:hover .account_menu {
@@ -3423,7 +3423,7 @@ a {
   color: #ffffff;
 }
 
-.cu_success_updated_message_box {
+.cu_success_message_box {
   background-color: #30c562;
   z-index: 999;
   width: auto;
@@ -3432,7 +3432,7 @@ a {
   right: 0;
 }
 
-.cu_success_updated_message_text {
+.cu_success_message_text {
   font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
@@ -3440,7 +3440,7 @@ a {
   padding: 10px 0;
 }
 
-.cu_reached_your_daily_limit_message_box {
+.cu_error_message_box {
   z-index: 999;
   width: auto;
   background-color: #f24e1e;
@@ -3449,10 +3449,26 @@ a {
   right: 0;
 }
 
-.cu_reached_your_daily_limit_message_text {
+.cu_error_message_text {
   font-family: eudoxus-sans-700;
   font-size: 14px;
   line-height: 22px;
   color: #ffffff;
   padding: 10px 0;
+}
+
+.top-right {
+  top: 12px;
+  right: 12px;
+  transition: transform 0.6s ease-in-out;
+  animation: toast-in-right 0.7s;
+}
+
+@keyframes toast-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }

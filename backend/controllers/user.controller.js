@@ -298,7 +298,7 @@ class UserController {
     res.clearCookie("accessToken")
 
     return sendResponse(res, 200, {
-      message: `User LoggedIn Successfully!`
+      message: `You Loggedout Successfully!`
     })
   }
 

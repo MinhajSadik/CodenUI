@@ -6,8 +6,7 @@ export const loginUser = createAsyncThunk(
     "user/login",
     async (loginInfo, { rejectWithValue }) => {
         try {
-            const { user } = await userService.login(loginInfo);
-            return user
+            return await userService.login(loginInfo);
         } catch (error) {
             console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
@@ -19,8 +18,7 @@ export const registerUser = createAsyncThunk(
     "user/register",
     async (registerInfo, { rejectWithValue }) => {
         try {
-            const { user } = await userService.register(registerInfo);
-            return user
+            return await userService.register(registerInfo);
         } catch (error) {
             console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
@@ -112,9 +110,11 @@ const userSlice = createSlice({
     name: "user",
 
     initialState: {
+        user: {},
+        error: "",
+        success: "",
         loading: false,
         loggedIn: false,
-        user: {},
         otp: {
             hash: "",
             email: "",
@@ -122,7 +122,6 @@ const userSlice = createSlice({
             verified: false,
             newPassword: false
         },
-        error: "",
     },
 
     reducers: {
@@ -133,7 +132,7 @@ const userSlice = createSlice({
             if (user === null) {
                 state.loggedIn = false;
             } state.loggedIn = true;
-        }
+        },
     },
 
     extraReducers: (builder) => {
@@ -144,6 +143,7 @@ const userSlice = createSlice({
             .addCase(loginUser.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.loggedIn = true
+                state.success = payload.message
                 state.user = payload
             })
             .addCase(loginUser.rejected, (state, { payload }) => {
@@ -156,6 +156,7 @@ const userSlice = createSlice({
             .addCase(registerUser.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.loggedIn = true
+                state.success = payload.message
                 state.user = payload
             })
             .addCase(registerUser.rejected, (state, { payload }) => {
@@ -168,6 +169,7 @@ const userSlice = createSlice({
             .addCase(logoutUser.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.loggedIn = false
+                state.success = payload.message
             })
             .addCase(logoutUser.rejected, (state, { payload }) => {
                 state.loading = false
@@ -180,6 +182,7 @@ const userSlice = createSlice({
             .addCase(forgotPassword.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.loggedIn = false
+                state.success = payload.message
                 state.otp.email = payload.email
                 state.otp.hash = payload.hashed
                 state.otp.forgotten = payload.forgotten
@@ -196,6 +199,7 @@ const userSlice = createSlice({
             .addCase(verifyOtp.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.loggedIn = false
+                state.success = payload.message
                 state.otp.verified = payload.verified
             })
             .addCase(verifyOtp.rejected, (state, { payload }) => {
@@ -210,6 +214,7 @@ const userSlice = createSlice({
             .addCase(resetPassword.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.loggedIn = false
+                state.success = payload.message
                 state.otp.newPassword = payload.newPassword
             })
             .addCase(resetPassword.rejected, (state, { payload }) => {
@@ -223,6 +228,7 @@ const userSlice = createSlice({
             .addCase(updatePassword.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.user = payload
+                state.success = payload.message
             })
             .addCase(updatePassword.rejected, (state, { payload }) => {
                 state.loading = false
@@ -234,6 +240,7 @@ const userSlice = createSlice({
             .addCase(subscriber.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.user = payload
+                state.success = payload.message
             })
             .addCase(subscriber.rejected, (state, { payload }) => {
                 state.loading = false
@@ -242,6 +249,6 @@ const userSlice = createSlice({
     }
 })
 
-export const { setUser, setOtp } = userSlice.actions;
+export const { setUser, setMessage } = userSlice.actions;
 
 export default userSlice.reducer

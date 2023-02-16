@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePassword } from '../../../redux/feature/userSlice';
-import imagePath from '../../assets/img/imagePath';
+import imagePath from '../../assets/images/imagePath';
 import { withRouter } from '../../components';
 import { upperCaseName } from '../../utils/upperCaseName';
 import NextImage from '../Shared/NextImage/NextImage';

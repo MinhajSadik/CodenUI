@@ -11,15 +11,17 @@ import {
 } from '../../../components';
 import { AppContext } from '../../../contexts/contexts';
 import AppProvider from '../../../providers/AppProvider';
-import Alert from '../AlertMessage/Alert';
+import Notify from '../Notify/Notify';
 
 function Layout({ children }) {
   const {
     loading,
-    open,
-    user,
     error,
     success,
+    notification,
+    showNotify,
+    open,
+    user,
     otpOpen,
     handleCloseForgot,
     handleCloseNewPassword,
@@ -27,7 +29,6 @@ function Layout({ children }) {
     handleCloseOtp,
     newPassOpen,
     opened,
-    appLoading,
     successOpen,
     forgotOpen,
     handleOpen,
@@ -49,32 +50,41 @@ function Layout({ children }) {
             router={router}
           />
 
-          {(error || success) && <Alert error={error} success={success} />}
+          {showNotify && notification && (
+            <Notify error={error} notification={notification} />
+          )}
 
           {opened && <Register handleSwitch={handleSwitch} />}
+
           {open && (
             <Login
               handleSwitch={handleSwitch}
               handleOpenForgot={handleOpenForgot}
             />
           )}
+
           {forgotOpen && (
             <ForgotPassword
               handleOpen={handleOpen}
               handleCloseForgot={handleCloseForgot}
             />
           )}
+
           {otpOpen && (
             <Otp handleOpen={handleOpen} handleCloseOtp={handleCloseOtp} />
           )}
+
           {newPassOpen && (
             <NewPassword
               handleOpen={handleOpen}
               handleCloseNewPassword={handleCloseNewPassword}
             />
           )}
+
           {successOpen && <ResetPasswordSucess handleOpen={handleOpen} />}
+
           <main>{children}</main>
+
           {matchedRoute && <Footer />}
         </>
       )}

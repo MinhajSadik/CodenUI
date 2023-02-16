@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetPassword } from '../../../redux/feature/userSlice';
-import imagePath from '../../assets/img/imagePath';
+import imagePath from '../../assets/images/imagePath';
 import NextImage from '../Shared/NextImage/NextImage';
 import NextLink from '../Shared/NextLink/NextLink';
 

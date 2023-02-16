@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import imagePath from '../../assets/img/imagePath';
+import imagePath from '../../assets/images/imagePath';
 import { AppContext } from '../../contexts/contexts';
 import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
 import NextImage from '../Shared/NextImage/NextImage';

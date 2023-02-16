@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../redux/feature/userSlice';
-import GoogleIcon from '../../assets/img/icon/logos_google-icon.svg';
-import Logo from '../../assets/img/logo/CodenUILogo.svg';
+import GoogleIcon from '../../assets/images/icon/logos_google-icon.svg';
+import Logo from '../../assets/images/logo/CodenUILogo.svg';
 import NextImage from '../Shared/NextImage/NextImage';
 import NextLink from '../Shared/NextLink/NextLink';
 
