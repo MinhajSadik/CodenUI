@@ -30,7 +30,7 @@ export default function Login({ handleSwitch, handleOpenForgot }) {
     e.preventDefault();
     if (email && password) {
       dispatch(loginUser(userInfo));
-      router.push('/');
+      // router.push('/');
     }
     setUserInfo(initialState);
   }
