@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Notify({ notification, error }) {
+export default function Notify({ children, error }) {
   return (
     <div className="container top-right">
       <div className="col-lg-6 col-md-8 m-auto text-center">
@@ -12,7 +12,7 @@ export default function Notify({ notification, error }) {
               error ? 'cu_error_message_text' : 'cu_success_message_text'
             }
           >
-            {notification}
+            {children}
           </h3>
         </div>
       </div>

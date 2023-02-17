@@ -18,8 +18,8 @@ function Layout({ children }) {
     loading,
     error,
     success,
-    notification,
-    showNotify,
+    showError,
+    showSuccess,
     open,
     user,
     otpOpen,
@@ -49,10 +49,8 @@ function Layout({ children }) {
             loggedIn={loggedIn}
             router={router}
           />
-
-          {showNotify && notification && (
-            <Notify error={error} notification={notification} />
-          )}
+          {showError && error && <Notify error={error}>{error}</Notify>}
+          {showSuccess && success && <Notify>{success}</Notify>}
 
           {opened && <Register handleSwitch={handleSwitch} />}
 
@@ -62,29 +60,23 @@ function Layout({ children }) {
               handleOpenForgot={handleOpenForgot}
             />
           )}
-
           {forgotOpen && (
             <ForgotPassword
               handleOpen={handleOpen}
               handleCloseForgot={handleCloseForgot}
             />
           )}
-
           {otpOpen && (
             <Otp handleOpen={handleOpen} handleCloseOtp={handleCloseOtp} />
           )}
-
           {newPassOpen && (
             <NewPassword
               handleOpen={handleOpen}
               handleCloseNewPassword={handleCloseNewPassword}
             />
           )}
-
           {successOpen && <ResetPasswordSucess handleOpen={handleOpen} />}
-
           <main>{children}</main>
-
           {matchedRoute && <Footer />}
         </>
       )}

@@ -133,6 +133,24 @@ const userSlice = createSlice({
                 state.loggedIn = false;
             } state.loggedIn = true;
         },
+        clearMessage(state, action) {
+            let { error, success } = state
+            if (error) {
+                state.error = ""
+            } else if (success) {
+                state.success = ""
+            } else if (error && success) {
+                state.error = ""
+                state.success = ""
+            }
+        },
+        clearError(state) {
+            state.error = ""
+        }
+        ,
+        clearSuccess(state) {
+            state.success = ""
+        }
     },
 
     extraReducers: (builder) => {
@@ -249,6 +267,6 @@ const userSlice = createSlice({
     }
 })
 
-export const { setUser, setMessage } = userSlice.actions;
+export const { setUser, clearMessage, clearError, clearSuccess } = userSlice.actions;
 
 export default userSlice.reducer

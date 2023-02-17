@@ -111,7 +111,7 @@ export default function Navbar({ handleOpen, loggedIn, router, user }) {
                     />
                   ) : (
                     <div className="cu_avatar_name_word">
-                      <span>{upperCaseName(user.name)}</span>
+                      <span>{upperCaseName(user?.name)}</span>
                     </div>
                   )}
                   <NextImage
