@@ -4,21 +4,27 @@ import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 dotenv.config();
 const app = express();
 
-app.use(express.json());
 app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
-app.use(express.urlencoded({ limit: "10mb", extended: true }));
-app.use(express.json({ limit: "10mb", extended: true }));
-app.use(cookieParser());
+app.use(express.json());
 app.use(morgan("common"));
+app.use(cookieParser());
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true,
 }));
+app.use(express.json({ limit: "10mb", extended: true }));
+app.use(express.static(path.join(__dirname, "/admin/build")));
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
+
 
 //routes
 import categoryRoute from "./routes/category.route.js";

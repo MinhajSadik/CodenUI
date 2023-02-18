@@ -9,15 +9,15 @@ import otpService from "../services/otp.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
 import { sendResponse } from "../utils/response.util.js";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip");
-const docMailPath = path.join(__dirname, "../configs/doc.mail.html");
-const otpMailPath = path.join(__dirname, "../configs/otp.mail.html");
-const docFile = fs.readFileSync(docMailPath, "utf-8");
-const otpFile = fs.readFileSync(otpMailPath, "utf-8");
-const docTemplate = handlebars.compile(docFile);
-const otpTemplate = handlebars.compile(otpFile);
+const __filename = fileURLToPath(import.meta.url),
+  __dirname = dirname(__filename),
+  zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip"),
+  docMailPath = path.join(__dirname, "../files/doc.mail.html"),
+  otpMailPath = path.join(__dirname, "../files/otp.mail.html"),
+  docFile = fs.readFileSync(docMailPath, "utf-8"),
+  otpFile = fs.readFileSync(otpMailPath, "utf-8"),
+  docTemplate = handlebars.compile(docFile),
+  otpTemplate = handlebars.compile(otpFile);
 
 fs.promises;
 
