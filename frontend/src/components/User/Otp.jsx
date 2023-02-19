@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { verifyOtp } from '../../../redux/feature/userSlice';
-import imagePath from '../../assets/images/imagePath';
+import imagePath from '../../assets/images/imagesPath';
 import NextImage from '../Shared/NextImage/NextImage';
 import NextLink from '../Shared/NextLink/NextLink';
 

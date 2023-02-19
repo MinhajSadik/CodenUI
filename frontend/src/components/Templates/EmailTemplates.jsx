@@ -1,18 +1,17 @@
 import React from 'react';
-import imagePath from '../../assets/images/imagePath';
+import imagePath from '../../assets/images/imagesPath';
 import NextImage from '../Shared/NextImage/NextImage';
 import NextLink from '../Shared/NextLink/NextLink';
 
-export default function CodedTemplates({ route }) {
+export default function EmailTemplates({ route }) {
   return (
     <section className="cu_coded_tem_wrapper pt-76">
       <div className="container">
         {route === '/' && (
           <div className="cu_coded_blocks_textbox">
-            <h2 className="cu_coded_blocks_title">Coded Templates</h2>
+            <h2 className="cu_coded_blocks_title">Email Templates</h2>
           </div>
         )}
-
         <div className="row gy-4 mb-32">
           <div className="col-lg-4 sm-mt-20">
             <div className="cu_coded_tem_card">
@@ -335,7 +334,7 @@ export default function CodedTemplates({ route }) {
 
         <div className="cu_coded_tem_view_all_btn_box m-auto text-center">
           <NextLink
-            href="coded-templates"
+            href="email-templates"
             className="cu_coded_tem_view_all_btn"
           >
             Veiw All

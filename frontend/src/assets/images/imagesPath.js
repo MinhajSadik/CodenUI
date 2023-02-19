@@ -1,7 +1,7 @@
 export default {
     // logo
     Logo: require('./logo/CodenUILogo.svg'),
-    MiniLogo: require('./dashboard/logo-mini.svg'),
+    MiniLogo: require('./dashboard/images/logo-mini.svg'),
     Avatar: require("./icon/Avatar-icon.svg"),
     DownArrow: require("./icon/downArrow.svg"),
     RightArrow: require("./icon/right_arrow.svg"),

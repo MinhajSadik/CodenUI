@@ -1,25 +1,25 @@
 import React from 'react';
-import imagePath from '../../assets/images/imagePath';
+import imagePath from '../../assets/images/imagesPath';
 import NextImage from '../Shared/NextImage/NextImage';
 import NextLink from '../Shared/NextLink/NextLink';
 
-export default function EmailTemplates({ route }) {
+export default function CodedBlocks({ route }) {
   return (
-    <section className="cu_coded_tem_wrapper pt-76">
+    <section className="cu_coded_blocks_wrapper pt-76 pb-100">
       <div className="container">
         {route === '/' && (
           <div className="cu_coded_blocks_textbox">
-            <h2 className="cu_coded_blocks_title">Email Templates</h2>
+            <h2 className="cu_coded_blocks_title">Coded Blocks</h2>
           </div>
         )}
-        <div className="row gy-4 mb-32">
-          <div className="col-lg-4 sm-mt-20">
-            <div className="cu_coded_tem_card">
-              <div className="cu_coded_tem_card_fea_img">
+        <div className="row gy-4 mb-50">
+          <div className="col-lg-4">
+            <div className="cu_coded_blocks_card">
+              <div className="cu_coded_blocks_card_fea_img">
                 <NextImage
-                  className="cu_coded_tem_card_img"
-                  src={imagePath.WebKit}
-                  alt="webkit"
+                  className="cu_coded_blocks_card_img"
+                  src={imagePath.CodedBlocks2}
+                  alt="codedblocks"
                 />
               </div>
 
@@ -118,20 +118,19 @@ export default function EmailTemplates({ route }) {
               </div>
             </div>
           </div>
-
-          <div className="col-lg-4 sm-mt-20">
-            <div className="cu_coded_tem_card">
-              <div className="cu_coded_tem_card_fea_img">
+          <div className="col-lg-4">
+            <div className="cu_coded_blocks_card">
+              <div className="cu_coded_blocks_card_fea_img">
                 <NextImage
-                  className="cu_coded_tem_card_img"
-                  src={imagePath.WebKit}
-                  alt="webkit"
+                  className="cu_coded_blocks_card_img"
+                  src={imagePath.CodedBlocksPre}
+                  alt="codedBlocksPre"
                 />
               </div>
 
               <div className="cu_coded_tem_card_details">
-                <div className="cu_coded_tem_pre">
-                  <p className="cu_coded_tem_pre_text">Premium</p>
+                <div className="cu_coded_tem_free">
+                  <p className="cu_coded_tem_free_text">Free</p>
                 </div>
                 <h4 className="cu_coded_tem_card_title">
                   Business Management Web UI Kit
@@ -186,7 +185,7 @@ export default function EmailTemplates({ route }) {
                       <NextImage
                         className="cu_coded_tem_card_version_img"
                         src={imagePath.WebFlow}
-                        alt="webflow"
+                        alt="webFlow"
                       />
                     </NextLink>
                     <NextLink
@@ -196,7 +195,7 @@ export default function EmailTemplates({ route }) {
                       <NextImage
                         className="cu_coded_tem_card_version_img"
                         src={imagePath.NextJs}
-                        alt="nextjs"
+                        alt="nextJs"
                       />
                     </NextLink>
                     <NextLink
@@ -216,7 +215,7 @@ export default function EmailTemplates({ route }) {
                       <NextImage
                         className="cu_coded_tem_card_version_img"
                         src={imagePath.VueJs}
-                        alt="vuejs"
+                        alt="vueJs"
                       />
                     </NextLink>
                   </div>
@@ -224,20 +223,19 @@ export default function EmailTemplates({ route }) {
               </div>
             </div>
           </div>
-
-          <div className="col-lg-4 sm-mt-20">
-            <div className="cu_coded_tem_card">
-              <div className="cu_coded_tem_card_fea_img">
+          <div className="col-lg-4">
+            <div className="cu_coded_blocks_card">
+              <div className="cu_coded_blocks_card_fea_img">
                 <NextImage
-                  className="cu_coded_tem_card_img"
-                  src={imagePath.WebKit}
-                  alt="webkit"
+                  className="cu_coded_blocks_card_img"
+                  src={imagePath.CodedBlocks2}
+                  alt="codedBlocks"
                 />
               </div>
 
               <div className="cu_coded_tem_card_details">
-                <div className="cu_coded_tem_pre">
-                  <p className="cu_coded_tem_pre_text">Premium</p>
+                <div className="cu_coded_tem_free">
+                  <p className="cu_coded_tem_free_text">Free</p>
                 </div>
                 <h4 className="cu_coded_tem_card_title">
                   Business Management Web UI Kit
@@ -272,7 +270,7 @@ export default function EmailTemplates({ route }) {
                       <NextImage
                         className="cu_coded_tem_card_version_img"
                         src={imagePath.Bootstrap}
-                        alt="bootstap"
+                        alt="bootstrap"
                       />
                     </NextLink>
                     <NextLink
@@ -332,12 +330,9 @@ export default function EmailTemplates({ route }) {
           </div>
         </div>
 
-        <div className="cu_coded_tem_view_all_btn_box m-auto text-center">
-          <NextLink
-            href="email-templates"
-            className="cu_coded_tem_view_all_btn"
-          >
-            Veiw All
+        <div className="m-auto text-center" style={{ width: ' 20%' }}>
+          <NextLink href="coded-blocks" className="cu_coded_tem_view_all_btn">
+            Load More
           </NextLink>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { subscriber } from '../../../../redux/feature/userSlice';
-import imagePath from '../../../assets/images/imagePath';
+import imagePath from '../../../assets/images/imagesPath';
 import NextImage from '../NextImage/NextImage';
 const initialState = {
   email: '',

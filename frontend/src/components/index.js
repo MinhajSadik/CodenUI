@@ -1,7 +1,8 @@
 export { default as withRouter } from '../hoc/withRouter';
-export { default as CodedBlocks } from "./CodedBlocks/CodedBlocks";
-export { default as CodedTemplates } from "./CodedTemplates/CodedTemplates";
-export { default as EmailTemplates } from "./EmailTemplates/EmailTemplates";
+export { default as CodedBlocks } from "./Templates/CodedBlocks";
+export { default as CodedTemplates } from "./Templates/CodedTemplates";
+export { default as Dashboard } from "./Dashboard/Dashboard";
+export { default as EmailTemplates } from "./Templates/EmailTemplates";
 export { default as Faq } from "./Faq/Faq";
 export { default as Hero } from "./Hero/Hero";
 export { default as IconPack } from "./IconPack/IconPack";

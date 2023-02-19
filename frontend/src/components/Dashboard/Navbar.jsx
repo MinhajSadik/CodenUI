@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import imagePath from '../../assets/images/imagePath';
+import imagesPath from '../../assets/images/imagesPath';
 import { upperCaseName } from '../../utils/upperCaseName';
 import NextImage from '../Shared/NextImage/NextImage';
 import NextLink from '../Shared/NextLink/NextLink';
@@ -11,10 +11,10 @@ export default function Navbar() {
     <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <NextLink className="navbar-brand brand-logo" href="/">
-          <NextImage src={imagePath.Logo} alt="logo" />
+          <NextImage src={imagesPath.Logo} alt="logo" />
         </NextLink>
         <NextLink className="navbar-brand brand-logo-mini" href="index.html">
-          <NextImage src={imagePath.MiniLogo} alt="logo" />
+          <NextImage src={imagesPath.MiniLogo} alt="logo" />
         </NextLink>
       </div>
       <div className="navbar-menu-wrapper d-flex align-items-stretch">
@@ -109,7 +109,7 @@ export default function Navbar() {
                 {user.avatar ? (
                   <NextImage
                     className="cu_avatar_icon"
-                    src={imagePath.Avatar}
+                    src={imagesPath.Avatar}
                     alt="avatar"
                   />
                 ) : (
@@ -119,7 +119,7 @@ export default function Navbar() {
                 )}
                 <NextImage
                   className="cu_account_drop_down_icon"
-                  src={imagePath.DownArrow}
+                  src={imagesPath.DownArrow}
                   alt="downArrow"
                 />
               </div>

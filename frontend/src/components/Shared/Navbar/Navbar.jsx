@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../../../redux/feature/userSlice';
-import imagePath from '../../../assets/images/imagePath';
+import imagePath from '../../../assets/images/imagesPath';
 import { upperCaseName } from '../../../utils/upperCaseName';
 import NextImage from '../NextImage/NextImage';
 import NextLink from '../NextLink/NextLink';

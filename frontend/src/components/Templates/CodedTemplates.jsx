@@ -1,25 +1,26 @@
 import React from 'react';
-import imagePath from '../../assets/images/imagePath';
+import imagePath from '../../assets/images/imagesPath';
 import NextImage from '../Shared/NextImage/NextImage';
 import NextLink from '../Shared/NextLink/NextLink';
 
-export default function CodedBlocks({ route }) {
+export default function CodedTemplates({ route }) {
   return (
-    <section className="cu_coded_blocks_wrapper pt-76 pb-100">
+    <section className="cu_coded_tem_wrapper pt-76">
       <div className="container">
         {route === '/' && (
           <div className="cu_coded_blocks_textbox">
-            <h2 className="cu_coded_blocks_title">Coded Blocks</h2>
+            <h2 className="cu_coded_blocks_title">Coded Templates</h2>
           </div>
         )}
-        <div className="row gy-4 mb-50">
-          <div className="col-lg-4">
-            <div className="cu_coded_blocks_card">
-              <div className="cu_coded_blocks_card_fea_img">
+
+        <div className="row gy-4 mb-32">
+          <div className="col-lg-4 sm-mt-20">
+            <div className="cu_coded_tem_card">
+              <div className="cu_coded_tem_card_fea_img">
                 <NextImage
-                  className="cu_coded_blocks_card_img"
-                  src={imagePath.CodedBlocks2}
-                  alt="codedblocks"
+                  className="cu_coded_tem_card_img"
+                  src={imagePath.WebKit}
+                  alt="webkit"
                 />
               </div>
 
@@ -118,19 +119,20 @@ export default function CodedBlocks({ route }) {
               </div>
             </div>
           </div>
-          <div className="col-lg-4">
-            <div className="cu_coded_blocks_card">
-              <div className="cu_coded_blocks_card_fea_img">
+
+          <div className="col-lg-4 sm-mt-20">
+            <div className="cu_coded_tem_card">
+              <div className="cu_coded_tem_card_fea_img">
                 <NextImage
-                  className="cu_coded_blocks_card_img"
-                  src={imagePath.CodedBlocksPre}
-                  alt="codedBlocksPre"
+                  className="cu_coded_tem_card_img"
+                  src={imagePath.WebKit}
+                  alt="webkit"
                 />
               </div>
 
               <div className="cu_coded_tem_card_details">
-                <div className="cu_coded_tem_free">
-                  <p className="cu_coded_tem_free_text">Free</p>
+                <div className="cu_coded_tem_pre">
+                  <p className="cu_coded_tem_pre_text">Premium</p>
                 </div>
                 <h4 className="cu_coded_tem_card_title">
                   Business Management Web UI Kit
@@ -185,7 +187,7 @@ export default function CodedBlocks({ route }) {
                       <NextImage
                         className="cu_coded_tem_card_version_img"
                         src={imagePath.WebFlow}
-                        alt="webFlow"
+                        alt="webflow"
                       />
                     </NextLink>
                     <NextLink
@@ -195,7 +197,7 @@ export default function CodedBlocks({ route }) {
                       <NextImage
                         className="cu_coded_tem_card_version_img"
                         src={imagePath.NextJs}
-                        alt="nextJs"
+                        alt="nextjs"
                       />
                     </NextLink>
                     <NextLink
@@ -215,7 +217,7 @@ export default function CodedBlocks({ route }) {
                       <NextImage
                         className="cu_coded_tem_card_version_img"
                         src={imagePath.VueJs}
-                        alt="vueJs"
+                        alt="vuejs"
                       />
                     </NextLink>
                   </div>
@@ -223,19 +225,20 @@ export default function CodedBlocks({ route }) {
               </div>
             </div>
           </div>
-          <div className="col-lg-4">
-            <div className="cu_coded_blocks_card">
-              <div className="cu_coded_blocks_card_fea_img">
+
+          <div className="col-lg-4 sm-mt-20">
+            <div className="cu_coded_tem_card">
+              <div className="cu_coded_tem_card_fea_img">
                 <NextImage
-                  className="cu_coded_blocks_card_img"
-                  src={imagePath.CodedBlocks2}
-                  alt="codedBlocks"
+                  className="cu_coded_tem_card_img"
+                  src={imagePath.WebKit}
+                  alt="webkit"
                 />
               </div>
 
               <div className="cu_coded_tem_card_details">
-                <div className="cu_coded_tem_free">
-                  <p className="cu_coded_tem_free_text">Free</p>
+                <div className="cu_coded_tem_pre">
+                  <p className="cu_coded_tem_pre_text">Premium</p>
                 </div>
                 <h4 className="cu_coded_tem_card_title">
                   Business Management Web UI Kit
@@ -270,7 +273,7 @@ export default function CodedBlocks({ route }) {
                       <NextImage
                         className="cu_coded_tem_card_version_img"
                         src={imagePath.Bootstrap}
-                        alt="bootstrap"
+                        alt="bootstap"
                       />
                     </NextLink>
                     <NextLink
@@ -330,9 +333,12 @@ export default function CodedBlocks({ route }) {
           </div>
         </div>
 
-        <div className="m-auto text-center" style={{ width: ' 20%' }}>
-          <NextLink href="coded-blocks" className="cu_coded_tem_view_all_btn">
-            Load More
+        <div className="cu_coded_tem_view_all_btn_box m-auto text-center">
+          <NextLink
+            href="coded-templates"
+            className="cu_coded_tem_view_all_btn"
+          >
+            Veiw All
           </NextLink>
         </div>
       </div>
