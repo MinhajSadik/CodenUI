@@ -1,8 +1,8 @@
 import CategoryDto from "../dtos/category.dto.js";
 import ProductDto from "../dtos/product.dto.js";
+import { upperCaseWords } from "../helpers/upperCaseWords.js";
 import categoryService from "../services/category.service.js";
 import productService from "../services/product.service.js";
-import { upperCaseWords } from "../utils/helpers.js";
 import { sendResponse } from "../utils/response.util.js";
 
 class CategoryController {

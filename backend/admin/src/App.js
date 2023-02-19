@@ -6,7 +6,8 @@ function App() {
   return (
     <BrowserRouter >
       <Routes>
-        <Route path='/' element={<Dashboard />} />
+        <Route path='/*' element={<Dashboard />} />
+        <Route path='/navbar' element={<h1>HIIII</h1>} />
       </Routes>
     </BrowserRouter>
   );

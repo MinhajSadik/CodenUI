@@ -67,7 +67,7 @@ class UserController {
     }
   }
 
-  async loginUser(req, res) {
+  async loginUser(req, res, next) {
     try {
       const { email, password } = req.body;
       const user = await userService.findUser(email);
@@ -110,9 +110,7 @@ class UserController {
 
 
       } catch (error) {
-        return sendResponse(res, 500, {
-          message: error.message
-        })
+        return next(error)
       }
 
 
@@ -131,9 +129,7 @@ class UserController {
         user: new UserDto(user)
       });
     } catch (error) {
-      return sendResponse(res, 500, {
-        message: error.message,
-      });
+      next(error)
     }
   }
 

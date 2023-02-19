@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Dropdown from "../../assets/images/dark.png";
+import Avatar from "../../assets/images/face1.jpg";
 import LogoMini from "../../assets/images/logo-mini.svg";
 import Logo from "../../assets/images/logo.svg";
 
@@ -104,7 +106,7 @@ export default function Navbar({ loggedIn, user, upperCaseName }) {
             <div className="d-flex justify-content-between align-items-center">
               <div className="cu_avatar_wrapper">
                 {user.avatar ? (
-                  <img className="cu_avatar_icon" src="" alt="avatar" />
+                  <img className="cu_avatar_icon" src={Avatar} alt="avatar" />
                 ) : (
                   <div className="cu_avatar_name_word">
                     <span>{upperCaseName(user.name)}</span>
@@ -112,7 +114,7 @@ export default function Navbar({ loggedIn, user, upperCaseName }) {
                 )}
                 <img
                   className="cu_account_drop_down_icon"
-                  src=""
+                  src={Dropdown}
                   alt="downArrow"
                 />
               </div>
