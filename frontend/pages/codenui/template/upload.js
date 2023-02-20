@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Head from 'next/head';
-import { Template } from '../../../src/components';
+import { Dashboard, Template } from '../../../src/components';
 
 export default function upload() {
     return (
@@ -12,7 +12,9 @@ export default function upload() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
             </Head>
-            <Template />
+            <Dashboard>
+                <Template />
+            </Dashboard>
         </>
     )
 }

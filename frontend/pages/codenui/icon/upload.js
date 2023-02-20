@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { Icon } from '../../../src/components';
+import { Dashboard, Icon } from '../../../src/components';
 
 export default function upload() {
     return (
@@ -11,7 +11,9 @@ export default function upload() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
             </Head>
-            <Icon />
+            <Dashboard>
+                <Icon />
+            </Dashboard>
         </>
     )
 }
