@@ -4,21 +4,8 @@ export default function Template() {
   return (
     <div class="main-panel">
       <div class="content-wrapper">
-        <div class="page-header">
-          <h3 class="page-title"> Form elements </h3>
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="#">Forms</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Form elements
-              </li>
-            </ol>
-          </nav>
-        </div>
         <div class="row">
-          <div class="col-md-6 grid-margin stretch-card">
+          {/* <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Default form</h4>
@@ -175,7 +162,7 @@ export default function Template() {
                 </form>
               </div>
             </div>
-          </div>
+          </div> */}
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -192,47 +179,41 @@ export default function Template() {
                     />
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail3">Email address</label>
+                    <label for="exampleInputEmail3">Price</label>
                     <input
-                      type="email"
+                      type="text"
                       class="form-control"
                       id="exampleInputEmail3"
-                      placeholder="Email"
+                      placeholder="Price"
                     />
                   </div>
+
                   <div class="form-group">
-                    <label for="exampleInputPassword4">Password</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="exampleInputPassword4"
-                      placeholder="Password"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleSelectGender">Gender</label>
-                    <select class="form-control" id="exampleSelectGender">
-                      <option>Male</option>
-                      <option>Female</option>
+                    <label for="exampleSelectGender">Categories</label>
+                    <select className="form-control">
+                      <option>Choose a Category</option>
+                      <option>Coded Template</option>
+                      <option>Coded Block</option>
+                      <option>Email Template</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <label>File upload</label>
+                  <div className="form-group">
+                    <label>Thumbnail upload</label>
                     <input
                       type="file"
                       name="img[]"
-                      class="file-upload-default"
+                      className="file-upload-default"
                     />
-                    <div class="input-group col-xs-12">
+                    <div className="input-group col-xs-12">
                       <input
                         type="text"
-                        class="form-control file-upload-info"
+                        className="form-control file-upload-info"
                         disabled
-                        placeholder="Upload Image"
+                        placeholder="Upload Thumbnail"
                       />
-                      <span class="input-group-append">
+                      <span className="input-group-append">
                         <button
-                          class="file-upload-browse btn btn-gradient-primary"
+                          className="file-upload-browse btn btn-gradient-primary"
                           type="button"
                         >
                           Upload
@@ -240,63 +221,130 @@ export default function Template() {
                       </span>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputCity1">City</label>
+                  <div className="form-group">
+                    <label>Image upload</label>
+                    <input
+                      type="file"
+                      name="img[]"
+                      className="file-upload-default"
+                    />
+                    <div className="input-group col-xs-12">
+                      <input
+                        type="text"
+                        className="form-control file-upload-info"
+                        disabled
+                        placeholder="Upload Image"
+                      />
+                      <span className="input-group-append">
+                        <button
+                          className="file-upload-browse btn btn-gradient-primary"
+                          type="button"
+                        >
+                          Upload
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label for="exampleInputCity1">Tags</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       id="exampleInputCity1"
-                      placeholder="Location"
+                      placeholder="Tags"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="exampleTextarea1">Textarea</label>
+                    <div class="input-group">
+                      <input
+                        aria-label="Text input with dropdown button"
+                        type="text"
+                        class="form-control form-control"
+                      />
+                      <div class="input-group-prepend">
+                        <button
+                          class="btn btn-sm btn-outline-primary dropdown-toggle"
+                          type="button"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Dropdown
+                        </button>
+                        <div class="">
+                          <div class="form-group">
+                            <div class="form-check">
+                              <input type="checkbox" name="" id="" />
+                              Figma
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="" id="" />
+                              Tailwind
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="" id="" />
+                              Bootstrap
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" name="" id="" />
+                              Css
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label for="exampleTextarea1">Overview</label>
                     <textarea
-                      class="form-control"
+                      className="form-control"
                       id="exampleTextarea1"
                       rows="4"
                     ></textarea>
                   </div>
-                  <button type="submit" class="btn btn-gradient-primary me-2">
+                  <button
+                    type="submit"
+                    className="btn btn-gradient-primary me-2"
+                  >
                     Submit
                   </button>
-                  <button class="btn btn-light">Cancel</button>
+                  <button className="btn btn-light">Cancel</button>
                 </form>
               </div>
             </div>
           </div>
-          <div class="col-md-6 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Input size</h4>
-                <p class="card-description">
+          {/* <div className="col-md-6 grid-margin stretch-card">
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title">Input size</h4>
+                <p className="card-description">
                   {' '}
-                  Add classes like <code>.form-control-lg</code> and{' '}
+                  Add classNamees like <code>.form-control-lg</code> and{' '}
                   <code>.form-control-sm</code>.{' '}
                 </p>
-                <div class="form-group">
+                <div className="form-group">
                   <label>Large input</label>
                   <input
                     type="text"
-                    class="form-control form-control-lg"
+                    className="form-control form-control-lg"
                     placeholder="Username"
                     aria-label="Username"
                   />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label>Default input</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Username"
                     aria-label="Username"
                   />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label>Small input</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    className="form-control form-control-sm"
                     placeholder="Username"
                     aria-label="Username"
                   />
@@ -304,19 +352,19 @@ export default function Template() {
               </div>
             </div>
           </div>
-          <div class="col-md-6 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Select size</h4>
-                <p class="card-description">
+          <div className="col-md-6 grid-margin stretch-card">
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title">Select size</h4>
+                <p className="card-description">
                   {' '}
-                  Add classes like <code>.form-control-lg</code> and{' '}
+                  Add classNamees like <code>.form-control-lg</code> and{' '}
                   <code>.form-control-sm</code>.{' '}
                 </p>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="exampleFormControlSelect1">Large select</label>
                   <select
-                    class="form-control form-control-lg"
+                    className="form-control form-control-lg"
                     id="exampleFormControlSelect1"
                   >
                     <option>1</option>
@@ -326,9 +374,9 @@ export default function Template() {
                     <option>5</option>
                   </select>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="exampleFormControlSelect2">Default select</label>
-                  <select class="form-control" id="exampleFormControlSelect2">
+                  <select className="form-control" id="exampleFormControlSelect2">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -336,10 +384,10 @@ export default function Template() {
                     <option>5</option>
                   </select>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="exampleFormControlSelect3">Small select</label>
                   <select
-                    class="form-control form-control-sm"
+                    className="form-control form-control-sm"
                     id="exampleFormControlSelect3"
                   >
                     <option>1</option>
@@ -352,69 +400,69 @@ export default function Template() {
               </div>
             </div>
           </div>
-          <div class="col-md-6 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Basic input groups</h4>
-                <p class="card-description"> Basic bootstrap input groups </p>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">@</span>
+          <div className="col-md-6 grid-margin stretch-card">
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title">Basic input groups</h4>
+                <p className="card-description"> Basic bootstrap input groups </p>
+                <div className="form-group">
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">@</span>
                     </div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Username"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
                     />
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text bg-gradient-primary text-white">
+                <div className="form-group">
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text bg-gradient-primary text-white">
                         $
                       </span>
                     </div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       aria-label="Amount (to the nearest dollar)"
                     />
-                    <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                    <div className="input-group-append">
+                      <span className="input-group-text">.00</span>
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">$</span>
+                <div className="form-group">
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">$</span>
                     </div>
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">0.00</span>
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">0.00</span>
                     </div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       aria-label="Amount (to the nearest dollar)"
                     />
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group">
+                <div className="form-group">
+                  <div className="input-group">
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Recipient's username"
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
                     />
-                    <div class="input-group-append">
+                    <div className="input-group-append">
                       <button
-                        class="btn btn-sm btn-gradient-primary"
+                        className="btn btn-sm btn-gradient-primary"
                         type="button"
                       >
                         Search
@@ -927,7 +975,7 @@ export default function Template() {
                 </form>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <footer class="footer">
