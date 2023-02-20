@@ -1,16 +1,13 @@
 import React from 'react';
+import imagesPath from '../../../assets/images/imagesPath';
+import NextImage from '../../Shared/NextImage/NextImage';
 
 export default function Board() {
   return (
     <div className="main-panel">
       <div className="content-wrapper">
         <div className="page-header">
-          <h3 className="page-title">
-            <span className="page-title-icon bg-gradient-primary text-white me-2">
-              <i className="mdi mdi-home"></i>
-            </span>{' '}
-            Dashboard
-          </h3>
+          <h3 className="page-title">Dashboard</h3>
           <nav aria-label="breadcrumb">
             <ul className="breadcrumb">
               <li className="breadcrumb-item active" aria-current="page">
@@ -24,8 +21,8 @@ export default function Board() {
           <div className="col-md-4 stretch-card grid-margin">
             <div className="card bg-gradient-danger card-img-holder text-white">
               <div className="card-body">
-                <img
-                  src="assets/images/dashboard/circle.svg"
+                <NextImage
+                  src={imagesPath.Circle}
                   className="card-img-absolute"
                   alt="circle-image"
                 />
@@ -41,8 +38,8 @@ export default function Board() {
           <div className="col-md-4 stretch-card grid-margin">
             <div className="card bg-gradient-info card-img-holder text-white">
               <div className="card-body">
-                <img
-                  src="assets/images/dashboard/circle.svg"
+                <NextImage
+                  src={imagesPath.Circle}
                   className="card-img-absolute"
                   alt="circle-image"
                 />
@@ -58,8 +55,8 @@ export default function Board() {
           <div className="col-md-4 stretch-card grid-margin">
             <div className="card bg-gradient-success card-img-holder text-white">
               <div className="card-body">
-                <img
-                  src="assets/images/dashboard/circle.svg"
+                <NextImage
+                  src={imagesPath.Circle}
                   className="card-img-absolute"
                   alt="circle-image"
                 />
