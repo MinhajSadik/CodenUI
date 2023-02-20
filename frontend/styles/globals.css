@@ -207,6 +207,7 @@ a {
   background-color: #1d1927;
   padding: 15px 0;
   border-bottom: 1px solid #2a2633;
+  position: relative;
 }
 
 .navbar-brand {
@@ -321,7 +322,7 @@ a {
 /* <!--Homepage_hero_wrapper--> */
 
 .cu_hero_wrapper {
-  background-image: url(../src/assets/img/Frame.jpg);
+  background-image: url(../src/assets/images/Frame.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1045,7 +1046,7 @@ a {
 /* Life-Time_pricing_card */
 
 .cu_ld_pricing_card {
-  background-image: url(../src/assets/img/media/ld_price.svg);
+  background-image: url(../src/assets/images/media/ld_price.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1160,7 +1161,7 @@ a {
 /* cu_footer_wrapper_start */
 
 .cu_footer_wrapper {
-  background-image: url(../src/assets/img/media/footer-bg.jpg);
+  background-image: url(../src/assets/images/media/footer-bg.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1289,7 +1290,7 @@ a {
 /* cu_category_bannar */
 
 .cu_banner_wrapper {
-  background-image: url(../src/assets/img/media/category_banner_bg.svg);
+  background-image: url(../src/assets/images/media/category_banner_bg.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1614,7 +1615,7 @@ a {
 /* icon-pack-banner */
 
 .cu_icon_pack_bannar {
-  background-image: url(../src/assets/img/media/category_banner_bg.svg);
+  background-image: url(../src/assets/images/media/category_banner_bg.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1788,7 +1789,7 @@ a {
 /* single-icon-page */
 
 .cu_single_icon_pack_bannar {
-  background-image: url(../src/assets/img/media/single_page_icons_banner.jpg);
+  background-image: url(../src/assets/images/media/single_page_icons_banner.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2144,13 +2145,26 @@ a {
   padding: 6px;
   border-radius: 12px;
   width: 161px;
-  display: none;
+  /* display: none; */
 }
 
 .cu_avatar_icon:hover .account_menu {
   margin-right: 2px;
   cursor: pointer;
   display: block;
+}
+
+.cu_avatar_name_word {
+  font-family: '';
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #004d3c;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  line-height: 3rem;
+  margin: 1px 0;
 }
 
 .cu_account_drop_down_ul {
@@ -2215,6 +2229,19 @@ a {
   width: 80px;
   height: 80px;
   margin-right: 20px;
+}
+
+.cu_profile_name_word {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 140px;
+  height: 150px;
+  border-radius: 50%;
+  background: #004d3c;
+  font-size: 3.5rem;
+  color: #fff;
+  text-align: center;
+  line-height: 10rem;
+  margin: 2rem 0;
 }
 
 .cu_upload_avatar_btn {
@@ -2916,7 +2943,7 @@ a {
 
 .cu_success_pass {
   position: absolute;
-  top: 15%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, 8%);
   padding: 40px 30px 30px;
@@ -3394,4 +3421,54 @@ a {
 
 .cu_go_to_home_btn:hover {
   color: #ffffff;
+}
+
+.cu_success_message_box {
+  background-color: #30c562;
+  z-index: 999;
+  width: auto;
+  position: absolute;
+  padding: 3px 20px;
+  right: 0;
+}
+
+.cu_success_message_text {
+  font-family: eudoxus-sans-700;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+  padding: 10px 0;
+}
+
+.cu_error_message_box {
+  z-index: 999;
+  width: auto;
+  background-color: #f24e1e;
+  position: absolute;
+  padding: 3px 20px;
+  right: 0;
+}
+
+.cu_error_message_text {
+  font-family: eudoxus-sans-700;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+  padding: 10px 0;
+}
+
+.top-right {
+  top: 12px;
+  right: 12px;
+  transition: transform 0.6s ease-in-out;
+  animation: toast-in-right 0.7s;
+}
+
+@keyframes toast-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }

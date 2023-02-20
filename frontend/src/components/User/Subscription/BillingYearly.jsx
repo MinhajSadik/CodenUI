@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from '../../../components';
-import NextLink from '../../Shared/Link/NextLink';
+import NextLink from '../../Shared/NextLink/NextLink';
 
 function BillingYearly() {
   return (

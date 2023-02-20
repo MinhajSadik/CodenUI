@@ -7,8 +7,14 @@ class CategoryService {
   async findCategoryById(id) {
     return await Category.findById(id);
   }
-  async findCategoryByName(name) {
-    return await Category.findOne({ name }).populate({
+  async findCategoryByName(upperName, lowerName) {
+    return await Category.findOne({
+      $or: [{
+        name: upperName,
+      }, {
+        name: lowerName
+      }]
+    }).populate({
       path: "products"
     }).sort({
       _id: -1
@@ -25,7 +31,6 @@ class CategoryService {
       //   }
       // ])
       .find({})
-      // .limit(limit)
       .populate({
         path: "products",
       }).skip((page * limit) - limit).limit(limit).exec()

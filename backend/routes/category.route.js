@@ -13,16 +13,12 @@ router.post(
 );
 
 router.get(
-  "/getOne/:name",
-  // checkAuth,
-  authorizedRole(["admin"]),
+  "/getOne/:categoryName",
   categoryController.findCategoryByName
 );
 
 router.get(
   "/getAll",
-  // checkAuth,
-  authorizedRole(["admin"]),
   categoryController.findCategories
 );
 

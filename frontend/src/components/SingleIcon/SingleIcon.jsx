@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import imagePath from '../../assets/img/imagePath';
+import imagePath from '../../assets/images/imagesPath';
 import { AppContext } from '../../contexts/contexts';
 import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
-import NextImage from '../Shared/Image/NextImage';
-import NextLink from '../Shared/Link/NextLink';
+import NextImage from '../Shared/NextImage/NextImage';
+import NextLink from '../Shared/NextLink/NextLink';
 
 export default function SingleIcon() {
   const { open, handleOpen, handleClose } = useContext(AppContext);
-  const { copyStatus, copy } = useCopyToClipboard('coden ui copy', 3000);
+  const { copyStatus, copy } = useCopyToClipboard('CODENUI');
 
   console.log(copyStatus);
 
@@ -80,7 +80,7 @@ export default function SingleIcon() {
                                 src={imagePath.WebFlowSq}
                                 alt=""
                               />
-                              Copy for Webflow
+                              {!copyStatus && 'Copy for Webflow'}
                             </NextLink>
                             <NextLink
                               href=""

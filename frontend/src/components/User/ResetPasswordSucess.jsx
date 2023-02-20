@@ -1,32 +1,32 @@
 import React from 'react';
-import imagePath from '../../assets/img/imagePath';
-import NextImage from '../Shared/Image/NextImage';
+import imagePath from '../../assets/images/imagesPath';
+import NextImage from '../Shared/NextImage/NextImage';
 
 export default function ResetPasswordSucess({ handleOpen }) {
   return (
-    <div classname="cu_success_pass_wrapper">
-      <div classname="cu_success_pass ">
-        <div classname="cu_success_pass_icon_box text-center">
+    <div className="cu_success_pass_wrapper">
+      <div className="cu_success_pass">
+        <div className="cu_success_pass_icon_box text-center">
           <NextImage
-            classname="cu_success_pass_icon "
+            className="cu_success_pass_icon "
             src={imagePath.SuccessIcon}
             alt="icon"
           />
         </div>
 
-        <h4 classname="cu_sp_title text-center mt-25">
+        <h4 className="cu_sp_title text-center mt-25">
           Password reset success
         </h4>
-        <p classname="cu_sp_text text-center pt-15">
+        <p className="cu_sp_text text-center pt-15">
           Your password has been successfully reset. Click below to login.
         </p>
 
-        <div classname="row">
-          <div classname="col-12">
+        <div className="row">
+          <div className="col-12">
             <button
               onClick={handleOpen}
               type="submit"
-              classname="w-100 cu_sucess_login_btn"
+              className="w-100 cu_sucess_login_btn"
             >
               Login
             </button>

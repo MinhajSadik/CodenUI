@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../redux/feature/userSlice';
-import GoogleIcon from '../../assets/img/icon/logos_google-icon.svg';
-import Logo from '../../assets/img/logo/CodenUILogo.svg';
-import NextImage from '../Shared/Image/NextImage';
+import GoogleIcon from '../../assets/images/icon/logos_google-icon.svg';
+import Logo from '../../assets/images/logo/CodenUILogo.svg';
+import NextImage from '../Shared/NextImage/NextImage';
 
-const initState = {
+const initialState = {
   name: '',
   email: '',
   password: '',
@@ -13,7 +13,8 @@ const initState = {
 
 export default function Register({ handleSwitch }) {
   const dispatch = useDispatch();
-  const [newUserInfo, setNewUserInfo] = useState(initState);
+  const [newUserInfo, setNewUserInfo] = useState(initialState);
+  const { name, email, password } = newUserInfo;
 
   function onInputChange(e) {
     const { name, value } = e.target;
@@ -25,7 +26,10 @@ export default function Register({ handleSwitch }) {
 
   function handleRegister(e) {
     e.preventDefault();
-    dispatch(registerUser(newUserInfo));
+    if (name && email && password) {
+      dispatch(registerUser(newUserInfo));
+      setNewUserInfo(initialState);
+    }
   }
   return (
     <div className="cu_sing_up_wrapper">
@@ -58,6 +62,7 @@ export default function Register({ handleSwitch }) {
             <input
               type="text"
               name="name"
+              value={name}
               onChange={onInputChange}
               className="form-control"
               id=""
@@ -71,6 +76,7 @@ export default function Register({ handleSwitch }) {
             <input
               type="email"
               name="email"
+              value={email}
               onChange={onInputChange}
               className="form-control"
               id=""
@@ -85,6 +91,7 @@ export default function Register({ handleSwitch }) {
             <input
               type="password"
               name="password"
+              value={password}
               onChange={onInputChange}
               className="form-control"
               id=""

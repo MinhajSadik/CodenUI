@@ -1,7 +1,7 @@
 import React from 'react';
-import imagePath from '../../assets/img/imagePath';
-import NextImage from '../Shared/Image/NextImage';
-import NextLink from '../Shared/Link/NextLink';
+import imagePath from '../../assets/images/imagesPath';
+import NextImage from '../Shared/NextImage/NextImage';
+import NextLink from '../Shared/NextLink/NextLink';
 
 export default function IconPack({ route }) {
   return (

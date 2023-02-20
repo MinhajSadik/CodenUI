@@ -9,11 +9,28 @@ export const findCategories = createAsyncThunk(
             const { categories } = await categoryService.findCategories()
             return categories
         } catch (error) {
-            console.log({ error })
-            return rejectWithValue(error.message);
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
         }
     }
 );
+
+
+export const findCategoryByName = createAsyncThunk(
+    "category/getOne/:categoryName",
+    async (categoryName, { rejectWithValue }) => {
+        try {
+            return await categoryService.findCategoryByName(categoryName)
+        } catch (error) {
+            console.log(error.response.data.message)
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+);
+
+
+
+
 
 const categorySlice = createSlice({
     name: "category",
@@ -21,8 +38,10 @@ const categorySlice = createSlice({
     initialState: {
         category: {},
         categories: [],
+        categoryProducts: [],
         loading: false,
-        error: ""
+        success: "",
+        error: "",
     },
 
     reducers: {},
@@ -34,9 +53,22 @@ const categorySlice = createSlice({
             })
             .addCase(findCategories.fulfilled, (state, { payload }) => {
                 state.loading = false
+                state.success = payload.message
                 state.categories = payload
             })
             .addCase(findCategories.rejected, (state, { payload }) => {
+                state.error = payload
+                state.loading = false
+            })
+            .addCase(findCategoryByName.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(findCategoryByName.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.success = payload.message
+                state.categoryProducts = payload
+            })
+            .addCase(findCategoryByName.rejected, (state, { payload }) => {
                 state.error = payload
                 state.loading = false
             })

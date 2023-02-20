@@ -2,30 +2,47 @@ import requests from "./httpService"
 
 
 class UserService {
+
     login(loginInfo) {
         return requests.post("/user/login", loginInfo)
     }
+
     register(registerInfo) {
         return requests.post('/user/register', registerInfo)
     }
+
     logout() {
         return requests.post('/user/logout')
     }
+
     forgotPassword(credential) {
         return requests.post("/user/password/forgot", credential)
     }
+
     verifyOtp(otpInfo) {
         return requests.post("/user/otp/verify", otpInfo)
     }
-    setNewPassword(passwordInfo) {
-        return requests.post('/user/password/new', passwordInfo)
+
+    resetPassword(passwordInfo) {
+        return requests.post('/user/password/reset', passwordInfo)
     }
+
+    updatePassword(passwordInfo) {
+        return requests.post('/user/password/update', passwordInfo)
+    }
+
+    subscriber(subscriberInfo) {
+        return requests.post('/user/subscriber', subscriberInfo)
+    }
+
     update(id, userInfo) {
         return requests.put(`/user/update/${id}`, userInfo)
     }
+
     sendMail(mailInfo) {
         return requests.post('/user/sendMail', mailInfo)
     }
+
 }
 
 

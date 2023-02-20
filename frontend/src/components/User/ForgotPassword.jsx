@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword } from '../../../redux/feature/userSlice';
-import imagePath from '../../assets/img/imagePath';
-import NextImage from '../Shared/Image/NextImage';
-import NextLink from '../Shared/Link/NextLink';
+import imagePath from '../../assets/images/imagesPath';
+import NextImage from '../Shared/NextImage/NextImage';
+import NextLink from '../Shared/NextLink/NextLink';
 
 export default function ForgotPassword({ handleOpen, handleCloseForgot }) {
   const { loading } = useSelector((state) => state.user);
@@ -26,6 +26,9 @@ export default function ForgotPassword({ handleOpen, handleCloseForgot }) {
     if (forgotInfo.email) {
       dispatch(forgotPassword(forgotInfo));
       handleCloseForgot();
+      setForgotInfo({
+        email: '',
+      });
     }
   }
 
@@ -53,6 +56,7 @@ export default function ForgotPassword({ handleOpen, handleCloseForgot }) {
             <input
               type="email"
               name="email"
+              value={forgotInfo.email}
               onChange={onInputChange}
               className="form-control"
               id=""

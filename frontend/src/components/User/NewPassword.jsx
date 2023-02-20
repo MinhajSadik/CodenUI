@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setNewPassword } from '../../../redux/feature/userSlice';
-import imagePath from '../../assets/img/imagePath';
-import NextImage from '../Shared/Image/NextImage';
-import NextLink from '../Shared/Link/NextLink';
+import { resetPassword } from '../../../redux/feature/userSlice';
+import imagePath from '../../assets/images/imagesPath';
+import NextImage from '../Shared/NextImage/NextImage';
+import NextLink from '../Shared/NextLink/NextLink';
+
+const initialState = {
+  password: '',
+  confirmPassword: '',
+};
 
 export default function NewPassword({ handleOpen, handleCloseNewPassword }) {
   const dispatch = useDispatch();
@@ -12,12 +17,7 @@ export default function NewPassword({ handleOpen, handleCloseNewPassword }) {
     ...state.user.otp,
   }));
 
-  console.log(email);
-  const [passwordInfo, setPasswordInfo] = useState({
-    password: '',
-    confirmPassword: '',
-  });
-
+  const [passwordInfo, setPasswordInfo] = useState(initialState);
   const { password, confirmPassword } = passwordInfo;
 
   function onInputChange(e) {
@@ -31,8 +31,9 @@ export default function NewPassword({ handleOpen, handleCloseNewPassword }) {
   function handleNewPassword(e) {
     e.preventDefault();
     if (password && confirmPassword) {
-      dispatch(setNewPassword({ email, password, confirmPassword }));
+      dispatch(resetPassword({ email, password, confirmPassword }));
       handleCloseNewPassword();
+      setPasswordInfo(initialState);
     }
   }
   return (

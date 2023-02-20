@@ -40,13 +40,22 @@ class ProductController {
   async findProducts(req, res) {
     const { page = 1 } = req.query
     const limit = 1
-
+    const { categoryName } = req.body
     try {
-      const products = await productService.findProducts(page, limit);
+      const products = await productService.findProducts(categoryName, page, limit);
+
+      if (!products.length) {
+        return sendResponse(res, 404, {
+          message: "There are no products"
+        })
+      }
+
 
       const transformed = products.map((product) => {
         return new ProductDto(product);
       });
+
+
 
       return sendResponse(res, 200, {
         message: `All Product were found!`,

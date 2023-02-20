@@ -1,6 +1,6 @@
 import React from 'react';
-import imagePath from '../../assets/img/imagePath';
-import NextImage from '../Shared/Image/NextImage';
+import imagePath from '../../assets/images/imagesPath';
+import NextImage from '../Shared/NextImage/NextImage';
 
 function Pricing() {
   return (

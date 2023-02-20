@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import imagePath from '../../../assets/img/imagePath';
-import NextImage from '../Image/NextImage';
-import NextLink from '../Link/NextLink';
+import imagePath from '../../../assets/images/imagesPath';
+import NextImage from '../NextImage/NextImage';
+import NextLink from '../NextLink/NextLink';
 export default function Banner({ title }) {
   return (
     <section>

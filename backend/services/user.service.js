@@ -1,10 +1,11 @@
 import bcrypt from "bcrypt";
 import User from "../models/user.model.js";
+import hashService from "./hash.service.js";
 
 class UserService {
   async createUser(payload) {
     const { name, email, password } = payload;
-    const hashedPassword = await this.hashPassword(password);
+    const hashedPassword = await hashService.hashPassword(password);
     return await User.create({
       name,
       email,
@@ -20,9 +21,7 @@ class UserService {
   async updateUser(id, payload) {
     return await User.findOneAndUpdate(id, payload, { new: true });
   }
-  async hashPassword(payload) {
-    return await bcrypt.hash(payload, 12);
-  }
+
   async comparePassword(password, oldPassword) {
     return await bcrypt.compare(password, oldPassword);
   }

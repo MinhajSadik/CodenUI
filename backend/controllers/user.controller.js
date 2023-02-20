@@ -9,15 +9,15 @@ import otpService from "../services/otp.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
 import { sendResponse } from "../utils/response.util.js";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip");
-const docMailPath = path.join(__dirname, "../configs/doc.mail.html");
-const otpMailPath = path.join(__dirname, "../configs/otp.mail.html");
-const docFile = fs.readFileSync(docMailPath, "utf-8");
-const otpFile = fs.readFileSync(otpMailPath, "utf-8");
-const docTemplate = handlebars.compile(docFile);
-const otpTemplate = handlebars.compile(otpFile);
+const __filename = fileURLToPath(import.meta.url),
+  __dirname = dirname(__filename),
+  zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip"),
+  docMailPath = path.join(__dirname, "../files/doc.mail.html"),
+  otpMailPath = path.join(__dirname, "../files/otp.mail.html"),
+  docFile = fs.readFileSync(docMailPath, "utf-8"),
+  otpFile = fs.readFileSync(otpMailPath, "utf-8"),
+  docTemplate = handlebars.compile(docFile),
+  otpTemplate = handlebars.compile(otpFile);
 
 fs.promises;
 
@@ -67,7 +67,7 @@ class UserController {
     }
   }
 
-  async loginUser(req, res) {
+  async loginUser(req, res, next) {
     try {
       const { email, password } = req.body;
       const user = await userService.findUser(email);
@@ -110,9 +110,7 @@ class UserController {
 
 
       } catch (error) {
-        return sendResponse(res, 500, {
-          message: error.message
-        })
+        return next(error)
       }
 
 
@@ -131,9 +129,7 @@ class UserController {
         user: new UserDto(user)
       });
     } catch (error) {
-      return sendResponse(res, 500, {
-        message: error.message,
-      });
+      next(error)
     }
   }
 
@@ -298,7 +294,7 @@ class UserController {
     res.clearCookie("accessToken")
 
     return sendResponse(res, 200, {
-      message: `User LoggedIn Successfully!`
+      message: `You Loggedout Successfully!`
     })
   }
 
@@ -377,7 +373,7 @@ class UserController {
     }
   }
 
-  async setNewPassword(req, res) {
+  async resetPassword(req, res) {
     const { email, password, confirmPassword } = req.body
     try {
       const user = await userService.findUser(email)
@@ -402,7 +398,7 @@ class UserController {
 
 
 
-      const hashedPassword = await userService.hashPassword(password)
+      const hashedPassword = await hashService.hashPassword(password)
 
       user.password = hashedPassword
       await user.save()
@@ -410,6 +406,73 @@ class UserController {
       return sendResponse(res, 200, {
         newPassword: true,
         message: "Your password changed successfully",
+      })
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+  }
+
+  async updatePassword(req, res) {
+    const { email, currentPassword, newPassword, confirmPassword } = req.body
+    try {
+      const user = await userService.findUser(email)
+
+      if (!user) {
+        return sendResponse(res, 404, {
+          message: `We could not find any user with ${email}`
+        })
+      }
+
+
+      const isPrevPasswordMached = await userService.comparePassword(currentPassword, user.password)
+
+      if (!isPrevPasswordMached) {
+        return sendResponse(res, 400, {
+          message: "Your password is not matched with previous password"
+        })
+      }
+
+      if (newPassword !== confirmPassword) {
+        return sendResponse(res, 400, {
+          message: "Your password is not matched"
+        })
+      }
+
+      if (isPrevPasswordMached && newPassword === confirmPassword) {
+        const hashPassword = await hashService.hashPassword(confirmPassword)
+        user.password = hashPassword
+        await user.save()
+      }
+
+      return sendResponse(res, 200, {
+        user,
+        message: "Your password changed successfully"
+      })
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+  }
+
+  async subscriber(req, res) {
+    const { email } = req.body
+    try {
+      const existedUser = await userService.findUser(email)
+
+      if (existedUser) {
+        return sendResponse(res, 400, {
+          message: "You are already subscribed"
+        })
+      }
+
+      const user = await mailService.saveMail({ email })
+
+      return sendResponse(res, 200, {
+        message: "You are a subscriber to our newsletter",
+        user
       })
     } catch (error) {
       return sendResponse(res, 500, {

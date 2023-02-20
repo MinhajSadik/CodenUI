@@ -1,24 +1,22 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../redux/feature/userSlice';
-import GoogleIcon from '../../assets/img/icon/logos_google-icon.svg';
-import Logo from '../../assets/img/logo/CodenUILogo.svg';
-import NextImage from '../Shared/Image/NextImage';
-import NextLink from '../Shared/Link/NextLink';
+import GoogleIcon from '../../assets/images/icon/logos_google-icon.svg';
+import Logo from '../../assets/images/logo/CodenUILogo.svg';
+import NextImage from '../Shared/NextImage/NextImage';
+import NextLink from '../Shared/NextLink/NextLink';
 
-const initState = {
+const initialState = {
   email: '',
   password: '',
 };
 
 export default function Login({ handleSwitch, handleOpenForgot }) {
+  const router = useRouter();
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState(initState);
-
-  function handleLogin(e) {
-    e.preventDefault();
-    dispatch(loginUser(userInfo));
-  }
+  const [userInfo, setUserInfo] = useState(initialState);
+  const { email, password } = userInfo;
 
   function onInputChange(e) {
     const { name, value } = e.target;
@@ -26,6 +24,15 @@ export default function Login({ handleSwitch, handleOpenForgot }) {
       ...userInfo,
       [name]: value,
     });
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    if (email && password) {
+      dispatch(loginUser(userInfo));
+      // router.push('/');
+    }
+    setUserInfo(initialState);
   }
 
   return (
@@ -59,6 +66,7 @@ export default function Login({ handleSwitch, handleOpenForgot }) {
             <input
               type="email"
               name="email"
+              value={email}
               onChange={onInputChange}
               className="form-control"
               id=""
@@ -73,6 +81,7 @@ export default function Login({ handleSwitch, handleOpenForgot }) {
             <input
               type="password"
               name="password"
+              value={password}
               onChange={onInputChange}
               className="form-control"
               id=""

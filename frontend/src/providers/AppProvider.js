@@ -1,41 +1,69 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { findCategories } from '../../redux/feature/categorySlice'
+import { findCategories, findCategoryByName } from '../../redux/feature/categorySlice'
 import { findProducts } from '../../redux/feature/productSlice'
+import { clearError, clearSuccess } from '../../redux/feature/userSlice'
 import { AppContext } from '../contexts/contexts'
 import { useAutoRefresh } from '../hooks/useAutoRefresh'
+import { removeUnused } from '../utils/removeUnused'
 
-export default function AppProvider({ children }) {
-    const { loading } = useAutoRefresh()
-    const dispatch = useDispatch()
-
+function AppProvider({ children }) {
+    let { error, success } = useSelector((state) => state.user);
     const { loggedIn, loading: appLoading, user, verified, forgotten, newPassword, products, categories } = useSelector((state) => ({
-        ...state.user,
         ...state.product,
         ...state.category,
-        ...state.user.otp
+        ...state.user.otp,
+        ...state.user,
     }))
-
     const router = useRouter()
+    const dispatch = useDispatch()
     const { pathname: route } = router
+    const { loading } = useAutoRefresh()
     const [open, setOpen] = useState(false)
     const [opened, setOpened] = useState(false)
-    const [forgotOpen, setForgotOpen] = useState(false)
     const [otpOpen, setOtpOpen] = useState(false)
+    const [showError, setShowError] = useState(true)
+    const [showSuccess, setShowSuccess] = useState(true)
+    const [forgotOpen, setForgotOpen] = useState(false)
     const [newPassOpen, setNewPassOpen] = useState(false)
     const [successOpen, setSuccessOpen] = useState(false)
 
+
+
+    useEffect(() => {
+        error && handleOpen();
+
+        const timeoutId = setTimeout(() => {
+            if (error) {
+                setShowError(false)
+                setShowSuccess(true)
+                dispatch(clearError())
+            }
+            if (success) {
+                setShowSuccess(false)
+                setShowError(true)
+                dispatch(clearSuccess())
+            }
+        }, 3000)
+
+        return () => {
+            clearTimeout(timeoutId)
+        }
+
+    }, [error, success, showError, showSuccess]);
 
     useEffect(() => {
         if (loggedIn) {
             setOpen(false)
             setOpened(false)
         }
-        // else setOpen(true)
         dispatch(findCategories())
         dispatch(findProducts())
-    }, [loggedIn])
+        if (route !== '/') {
+            dispatch(findCategoryByName(removeUnused(route, "/")))
+        }
+    }, [loggedIn, route])
 
     function handleOpenForgot() {
         setOpen(false)
@@ -58,8 +86,7 @@ export default function AppProvider({ children }) {
     }
 
     function handleCloseNewPassword() {
-        if (forgotten && verified && newPassword) {
-            // if (newPassword) {
+        if (newPassword) {
             setNewPassOpen(false)
             setSuccessOpen(true)
         }
@@ -84,6 +111,10 @@ export default function AppProvider({ children }) {
     function handleClose() {
         setOpen(false)
         setOpened(false)
+        setForgotOpen(false)
+        setOtpOpen(false)
+        setNewPassOpen(false)
+        setSuccessOpen(false)
     }
 
     function handleSwitch() {
@@ -93,6 +124,10 @@ export default function AppProvider({ children }) {
 
     const appInfo = {
         user,
+        error,
+        success,
+        showError,
+        showSuccess,
         open,
         route,
         router,
@@ -120,3 +155,6 @@ export default function AppProvider({ children }) {
         </AppContext.Provider>
     )
 }
+
+
+export default memo(AppProvider)

@@ -1,8 +1,8 @@
 import CategoryDto from "../dtos/category.dto.js";
 import ProductDto from "../dtos/product.dto.js";
+import { upperCaseWords } from "../helpers/upperCaseWords.js";
 import categoryService from "../services/category.service.js";
 import productService from "../services/product.service.js";
-import { upperCaseWords } from "../utils/helpers.js";
 import { sendResponse } from "../utils/response.util.js";
 
 class CategoryController {
@@ -40,17 +40,17 @@ class CategoryController {
   }
 
   async findCategoryByName(req, res) {
-    const { name } = req.params
-
+    const { categoryName } = req.params
     try {
-      const [first, second] = name.split("-")
-      const categoryName = upperCaseWords(first + " " + second)
+      const [first, second] = categoryName.split("-")
+      const upperCategoryName = upperCaseWords(first + " " + second)
+      const lowerCategoryName = first + " " + second
 
-      const category = await categoryService.findCategoryByName(categoryName)
+      const category = await categoryService.findCategoryByName(upperCategoryName, lowerCategoryName)
 
       if (!category) {
         return sendResponse(res, 404, {
-          message: `There are no categories included ${name}`
+          message: `There are no categories included ${categoryName}`
         })
       }
 
