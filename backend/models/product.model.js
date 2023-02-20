@@ -21,6 +21,10 @@ const productSchema = new Schema(
       type: String,
       required: false,
     },
+    image: {
+      type: String,
+      required: false
+    },
     viewsCount: {
       type: Number,
       required: false,
@@ -39,10 +43,12 @@ const productSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Category",
     },
-    stackThumbnails: {
+    categoryName: {
+      type: String,
+      required: true
     },
-    tags: {
-    }
+    stackThumbnails: {},
+    tags: {}
   },
   {
     timestamps: true,

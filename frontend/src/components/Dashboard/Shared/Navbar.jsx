@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import imagesPath from '../../assets/images/imagesPath';
-import { upperCaseName } from '../../utils/upperCaseName';
-import NextImage from '../Shared/NextImage/NextImage';
-import NextLink from '../Shared/NextLink/NextLink';
+import imagesPath from '../../../assets/images/imagesPath';
+import { upperCaseName } from '../../../utils/upperCaseName';
+import NextImage from '../../Shared/NextImage/NextImage';
+import NextLink from '../../Shared/NextLink/NextLink';
 
 export default function Navbar() {
   const { user, loggedIn } = useSelector((state) => state.user);
   return (
     <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <NextLink className="navbar-brand brand-logo" href="/">
+        <NextLink className="navbar-brand brand-logo" href="/codenui/board">
           <NextImage src={imagesPath.Logo} alt="logo" />
         </NextLink>
         <NextLink className="navbar-brand brand-logo-mini" href="index.html">

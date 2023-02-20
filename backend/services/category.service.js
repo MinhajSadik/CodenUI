@@ -31,7 +31,6 @@ class CategoryService {
       //   }
       // ])
       .find({})
-      // .limit(limit)
       .populate({
         path: "products",
       }).skip((page * limit) - limit).limit(limit).exec()
