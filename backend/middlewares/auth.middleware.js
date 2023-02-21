@@ -16,6 +16,8 @@ export default async function (req, res, next) {
       throw new Error("Invalid Credential!");
     }
 
+    console.log(userData)
+
 
     req.user = userData;
     return next();

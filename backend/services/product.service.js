@@ -5,11 +5,10 @@ class ProductService {
     return await Product.create(payload);
   }
 
-  async findProducts(name, page, limit) {
+  async findProducts(page, limit) {
     return await Product.find({
-      "categoryId.name": name
     }).populate({
-      path: "categoryId",
+      path: "categoryId.products",
     })
       // .skip((page * limit) - limit).limit(limit)
       .sort({

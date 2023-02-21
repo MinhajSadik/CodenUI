@@ -38,11 +38,12 @@ class ProductController {
   }
 
   async findProducts(req, res) {
-    const { page = 1 } = req.query
     const limit = 1
-    const { name } = req.body
+    const { page = 1 } = req.query
+
+
     try {
-      const products = await productService.findProducts(name, page, limit);
+      const products = await productService.findProducts(page, limit);
 
       if (!products.length) {
         return sendResponse(res, 404, {
@@ -56,7 +57,6 @@ class ProductController {
       });
 
 
-
       return sendResponse(res, 200, {
         message: `All Product were found!`,
         products: transformed,
@@ -65,6 +65,16 @@ class ProductController {
       return sendResponse(res, 500, {
         message: error.message,
       });
+    }
+  }
+
+  async findProductsByCategoryName(req, res) {
+    try {
+
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
     }
   }
 
