@@ -4,9 +4,11 @@ class CategoryService {
   async createCategory(payload) {
     return await Category.create(payload);
   }
+
   async findCategoryById(id) {
     return await Category.findById(id);
   }
+
   async findCategoryByName(upperName, lowerName) {
     return await Category.findOne({
       $or: [{
@@ -20,7 +22,8 @@ class CategoryService {
       _id: -1
     }).exec()
   }
-  async findCategories(page, limit) {
+
+  async findCategories() {
     return await Category
       // .aggregate([
       //   {
@@ -33,14 +36,17 @@ class CategoryService {
       .find({})
       .populate({
         path: "products",
-      }).skip((page * limit) - limit).limit(limit).exec()
+      })
   }
+
   async updateCategory(id, payload) {
     return await Category.findByIdAndUpdate(id, payload, { new: true });
   }
+
   async deleteCategory(id) {
     return await Category.findByIdAndDelete(id);
   }
+
   async deleteProductID(categoryID, productID) {
     const category = await this.findById(categoryID);
 
@@ -56,9 +62,11 @@ class CategoryService {
     }
     return await Category.updateMany({ productID }, updateDocument);
   }
+
   async countDocuments() {
     return await Category.countDocuments();
   }
+
 }
 
 export default new CategoryService();

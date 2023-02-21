@@ -5,8 +5,9 @@ class ProductService {
     return await Product.create(payload);
   }
 
-  async findProducts(page, limit) {
+  async findProducts(name, page, limit) {
     return await Product.find({
+      "categoryId.name": name
     }).populate({
       path: "categoryId",
     })

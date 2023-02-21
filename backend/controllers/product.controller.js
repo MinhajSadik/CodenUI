@@ -40,9 +40,9 @@ class ProductController {
   async findProducts(req, res) {
     const { page = 1 } = req.query
     const limit = 1
-    const { categoryName } = req.body
+    const { name } = req.body
     try {
-      const products = await productService.findProducts(categoryName, page, limit);
+      const products = await productService.findProducts(name, page, limit);
 
       if (!products.length) {
         return sendResponse(res, 404, {

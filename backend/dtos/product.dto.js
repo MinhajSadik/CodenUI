@@ -1,13 +1,18 @@
 class ProductDto {
   id;
+  tags;
   name;
   price;
   image;
   productId;
+  thumbnail;
   categoryId;
   viewsCount;
   description;
+  categoryName;
   downloadCount;
+  stackThumbnails;
+
 
   constructor(product) {
     this.id = product._id;
@@ -16,9 +21,11 @@ class ProductDto {
     this.image = product.image;
     this.productId = product.productId;
     this.categoryId = product.categoryId;
-    this.viewsCount = product.viewsCount;
     this.description = product.description;
-    this.downloadCount = product.downloadCount;
+    this.categoryName = product.categoryName
+    this.thumbnail = product.thumbnail
+    this.tags = product.tags
+    this.stackThumbnails = product.stackThumbnails
   }
 }
 
