@@ -71,7 +71,6 @@ class CategoryController {
   async findCategories(req, res) {
     try {
       const categories = await categoryService.findCategories()
-      // const productListByCategoryIdPaginated = await ProductModel.find({ categoryId: id }).limit(10).skip((req.query['page'] - 1) * 10);
 
       if (!categories.length) {
         return sendResponse(res, 400, {

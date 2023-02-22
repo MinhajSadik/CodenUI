@@ -63,8 +63,8 @@ class CategoryService {
     return await Category.updateMany({ productID }, updateDocument);
   }
 
-  async countDocuments() {
-    return await Category.countDocuments();
+  async countCategories() {
+    return await Category.count();
   }
 
 }

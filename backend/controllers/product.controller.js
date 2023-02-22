@@ -41,7 +41,6 @@ class ProductController {
     const limit = 1
     const { page = 1 } = req.query
 
-
     try {
       const products = await productService.findProducts(page, limit);
 

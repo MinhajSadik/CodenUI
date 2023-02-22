@@ -1,9 +1,10 @@
-import React from 'react';
-
 import Head from 'next/head';
+import React, { useContext } from 'react';
 import { Dashboard, Template } from '../../../src/components';
+import { AppContext } from '../../../src/contexts/contexts';
 
 export default function upload() {
+    const { categories } = useContext(AppContext)
     return (
         <>
             <Head>
@@ -13,7 +14,7 @@ export default function upload() {
 
             </Head>
             <Dashboard>
-                <Template />
+                <Template categories={categories} />
             </Dashboard>
         </>
     )

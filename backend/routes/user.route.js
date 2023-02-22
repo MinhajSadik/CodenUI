@@ -20,5 +20,6 @@ router.post('/otp/verify', userController.verifyOtp)
 router.post('/password/reset', userController.resetPassword)
 router.post('/password/update', userController.updatePassword)
 router.post('/subscriber', userController.subscriber)
+router.get('/count', userController.countUser)
 
 export default router;

@@ -25,6 +25,9 @@ class UserService {
   async comparePassword(password, oldPassword) {
     return await bcrypt.compare(password, oldPassword);
   }
+  async countUser() {
+    return await User.count()
+  }
 }
 
 export default new UserService();

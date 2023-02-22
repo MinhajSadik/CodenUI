@@ -1,49 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { MdClose } from 'react-icons/md';
 
-export default function Template() {
+export default function Template({ categories }) {
+  const [tags, setTags] = useState([]);
+  const [error, setError] = React.useState('');
+
+  const handleTags = (event) => {
+    if (event.key === 'Enter' && event.target.value !== '') {
+      event.preventDefault();
+      setTags([...tags, event.target.value]);
+      event.target.value = '';
+    } else if (
+      event.key === 'Backspace' &&
+      tags.length &&
+      event.target.value == 0
+    ) {
+      const tagsCopy = [...tags];
+      tagsCopy.pop();
+      event.preventDefault();
+      setTags(tagsCopy);
+    } else if (tags.length < 1 && event.key === 'Backspace') {
+      setError("Since there is no tags you can't able to delete any tags");
+    } else if (event.target.value == '' && event.key === 'Enter') {
+      setError('The tag should be one character long!');
+    }
+  };
+
+  const removeTags = (index) => {
+    setTags([...tags.filter((tag) => tags.indexOf(tag) !== index)]);
+  };
+
+  const handleError = () => {
+    setError('');
+  };
+
   return (
-    <div class="main-panel">
-      <div class="content-wrapper">
-        <div class="row">
-          <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Basic form elements</h4>
-                <p class="card-description"> Basic form elements </p>
-                <form class="forms-sample">
-                  <div class="form-group">
-                    <label for="exampleInputName1">Name</label>
+    <div className="main-panel">
+      <div className="content-wrapper">
+        <div className="row">
+          <div className="col-12 grid-margin stretch-card">
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title">Basic form elements</h4>
+                <p className="card-description"> Basic form elements </p>
+                <div className="forms-sample">
+                  <div className="form-group">
+                    <label htmlFor="exampleInputName1">Name</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       id="exampleInputName1"
                       placeholder="Name"
                     />
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail3">Price</label>
+                  <div className="form-group">
+                    <label htmlFor="exampleInputEmail3">Price</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       id="exampleInputEmail3"
                       placeholder="Price"
                     />
                   </div>
 
-                  <div class="form-group">
-                    <label for="exampleSelectGender">Categories</label>
+                  <div className="form-group">
+                    <label htmlFor="exampleSelectGender">Categories</label>
                     <select className="form-control">
                       <option>Choose a Category</option>
-                      <option>Coded Template</option>
-                      <option>Coded Block</option>
-                      <option>Email Template</option>
+                      {categories.map(({ name, id }) => (
+                        <option
+                          key={id}
+                          value={name}
+                          onClick={(e) => console.log(e.target.value)}
+                        >
+                          {name}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="form-group">
                     <label>Thumbnail upload</label>
                     <input
                       type="file"
-                      name="img[]"
+                      name=""
                       className="file-upload-default"
                     />
                     <div className="input-group col-xs-12">
@@ -67,7 +106,7 @@ export default function Template() {
                     <label>Image upload</label>
                     <input
                       type="file"
-                      name="img[]"
+                      name=""
                       className="file-upload-default"
                     />
                     <div className="input-group col-xs-12">
@@ -87,25 +126,33 @@ export default function Template() {
                       </span>
                     </div>
                   </div>
-                  <div className="form-group">
-                    <label for="exampleInputCity1">Tags</label>
+                  <div className="tags">
+                    {tags.map((tag, index) => (
+                      <div className="single-tag" key={index}>
+                        <span>{tag}</span>
+                        <i onClick={() => removeTags(index)}>
+                          <MdClose />
+                        </i>
+                      </div>
+                    ))}
                     <input
                       type="text"
-                      className="form-control"
-                      id="exampleInputCity1"
-                      placeholder="Tags"
+                      onKeyDown={handleTags}
+                      onChange={handleError}
+                      placeholder="Write some tag and press enter and backspace to delete"
                     />
                   </div>
-                  <div class="form-group">
-                    <div class="input-group">
+
+                  <div className="form-group">
+                    <div className="input-group">
                       <input
                         aria-label="Text input with dropdown button"
                         type="text"
-                        class="form-control form-control"
+                        className="form-control form-control"
                       />
-                      <div class="input-group-prepend">
+                      <div className="input-group-prepend">
                         <button
-                          class="btn btn-sm btn-outline-primary dropdown-toggle"
+                          className="btn btn-sm btn-outline-primary dropdown-toggle"
                           type="button"
                           data-toggle="dropdown"
                           aria-haspopup="true"
@@ -113,21 +160,21 @@ export default function Template() {
                         >
                           Dropdown
                         </button>
-                        <div class="">
-                          <div class="form-group">
-                            <div class="form-check">
+                        <div className="">
+                          <div className="form-group">
+                            <div className="form-check">
                               <input type="checkbox" name="" id="" />
                               Figma
                             </div>
-                            <div class="form-check">
+                            <div className="form-check">
                               <input type="checkbox" name="" id="" />
                               Tailwind
                             </div>
-                            <div class="form-check">
+                            <div className="form-check">
                               <input type="checkbox" name="" id="" />
                               Bootstrap
                             </div>
-                            <div class="form-check">
+                            <div className="form-check">
                               <input type="checkbox" name="" id="" />
                               Css
                             </div>
@@ -137,7 +184,7 @@ export default function Template() {
                     </div>
                   </div>
                   <div className="form-group">
-                    <label for="exampleTextarea1">Overview</label>
+                    <label htmlFor="exampleTextarea1">Overview</label>
                     <textarea
                       className="form-control"
                       id="exampleTextarea1"
@@ -151,15 +198,15 @@ export default function Template() {
                     Submit
                   </button>
                   <button className="btn btn-light">Cancel</button>
-                </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <div class="container-fluid d-flex justify-content-between">
-          <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">
+      <footer className="footer">
+        <div className="container-fluid d-flex justify-content-between">
+          <span className="text-muted d-block text-center text-sm-start d-sm-inline-block">
             Coden UI - All Right Reserved
           </span>
         </div>

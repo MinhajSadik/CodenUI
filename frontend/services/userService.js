@@ -35,6 +35,10 @@ class UserService {
         return requests.post('/user/subscriber', subscriberInfo)
     }
 
+    countUser() {
+        return requests.get("user/count")
+    }
+
     update(id, userInfo) {
         return requests.put(`/user/update/${id}`, userInfo)
     }

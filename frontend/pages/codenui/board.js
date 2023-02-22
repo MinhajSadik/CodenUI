@@ -4,6 +4,8 @@ import { Board, Dashboard } from '../../src/components';
 
 
 export default function dashboard() {
+
+
     return (
         <>
             <Head>

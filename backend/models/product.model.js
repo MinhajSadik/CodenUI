@@ -47,8 +47,24 @@ const productSchema = new Schema(
       type: String,
       required: true
     },
-    stackThumbnails: {},
-    tags: {}
+    techStack: {
+      stacks: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Tech"
+        }
+      ],
+      file: {
+        type: String,
+        required: false
+      },
+    },
+    tags: [
+      {
+        type: String,
+        required: false
+      }
+    ]
   },
   {
     timestamps: true,

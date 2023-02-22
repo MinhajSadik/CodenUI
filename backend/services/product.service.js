@@ -30,6 +30,10 @@ class ProductService {
   async deleteProduct(id) {
     return await Product.findByIdAndDelete(id);
   }
+
+  async countProduct() {
+    return Product.count()
+  }
 }
 
 export default new ProductService();

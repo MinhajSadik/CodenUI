@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 
-const iconSchema = new Schema({
+const techSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -13,6 +13,6 @@ const iconSchema = new Schema({
     timestamps: true,
 });
 
-const Icon = model("Icon", iconSchema);
+const Tech = model("Tech", techSchema);
 
-export default Icon;
+export default Tech;

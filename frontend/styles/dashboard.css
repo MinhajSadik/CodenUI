@@ -2570,7 +2570,6 @@ select:disabled {
   display: none;
 }
 
-
 ::-moz-focus-inner {
   padding: 0;
   border-style: none;
@@ -2617,8 +2616,6 @@ legend + * {
 ::-webkit-inner-spin-button {
   height: auto;
 }
-
-
 
 /* rtl:raw:
 [type="tel"],
@@ -19673,4 +19670,68 @@ dl li {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+/* Tags css */
+
+.tags {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  width: 100%;
+  min-width: 100%;
+  border: 1px rgb(173, 162, 162) solid;
+  border-radius: 5px;
+  color: black;
+}
+
+.single-tag {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 7px 0 7px 14px;
+  padding: 0 10px;
+  padding-right: 5px;
+  border: 1.5px solid #764abc;
+  border-radius: 5px;
+  white-space: nowrap;
+  color: #764abc;
+}
+
+input {
+  border: none;
+  padding: 10px;
+  width: 100%;
+}
+
+input:focus {
+  outline: none;
+}
+
+i {
+  display: flex;
+  padding: 6px;
+  border: none;
+  background-color: unset;
+  cursor: pointer;
+  color: #764abc;
+}
+
+.error {
+  color: red;
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 2rem;
+}
+@media screen and (max-width: 600px) {
+  .error {
+    width: 100%;
+    margin: auto;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
 }

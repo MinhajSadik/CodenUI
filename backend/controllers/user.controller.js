@@ -480,6 +480,27 @@ class UserController {
       })
     }
   }
+
+  async countUser(req, res) {
+    try {
+      const users = await userService.countUser()
+
+      if (!users) {
+        return sendResponse(res, 404, {
+          message: "You have no user!"
+        })
+      }
+
+      return sendResponse(res, 200, {
+        message: `Counted users are available ${users}`,
+        users
+      })
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+  }
 }
 
 export default new UserController();
