@@ -8,7 +8,12 @@ class ProductService {
   async findProducts(page, limit) {
     return await Product.find({
     }).populate({
-      path: "categoryId.products",
+      path: "categoryId",
+      model: "Category",
+      populate: {
+        path: "products",
+        model: "Product",
+      }
     })
       // .skip((page * limit) - limit).limit(limit)
       .sort({

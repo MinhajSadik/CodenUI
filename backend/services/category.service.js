@@ -36,6 +36,7 @@ class CategoryService {
       .find({})
       .populate({
         path: "products",
+        model: "Product"
       })
   }
 
@@ -66,7 +67,6 @@ class CategoryService {
   async countCategories() {
     return await Category.count();
   }
-
 }
 
 export default new CategoryService();
