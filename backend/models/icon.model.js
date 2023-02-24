@@ -9,6 +9,12 @@ const iconSchema = new Schema({
         type: String,
         required: false
     },
+    techStack: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Tech"
+        },
+    ],
 }, {
     timestamps: true,
 });

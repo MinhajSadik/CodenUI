@@ -9,6 +9,7 @@ const techSchema = new Schema({
         type: String,
         required: false
     },
+    file: []
 }, {
     timestamps: true,
 });

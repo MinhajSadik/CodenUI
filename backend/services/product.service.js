@@ -6,8 +6,7 @@ class ProductService {
   }
 
   async findProducts(page, limit) {
-    return await Product.find({
-    }).populate({
+    return await Product.find({}).populate({
       path: "categoryId",
       model: "Category",
       populate: {
@@ -21,6 +20,16 @@ class ProductService {
       }).exec()
   }
 
+  async findByCategoryName(upperName, lowerName) {
+    return await Product.find({
+      $or: [{
+        categoryName: upperName,
+      }, {
+        categoryName: lowerName
+      }]
+    })
+  }
+
   async findProduct(payload) {
     return await Product.findOne(payload)
   }
@@ -32,6 +41,7 @@ class ProductService {
   async updateProduct(id, payload) {
     return await Product.findByIdAndUpdate(id, payload, { new: true });
   }
+
   async deleteProduct(id) {
     return await Product.findByIdAndDelete(id);
   }
