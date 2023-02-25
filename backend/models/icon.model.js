@@ -5,7 +5,7 @@ const iconSchema = new Schema({
         type: String,
         required: true
     },
-    image: {
+    icon: {
         type: String,
         required: false
     },

@@ -5,11 +5,13 @@ const techSchema = new Schema({
         type: String,
         required: true
     },
-    image: {
+    logo: {
         type: String,
         required: false
     },
-    file: []
+    file: {
+        type: Schema.Types.ObjectId,
+    }
 }, {
     timestamps: true,
 });
