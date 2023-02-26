@@ -1,13 +1,13 @@
 import requestLimitter from 'express-rate-limit'
 
 class RequestLimitter {
-    requestLimit(windowMs, max, message) {
+    static limit(windowMs, max, message) {
         return requestLimitter({
             windowMs, // millisec
-            max, // limit each IP to 6 requests per windowMs
+            max, // limit each IP to max requests per window milisec
             message // a message
         })
     }
 }
 
-export default new RequestLimitter()
+export default RequestLimitter
