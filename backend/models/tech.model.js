@@ -11,7 +11,6 @@ const techSchema = new Schema({
     },
     file: {
         type: Schema.Types.ObjectId,
-        required: false
     }
 }, {
     timestamps: true,

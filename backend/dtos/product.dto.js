@@ -11,7 +11,7 @@ class ProductDto {
   description;
   categoryName;
   downloadCount;
-  stackThumbnails;
+  techStack;
 
 
   constructor(product) {
@@ -25,7 +25,7 @@ class ProductDto {
     this.categoryName = product.categoryName
     this.thumbnail = product.thumbnail
     this.tags = product.tags
-    this.stackThumbnails = product.stackThumbnails
+    this.techStack = product.techStack
   }
 }
 

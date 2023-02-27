@@ -23,6 +23,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 //routes
 import categoryRoute from "./routes/category.route.js";
+import fileRoute from "./routes/file.route.js";
 import productRoute from "./routes/product.route.js";
 import techRoute from "./routes/tech.route.js";
 import userRoute from "./routes/user.route.js";
@@ -31,5 +32,6 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/product", productRoute);
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/tech", techRoute);
+app.use("/api/v1/file", fileRoute);
 
 export default app;

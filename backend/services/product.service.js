@@ -28,6 +28,18 @@ class ProductService {
         categoryName: lowerName
       }]
     })
+      .populate({
+        path: "techStack",
+        model: "Tech",
+        populate: {
+          path: "file",
+          model: "File",
+        }
+      })
+      // .skip((page * limit) - limit).limit(limit)
+      .sort({
+        createdAt: -1
+      }).exec()
   }
 
   async findProduct(payload) {
