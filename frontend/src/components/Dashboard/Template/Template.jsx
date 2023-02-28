@@ -144,44 +144,11 @@ export default function Template({ categories }) {
                   </div>
 
                   <div className="form-group">
-                    <div className="input-group">
-                      <input
-                        aria-label="Text input with dropdown button"
-                        type="text"
-                        className="form-control form-control"
-                      />
-                      <div className="input-group-prepend">
-                        <button
-                          className="btn btn-sm btn-outline-primary dropdown-toggle"
-                          type="button"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          Dropdown
-                        </button>
-                        <div className="">
-                          <div className="form-group">
-                            <div className="form-check">
-                              <input type="checkbox" name="" id="" />
-                              Figma
-                            </div>
-                            <div className="form-check">
-                              <input type="checkbox" name="" id="" />
-                              Tailwind
-                            </div>
-                            <div className="form-check">
-                              <input type="checkbox" name="" id="" />
-                              Bootstrap
-                            </div>
-                            <div className="form-check">
-                              <input type="checkbox" name="" id="" />
-                              Css
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <input
+                      aria-label="Text input with dropdown button"
+                      type="file"
+                      className="form-control form-control"
+                    />
                   </div>
                   <div className="form-group">
                     <label htmlFor="exampleTextarea1">Overview</label>
