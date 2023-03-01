@@ -76,6 +76,7 @@ export default function Template({ categories }) {
                           {name}
                         </option>
                       ))}
+                      <option value="">Create One</option>
                     </select>
                   </div>
                   <div className="form-group">
