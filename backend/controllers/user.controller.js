@@ -106,9 +106,14 @@ class UserController {
         if (!token) {
           await tokenService.storeRefreshToken(user._id, refreshToken)
         }
+
+        const verified = await tokenService.verifyRefreshToken(token.token)
+        if (verified) {
+          console.log("verified")
+          await tokenService.removeToken(token.token)
+        }
+
         await tokenService.updateRefreshToken(user._id, refreshToken)
-
-
       } catch (error) {
         return next(error)
       }
@@ -270,10 +275,10 @@ class UserController {
         httpOnly: true,
       });
 
-      const modifiedUser = new UserDto(user)
+      const transformed = new UserDto(user)
 
       return sendResponse(res, 200, {
-        user: modifiedUser,
+        user: transformed,
         loggedIn: true
       })
     }

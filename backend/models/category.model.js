@@ -7,11 +7,10 @@ const categorySchema = new Schema(
       required: true,
       trim: true,
     },
-    products: [
-      {
-        type: Schema.Types.ObjectId,
-      },
-    ],
+    products: {
+      type: [Schema.Types.ObjectId]
+    }
+
   },
   {
     timestamps: true,

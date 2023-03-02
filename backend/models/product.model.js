@@ -46,12 +46,9 @@ const productSchema = new Schema(
       type: String,
       required: true
     },
-    techStack: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Tech"
-      },
-    ],
+    techStack: {
+      type: [Schema.Types.ObjectId],
+    },
     tags: [
       {
         type: String,

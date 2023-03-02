@@ -5,9 +5,10 @@ const fileSchema = new Schema({
         type: String,
         required: false
     }
-}, {
-    timestamps: true,
-});
+},
+    {
+        timestamps: true,
+    });
 
 const File = model("File", fileSchema);
 
