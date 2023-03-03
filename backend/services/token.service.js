@@ -39,18 +39,16 @@ class TokenService {
     return jwt.verify(refreshToken, refreshTokenSecret)
   }
 
-  async findRefreshToken(userId, refreshToken) {
+  async findRefreshToken(userId) {
     return await Token.findOne({
       userId,
-      token: refreshToken
     });
   }
 
-  async updateRefreshToken(userId, refreshToken, expiries) {
-    return await Token.updateOne({
-      userId,
+  async updateRefreshToken(userId, refreshToken) {
+    return await Token.findByIdAndUpdate({
+      _id: userId,
       token: refreshToken,
-      expiries
     })
   }
 

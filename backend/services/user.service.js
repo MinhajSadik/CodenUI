@@ -1,4 +1,3 @@
-import bcrypt from "bcrypt";
 import User from "../models/user.model.js";
 import hashService from "./hash.service.js";
 
@@ -22,9 +21,6 @@ class UserService {
     return await User.findOneAndUpdate(id, payload, { new: true });
   }
 
-  async comparePassword(password, oldPassword) {
-    return await bcrypt.compare(password, oldPassword);
-  }
   async countUser() {
     return await User.count()
   }

@@ -21,7 +21,7 @@ const __filename = fileURLToPath(import.meta.url),
 
 fs.promises;
 
-let ttl = 1000 * 60 * 1,
+let ttl = 1000 * 60,
   tokenExpiries = Date.now() + ttl
 
 
@@ -82,7 +82,7 @@ class UserController {
         });
       }
 
-      const isPasswordMatched = await userService.comparePassword(
+      const isPasswordMatched = await hashService.comparePassword(
         password,
         user.password
       );
@@ -100,24 +100,16 @@ class UserController {
         role: user.role,
       });
 
+
+
       try {
         //check if token is in db
-        const token = await tokenService.findRefreshToken(
-          user._id,
-          refreshTokenFromCookies
-        );
+        const token = await tokenService.findRefreshToken(user._id);
 
-
-
-        if (!token) {
-          await tokenService.storeRefreshToken(user._id, refreshToken, tokenExpiries)
-        }
-
-        if (token && Date.now() > token?.expiries) {
+        if (token) {
           await tokenService.updateRefreshToken(user._id, refreshToken)
-        } else {
-          await tokenService.removeToken(token?.token)
-        }
+        } else
+          await tokenService.storeRefreshToken(user._id, refreshToken, tokenExpiries)
       } catch (error) {
         return sendResponse(res, 500, {
           message: error.message
@@ -320,7 +312,7 @@ class UserController {
       }
 
       const otp = await otpService.generateOtp()
-      const hashData = await hashService.hash(email, otp)
+      const hashData = await otpService.combinedOtpData(email, otp)
 
       const hashed = await hashService.hashOtp(hashData)
       const [, , , expires] = hashData.split(".")
@@ -390,7 +382,7 @@ class UserController {
       const user = await userService.findUser(email)
 
 
-      const isPrevPassUsed = await userService.comparePassword(
+      const isPrevPassUsed = await hashService.comparePassword(
         password,
         user.password
       );
@@ -437,7 +429,7 @@ class UserController {
       }
 
 
-      const isPrevPasswordMached = await userService.comparePassword(currentPassword, user.password)
+      const isPrevPasswordMached = await hashService.comparePassword(currentPassword, user.password)
 
       if (!isPrevPasswordMached) {
         return sendResponse(res, 400, {

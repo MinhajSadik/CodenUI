@@ -8,6 +8,11 @@ class OtpService {
         const computedHash = await hashService.hashOtp(data)
         return computedHash === hashedOtp
     }
+    async combinedOtpData(email, otp) {
+        const ttl = 1000 * 60 * 2;
+        const expires = Date.now() + ttl;
+        return `${email}.${otp}.${expires}`;
+    }
 }
 
 export default new OtpService()
