@@ -21,6 +21,10 @@ const __filename = fileURLToPath(import.meta.url),
 
 fs.promises;
 
+let ttl = 1000 * 60 * 1,
+  tokenExpiries = Date.now() + ttl
+
+
 class UserController {
   async registerUser(req, res) {
     try {
@@ -43,15 +47,15 @@ class UserController {
 
         const user = new UserDto(newUser);
 
-        await tokenService.storeRefreshToken(user.id, refreshToken)
+        await tokenService.storeRefreshToken(user.id, refreshToken, tokenExpiries)
 
         res.cookie("accessToken", accessToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 30,
+          maxAge: 1000 * 60 * 60 * 24 * 3,
           httpOnly: true,
         });
 
         res.cookie("refreshToken", refreshToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 30,
+          maxAge: 1000 * 60 * 60 * 24 * 3,
           httpOnly: true,
         });
 
@@ -103,19 +107,21 @@ class UserController {
           refreshTokenFromCookies
         );
 
+
+
         if (!token) {
-          await tokenService.storeRefreshToken(user._id, refreshToken)
+          await tokenService.storeRefreshToken(user._id, refreshToken, tokenExpiries)
         }
 
-        const verified = await tokenService.verifyRefreshToken(token.token)
-        if (verified) {
-          console.log("verified")
-          await tokenService.removeToken(token.token)
+        if (token && Date.now() > token?.expiries) {
+          await tokenService.updateRefreshToken(user._id, refreshToken)
+        } else {
+          await tokenService.removeToken(token?.token)
         }
-
-        await tokenService.updateRefreshToken(user._id, refreshToken)
       } catch (error) {
-        return next(error)
+        return sendResponse(res, 500, {
+          message: error.message
+        })
       }
 
 
