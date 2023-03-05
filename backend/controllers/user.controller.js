@@ -17,12 +17,11 @@ const __filename = fileURLToPath(import.meta.url),
   docFile = fs.readFileSync(docMailPath, "utf-8"),
   otpFile = fs.readFileSync(otpMailPath, "utf-8"),
   docTemplate = handlebars.compile(docFile),
-  otpTemplate = handlebars.compile(otpFile);
+  otpTemplate = handlebars.compile(otpFile),
+  ttl = 1000 * 60,
+  tokenExpiries = Date.now() + ttl
 
 fs.promises;
-
-let ttl = 1000 * 60,
-  tokenExpiries = Date.now() + ttl
 
 
 class UserController {
@@ -93,7 +92,7 @@ class UserController {
         });
       }
 
-      const { refreshToken: refreshTokenFromCookies } = req.cookies;
+      // const { refreshTokenFromCookies } = req.cookies;
       const { accessToken, refreshToken } = await tokenService.generateTokens({
         _id: user._id,
         email: user.email,
@@ -223,8 +222,7 @@ class UserController {
       try {
         //check if token is in db
         const token = await tokenService.findRefreshToken(
-          userData._id,
-          refreshTokenFromCookies
+          userData._id
         );
 
         if (!token) {
