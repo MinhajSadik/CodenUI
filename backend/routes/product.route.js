@@ -19,6 +19,13 @@ router.get(
   productController.findProducts
 );
 
+router.get(
+  "/getAll/:categoryName",
+  // checkAuth,
+  authorizedRole(["admin"]),
+  productController.findProductsByCategoryName
+);
+
 router.put(
   "/update/:id",
   checkAuth,

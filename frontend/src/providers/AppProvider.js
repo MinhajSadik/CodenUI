@@ -3,14 +3,14 @@ import React, { memo, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { findCategories, findCategoryByName } from '../../redux/feature/categorySlice'
 import { findProducts } from '../../redux/feature/productSlice'
-import { clearError, clearSuccess } from '../../redux/feature/userSlice'
+import { clearError, clearSuccess, countUser } from '../../redux/feature/userSlice'
 import { AppContext } from '../contexts/contexts'
 import { useAutoRefresh } from '../hooks/useAutoRefresh'
 import { removeUnused } from '../utils/removeUnused'
 
 function AppProvider({ children }) {
     let { error, success } = useSelector((state) => state.user);
-    const { loggedIn, loading: appLoading, user, verified, forgotten, newPassword, products, categories } = useSelector((state) => ({
+    const { loggedIn, loading: appLoading, user, users, verified, forgotten, newPassword, products, categories } = useSelector((state) => ({
         ...state.product,
         ...state.category,
         ...state.user.otp,
@@ -50,7 +50,6 @@ function AppProvider({ children }) {
         return () => {
             clearTimeout(timeoutId)
         }
-
     }, [error, success, showError, showSuccess]);
 
     useEffect(() => {
@@ -58,12 +57,17 @@ function AppProvider({ children }) {
             setOpen(false)
             setOpened(false)
         }
+
         dispatch(findCategories())
         dispatch(findProducts())
+        dispatch(countUser())
+
         if (route !== '/') {
             dispatch(findCategoryByName(removeUnused(route, "/")))
         }
     }, [loggedIn, route])
+
+
 
     function handleOpenForgot() {
         setOpen(false)
@@ -124,6 +128,7 @@ function AppProvider({ children }) {
 
     const appInfo = {
         user,
+        users,
         error,
         success,
         showError,

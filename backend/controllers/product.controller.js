@@ -1,4 +1,5 @@
 import ProductDto from "../dtos/product.dto.js";
+import { upperCaseWords } from "../helpers/upperCaseWords.js";
 import categoryService from "../services/category.service.js";
 import productService from "../services/product.service.js";
 import { sendResponse } from "../utils/response.util.js";
@@ -38,11 +39,11 @@ class ProductController {
   }
 
   async findProducts(req, res) {
-    const { page = 1 } = req.query
     const limit = 1
-    const { categoryName } = req.body
+    const { page = 1 } = req.query
+
     try {
-      const products = await productService.findProducts(categoryName, page, limit);
+      const products = await productService.findProducts(page, limit);
 
       if (!products.length) {
         return sendResponse(res, 404, {
@@ -56,7 +57,6 @@ class ProductController {
       });
 
 
-
       return sendResponse(res, 200, {
         message: `All Product were found!`,
         products: transformed,
@@ -65,6 +65,36 @@ class ProductController {
       return sendResponse(res, 500, {
         message: error.message,
       });
+    }
+  }
+
+  async findProductsByCategoryName(req, res) {
+    const { categoryName } = req.params
+    const [first, second] = categoryName.split("-")
+    const upperCategoryName = upperCaseWords(first + " " + second)
+    const lowerCategoryName = first + " " + second
+
+    try {
+      const products = await productService.findByCategoryName(upperCategoryName, lowerCategoryName)
+
+      if (!products.length) {
+        return sendResponse(res, 404, {
+          message: `We have no product similer to ${categoryName}`
+        })
+      }
+
+      const transformed = products.map((product) => {
+        return new ProductDto(product);
+      });
+
+      return sendResponse(res, 200, {
+        message: `All products found related to ${categoryName}`,
+        products: transformed
+      })
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
     }
   }
 

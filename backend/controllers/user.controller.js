@@ -17,9 +17,12 @@ const __filename = fileURLToPath(import.meta.url),
   docFile = fs.readFileSync(docMailPath, "utf-8"),
   otpFile = fs.readFileSync(otpMailPath, "utf-8"),
   docTemplate = handlebars.compile(docFile),
-  otpTemplate = handlebars.compile(otpFile);
+  otpTemplate = handlebars.compile(otpFile),
+  ttl = 1000 * 60,
+  tokenExpiries = Date.now() + ttl
 
 fs.promises;
+
 
 class UserController {
   async registerUser(req, res) {
@@ -43,15 +46,15 @@ class UserController {
 
         const user = new UserDto(newUser);
 
-        await tokenService.storeRefreshToken(user.id, refreshToken)
+        await tokenService.storeRefreshToken(user.id, refreshToken, tokenExpiries)
 
         res.cookie("accessToken", accessToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 30,
+          maxAge: 1000 * 60 * 60 * 24 * 3,
           httpOnly: true,
         });
 
         res.cookie("refreshToken", refreshToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 30,
+          maxAge: 1000 * 60 * 60 * 24 * 3,
           httpOnly: true,
         });
 
@@ -78,7 +81,7 @@ class UserController {
         });
       }
 
-      const isPasswordMatched = await userService.comparePassword(
+      const isPasswordMatched = await hashService.comparePassword(
         password,
         user.password
       );
@@ -89,28 +92,27 @@ class UserController {
         });
       }
 
-      const { refreshToken: refreshTokenFromCookies } = req.cookies;
+      // const { refreshTokenFromCookies } = req.cookies;
       const { accessToken, refreshToken } = await tokenService.generateTokens({
         _id: user._id,
         email: user.email,
         role: user.role,
       });
 
+
+
       try {
         //check if token is in db
-        const token = await tokenService.findRefreshToken(
-          user._id,
-          refreshTokenFromCookies
-        );
+        const token = await tokenService.findRefreshToken(user._id);
 
-        if (!token) {
-          await tokenService.storeRefreshToken(user._id, refreshToken)
-        }
-        await tokenService.updateRefreshToken(user._id, refreshToken)
-
-
+        if (token) {
+          await tokenService.updateRefreshToken(user._id, refreshToken)
+        } else
+          await tokenService.storeRefreshToken(user._id, refreshToken, tokenExpiries)
       } catch (error) {
-        return next(error)
+        return sendResponse(res, 500, {
+          message: error.message
+        })
       }
 
 
@@ -220,8 +222,7 @@ class UserController {
       try {
         //check if token is in db
         const token = await tokenService.findRefreshToken(
-          userData._id,
-          refreshTokenFromCookies
+          userData._id
         );
 
         if (!token) {
@@ -270,10 +271,10 @@ class UserController {
         httpOnly: true,
       });
 
-      const modifiedUser = new UserDto(user)
+      const transformed = new UserDto(user)
 
       return sendResponse(res, 200, {
-        user: modifiedUser,
+        user: transformed,
         loggedIn: true
       })
     }
@@ -309,7 +310,7 @@ class UserController {
       }
 
       const otp = await otpService.generateOtp()
-      const hashData = await hashService.hash(email, otp)
+      const hashData = await otpService.combinedOtpData(email, otp)
 
       const hashed = await hashService.hashOtp(hashData)
       const [, , , expires] = hashData.split(".")
@@ -379,7 +380,7 @@ class UserController {
       const user = await userService.findUser(email)
 
 
-      const isPrevPassUsed = await userService.comparePassword(
+      const isPrevPassUsed = await hashService.comparePassword(
         password,
         user.password
       );
@@ -426,7 +427,7 @@ class UserController {
       }
 
 
-      const isPrevPasswordMached = await userService.comparePassword(currentPassword, user.password)
+      const isPrevPasswordMached = await hashService.comparePassword(currentPassword, user.password)
 
       if (!isPrevPasswordMached) {
         return sendResponse(res, 400, {
@@ -473,6 +474,27 @@ class UserController {
       return sendResponse(res, 200, {
         message: "You are a subscriber to our newsletter",
         user
+      })
+    } catch (error) {
+      return sendResponse(res, 500, {
+        message: error.message
+      })
+    }
+  }
+
+  async countUser(req, res) {
+    try {
+      const users = await userService.countUser()
+
+      if (!users) {
+        return sendResponse(res, 404, {
+          message: "You have no user!"
+        })
+      }
+
+      return sendResponse(res, 200, {
+        message: `Counted users are available ${users}`,
+        users
       })
     } catch (error) {
       return sendResponse(res, 500, {

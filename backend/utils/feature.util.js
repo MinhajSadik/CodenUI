@@ -4,7 +4,8 @@ class Features {
         this.query = query;
         this.queryString = queryString;
     }
-    async pagination(resultPerPage) {
+
+    static async pagination(resultPerPage) {
         const currentPage = Number(this.queryString.page) || 1;
 
         const skip = resultPerPage * (currentPage - 1);

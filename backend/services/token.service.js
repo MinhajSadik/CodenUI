@@ -23,15 +23,12 @@ class TokenService {
   }
 
 
-  async storeRefreshToken(userId, token) {
-    try {
-      await Token.create({
-        token,
-        userId
-      })
-    } catch (error) {
-      console.error(error.message);
-    }
+  async storeRefreshToken(userId, token, expiries) {
+    await Token.create({
+      token,
+      userId,
+      expiries
+    })
   }
 
   async verifyAccessToken(accessToken) {
@@ -42,17 +39,16 @@ class TokenService {
     return jwt.verify(refreshToken, refreshTokenSecret)
   }
 
-  async findRefreshToken(userId, refreshToken) {
+  async findRefreshToken(userId) {
     return await Token.findOne({
       userId,
-      token: refreshToken
     });
   }
 
   async updateRefreshToken(userId, refreshToken) {
-    return await Token.updateOne({
-      userId,
-      token: refreshToken
+    return await Token.findByIdAndUpdate({
+      _id: userId,
+      token: refreshToken,
     })
   }
 

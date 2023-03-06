@@ -8,7 +8,6 @@ export const loginUser = createAsyncThunk(
         try {
             return await userService.login(loginInfo);
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
@@ -20,7 +19,6 @@ export const registerUser = createAsyncThunk(
         try {
             return await userService.register(registerInfo);
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
@@ -32,7 +30,6 @@ export const logoutUser = createAsyncThunk(
         try {
             return await userService.logout();
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
@@ -45,7 +42,6 @@ export const forgotPassword = createAsyncThunk(
         try {
             return await userService.forgotPassword(forgotInfo)
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
@@ -57,7 +53,6 @@ export const verifyOtp = createAsyncThunk(
         try {
             return await userService.verifyOtp(otpInfo)
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
@@ -70,7 +65,6 @@ export const resetPassword = createAsyncThunk(
         try {
             return await userService.resetPassword(passwordInfo)
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
@@ -83,7 +77,6 @@ export const updatePassword = createAsyncThunk(
         try {
             return await userService.updatePassword(passwordInfo)
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
@@ -96,13 +89,22 @@ export const subscriber = createAsyncThunk(
         try {
             return await userService.subscriber(subscriberInfo)
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
 );
 
 
+export const countUser = createAsyncThunk(
+    "user/count",
+    async (_, { rejectWithValue }) => {
+        try {
+            return await userService.countUser()
+        } catch (error) {
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+);
 
 
 
@@ -111,6 +113,7 @@ const userSlice = createSlice({
 
     initialState: {
         user: {},
+        users: 0,
         error: "",
         success: "",
         loading: false,
@@ -263,6 +266,16 @@ const userSlice = createSlice({
             .addCase(subscriber.rejected, (state, { payload }) => {
                 state.loading = false
                 state.error = payload
+            })
+            .addCase(countUser.pending, (state, { payload }) => {
+                state.loading = true
+            })
+            .addCase(countUser.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.users = payload.users
+            })
+            .addCase(countUser.rejected, (state, { payload }) => {
+                state.loading = false
             })
     }
 })

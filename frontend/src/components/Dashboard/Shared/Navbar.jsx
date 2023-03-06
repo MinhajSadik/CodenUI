@@ -13,7 +13,10 @@ export default function Navbar() {
         <NextLink className="navbar-brand brand-logo" href="/codenui/board">
           <NextImage src={imagesPath.Logo} alt="logo" />
         </NextLink>
-        <NextLink className="navbar-brand brand-logo-mini" href="index.html">
+        <NextLink
+          className="navbar-brand brand-logo-mini"
+          href="/codenui/board"
+        >
           <NextImage src={imagesPath.MiniLogo} alt="logo" />
         </NextLink>
       </div>

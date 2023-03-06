@@ -41,14 +41,20 @@ const productSchema = new Schema(
     },
     categoryId: {
       type: Schema.Types.ObjectId,
-      ref: "Category",
     },
     categoryName: {
       type: String,
       required: true
     },
-    stackThumbnails: {},
-    tags: {}
+    techStack: {
+      type: [Schema.Types.ObjectId],
+    },
+    tags: [
+      {
+        type: String,
+        required: false
+      }
+    ]
   },
   {
     timestamps: true,
