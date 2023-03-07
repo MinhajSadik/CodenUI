@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { loginRequestConfig } from "../configs/requestLimitter.js";
+import { loginRequestConfig } from "../configs/limitter.config.js";
 import userController from "../controllers/user.controller.js";
 import checkAuth from "../middlewares/auth.middleware.js";
 import RequestLimitter from "../middlewares/limitter.middleware.js";
