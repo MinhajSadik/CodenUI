@@ -139,11 +139,15 @@ class UserController {
     try {
       const { id } = req.params;
       const existedUser = await userService.findById(id);
+
       if (!existedUser) {
         return sendResponse(res, 400, {
           message: `User or Id does not exist!`,
         });
       }
+
+      const { avatar } = req.body
+      console.log({ avatar })
 
       const updatedUser = await userService.updateUser(id, req.body);
 
@@ -162,13 +166,11 @@ class UserController {
   async sendFileByEmail(req, res) {
     const { email } = req.body;
 
-
     const sendDataToHtml = {
       name: "MinhajSadik",
     };
 
     const docData = docTemplate(sendDataToHtml);
-
     const options = {
       email,
       subject: `Welcome ${process.env.APP_NAME} with you`,

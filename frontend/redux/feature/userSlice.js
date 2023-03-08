@@ -107,6 +107,16 @@ export const countUser = createAsyncThunk(
 );
 
 
+export const updateUser = createAsyncThunk(
+    "user/update",
+    async ({ id, userInfo }, { rejectWithValue }) => {
+        try {
+            return await userService.updateUser(id, userInfo)
+        } catch (error) {
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+);
 
 const userSlice = createSlice({
     name: "user",
@@ -275,6 +285,16 @@ const userSlice = createSlice({
                 state.users = payload.users
             })
             .addCase(countUser.rejected, (state, { payload }) => {
+                state.loading = false
+            })
+            .addCase(updateUser.pending, (state, { payload }) => {
+                state.loading = true
+            })
+            .addCase(updateUser.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.user = payload
+            })
+            .addCase(updateUser.rejected, (state, { payload }) => {
                 state.loading = false
             })
     }

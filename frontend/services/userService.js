@@ -39,7 +39,7 @@ class UserService {
         return requests.get("user/count")
     }
 
-    update(id, userInfo) {
+    updateUser(id, userInfo) {
         return requests.put(`/user/update/${id}`, userInfo)
     }
 

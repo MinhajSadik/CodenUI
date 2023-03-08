@@ -1,11 +1,8 @@
 import Head from 'next/head';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { AccountSetting, Layout } from '../src/components';
 
 export default function account_setting() {
-    const { user: { email } } = useSelector((state) => state.user)
-
     return (
         <>
             <Head>
@@ -15,7 +12,7 @@ export default function account_setting() {
 
             </Head>
             <Layout>
-                <AccountSetting email={email} />
+                <AccountSetting />
             </Layout>
         </>
     )

@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePassword } from '../../../redux/feature/userSlice';
-import imagePath from '../../assets/images/imagesPath';
+import imagesPath from '../../assets/images/imagesPath';
 import { withRouter } from '../../components';
 import { upperCaseName } from '../../utils/upperCaseName';
 import NextImage from '../Shared/NextImage/NextImage';
 
 const initialState = {
+  name: '',
+  email: '',
+  avatar: imagesPath.Avatar,
   currentPassword: '',
   newPassword: '',
   confirmPassword: '',
 };
 
-function AccountSetting({ email }) {
+function AccountSetting() {
+  const [userInfo, setUserInfo] = useState(initialState);
+  const { name, email: updateEmail, avatar } = userInfo;
+
   const dispatch = useDispatch();
   const { loading, user } = useSelector((state) => state.user);
   const [passwordInfo, setPasswordInfo] = useState(initialState);
@@ -20,6 +26,21 @@ function AccountSetting({ email }) {
 
   function onInputChange(e) {
     const { name, value } = e.target;
+    const file = e.target.files[0];
+    const reder = new FileReader();
+    reder.readAsDataURL(file);
+    reder.onloadend = () => {
+      setUserInfo({
+        ...userInfo,
+        avatar: reder.result,
+      });
+    };
+
+    setUserInfo({
+      ...userInfo,
+      [name]: value,
+    });
+
     setPasswordInfo({
       ...passwordInfo,
       [name]: value,
@@ -51,12 +72,17 @@ function AccountSetting({ email }) {
               {user.avatar ? (
                 <NextImage
                   className="cu_profile_avatar"
-                  src={imagePath.Avatar}
+                  src={user.avatar}
                   alt="avatar"
                 />
               ) : (
                 <div className="cu_profile_name_word">
                   <span>{upperCaseName(user.name)}</span>
+                  <img
+                    className="cu_profile_avatar"
+                    src={avatar}
+                    alt="avatar"
+                  />
                 </div>
               )}
 
@@ -66,6 +92,7 @@ function AccountSetting({ email }) {
               <input
                 style={{ visibility: 'hidden' }}
                 type="file"
+                onChange={onInputChange}
                 name="avatar"
                 id="avatar"
               />
@@ -80,7 +107,9 @@ function AccountSetting({ email }) {
                   <input
                     type="text"
                     className="form-control"
-                    id=""
+                    id="name"
+                    name="name"
+                    onChange={onInputChange}
                     placeholder={user?.name}
                   />
                 </div>
@@ -91,7 +120,9 @@ function AccountSetting({ email }) {
                   <input
                     type="email"
                     className="form-control"
-                    id="inputEmail4"
+                    id="email"
+                    name="email"
+                    onChange={onInputChange}
                     placeholder={user?.email}
                   />
                 </div>
