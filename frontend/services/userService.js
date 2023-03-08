@@ -39,8 +39,8 @@ class UserService {
         return requests.get("user/count")
     }
 
-    updateUser(id, userInfo) {
-        return requests.put(`/user/update/${id}`, userInfo)
+    updateUser(id, userUpdateInfo) {
+        return requests.put(`/user/update/${id}`, userUpdateInfo)
     }
 
     sendMail(mailInfo) {

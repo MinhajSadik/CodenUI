@@ -15,10 +15,10 @@ class UserService {
     return await User.findOne({ email });
   }
   async findById(id) {
-    return await User.findById(id);
+    return await User.findOne({ _id: id });
   }
   async updateUser(id, payload) {
-    return await User.findOneAndUpdate(id, payload, { new: true });
+    return await User.findByIdAndUpdate(id, payload, { new: true });
   }
 
   async countUser() {

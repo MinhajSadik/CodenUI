@@ -109,9 +109,9 @@ export const countUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
     "user/update",
-    async ({ id, userInfo }, { rejectWithValue }) => {
+    async ({ id, userUpdateInfo }, { rejectWithValue }) => {
         try {
-            return await userService.updateUser(id, userInfo)
+            return await userService.updateUser(id, userUpdateInfo)
         } catch (error) {
             return rejectWithValue(error.response.data.message);
         }

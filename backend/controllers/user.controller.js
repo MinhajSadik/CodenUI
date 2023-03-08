@@ -6,6 +6,7 @@ import UserDto from "../dtos/user.dto.js";
 import hashService from "../services/hash.service.js";
 import mailService from "../services/mail.service.js";
 import otpService from "../services/otp.service.js";
+import spaceService from "../services/space.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
 import { sendResponse } from "../utils/response.util.js";
@@ -145,11 +146,19 @@ class UserController {
           message: `User or Id does not exist!`,
         });
       }
-
-      const { avatar } = req.body
-      console.log({ avatar })
-
       const updatedUser = await userService.updateUser(id, req.body);
+      console.log(req.body.avatar)
+      await spaceService.createBucket(process.env.USER_BUCKET)
+
+
+
+      const imageUrl = await spaceService.uploadFileToBucket({
+        Bucket: process.env.USER_BUCKET,
+        Key: "success",
+        ACL: 'public-read',
+        Body: req.body.avatar,
+      })
+      console.log(imageUrl)
 
       const modifiedUser = new UserDto(updatedUser);
       return sendResponse(res, 200, {

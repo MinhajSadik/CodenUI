@@ -1,50 +1,66 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePassword } from '../../../redux/feature/userSlice';
+import { updatePassword, updateUser } from '../../../redux/feature/userSlice';
 import imagesPath from '../../assets/images/imagesPath';
 import { withRouter } from '../../components';
 import { upperCaseName } from '../../utils/upperCaseName';
 import NextImage from '../Shared/NextImage/NextImage';
 
-const initialState = {
+const userUpdateInitState = {
   name: '',
   email: '',
   avatar: imagesPath.Avatar,
+};
+
+const passwordInitState = {
   currentPassword: '',
   newPassword: '',
   confirmPassword: '',
 };
 
-function AccountSetting() {
-  const [userInfo, setUserInfo] = useState(initialState);
-  const { name, email: updateEmail, avatar } = userInfo;
+function AccountSetting({ email, id }) {
+  const [userUpdateInfo, setUserUpdateInfo] = useState(userUpdateInitState);
+  const { name, email: updateEmail, avatar } = userUpdateInfo;
 
   const dispatch = useDispatch();
   const { loading, user } = useSelector((state) => state.user);
-  const [passwordInfo, setPasswordInfo] = useState(initialState);
+  const [passwordInfo, setPasswordInfo] = useState(passwordInitState);
   const { currentPassword, newPassword, confirmPassword } = passwordInfo;
 
-  function onInputChange(e) {
-    const { name, value } = e.target;
+  function captureImage(e) {
     const file = e.target.files[0];
     const reder = new FileReader();
     reder.readAsDataURL(file);
     reder.onloadend = () => {
-      setUserInfo({
-        ...userInfo,
+      setUserUpdateInfo({
+        ...userUpdateInfo,
         avatar: reder.result,
       });
     };
+  }
 
-    setUserInfo({
-      ...userInfo,
+  function captureUserInfo(e) {
+    const { name, value } = e.target;
+    setUserUpdateInfo({
+      ...userUpdateInfo,
       [name]: value,
     });
+  }
 
+  function capturePassword(e) {
+    const { name, value } = e.target;
     setPasswordInfo({
       ...passwordInfo,
       [name]: value,
     });
+  }
+
+  function handleUpdateUser(e) {
+    console.log('clicked');
+    e.preventDefault();
+    if (name || updateEmail || avatar) {
+      dispatch(updateUser(id, userUpdateInfo));
+    }
   }
 
   function handleUpdatePassword(e) {
@@ -54,7 +70,7 @@ function AccountSetting() {
         updatePassword({ email, currentPassword, newPassword, confirmPassword })
       );
     }
-    setPasswordInfo(initialState);
+    setPasswordInfo(passwordInitState);
   }
 
   return (
@@ -92,7 +108,7 @@ function AccountSetting() {
               <input
                 style={{ visibility: 'hidden' }}
                 type="file"
-                onChange={onInputChange}
+                onChange={captureImage}
                 name="avatar"
                 id="avatar"
               />
@@ -109,7 +125,7 @@ function AccountSetting() {
                     className="form-control"
                     id="name"
                     name="name"
-                    onChange={onInputChange}
+                    onChange={captureUserInfo}
                     placeholder={user?.name}
                   />
                 </div>
@@ -122,12 +138,16 @@ function AccountSetting() {
                     className="form-control"
                     id="email"
                     name="email"
-                    onChange={onInputChange}
+                    onChange={captureUserInfo}
                     placeholder={user?.email}
                   />
                 </div>
                 <div className="col-12">
-                  <button type="submit" className="cu_profile_update_btn">
+                  <button
+                    onClick={handleUpdateUser}
+                    type="submit"
+                    className="cu_profile_update_btn"
+                  >
                     Update
                   </button>
                 </div>
@@ -144,10 +164,9 @@ function AccountSetting() {
                   <input
                     type="password"
                     id="currentPassword"
-                    value={currentPassword}
                     name="currentPassword"
                     className="form-control"
-                    onChange={onInputChange}
+                    onChange={capturePassword}
                   />
                 </div>
                 <div className="col-md-12">
@@ -158,8 +177,7 @@ function AccountSetting() {
                     type="password"
                     id="newPassword"
                     name="newPassword"
-                    value={newPassword}
-                    onChange={onInputChange}
+                    onChange={capturePassword}
                     className="form-control"
                   />
                 </div>
@@ -171,8 +189,7 @@ function AccountSetting() {
                     type="password"
                     id="confirmPassword"
                     name="confirmPassword"
-                    value={confirmPassword}
-                    onChange={onInputChange}
+                    onChange={capturePassword}
                     className="form-control"
                   />
                 </div>
