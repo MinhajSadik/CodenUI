@@ -58,7 +58,6 @@ export const verifyOtp = createAsyncThunk(
     }
 );
 
-
 export const resetPassword = createAsyncThunk(
     "user/password/reset",
     async (passwordInfo, { rejectWithValue }) => {
@@ -69,7 +68,6 @@ export const resetPassword = createAsyncThunk(
         }
     }
 );
-
 
 export const updatePassword = createAsyncThunk(
     "user/password/update",
@@ -82,7 +80,6 @@ export const updatePassword = createAsyncThunk(
     }
 );
 
-
 export const subscriber = createAsyncThunk(
     "user/subscriber",
     async (subscriberInfo, { rejectWithValue }) => {
@@ -93,7 +90,6 @@ export const subscriber = createAsyncThunk(
         }
     }
 );
-
 
 export const countUser = createAsyncThunk(
     "user/count",
@@ -106,7 +102,16 @@ export const countUser = createAsyncThunk(
     }
 );
 
-
+export const updateUser = createAsyncThunk(
+    "user/update",
+    async ({ id, userUpdateInfo }, { rejectWithValue }) => {
+        try {
+            return await userService.updateUser(id, userUpdateInfo)
+        } catch (error) {
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+);
 
 const userSlice = createSlice({
     name: "user",
@@ -275,6 +280,16 @@ const userSlice = createSlice({
                 state.users = payload.users
             })
             .addCase(countUser.rejected, (state, { payload }) => {
+                state.loading = false
+            })
+            .addCase(updateUser.pending, (state, { payload }) => {
+                state.loading = true
+            })
+            .addCase(updateUser.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.user = payload
+            })
+            .addCase(updateUser.rejected, (state, { payload }) => {
                 state.loading = false
             })
     }

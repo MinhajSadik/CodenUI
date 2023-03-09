@@ -6,6 +6,7 @@ import UserDto from "../dtos/user.dto.js";
 import hashService from "../services/hash.service.js";
 import mailService from "../services/mail.service.js";
 import otpService from "../services/otp.service.js";
+import spaceService from "../services/space.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
 import { sendResponse } from "../utils/response.util.js";
@@ -136,16 +137,30 @@ class UserController {
   }
 
   async updateUser(req, res) {
+    const { name, avatar } = req.body
     try {
       const { id } = req.params;
       const existedUser = await userService.findById(id);
+
       if (!existedUser) {
         return sendResponse(res, 400, {
           message: `User or Id does not exist!`,
         });
       }
-
       const updatedUser = await userService.updateUser(id, req.body);
+
+      await spaceService.createBucket(process.env.USER_BUCKET)
+
+
+
+      const imageUrl = await spaceService.uploadFileToBucket({
+        Bucket: process.env.USER_BUCKET,
+        Key: name.split(" "),
+        ACL: 'public-read',
+        Body: fs.readFileSync(avatar),
+        Metadata: { "Content-Type": "" },
+      })
+      console.log(imageUrl)
 
       const modifiedUser = new UserDto(updatedUser);
       return sendResponse(res, 200, {
@@ -162,13 +177,11 @@ class UserController {
   async sendFileByEmail(req, res) {
     const { email } = req.body;
 
-
     const sendDataToHtml = {
       name: "MinhajSadik",
     };
 
     const docData = docTemplate(sendDataToHtml);
-
     const options = {
       email,
       subject: `Welcome ${process.env.APP_NAME} with you`,

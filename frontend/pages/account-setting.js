@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 import { AccountSetting, Layout } from '../src/components';
 
 export default function account_setting() {
-    const { user: { email } } = useSelector((state) => state.user)
-
+    const { user: { id, email } } = useSelector((state) => state.user)
     return (
         <>
             <Head>
@@ -15,7 +14,7 @@ export default function account_setting() {
 
             </Head>
             <Layout>
-                <AccountSetting email={email} />
+                <AccountSetting email={email} id={id} />
             </Layout>
         </>
     )

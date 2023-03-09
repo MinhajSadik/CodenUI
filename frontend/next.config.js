@@ -6,12 +6,13 @@ const withPWA = require('next-pwa')({
   skipWaiting: true,
   runtimeCaching,
   buildExcludes: [/middleware-manifest.json$/],
+  disable: process.env.NODE_ENV === "development"
 });
 
 const nextConfig = withPWA({
   // next config
   env: {
     APP_API_URL: process.env.APP_API_URL,
-  }
+  },
 });
 module.exports = nextConfig;

@@ -6,8 +6,7 @@ export const findCategories = createAsyncThunk(
     "category/all",
     async (_, { rejectWithValue }) => {
         try {
-            const { categories } = await categoryService.findCategories()
-            return categories
+            return await categoryService.findCategories()
         } catch (error) {
             console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);

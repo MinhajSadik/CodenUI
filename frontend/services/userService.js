@@ -2,7 +2,6 @@ import requests from "./httpService"
 
 
 class UserService {
-
     login(loginInfo) {
         return requests.post("/user/login", loginInfo)
     }
@@ -39,8 +38,8 @@ class UserService {
         return requests.get("user/count")
     }
 
-    update(id, userInfo) {
-        return requests.put(`/user/update/${id}`, userInfo)
+    updateUser(id, userUpdateInfo) {
+        return requests.update(`/user/update/${id}`, userUpdateInfo)
     }
 
     sendMail(mailInfo) {
