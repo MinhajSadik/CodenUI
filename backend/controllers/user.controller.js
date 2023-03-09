@@ -137,6 +137,7 @@ class UserController {
   }
 
   async updateUser(req, res) {
+    const { name, avatar } = req.body
     try {
       const { id } = req.params;
       const existedUser = await userService.findById(id);
@@ -147,16 +148,17 @@ class UserController {
         });
       }
       const updatedUser = await userService.updateUser(id, req.body);
-      console.log(req.body.avatar)
+
       await spaceService.createBucket(process.env.USER_BUCKET)
 
 
 
       const imageUrl = await spaceService.uploadFileToBucket({
         Bucket: process.env.USER_BUCKET,
-        Key: "success",
+        Key: name.split(" "),
         ACL: 'public-read',
-        Body: req.body.avatar,
+        Body: fs.readFileSync(avatar),
+        Metadata: { "Content-Type": "" },
       })
       console.log(imageUrl)
 
