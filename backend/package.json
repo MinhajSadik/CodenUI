@@ -1,14 +1,14 @@
 {
   "name": "coden_ui_backend",
   "version": "1.0.0",
-  "description": "pick_ui will serve a bunch of designed template",
+  "description": "Coden UI is a design and code-based platform that helps people grow their businesses with tons of ready-made templates. ",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node server",
     "server": "nodemon server"
   },
-  "repository": "https://github.com/MinhajSadik/Pick_UI",
+  "repository": "https://github.com/littlesprogrammers/CodenUI",
   "author": "MinhajSadik",
   "license": "MIT",
   "devDependencies": {
