@@ -4,7 +4,7 @@ dotenv.config();
 
 
 export const s3Client = new S3({
-    forcePathStyle: false, // Configures to use subdomain/virtual calling format.
+    forcePathStyle: false,
     endpoint: process.env.SPACE_ENDPOINT,
     region: process.env.REGION,
     credentials: {
@@ -12,5 +12,3 @@ export const s3Client = new S3({
         secretAccessKey: process.env.SECRET_ACCESS_KEY
     }
 });
-
-

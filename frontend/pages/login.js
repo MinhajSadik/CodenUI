@@ -1,8 +1,10 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Layout, Login } from '../src/components';
+import { AppContext } from '../src/contexts/contexts';
 
 export default function login() {
+    const { open, handleSwitch, handleOpenForgot } = useContext(AppContext)
     return (
         <div>
             <Head>
@@ -11,7 +13,10 @@ export default function login() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <Layout>
-                <Login />
+                <Login
+                    handleSwitch={handleSwitch}
+                    handleOpenForgot={handleOpenForgot}
+                />
             </Layout>
         </div>
     )
