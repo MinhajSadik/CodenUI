@@ -147,20 +147,18 @@ class UserController {
           message: `User or Id does not exist!`,
         });
       }
-      const updatedUser = await userService.updateUser(id, req.body);
 
       await spaceService.createBucket(process.env.USER_BUCKET)
 
+      // await spaceService.uploadFileToBucket({
+      //   Bucket: process.env.USER_BUCKET,
+      //   Key: `${name}.jpg`,
+      //   ACL: 'public-read',
+      //   Body: avatar,
+      // })
 
 
-      const imageUrl = await spaceService.uploadFileToBucket({
-        Bucket: process.env.USER_BUCKET,
-        Key: name.split(" "),
-        ACL: 'public-read',
-        Body: fs.readFileSync(avatar),
-        Metadata: { "Content-Type": "" },
-      })
-      console.log(imageUrl)
+      const updatedUser = await userService.updateUser(id, req.body);
 
       const modifiedUser = new UserDto(updatedUser);
       return sendResponse(res, 200, {

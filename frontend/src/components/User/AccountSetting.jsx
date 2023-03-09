@@ -20,6 +20,7 @@ const passwordInitState = {
 
 function AccountSetting({ email, id }) {
   const [userUpdateInfo, setUserUpdateInfo] = useState(userUpdateInitState);
+  const { name, email: inputEmail, avatar } = userUpdateInfo;
 
   const dispatch = useDispatch();
   const { loading, user } = useSelector((state) => state.user);
@@ -44,18 +45,29 @@ function AccountSetting({ email, id }) {
 
   function captureImage(e) {
     const file = e.target.files[0];
-    const reder = new FileReader();
-    reder.readAsDataURL(file);
-    reder.onloadend = () => {
-      setUserUpdateInfo({
-        ...userUpdateInfo,
-        avatar: reder.result,
-      });
+    const reader = new FileReader();
+    // reader.readAsDataURL(file);
+    // reader.onloadend = () => {
+    //   setUserUpdateInfo({
+    //     ...userUpdateInfo,
+    //     avatar: reader.result,
+    //   });
+    //   console.log(reader);
+    // };
+
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setUserUpdateInfo({
+          ...userUpdateInfo,
+          avatar: reader.result,
+        });
+      }
     };
   }
 
   function handleUpdateUser(e) {
-    // e.preventDefault();
+    e.preventDefault();
     const { name, email, avatar } = userUpdateInfo;
     if (name || email || avatar) {
       dispatch(updateUser({ id, userUpdateInfo }));
@@ -108,14 +120,15 @@ function AccountSetting({ email, id }) {
               <input
                 style={{ visibility: 'hidden' }}
                 type="file"
-                onChange={captureImage}
                 name="avatar"
                 id="avatar"
+                accept="image/*"
+                onChange={captureImage}
               />
             </div>
             <p className="cu_profile_info_title mt-25">Profile Information</p>
             <div className="cu_profile_info_box">
-              <div className="row">
+              <form className="row">
                 <div className="col-lg-12">
                   <label htmlFor="text" className="form-label">
                     Name
@@ -125,6 +138,7 @@ function AccountSetting({ email, id }) {
                     className="form-control"
                     id="name"
                     name="name"
+                    value={name}
                     onChange={captureUserInfo}
                     placeholder={user?.name}
                   />
@@ -138,6 +152,7 @@ function AccountSetting({ email, id }) {
                     className="form-control"
                     id="email"
                     name="email"
+                    value={inputEmail}
                     onChange={captureUserInfo}
                     placeholder={user?.email}
                   />
@@ -151,7 +166,7 @@ function AccountSetting({ email, id }) {
                     Update
                   </button>
                 </div>
-              </div>
+              </form>
             </div>
 
             <p className="cu_account_pass_title mt-25">Password</p>
@@ -165,6 +180,7 @@ function AccountSetting({ email, id }) {
                     type="password"
                     id="currentPassword"
                     name="currentPassword"
+                    value={currentPassword}
                     className="form-control"
                     onChange={capturePassword}
                   />
@@ -177,6 +193,7 @@ function AccountSetting({ email, id }) {
                     type="password"
                     id="newPassword"
                     name="newPassword"
+                    value={newPassword}
                     onChange={capturePassword}
                     className="form-control"
                   />
@@ -189,6 +206,7 @@ function AccountSetting({ email, id }) {
                     type="password"
                     id="confirmPassword"
                     name="confirmPassword"
+                    value={confirmPassword}
                     onChange={capturePassword}
                     className="form-control"
                   />
