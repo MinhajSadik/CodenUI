@@ -58,7 +58,6 @@ export const verifyOtp = createAsyncThunk(
     }
 );
 
-
 export const resetPassword = createAsyncThunk(
     "user/password/reset",
     async (passwordInfo, { rejectWithValue }) => {
@@ -69,7 +68,6 @@ export const resetPassword = createAsyncThunk(
         }
     }
 );
-
 
 export const updatePassword = createAsyncThunk(
     "user/password/update",
@@ -82,7 +80,6 @@ export const updatePassword = createAsyncThunk(
     }
 );
 
-
 export const subscriber = createAsyncThunk(
     "user/subscriber",
     async (subscriberInfo, { rejectWithValue }) => {
@@ -94,7 +91,6 @@ export const subscriber = createAsyncThunk(
     }
 );
 
-
 export const countUser = createAsyncThunk(
     "user/count",
     async (_, { rejectWithValue }) => {
@@ -105,7 +101,6 @@ export const countUser = createAsyncThunk(
         }
     }
 );
-
 
 export const updateUser = createAsyncThunk(
     "user/update",

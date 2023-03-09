@@ -6,10 +6,8 @@ export const findProducts = createAsyncThunk(
     "product/all",
     async (_, { rejectWithValue }) => {
         try {
-            const { products } = await productService.findProducts()
-            return products
+            return await productService.findProducts()
         } catch (error) {
-            console.log({ error })
             return rejectWithValue(error.message);
         }
     }

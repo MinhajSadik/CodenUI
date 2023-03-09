@@ -9,7 +9,7 @@ import NextImage from '../Shared/NextImage/NextImage';
 const userUpdateInitState = {
   name: '',
   email: '',
-  avatar: imagesPath.Avatar,
+  avatar: '',
 };
 
 const passwordInitState = {
@@ -20,24 +20,11 @@ const passwordInitState = {
 
 function AccountSetting({ email, id }) {
   const [userUpdateInfo, setUserUpdateInfo] = useState(userUpdateInitState);
-  const { name, email: updateEmail, avatar } = userUpdateInfo;
 
   const dispatch = useDispatch();
   const { loading, user } = useSelector((state) => state.user);
   const [passwordInfo, setPasswordInfo] = useState(passwordInitState);
   const { currentPassword, newPassword, confirmPassword } = passwordInfo;
-
-  function captureImage(e) {
-    const file = e.target.files[0];
-    const reder = new FileReader();
-    reder.readAsDataURL(file);
-    reder.onloadend = () => {
-      setUserUpdateInfo({
-        ...userUpdateInfo,
-        avatar: reder.result,
-      });
-    };
-  }
 
   function captureUserInfo(e) {
     const { name, value } = e.target;
@@ -55,12 +42,25 @@ function AccountSetting({ email, id }) {
     });
   }
 
+  function captureImage(e) {
+    const file = e.target.files[0];
+    const reder = new FileReader();
+    reder.readAsDataURL(file);
+    reder.onloadend = () => {
+      setUserUpdateInfo({
+        ...userUpdateInfo,
+        avatar: reder.result,
+      });
+    };
+  }
+
   function handleUpdateUser(e) {
-    console.log('clicked');
-    e.preventDefault();
-    if (name || updateEmail || avatar) {
-      dispatch(updateUser(id, userUpdateInfo));
+    // e.preventDefault();
+    const { name, email, avatar } = userUpdateInfo;
+    if (name || email || avatar) {
+      dispatch(updateUser({ id, userUpdateInfo }));
     }
+    setUserUpdateInfo(userUpdateInitState);
   }
 
   function handleUpdatePassword(e) {
@@ -88,15 +88,15 @@ function AccountSetting({ email, id }) {
               {user.avatar ? (
                 <NextImage
                   className="cu_profile_avatar"
-                  src={user.avatar}
+                  src={imagesPath.Avatar}
                   alt="avatar"
                 />
               ) : (
                 <div className="cu_profile_name_word">
-                  <span>{upperCaseName(user.name)}</span>
+                  <span>{upperCaseName(user?.name)}</span>
                   <img
                     className="cu_profile_avatar"
-                    src={avatar}
+                    src={userUpdateInfo.avatar}
                     alt="avatar"
                   />
                 </div>
@@ -115,7 +115,7 @@ function AccountSetting({ email, id }) {
             </div>
             <p className="cu_profile_info_title mt-25">Profile Information</p>
             <div className="cu_profile_info_box">
-              <form className="row">
+              <div className="row">
                 <div className="col-lg-12">
                   <label htmlFor="text" className="form-label">
                     Name
@@ -151,7 +151,7 @@ function AccountSetting({ email, id }) {
                     Update
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
 
             <p className="cu_account_pass_title mt-25">Password</p>
