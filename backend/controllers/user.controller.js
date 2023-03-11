@@ -1,3 +1,4 @@
+import formidable from "formidable";
 import fs from "fs";
 import handlebars from "handlebars";
 import path, { dirname } from "path";
@@ -150,13 +151,34 @@ class UserController {
 
       await spaceService.createBucket(process.env.USER_BUCKET)
 
-      // await spaceService.uploadFileToBucket({
+
+
+
+      const form = new formidable.IncomingForm()
+
+      form.parse(req, async (error, fields, files) => {
+        console.log(error)
+        if (files) {
+          console.log({ fields, files })
+          await spaceService.uploadFileToBucket({
+            Bucket: process.env.USER_BUCKET,
+            Key: `${name}.jpg`,
+            ACL: 'public-read',
+            Body: avatar
+          })
+        }
+      })
+
+      // await spaceService.upload({
       //   Bucket: process.env.USER_BUCKET,
       //   Key: `${name}.jpg`,
       //   ACL: 'public-read',
-      //   Body: avatar,
+      //   Body: avatar
+      // }, function (error, data) {
+      //   if (!error)
+      //     console.log({ data })
+      //   return data
       // })
-
 
       const updatedUser = await userService.updateUser(id, req.body);
 

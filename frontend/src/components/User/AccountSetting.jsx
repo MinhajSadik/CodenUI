@@ -46,31 +46,33 @@ function AccountSetting({ email, id }) {
   function captureImage(e) {
     const file = e.target.files[0];
     const reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onloadend = () => {
-    //   setUserUpdateInfo({
-    //     ...userUpdateInfo,
-    //     avatar: reader.result,
-    //   });
-    //   console.log(reader);
-    // };
-
     reader.readAsDataURL(file);
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setUserUpdateInfo({
-          ...userUpdateInfo,
-          avatar: reader.result,
-        });
-      }
+    reader.onloadend = () => {
+      setUserUpdateInfo({
+        ...userUpdateInfo,
+        avatar: reader.result,
+      });
     };
   }
 
   function handleUpdateUser(e) {
     e.preventDefault();
     const { name, email, avatar } = userUpdateInfo;
+    const userData = new FormData();
+
+    userData.append('name', name);
+    userData.append('email', email);
+    userData.append('avatar', avatar);
+
+    setUserUpdateInfo({
+      ...userUpdateInfo,
+      userData,
+    });
+
+    console.log(userUpdateInfo);
+
     if (name || email || avatar) {
-      dispatch(updateUser({ id, userUpdateInfo }));
+      dispatch(updateUser({ id, userData }));
     }
     setUserUpdateInfo(userUpdateInitState);
   }
