@@ -1,6 +1,6 @@
-import formidable from "formidable";
 import fs from "fs";
 import handlebars from "handlebars";
+import Jimp from 'jimp';
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import UserDto from "../dtos/user.dto.js";
@@ -153,32 +153,31 @@ class UserController {
 
 
 
-
-      const form = new formidable.IncomingForm()
-
-      form.parse(req, async (error, fields, files) => {
-        console.log(error)
-        if (files) {
-          console.log({ fields, files })
-          await spaceService.uploadFileToBucket({
-            Bucket: process.env.USER_BUCKET,
-            Key: `${name}.jpg`,
-            ACL: 'public-read',
-            Body: avatar
-          })
-        }
-      })
-
       // await spaceService.upload({
       //   Bucket: process.env.USER_BUCKET,
       //   Key: `${name}.jpg`,
       //   ACL: 'public-read',
-      //   Body: avatar
-      // }, function (error, data) {
-      //   if (!error)
-      //     console.log({ data })
-      //   return data
+      //   Body: avatar,
+      //   ContentType: 'image/jpeg',
       // })
+
+      const buffer = Buffer.from(
+        avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""),
+        "base64"
+      );
+      const imageInfo = await Jimp.read(buffer)
+
+
+      await spaceService.uploadFileToBucket({
+        Bucket: process.env.USER_BUCKET,
+        Key: `${name}.jpg`,
+        ACL: 'public-read',
+        Body: buffer,
+        ContentType: imageInfo._originalMime,
+      })
+
+
+
 
       const updatedUser = await userService.updateUser(id, req.body);
 

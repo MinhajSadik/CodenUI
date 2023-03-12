@@ -69,10 +69,8 @@ function AccountSetting({ email, id }) {
       userData,
     });
 
-    console.log(userUpdateInfo);
-
     if (name || email || avatar) {
-      dispatch(updateUser({ id, userData }));
+      dispatch(updateUser({ id, userUpdateInfo }));
     }
     setUserUpdateInfo(userUpdateInitState);
   }
