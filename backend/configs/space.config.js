@@ -2,7 +2,6 @@ import { S3 } from "@aws-sdk/client-s3";
 import dotenv from "dotenv";
 dotenv.config();
 
-
 export const s3Client = new S3({
     forcePathStyle: false,
     endpoint: process.env.SPACE_ENDPOINT,

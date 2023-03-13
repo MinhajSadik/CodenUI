@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePassword, updateUser } from '../../../redux/feature/userSlice';
-import imagesPath from '../../assets/images/imagesPath';
 import { withRouter } from '../../components';
 import { upperCaseName } from '../../utils/upperCaseName';
-import NextImage from '../Shared/NextImage/NextImage';
 
 const userUpdateInitState = {
   name: '',
@@ -46,29 +44,29 @@ function AccountSetting({ email, id }) {
   function captureImage(e) {
     const file = e.target.files[0];
     const reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onloadend = () => {
-    //   setUserUpdateInfo({
-    //     ...userUpdateInfo,
-    //     avatar: reader.result,
-    //   });
-    //   console.log(reader);
-    // };
-
     reader.readAsDataURL(file);
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setUserUpdateInfo({
-          ...userUpdateInfo,
-          avatar: reader.result,
-        });
-      }
+    reader.onloadend = () => {
+      setUserUpdateInfo({
+        ...userUpdateInfo,
+        avatar: reader.result,
+      });
     };
   }
 
   function handleUpdateUser(e) {
     e.preventDefault();
     const { name, email, avatar } = userUpdateInfo;
+    const userData = new FormData();
+
+    userData.append('name', name);
+    userData.append('email', email);
+    userData.append('avatar', avatar);
+
+    setUserUpdateInfo({
+      ...userUpdateInfo,
+      userData,
+    });
+
     if (name || email || avatar) {
       dispatch(updateUser({ id, userUpdateInfo }));
     }
@@ -98,19 +96,14 @@ function AccountSetting({ email, id }) {
           <div className="cu_account_info_box">
             <div className="cu_avatar_box">
               {user.avatar ? (
-                <NextImage
+                <img
                   className="cu_profile_avatar"
-                  src={imagesPath.Avatar}
+                  src={user.avatar}
                   alt="avatar"
                 />
               ) : (
                 <div className="cu_profile_name_word">
                   <span>{upperCaseName(user?.name)}</span>
-                  <img
-                    className="cu_profile_avatar"
-                    src={userUpdateInfo.avatar}
-                    alt="avatar"
-                  />
                 </div>
               )}
 

@@ -16,6 +16,7 @@ app.use(cors({
     origin: "http://localhost:3000",
     credentials: true,
 }));
+app.use(express.static('files'));
 app.use(express.json({ limit: "10mb", extended: true }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));

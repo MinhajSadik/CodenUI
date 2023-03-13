@@ -8,7 +8,6 @@ export const findCategories = createAsyncThunk(
         try {
             return await categoryService.findCategories()
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }
@@ -21,7 +20,6 @@ export const findCategoryByName = createAsyncThunk(
         try {
             return await categoryService.findCategoryByName(categoryName)
         } catch (error) {
-            console.log(error.response.data.message)
             return rejectWithValue(error.response.data.message);
         }
     }

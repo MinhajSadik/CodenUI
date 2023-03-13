@@ -1,5 +1,4 @@
-import { CreateBucketCommand } from "@aws-sdk/client-s3";
-import formidable from 'formidable';
+import { CreateBucketCommand, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client } from "../configs/space.config.js";
 
 
@@ -8,21 +7,22 @@ class SpaceService {
         return await s3Client.send(new CreateBucketCommand({ Bucket: name }));
     }
 
-    async uploadFileToBucket(req, payload) {
-        const form = formidable()
-        form.parse(req, (error, fields, files) => {
-            if (!files) {
-                return send
-            }
-            try {
-                
-            } catch (error) {
-                
-            }
-        })
-        // return await s3Client.send(new PutObjectCommand(payload));
+    async uploadFileToBucket(params) {
+        return await s3Client.send(new PutObjectCommand(params));
     }
 
+    async getFileFromBucket(params) {
+        return await s3Client.send(new GetObjectCommand(params));
+    }
+
+    async upload(params) {
+        s3Client.uploadPart(params, (error, data) => {
+            if (error)
+                console.log({ error })
+            else
+                console.log({ data })
+        })
+    }
 }
 
 export default new SpaceService()
