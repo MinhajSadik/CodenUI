@@ -287,7 +287,7 @@ const userSlice = createSlice({
             })
             .addCase(updateUser.fulfilled, (state, { payload }) => {
                 state.loading = false
-                state.user = payload
+                state.user = payload.user
             })
             .addCase(updateUser.rejected, (state, { payload }) => {
                 state.loading = false

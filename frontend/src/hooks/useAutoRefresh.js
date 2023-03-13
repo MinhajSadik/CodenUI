@@ -21,7 +21,7 @@ export function useAutoRefresh() {
                 setLoading(false);
             }
         })()
-    }, []);
+    }, [loading]);
 
     return { loading };
 };

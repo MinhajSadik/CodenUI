@@ -33,7 +33,6 @@ function AppProvider({ children }) {
 
     useEffect(() => {
         error && handleOpen();
-
         const timeoutId = setTimeout(() => {
             if (error) {
                 setShowError(false)
