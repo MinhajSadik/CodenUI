@@ -1,5 +1,5 @@
 import { CreateBucketCommand, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
-import { s3Client, s3Sdk } from "../configs/space.config.js";
+import { s3Client } from "../configs/space.config.js";
 
 
 class SpaceService {
@@ -16,8 +16,10 @@ class SpaceService {
     }
 
     async upload(params) {
-        s3Sdk.upload(params, function (error, data) {
-            if (!error)
+        s3Client.uploadPart(params, (error, data) => {
+            if (error)
+                console.log({ error })
+            else
                 console.log({ data })
         })
     }

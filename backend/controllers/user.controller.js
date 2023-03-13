@@ -11,6 +11,7 @@ import spaceService from "../services/space.service.js";
 import tokenService from "../services/token.service.js";
 import userService from "../services/user.service.js";
 import { sendResponse } from "../utils/response.util.js";
+import statusCode from "../utils/statusCode.util.js";
 const __filename = fileURLToPath(import.meta.url),
   __dirname = dirname(__filename),
   zipPath = path.resolve(__dirname, "../files/UH13YLPQhvdRqugO.zip"),
@@ -139,55 +140,47 @@ class UserController {
 
   async updateUser(req, res) {
     const { name, avatar } = req.body
+    const buffer = Buffer.from(
+      avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""),
+      "base64"
+    );
+
     try {
       const { id } = req.params;
       const existedUser = await userService.findById(id);
+      const jimpRes = await Jimp.read(buffer)
+      const imageType = jimpRes.getMIME().split("/")[1]
+      const user = {
+        ...req.body,
+        avatar: `${process.env.SPACE_ENDPOINT}/${process.env.USER_BUCKET}/${id}.${imageType}`
+      }
+
 
       if (!existedUser) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.NOT_FOUND, {
           message: `User or Id does not exist!`,
         });
       }
 
       await spaceService.createBucket(process.env.USER_BUCKET)
 
-
-
-      // await spaceService.upload({
-      //   Bucket: process.env.USER_BUCKET,
-      //   Key: `${name}.jpg`,
-      //   ACL: 'public-read',
-      //   Body: avatar,
-      //   ContentType: 'image/jpeg',
-      // })
-
-      const buffer = Buffer.from(
-        avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""),
-        "base64"
-      );
-      const imageInfo = await Jimp.read(buffer)
-
-
       await spaceService.uploadFileToBucket({
         Bucket: process.env.USER_BUCKET,
-        Key: `${name}.jpg`,
+        Key: `${id}.${imageType}`,
         ACL: 'public-read',
         Body: buffer,
-        ContentType: imageInfo._originalMime,
+        ContentType: jimpRes._originalMime,
       })
 
-
-
-
-      const updatedUser = await userService.updateUser(id, req.body);
+      const updatedUser = await userService.updateUser(id, user);
 
       const modifiedUser = new UserDto(updatedUser);
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         message: `${updatedUser.name} updated successfully`,
         user: modifiedUser,
       });
     } catch (error) {
-      return sendResponse(res, 500, {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
         message: error.message,
       });
     }
