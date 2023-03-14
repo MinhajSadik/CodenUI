@@ -57,6 +57,10 @@ function AppProvider({ children }) {
             setOpened(false)
         }
 
+
+    }, [loggedIn, route])
+
+    useEffect(() => {
         dispatch(findCategories())
         dispatch(findProducts())
         dispatch(countUser())
@@ -64,7 +68,7 @@ function AppProvider({ children }) {
         if (route !== '/') {
             dispatch(findCategoryByName(removeUnused(route, "/")))
         }
-    }, [loggedIn, route])
+    }, [])
 
 
 

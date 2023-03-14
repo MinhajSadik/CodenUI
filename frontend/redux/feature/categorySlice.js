@@ -26,9 +26,6 @@ export const findCategoryByName = createAsyncThunk(
 );
 
 
-
-
-
 const categorySlice = createSlice({
     name: "category",
 
@@ -51,7 +48,7 @@ const categorySlice = createSlice({
             .addCase(findCategories.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.success = payload.message
-                state.categories = payload
+                state.categories = payload.categories
             })
             .addCase(findCategories.rejected, (state, { payload }) => {
                 state.error = payload

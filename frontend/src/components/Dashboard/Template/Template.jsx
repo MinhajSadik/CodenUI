@@ -3,7 +3,7 @@ import { MdClose } from 'react-icons/md';
 
 export default function Template({ categories }) {
   const [tags, setTags] = useState([]);
-  const [error, setError] = React.useState('');
+  const [error, setError] = useState('');
 
   const handleTags = (event) => {
     if (event.key === 'Enter' && event.target.value !== '') {
