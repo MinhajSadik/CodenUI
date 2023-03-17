@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { MdClose } from 'react-icons/md';
+import imagesPath from '../../../assets/images/imagesPath';
+import NextImage from '../../Shared/NextImage/NextImage';
 
 export default function Template({ categories }) {
   const [tags, setTags] = useState([]);
@@ -127,6 +129,101 @@ export default function Template({ categories }) {
                       </span>
                     </div>
                   </div>
+                  <div class="cu_admin_section">
+                    <div class="cu_admin_box m-auto">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="cu_admin_file_up_box d-flex align-items-center">
+                            <div class="cu_admin_file_up_box_img_text d-flex justify-content-between align-items-center">
+                              <NextImage src={imagesPath.Figma} alt="figma" />
+                            </div>
+
+                            <div class="d-flex">
+                              <div class="cu_admin_select_box">
+                                <select
+                                  class="cu_admin_select"
+                                  name="cars"
+                                  id="cars"
+                                >
+                                  <option class="cu_admin_option" value="volvo">
+                                    Figma
+                                  </option>
+                                  <option class="cu_admin_option" value="saab">
+                                    Bootstarp
+                                  </option>
+                                  <option
+                                    class="cu_admin_option"
+                                    value="mercedes"
+                                  >
+                                    Tailwind
+                                  </option>
+                                  <option class="cu_admin_option" value="audi">
+                                    Next JS
+                                  </option>
+                                </select>
+                              </div>
+
+                              <div class="cu_admin_select_box create">
+                                <select
+                                  class="cu_admin_select"
+                                  name="cars"
+                                  id="cars"
+                                >
+                                  <option class="cu_admin_option" value="saab">
+                                    ㊉
+                                  </option>
+                                  <option class="cu_admin_option" value="volvo">
+                                    {' '}
+                                    Create Tech
+                                  </option>
+                                  <option class="cu_admin_option" value="saab">
+                                    {' '}
+                                    Create Category
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <input class="cu_admin_input" type="text" />
+                            <input class="cu_admin_input" type="text" />
+                          </div>
+                          <div>
+                            <input class="cu_admin_input" type="text" />
+                            <a class="cu_admin_submit_btn" href="#">
+                              Submit
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="offset-lg-2 col-lg-4 ">
+                          {/* overflow-x:"hidden" overflow-y:"scroll" */}
+                          <div
+                            style={{
+                              height: '200px',
+                              overflow: 'scroll',
+                              overflowX: 'hidden',
+                              overflowY: 'scroll',
+                            }}
+                          >
+                            <div style={{ height: 'auto' }}>
+                              <div>
+                                <input type="checkbox" name="checkbox" />
+                                <label
+                                  class="checkbox_label"
+                                  htmlFor="checkbox"
+                                >
+                                  Figma
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="tags">
                     {tags.map((tag, index) => (
                       <div className="single-tag" key={index}>

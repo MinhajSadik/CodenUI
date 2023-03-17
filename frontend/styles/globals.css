@@ -55,6 +55,7 @@ a {
 .pt-15 {
   padding-top: 15px;
 }
+
 .pt-40 {
   padding-top: 40px;
 }
@@ -62,6 +63,7 @@ a {
 .pt-60 {
   padding-top: 60px;
 }
+
 .pt-106 {
   padding-top: 106px;
 }
@@ -73,6 +75,7 @@ a {
 .mt-20 {
   margin-top: 20px;
 }
+
 .mt-25 {
   margin-top: 25px;
 }
@@ -108,6 +111,7 @@ a {
 .pt-70 {
   padding-top: 70px;
 }
+
 .pt-76 {
   padding-top: 76px;
 }
@@ -115,6 +119,7 @@ a {
 .pt-50 {
   padding-top: 50px;
 }
+
 .mb-50 {
   margin-bottom: 50px;
 }
@@ -122,9 +127,11 @@ a {
 .pb-75 {
   padding-bottom: 75px;
 }
+
 .pt-80 {
   padding-top: 80px;
 }
+
 .pb-100 {
   padding-bottom: 100px;
 }
@@ -236,6 +243,7 @@ a {
   margin-left: 5px;
   width: 15px;
 }
+
 .dropdown {
   position: relative;
 }
@@ -270,6 +278,7 @@ a {
   padding-bottom: 4px;
   border-radius: 6px;
 }
+
 .dropdown-item:hover {
   background-color: rgba(109, 88, 245, 0.2);
   color: #6d58f5;
@@ -281,11 +290,9 @@ a {
 
 .cu_sign_in_btn {
   padding: 8px 25px;
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    rgba(109, 88, 245, 0.2),
-    rgba(69, 51, 184, 1)
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      rgba(109, 88, 245, 0.2),
+      rgba(69, 51, 184, 1));
   border-radius: 6px;
   font-family: eudoxus-sans-700;
   font-size: 16px;
@@ -301,11 +308,9 @@ a {
 
 .cu_get_access_btn {
   padding: 8px 20px;
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   font-family: eudoxus-sans-700;
   font-size: 16px;
@@ -555,11 +560,9 @@ a {
 }
 
 .cu_coded_tem_view_all_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
@@ -678,11 +681,9 @@ a {
 }
 
 .cu_em_tem_view_all_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
@@ -800,11 +801,9 @@ a {
 }
 
 .cu_icon_view_all_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
@@ -921,11 +920,9 @@ a {
 }
 
 .cu_coded_blocks_view_all_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
@@ -965,6 +962,7 @@ a {
   padding-bottom: 50px;
   margin-bottom: 0;
 }
+
 /* yearly_pricing_card */
 
 .cu_pricing_card {
@@ -1028,11 +1026,9 @@ a {
 }
 
 .cu_pack_yr_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding-top: 16px;
   padding-bottom: 16px;
@@ -1043,6 +1039,7 @@ a {
   display: block;
   text-align: center;
 }
+
 /* Life-Time_pricing_card */
 
 .cu_ld_pricing_card {
@@ -1138,6 +1135,7 @@ a {
 .accordion-item {
   margin-top: 10px;
 }
+
 .accordion-button {
   font-family: eudoxus-sans-500;
   font-size: 20px;
@@ -1145,6 +1143,7 @@ a {
   color: #212121;
   border: 1px solid #e1e1e1;
 }
+
 .accordion-button:focus {
   box-shadow: none;
   border: none;
@@ -1264,11 +1263,9 @@ a {
 
 .btn-outline-secondary {
   border: none;
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  ) !important ;
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%) !important;
   border-radius: 6px !important;
   padding-bottom: 8px !important;
 }
@@ -1351,6 +1348,7 @@ a {
   margin-bottom: 3px;
   margin-right: 6px;
 }
+
 /* cu_categories */
 
 .cu_coded_category_card {
@@ -1442,11 +1440,9 @@ a {
 }
 
 .cu_coded_category_view_all_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
@@ -1549,7 +1545,8 @@ a {
 }
 
 .cu_download_btn {
-  font-family: eudoxus-sans-500; /*interfontmissing*/
+  font-family: eudoxus-sans-500;
+  /*interfontmissing*/
   font-size: 14px;
   line-height: 22px;
   color: #ffffff;
@@ -1768,11 +1765,9 @@ a {
 }
 
 .cu_icon_pack_view_all_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
@@ -1856,9 +1851,11 @@ a {
   padding: 50px 70px;
   cursor: pointer;
 }
+
 .cu_single_icon {
   position: relative;
 }
+
 .cu_single_icon_popup_wrapper {
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
@@ -1868,6 +1865,7 @@ a {
   top: 0;
   left: 0;
 }
+
 .cu_single_icon_popup {
   z-index: 99;
   position: absolute;
@@ -1934,31 +1932,37 @@ a {
 .cu_icon_figma {
   margin-right: 8px;
 }
+
 /* checkout-Page */
 .cu_checkout_page_wrapper {
   background-color: #f9fafb;
   padding-bottom: 230px;
 }
+
 .cu_checkout_page_logo {
   margin-top: -25px;
 }
+
 .cu_product_details_box {
   background: #ffffff;
   padding: 25px 30px;
   border-radius: 10px;
 }
+
 .cu_order_details_title {
   font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
 }
+
 .cu_product_details {
   font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
+
 .cu_product_name {
   font-family: eudoxus-sans-500;
   font-size: 18px;
@@ -1966,9 +1970,11 @@ a {
   color: #5b5b5b;
   margin-bottom: 0;
 }
+
 .cu_product_icon {
   margin-right: 8px;
 }
+
 .cu_product_price {
   font-family: eudoxus-sans-700;
   font-size: 20px;
@@ -1983,31 +1989,37 @@ a {
   color: #212121;
   margin-top: 30px;
 }
+
 .cu_personal_info_box {
   padding: 25px 30px 30px;
   background-color: #ffffff;
   border-radius: 10px;
 }
+
 .form-label {
   font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #8d8d8d;
 }
+
 .form-control {
   background-color: #ffffff;
   border: 1px solid #ececec;
   border-radius: 6px;
 }
+
 .form-control::placeholder {
   color: rgba(205, 205, 205, 1);
 }
+
 .cu_form_msg_text {
   font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
+
 .cu_form_msg_text a {
   color: rgba(109, 88, 245, 1);
   cursor: pointer;
@@ -2031,26 +2043,31 @@ a {
   background-color: #f9fafb;
   padding-bottom: 230px;
 }
+
 .cu_checkout_after_logo {
   margin-top: -25px;
 }
+
 .cu_product_details_box {
   background: #ffffff;
   padding: 25px 30px;
   border-radius: 10px;
 }
+
 .cu_order_details_title {
   font-family: eudoxus-sans-500;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
 }
+
 .cu_product_details {
   font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
+
 .cu_product_name {
   font-family: eudoxus-sans-500;
   font-size: 18px;
@@ -2058,9 +2075,11 @@ a {
   color: #5b5b5b;
   margin-bottom: 0;
 }
+
 .cu_product_icon {
   margin-right: 8px;
 }
+
 .cu_product_price {
   font-family: eudoxus-sans-700;
   font-size: 20px;
@@ -2075,26 +2094,31 @@ a {
   color: #212121;
   margin-top: 30px;
 }
+
 .cu_checkout_after_personal_info_box {
   padding: 25px 30px 30px;
   background-color: #ffffff;
   border-radius: 10px;
 }
+
 .cu_checkout_after_name {
   font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
+
 .cu_checkout_after_name span {
   color: rgba(141, 141, 141, 1);
 }
+
 .cu_checkout_after_email {
   font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
+
 .cu_checkout_after_email span {
   color: rgba(141, 141, 141, 1);
 }
@@ -2110,6 +2134,7 @@ a {
   font-size: 16px;
   line-height: 24px;
 }
+
 /* Account-Settings-Page */
 
 /* Account-Settings-Page-Navigation-Bar */
@@ -2121,6 +2146,7 @@ a {
   line-height: 24px;
   color: #ffffff;
 }
+
 .cu_Pricing:hover {
   color: #ffffff;
 }
@@ -2199,12 +2225,14 @@ a {
 .cu_account_settings_wrapper {
   padding-bottom: 91px;
 }
+
 .cu_account_settings_title {
   font-family: eudoxus-sans-700;
   font-size: 24px;
   line-height: 32px;
   color: #212121;
 }
+
 .cu_account_settings_text {
   font-family: eudoxus-sans-400;
   font-size: 14px;
@@ -2393,7 +2421,8 @@ a {
 }
 
 .cu_download_btn {
-  font-family: eudoxus-sans-500; /* interfontmissing */
+  font-family: eudoxus-sans-500;
+  /* interfontmissing */
   font-size: 14px;
   line-height: 22px;
   color: #ffffff;
@@ -2549,11 +2578,9 @@ a {
 }
 
 .cu_coded_blocks_view_all_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding: 6px 25px 10px 25px;
   color: #fff;
@@ -2590,12 +2617,15 @@ a {
   border-radius: 12px;
   width: 460px;
 }
+
 #overlay {
   background-color: rgba(0, 0, 0, 0.6);
 }
+
 .cu_sign_up_logo {
   background-color: transparent !important;
 }
+
 .cu_ac_title {
   font-family: eudoxus-sans-700;
   font-size: 22px;
@@ -2603,6 +2633,7 @@ a {
   color: #212121;
   margin-bottom: 10px;
 }
+
 .cu_ac_text {
   font-family: eudoxus-sans-400;
   font-size: 14px;
@@ -2618,15 +2649,18 @@ a {
   border: 1px solid #ececec;
   border-radius: 6px;
 }
+
 .cu_google_btn {
   font-family: eudoxus-sans-500;
   font-size: 14px;
   line-height: 22px;
   color: #212121;
 }
+
 .cu_google_btn:hover {
   color: #212121;
 }
+
 .cu_google_icon {
   margin-right: 8px;
 }
@@ -2643,6 +2677,7 @@ a {
 .cu_hr_line {
   position: relative;
 }
+
 .cu_hr_line::before {
   content: '';
   position: absolute;
@@ -2652,6 +2687,7 @@ a {
   height: 1px;
   background-color: rgba(236, 236, 236, 1);
 }
+
 .cu_hr_line::after {
   content: '';
   position: absolute;
@@ -2668,21 +2704,26 @@ a {
   line-height: 22px;
   color: #212121;
 }
+
 .cu_condition_text {
   font-family: eudoxus-sans-500;
   font-size: 12px;
   line-height: 18px;
   color: #8d8d8d;
 }
+
 .cu_terms_btn {
   color: rgba(109, 88, 245, 1);
 }
+
 .cu_terms_btn:hover {
   color: rgba(109, 88, 245, 1);
 }
+
 .cu_privacy_btn {
   color: rgba(109, 88, 245, 1);
 }
+
 .cu_privacy_btn:hover {
   color: rgba(109, 88, 245, 1);
 }
@@ -2717,21 +2758,25 @@ a {
   line-height: 22px;
   color: #212121;
 }
+
 .cu_rem_me_text {
   font-family: eudoxus-sans-500;
   font-size: 12px;
   line-height: 18px;
   color: #212121;
 }
+
 .cu_forgot_btn {
   font-family: eudoxus-sans-500;
   font-size: 12px;
   line-height: 18px;
   color: #6d58f5;
 }
+
 .cu_forgot_btn:hover {
   color: #6d58f5;
 }
+
 .cu_log_in_btn {
   padding-top: 7px;
   padding-bottom: 11px;
@@ -2776,6 +2821,7 @@ a {
   color: #212121;
   margin-bottom: 0px;
 }
+
 .cu_fp_text {
   font-family: eudoxus-sans-400;
   font-size: 14px;
@@ -2815,6 +2861,7 @@ a {
   line-height: 22px;
   color: #212121;
 }
+
 .cu_fp_form_msg_text a {
   color: rgba(109, 88, 245, 1);
   cursor: pointer;
@@ -2851,6 +2898,7 @@ a {
   color: #212121;
   margin-bottom: 0px;
 }
+
 .cu_np_text {
   font-family: eudoxus-sans-400;
   font-size: 14px;
@@ -2924,6 +2972,7 @@ a {
   line-height: 22px;
   color: #212121;
 }
+
 .cu_np_form_msg_text a {
   color: rgba(109, 88, 245, 1);
   cursor: pointer;
@@ -2959,6 +3008,7 @@ a {
   color: #212121;
   margin-bottom: 0px;
 }
+
 .cu_sp_text {
   font-family: eudoxus-sans-400;
   font-size: 14px;
@@ -2989,12 +3039,14 @@ a {
 .cu_billing_wrapper {
   padding-bottom: 91px;
 }
+
 .cu_billing_title {
   font-family: eudoxus-sans-700;
   font-size: 24px;
   line-height: 32px;
   color: #212121;
 }
+
 .cu_billing_text {
   font-family: eudoxus-sans-400;
   font-size: 14px;
@@ -3063,6 +3115,7 @@ a {
   color: #212121;
   margin-bottom: 0px;
 }
+
 .cu_otp_text {
   font-family: eudoxus-sans-400;
   font-size: 14px;
@@ -3126,6 +3179,7 @@ a {
   line-height: 22px;
   color: #212121;
 }
+
 .cu_otp_form_msg_text a {
   color: rgba(109, 88, 245, 1);
   cursor: pointer;
@@ -3136,12 +3190,14 @@ a {
 .cu_billing_paid_wrapper {
   padding-bottom: 91px;
 }
+
 .cu_billing_paid_title {
   font-family: eudoxus-sans-700;
   font-size: 24px;
   line-height: 32px;
   color: #212121;
 }
+
 .cu_billing_paid_text {
   font-family: eudoxus-sans-400;
   font-size: 14px;
@@ -3236,12 +3292,14 @@ a {
 .cu_billing_paid_lifetime_wrapper {
   padding-bottom: 91px;
 }
+
 .cu_billing_paid_lifetime_title {
   font-family: eudoxus-sans-700;
   font-size: 24px;
   line-height: 32px;
   color: #212121;
 }
+
 .cu_billing_paid_lifetime_text {
   font-family: eudoxus-sans-400;
   font-size: 14px;
@@ -3326,6 +3384,7 @@ a {
   color: #212121;
   margin-bottom: 0px;
 }
+
 .cu_cancel_subs_text {
   font-family: eudoxus-sans-400;
   font-size: 12px;
@@ -3339,11 +3398,9 @@ a {
 }
 
 .cu_cancel_subs_yes_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding: 10px 15px;
   font-family: eudoxus-sans-700;
@@ -3405,11 +3462,9 @@ a {
 }
 
 .cu_go_to_home_btn {
-  background: radial-gradient(
-    314.29% 3484.53% at 35.81% -38.39%,
-    #6d58f5 0%,
-    #4533b8 100%
-  );
+  background: radial-gradient(314.29% 3484.53% at 35.81% -38.39%,
+      #6d58f5 0%,
+      #4533b8 100%);
   border-radius: 6px;
   padding: 10px 48px;
   font-family: eudoxus-sans-700;
@@ -3468,7 +3523,114 @@ a {
   from {
     transform: translateX(100%);
   }
+
   to {
     transform: translateX(0);
   }
+}
+
+
+/* admin dashboard file upload part */
+
+.cu_admin_box {
+  width: 800px;
+  height: 220px;
+  /* border: 1px solid #E1E1E1; */
+  border-radius: 10px;
+  padding: 20px 0 0 20px;
+  background-color: #F4F4F4;
+}
+
+.cu_admin_file_up_box {
+  margin-bottom: 30px;
+}
+
+
+.cu_admin_file_up_box_text {
+  font-family: eudoxus-sans-500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #212121;
+  margin-bottom: 0;
+  padding-left: 15px;
+}
+
+
+.cu_admin_input {
+  height: 40px;
+  margin-right: 25px;
+  margin-bottom: 30px;
+  border: 1px solid #ECECEC;
+  border-radius: 6px;
+  font-family: eudoxus-sans-500;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.cu_admin_input:focus {
+  outline: none;
+}
+
+
+.cu_admin_submit_btn {
+  padding: 7px 15px;
+  background-color: rgba(109, 88, 245, 1);
+  border-radius: 6px;
+  border: none;
+  display: inline-block;
+  color: #ffffff;
+  font-family: eudoxus-sans-500;
+  font-size: 14px;
+  line-height: 22px;
+  margin-left: 80px;
+}
+
+.cu_admin_submit_btn:hover {
+  color: #ffffff;
+}
+
+.checkbox_label {
+  color: #212121;
+  font-family: eudoxus-sans-500;
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 5px;
+}
+
+
+
+.cu_admin_select {
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid #ECECEC;
+  width: auto;
+  border-radius: 30px;
+  margin-left: 10px;
+  font-family: eudoxus-sans-500;
+  font-size: 14px;
+}
+
+.create {
+  margin-left: 50px;
+}
+
+.cu_admin_select:focus {
+  outline: none;
+}
+
+
+.label {
+  color: #212121;
+  font-family: eudoxus-sans-600;
+  font-size: 12px;
+  line-height: 22px;
+  margin-bottom: 5px;
+}
+
+.cu_admin_option {
+  color: #212121;
+  font-family: eudoxus-sans-500;
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 5px;
 }
