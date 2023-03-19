@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updatePassword, updateUser } from '../../../redux/feature/userSlice';
 import { withRouter } from '../../components';
 import { upperCaseName } from '../../utils/upperCaseName';
+import NextImage from '../Shared/NextImage/NextImage';
 
 const userUpdateInitState = {
   name: '',
@@ -96,10 +97,12 @@ function AccountSetting({ email, id }) {
           <div className="cu_account_info_box">
             <div className="cu_avatar_box">
               {user.avatar ? (
-                <img
+                <NextImage
                   className="cu_profile_avatar"
-                  src={user.avatar}
+                  src={user?.avatar}
                   alt="avatar"
+                  width="100"
+                  height="100"
                 />
               ) : (
                 <div className="cu_profile_name_word">

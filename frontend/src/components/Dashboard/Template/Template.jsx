@@ -6,6 +6,7 @@ import NextImage from '../../Shared/NextImage/NextImage';
 export default function Template({ categories }) {
   const [tags, setTags] = useState([]);
   const [error, setError] = useState('');
+  const [file, setFile] = useState('');
 
   const handleTags = (event) => {
     if (event.key === 'Enter' && event.target.value !== '') {
@@ -43,8 +44,6 @@ export default function Template({ categories }) {
           <div className="col-12 grid-margin stretch-card">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">Basic form elements</h4>
-                <p className="card-description"> Basic form elements </p>
                 <div className="forms-sample">
                   <div className="form-group">
                     <label htmlFor="exampleInputName1">Name</label>
@@ -64,7 +63,6 @@ export default function Template({ categories }) {
                       placeholder="Price"
                     />
                   </div>
-
                   <div className="form-group">
                     <label htmlFor="exampleSelectGender">Categories</label>
                     <select className="form-control">
@@ -81,6 +79,7 @@ export default function Template({ categories }) {
                       <option value="">Create One</option>
                     </select>
                   </div>
+                  <div></div>
                   <div className="form-group">
                     <label>Thumbnail upload</label>
                     <input
@@ -114,10 +113,21 @@ export default function Template({ categories }) {
                     />
                     <div className="input-group col-xs-12">
                       <input
-                        type="text"
+                        type="file"
+                        name="file"
+                        id="file"
+                        onChange={(e) => {
+                          const form = new FileReader();
+                          form.readAsDataURL(e.target.files[0]);
+                          console.log({ form, file });
+                          form.onloadend = () => {
+                            setFile(form);
+                          };
+                          console.log({ form, file });
+                        }}
                         className="form-control file-upload-info"
-                        disabled
                         placeholder="Upload Image"
+                        multiple
                       />
                       <span className="input-group-append">
                         <button
@@ -129,55 +139,62 @@ export default function Template({ categories }) {
                       </span>
                     </div>
                   </div>
-                  <div class="cu_admin_section">
-                    <div class="cu_admin_box m-auto">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <div class="cu_admin_file_up_box d-flex align-items-center">
-                            <div class="cu_admin_file_up_box_img_text d-flex justify-content-between align-items-center">
+                  <div className="cu_admin_section">
+                    <div className="cu_admin_box">
+                      <div className="row">
+                        <div className="col-lg-6">
+                          <div className="cu_admin_file_up_box d-flex align-items-center">
+                            <div className="cu_admin_file_up_box_img_text d-flex justify-content-between align-items-center">
                               <NextImage src={imagesPath.Figma} alt="figma" />
                             </div>
 
-                            <div class="d-flex">
-                              <div class="cu_admin_select_box">
+                            <div className="d-flex">
+                              <div className="cu_admin_select_box">
                                 <select
-                                  class="cu_admin_select"
+                                  className="cu_admin_select"
                                   name="cars"
                                   id="cars"
                                 >
-                                  <option class="cu_admin_option" value="volvo">
+                                  <option
+                                    className="cu_admin_option"
+                                    value="volvo"
+                                  >
                                     Figma
                                   </option>
-                                  <option class="cu_admin_option" value="saab">
+                                  <option
+                                    className="cu_admin_option"
+                                    value="saab"
+                                  >
                                     Bootstarp
                                   </option>
                                   <option
-                                    class="cu_admin_option"
+                                    className="cu_admin_option"
                                     value="mercedes"
                                   >
                                     Tailwind
                                   </option>
-                                  <option class="cu_admin_option" value="audi">
+                                  <option
+                                    className="cu_admin_option"
+                                    value="audi"
+                                  >
                                     Next JS
                                   </option>
                                 </select>
                               </div>
 
-                              <div class="cu_admin_select_box create">
+                              <div className="cu_admin_select_box create">
                                 <select
-                                  class="cu_admin_select"
-                                  name="cars"
-                                  id="cars"
+                                  className="cu_admin_select"
+                                  name=""
+                                  id=""
                                 >
-                                  <option class="cu_admin_option" value="saab">
+                                  <option className="cu_admin_option" value="">
                                     ㊉
                                   </option>
-                                  <option class="cu_admin_option" value="volvo">
-                                    {' '}
+                                  <option className="cu_admin_option" value="">
                                     Create Tech
                                   </option>
-                                  <option class="cu_admin_option" value="saab">
-                                    {' '}
+                                  <option className="cu_admin_option" value="">
                                     Create Category
                                   </option>
                                 </select>
@@ -185,19 +202,22 @@ export default function Template({ categories }) {
                             </div>
                           </div>
 
-                          <div>
-                            <input class="cu_admin_input" type="text" />
-                            <input class="cu_admin_input" type="text" />
+                          <div className="d-flex">
+                            <input className="cu_admin_input" type="text" />
+                            <input className="cu_admin_input" type="text" />
                           </div>
-                          <div>
-                            <input class="cu_admin_input" type="text" />
-                            <a class="cu_admin_submit_btn" href="#">
+                          <div className="d-flex">
+                            <input
+                              className="cu_admin_input_bottom"
+                              type="file"
+                            />
+                            <a className="cu_admin_submit_btn" href="#">
                               Submit
                             </a>
                           </div>
                         </div>
 
-                        <div class="offset-lg-2 col-lg-4 ">
+                        <div className="offset-lg-2 col-lg-4 ">
                           {/* overflow-x:"hidden" overflow-y:"scroll" */}
                           <div
                             style={{
@@ -208,10 +228,10 @@ export default function Template({ categories }) {
                             }}
                           >
                             <div style={{ height: 'auto' }}>
-                              <div>
+                              <div className="cu_admin_options d-flex align-items-center">
                                 <input type="checkbox" name="checkbox" />
                                 <label
-                                  class="checkbox_label"
+                                  className="checkbox_label"
                                   htmlFor="checkbox"
                                 >
                                   Figma
@@ -241,13 +261,6 @@ export default function Template({ categories }) {
                     />
                   </div>
 
-                  <div className="form-group">
-                    <input
-                      aria-label="Text input with dropdown button"
-                      type="file"
-                      className="form-control form-control"
-                    />
-                  </div>
                   <div className="form-group">
                     <label htmlFor="exampleTextarea1">Overview</label>
                     <textarea

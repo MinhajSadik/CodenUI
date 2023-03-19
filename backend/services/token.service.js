@@ -23,11 +23,10 @@ class TokenService {
   }
 
 
-  async storeRefreshToken(userId, token, expiries) {
+  async storeRefreshToken(userId, token) {
     await Token.create({
       token,
       userId,
-      expiries
     })
   }
 

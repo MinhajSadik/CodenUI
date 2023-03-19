@@ -14,5 +14,13 @@ const nextConfig = withPWA({
   env: {
     APP_API_URL: process.env.APP_API_URL,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "sharm.fra1.digitaloceanspaces.com"
+      }
+    ]
+  }
 });
 module.exports = nextConfig;

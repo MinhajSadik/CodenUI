@@ -1,4 +1,4 @@
-import { CreateBucketCommand, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
+import { CreateBucketCommand, DeleteObjectCommand, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client } from "../configs/space.config.js";
 
 
@@ -13,6 +13,10 @@ class SpaceService {
 
     async getFileFromBucket(params) {
         return await s3Client.send(new GetObjectCommand(params));
+    }
+
+    async deleteFileFromBucket(params) {
+        return s3Client.send(new DeleteObjectCommand(params))
     }
 
     async upload(params) {

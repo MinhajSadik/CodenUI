@@ -4,6 +4,8 @@ import Jimp from 'jimp';
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import UserDto from "../dtos/user.dto.js";
+import { extractImageData } from "../helpers/extractImageData.js";
+import { generateUniqeName } from "../helpers/generateUniqeName.js";
 import hashService from "../services/hash.service.js";
 import mailService from "../services/mail.service.js";
 import otpService from "../services/otp.service.js";
@@ -140,19 +142,15 @@ class UserController {
 
   async updateUser(req, res) {
     const { name, avatar } = req.body
-    const buffer = Buffer.from(
-      avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""),
-      "base64"
-    );
-
     try {
       const { id } = req.params;
       const existedUser = await userService.findById(id);
-      const jimpRes = await Jimp.read(buffer)
+
+      const jimpRes = await Jimp.read(extractImageData(avatar))
       const imageType = jimpRes.getMIME().split("/")[1]
       const user = {
         ...req.body,
-        avatar: `${process.env.SPACE_ENDPOINT}/${process.env.USER_BUCKET}/${id}.${imageType}`
+        avatar: `${process.env.SPACE_ENDPOINT}/${process.env.USER_BUCKET}/${generateUniqeName(name)}.${imageType}`
       }
 
 
@@ -163,12 +161,17 @@ class UserController {
       }
 
       await spaceService.createBucket(process.env.USER_BUCKET)
+      //deleting prev image from storage
+      await spaceService.deleteFileFromBucket({
+        Bucket: process.env.USER_BUCKET,
+        Key: `${generateUniqeName(existedUser?.name)}.${imageType}`,
+      })
 
       await spaceService.uploadFileToBucket({
         Bucket: process.env.USER_BUCKET,
-        Key: `${id}.${imageType}`,
+        Key: `${generateUniqeName(name)}.${imageType}`,
         ACL: 'public-read',
-        Body: buffer,
+        Body: extractImageData(avatar),
         ContentType: jimpRes._originalMime,
       })
 
@@ -239,7 +242,7 @@ class UserController {
         userData = await tokenService.verifyRefreshToken(refreshTokenFromCookies)
 
       } catch (error) {
-        return sendResponse(res, 500, {
+        return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
           message: error.message
         })
       }
@@ -251,12 +254,12 @@ class UserController {
         );
 
         if (!token) {
-          return sendResponse(res, 401, {
+          return sendResponse(res, statusCode.UNAUTHORIZED, {
             message: "Invalid Token"
           })
         }
       } catch (error) {
-        return sendResponse(res, 500, {
+        return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
           message: error.message
         })
       }
@@ -266,7 +269,7 @@ class UserController {
       const user = await userService.findById({ _id: userData._id })
 
       if (!user) {
-        return sendResponse(res, 404, {
+        return sendResponse(res, statusCode.NOT_FOUND, {
           message: "No user found!"
         })
       }
@@ -281,7 +284,7 @@ class UserController {
       try {
         await tokenService.updateRefreshToken(userData._id, refreshToken)
       } catch (error) {
-        return sendResponse(res, 500, {
+        return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
           message: error.message
         })
       }
@@ -298,13 +301,13 @@ class UserController {
 
       const transformed = new UserDto(user)
 
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         user: transformed,
         loggedIn: true
       })
     }
     else {
-      return sendResponse(res, 404, {
+      return sendResponse(res, statusCode.NOT_FOUND, {
         message: `Your session is over!`
       })
     }
@@ -312,16 +315,21 @@ class UserController {
 
   async logout(req, res) {
     const { refreshToken } = req.cookies
+    try {
+      //deleted refresh token from db
+      await tokenService.removeToken(refreshToken)
 
-    //deleted refresh token from db
-    await tokenService.removeToken(refreshToken);
+      res.clearCookie("refreshToken")
+      res.clearCookie("accessToken")
 
-    res.clearCookie("refreshToken")
-    res.clearCookie("accessToken")
-
-    return sendResponse(res, 200, {
-      message: `You Loggedout Successfully!`
-    })
+      return sendResponse(res, statusCode.OK, {
+        message: `You Loggedout Successfully!`
+      })
+    } catch (error) {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
+        message: error.message
+      })
+    }
   }
 
   async forgotPassword(req, res) {

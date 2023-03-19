@@ -9,10 +9,6 @@ const refreshSchema = new Schema(
         userId: {
             type: Schema.Types.ObjectId,
             ref: "User",
-        },
-        expiries: {
-            type: Date,
-            default: Date.now()
         }
     }
 );
