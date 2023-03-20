@@ -2,24 +2,16 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePassword, updateUser } from '../../../redux/feature/userSlice';
 import { withRouter } from '../../components';
+import {
+  passwordInitState,
+  userUpdateInitState,
+} from '../../utils/initialStates';
 import { upperCaseName } from '../../utils/upperCaseName';
 import NextImage from '../Shared/NextImage/NextImage';
 
-const userUpdateInitState = {
-  name: '',
-  email: '',
-  avatar: '',
-};
-
-const passwordInitState = {
-  currentPassword: '',
-  newPassword: '',
-  confirmPassword: '',
-};
-
 function AccountSetting({ email, id }) {
   const [userUpdateInfo, setUserUpdateInfo] = useState(userUpdateInitState);
-  const { name, email: inputEmail, avatar } = userUpdateInfo;
+  const { name, email: inputEmail } = userUpdateInfo;
 
   const dispatch = useDispatch();
   const { loading, user } = useSelector((state) => state.user);

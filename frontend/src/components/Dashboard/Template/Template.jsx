@@ -1,12 +1,36 @@
 import React, { useState } from 'react';
 import { MdClose } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { createProduct } from '../../../../redux/feature/productSlice';
 import imagesPath from '../../../assets/images/imagesPath';
+import { productInitState } from '../../../utils/initialStates';
 import NextImage from '../../Shared/NextImage/NextImage';
 
-export default function Template({ categories }) {
+export default function Template({ categories, teches }) {
+  const dispatch = useDispatch();
+  const [productInfo, setProductInfo] = useState(productInitState);
+  const { name, price, thumbnail, image, description } = productInfo;
   const [tags, setTags] = useState([]);
-  const [error, setError] = useState('');
-  const [file, setFile] = useState('');
+
+  function captureProductInfo(e) {
+    const { name, value } = e.target;
+    setProductInfo({
+      ...productInfo,
+      [name]: value,
+    });
+  }
+
+  function captureImage(e) {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setProductInfo({
+        ...productInfo,
+        [e.target.name]: reader.result,
+      });
+    };
+  }
 
   const handleTags = (event) => {
     if (event.key === 'Enter' && event.target.value !== '') {
@@ -16,16 +40,12 @@ export default function Template({ categories }) {
     } else if (
       event.key === 'Backspace' &&
       tags.length &&
-      event.target.value == 0
+      event.target.value === 0
     ) {
       const tagsCopy = [...tags];
       tagsCopy.pop();
       event.preventDefault();
       setTags(tagsCopy);
-    } else if (tags.length < 1 && event.key === 'Backspace') {
-      setError("Since there is no tags you can't able to delete any tags");
-    } else if (event.target.value == '' && event.key === 'Enter') {
-      setError('The tag should be one character long!');
     }
   };
 
@@ -33,9 +53,13 @@ export default function Template({ categories }) {
     setTags([...tags.filter((tag) => tags.indexOf(tag) !== index)]);
   };
 
-  const handleError = () => {
-    setError('');
-  };
+  function handleProductSubmit(e) {
+    setProductInfo({
+      ...productInfo,
+      tags: tags,
+    });
+    dispatch(createProduct(productInfo));
+  }
 
   return (
     <div className="main-panel">
@@ -48,19 +72,25 @@ export default function Template({ categories }) {
                   <div className="form-group">
                     <label htmlFor="exampleInputName1">Name</label>
                     <input
+                      id="name"
                       type="text"
+                      name="name"
+                      value={name}
+                      onChange={captureProductInfo}
                       className="form-control"
-                      id="exampleInputName1"
-                      placeholder="Name"
+                      placeholder="Enter uniqe product name"
                     />
                   </div>
                   <div className="form-group">
                     <label htmlFor="exampleInputEmail3">Price</label>
                     <input
+                      id="price"
                       type="text"
+                      name="price"
+                      value={price}
+                      onChange={captureProductInfo}
                       className="form-control"
-                      id="exampleInputEmail3"
-                      placeholder="Price"
+                      placeholder="Enter a price either text or a number"
                     />
                   </div>
                   <div className="form-group">
@@ -70,28 +100,28 @@ export default function Template({ categories }) {
                       {categories.map(({ name, id }) => (
                         <option
                           key={id}
-                          value={name}
-                          onClick={(e) => console.log(e.target.value)}
+                          onClick={(e) => {
+                            setProductInfo({
+                              ...productInfo,
+                              categoryId: id,
+                              categoryName: e.target.value,
+                            });
+                          }}
                         >
                           {name}
                         </option>
                       ))}
-                      <option value="">Create One</option>
                     </select>
                   </div>
-                  <div></div>
                   <div className="form-group">
                     <label>Thumbnail upload</label>
-                    <input
-                      type="file"
-                      name=""
-                      className="file-upload-default"
-                    />
                     <div className="input-group col-xs-12">
                       <input
-                        type="text"
+                        type="file"
+                        name="thumbnail"
+                        id="thumbnail"
+                        onChange={captureImage}
                         className="form-control file-upload-info"
-                        disabled
                         placeholder="Upload Thumbnail"
                       />
                       <span className="input-group-append">
@@ -106,28 +136,14 @@ export default function Template({ categories }) {
                   </div>
                   <div className="form-group">
                     <label>Image upload</label>
-                    <input
-                      type="file"
-                      name=""
-                      className="file-upload-default"
-                    />
                     <div className="input-group col-xs-12">
                       <input
                         type="file"
-                        name="file"
-                        id="file"
-                        onChange={(e) => {
-                          const form = new FileReader();
-                          form.readAsDataURL(e.target.files[0]);
-                          console.log({ form, file });
-                          form.onloadend = () => {
-                            setFile(form);
-                          };
-                          console.log({ form, file });
-                        }}
+                        name="image"
+                        id="image"
+                        onChange={captureImage}
                         className="form-control file-upload-info"
                         placeholder="Upload Image"
-                        multiple
                       />
                       <span className="input-group-append">
                         <button
@@ -144,57 +160,39 @@ export default function Template({ categories }) {
                       <div className="row">
                         <div className="col-lg-6">
                           <div className="cu_admin_file_up_box d-flex align-items-center">
-                            <div className="cu_admin_file_up_box_img_text d-flex justify-content-between align-items-center">
-                              <NextImage src={imagesPath.Figma} alt="figma" />
-                            </div>
-
                             <div className="d-flex">
+                              <div className="cu_admin_file_up_box_img_text d-flex justify-content-between align-items-center">
+                                <NextImage src={imagesPath.Figma} alt="figma" />
+                              </div>
                               <div className="cu_admin_select_box">
-                                <select
-                                  className="cu_admin_select"
-                                  name="cars"
-                                  id="cars"
-                                >
-                                  <option
-                                    className="cu_admin_option"
-                                    value="volvo"
-                                  >
-                                    Figma
-                                  </option>
-                                  <option
-                                    className="cu_admin_option"
-                                    value="saab"
-                                  >
-                                    Bootstarp
-                                  </option>
-                                  <option
-                                    className="cu_admin_option"
-                                    value="mercedes"
-                                  >
-                                    Tailwind
-                                  </option>
-                                  <option
-                                    className="cu_admin_option"
-                                    value="audi"
-                                  >
-                                    Next JS
-                                  </option>
+                                <select className="cu_admin_select">
+                                  {teches.map(({ name, _id }) => (
+                                    <option
+                                      key={_id}
+                                      className="cu_admin_option"
+                                      value={name}
+                                    >
+                                      {name}
+                                    </option>
+                                  ))}
                                 </select>
                               </div>
 
                               <div className="cu_admin_select_box create">
-                                <select
-                                  className="cu_admin_select"
-                                  name=""
-                                  id=""
-                                >
+                                <select className="cu_admin_select">
                                   <option className="cu_admin_option" value="">
                                     ㊉
                                   </option>
-                                  <option className="cu_admin_option" value="">
+                                  <option
+                                    className="cu_admin_option"
+                                    value="create tech"
+                                  >
                                     Create Tech
                                   </option>
-                                  <option className="cu_admin_option" value="">
+                                  <option
+                                    className="cu_admin_option"
+                                    value="create category"
+                                  >
                                     Create Category
                                   </option>
                                 </select>
@@ -218,7 +216,6 @@ export default function Template({ categories }) {
                         </div>
 
                         <div className="offset-lg-2 col-lg-4 ">
-                          {/* overflow-x:"hidden" overflow-y:"scroll" */}
                           <div
                             style={{
                               height: '200px',
@@ -227,17 +224,21 @@ export default function Template({ categories }) {
                               overflowY: 'scroll',
                             }}
                           >
-                            <div style={{ height: 'auto' }}>
-                              <div className="cu_admin_options d-flex align-items-center">
-                                <input type="checkbox" name="checkbox" />
-                                <label
-                                  className="checkbox_label"
-                                  htmlFor="checkbox"
+                            <ul style={{ height: 'auto' }}>
+                              {teches?.map((tech) => (
+                                <li
+                                  key={tech._id}
+                                  className="cu_admin_options d-flex align-items-center"
                                 >
-                                  Figma
-                                </label>
-                              </div>
-                            </div>
+                                  <label>{tech.name}</label>
+                                  <input
+                                    id={tech?.name}
+                                    name={tech?.name}
+                                    type="checkbox"
+                                  />
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         </div>
                       </div>
@@ -255,8 +256,10 @@ export default function Template({ categories }) {
                     ))}
                     <input
                       type="text"
+                      id="tags"
+                      name="tags"
+                      // defaultValue={productInfo.tags}
                       onKeyDown={handleTags}
-                      onChange={handleError}
                       placeholder="Write some tag and press enter and backspace to delete"
                     />
                   </div>
@@ -264,13 +267,18 @@ export default function Template({ categories }) {
                   <div className="form-group">
                     <label htmlFor="exampleTextarea1">Overview</label>
                     <textarea
+                      id="description"
+                      type="textarea"
+                      name="description"
+                      value={description}
+                      onChange={captureProductInfo}
                       className="form-control"
-                      id="exampleTextarea1"
                       rows="4"
                     ></textarea>
                   </div>
                   <button
                     type="submit"
+                    onClick={handleProductSubmit}
                     className="btn btn-gradient-primary me-2"
                   >
                     Submit

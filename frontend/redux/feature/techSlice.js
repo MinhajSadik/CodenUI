@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import productService from '../../services/productService';
+import techService from '../../services/techService';
 
 
-export const findProducts = createAsyncThunk(
-    "product/all",
+export const findTeches = createAsyncThunk(
+    "tech/all",
     async (_, { rejectWithValue }) => {
         try {
-            return await productService.findProducts()
+            return await techService.findTeches()
         } catch (error) {
             return rejectWithValue(error.response.data.message);
         }
@@ -14,11 +14,11 @@ export const findProducts = createAsyncThunk(
 );
 
 
-export const createProduct = createAsyncThunk(
-    "product/create",
-    async (productInfo, { rejectWithValue }) => {
+export const createTech = createAsyncThunk(
+    "tech/create",
+    async (techInfo, { rejectWithValue }) => {
         try {
-            return await productService.createProduct(productInfo)
+            return await techService.createTech(techInfo)
         } catch (error) {
             return rejectWithValue(error.response.data.message);
         }
@@ -26,11 +26,11 @@ export const createProduct = createAsyncThunk(
 )
 
 const productSlice = createSlice({
-    name: "product",
+    name: "tech",
 
     initialState: {
-        product: {},
-        products: [],
+        tech: {},
+        teches: [],
         loading: false,
         error: ""
     },
@@ -39,25 +39,25 @@ const productSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(findProducts.pending, (state) => {
+            .addCase(findTeches.pending, (state) => {
                 state.loading = true
             })
-            .addCase(findProducts.fulfilled, (state, { payload }) => {
+            .addCase(findTeches.fulfilled, (state, { payload }) => {
                 state.loading = false
-                state.products = payload
+                state.teches = payload.teches
             })
-            .addCase(findProducts.rejected, (state, { payload }) => {
+            .addCase(findTeches.rejected, (state, { payload }) => {
                 state.error = payload
                 state.loading = false
             })
-            .addCase(createProduct.pending, (state, { payload }) => {
+            .addCase(createTech.pending, (state, { payload }) => {
                 state.loading = true
             })
-            .addCase(createProduct.fulfilled, (state, { payload }) => {
+            .addCase(createTech.fulfilled, (state, { payload }) => {
                 state.loading = false
-                state.products = payload
+                state.teches = payload
             })
-            .addCase(createProduct.rejected, (state, { payload }) => {
+            .addCase(createTech.rejected, (state, { payload }) => {
                 state.error = payload
                 state.loading = false
             })
