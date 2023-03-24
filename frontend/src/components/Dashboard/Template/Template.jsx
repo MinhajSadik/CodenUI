@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { MdClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { createProduct } from '../../../../redux/feature/productSlice';
-import imagesPath from '../../../assets/images/imagesPath';
 import { productInitState } from '../../../utils/initialStates';
-import NextImage from '../../Shared/NextImage/NextImage';
 
 export default function Template({ categories, teches }) {
   const dispatch = useDispatch();
   const [productInfo, setProductInfo] = useState(productInitState);
-  const { name, price, thumbnail, image, description } = productInfo;
+  const { name, price, description } = productInfo;
   const [tags, setTags] = useState([]);
+  const [techIds, setTechIds] = useState([]);
+  const [selectedTech, setSelectedTech] = useState('');
 
   function captureProductInfo(e) {
     const { name, value } = e.target;
@@ -32,22 +32,30 @@ export default function Template({ categories, teches }) {
     };
   }
 
-  const handleTags = (event) => {
-    if (event.key === 'Enter' && event.target.value !== '') {
-      event.preventDefault();
-      setTags([...tags, event.target.value]);
-      event.target.value = '';
-    } else if (
-      event.key === 'Backspace' &&
-      tags.length &&
-      event.target.value === 0
-    ) {
+  function handleTags(e) {
+    if (e.key === 'Enter' && e.target.value !== '') {
+      e.preventDefault();
+      setTags([...tags, e.target.value]);
+      e.target.value = '';
+    } else if (e.key === 'Backspace' && tags.length && e.target.value === 0) {
       const tagsCopy = [...tags];
       tagsCopy.pop();
-      event.preventDefault();
+      e.preventDefault();
       setTags(tagsCopy);
     }
-  };
+  }
+
+  function handleTechIds(e) {
+    if (e.target.checked) {
+      setTechIds([...techIds, e.target.value]);
+    } else {
+      setTechIds([...techIds.filter((id) => id !== e.target.value)]);
+    }
+  }
+
+  function handleSelectedTech(e) {
+    setSelectedTech(e.target.value);
+  }
 
   const removeTags = (index) => {
     setTags([...tags.filter((tag) => tags.indexOf(tag) !== index)]);
@@ -120,6 +128,7 @@ export default function Template({ categories, teches }) {
                         type="file"
                         name="thumbnail"
                         id="thumbnail"
+                        accept="image/*"
                         onChange={captureImage}
                         className="form-control file-upload-info"
                         placeholder="Upload Thumbnail"
@@ -141,6 +150,7 @@ export default function Template({ categories, teches }) {
                         type="file"
                         name="image"
                         id="image"
+                        accept="image/*"
                         onChange={captureImage}
                         className="form-control file-upload-info"
                         placeholder="Upload Image"
@@ -161,16 +171,30 @@ export default function Template({ categories, teches }) {
                         <div className="col-lg-6">
                           <div className="cu_admin_file_up_box d-flex align-items-center">
                             <div className="d-flex">
-                              <div className="cu_admin_file_up_box_img_text d-flex justify-content-between align-items-center">
-                                <NextImage src={imagesPath.Figma} alt="figma" />
-                              </div>
+                              {teches.map(({ logo, _id }) => (
+                                <div
+                                  key={_id}
+                                  className="cu_admin_file_up_box_img_text d-flex justify-content-between align-items-center"
+                                >
+                                  {selectedTech === _id && (
+                                    <img
+                                      width="50px"
+                                      height="50px"
+                                      src={logo}
+                                      alt="img"
+                                    />
+                                  )}
+                                </div>
+                              ))}
                               <div className="cu_admin_select_box">
                                 <select className="cu_admin_select">
+                                  <option value="">Select</option>
                                   {teches.map(({ name, _id }) => (
                                     <option
                                       key={_id}
                                       className="cu_admin_option"
-                                      value={name}
+                                      value={_id}
+                                      onClick={handleSelectedTech}
                                     >
                                       {name}
                                     </option>
@@ -184,14 +208,18 @@ export default function Template({ categories, teches }) {
                                     ㊉
                                   </option>
                                   <option
+                                    id="tech"
+                                    name="tech"
+                                    value="tech"
                                     className="cu_admin_option"
-                                    value="create tech"
                                   >
                                     Create Tech
                                   </option>
                                   <option
+                                    id="category"
+                                    name="category"
+                                    value="category"
                                     className="cu_admin_option"
-                                    value="create category"
                                   >
                                     Create Category
                                   </option>
@@ -199,7 +227,6 @@ export default function Template({ categories, teches }) {
                               </div>
                             </div>
                           </div>
-
                           <div className="d-flex">
                             <input className="cu_admin_input" type="text" />
                             <input className="cu_admin_input" type="text" />
@@ -208,6 +235,7 @@ export default function Template({ categories, teches }) {
                             <input
                               className="cu_admin_input_bottom"
                               type="file"
+                              onChange={captureImage}
                             />
                             <a className="cu_admin_submit_btn" href="#">
                               Submit
@@ -234,6 +262,8 @@ export default function Template({ categories, teches }) {
                                   <input
                                     id={tech?.name}
                                     name={tech?.name}
+                                    value={tech._id}
+                                    onClick={handleTechIds}
                                     type="checkbox"
                                   />
                                 </li>
