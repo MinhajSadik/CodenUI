@@ -34,7 +34,9 @@ class TechController {
 
     async findTeches(req, res, next) {
         try {
-            const teches = await techService.findTeches()
+            const teches = await techService.findTeches(req.body.file)
+
+            console.log(teches)
 
             if (!teches.length) {
                 return sendResponse(res, statusCode.NOT_FOUND, {

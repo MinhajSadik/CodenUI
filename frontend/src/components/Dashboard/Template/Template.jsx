@@ -229,7 +229,7 @@ export default function Template({ categories, teches }) {
                           </div>
                           <div className="d-flex">
                             <input className="cu_admin_input" type="text" />
-                            <input className="cu_admin_input" type="text" />
+                            <input className="cu_admin_input" type="file" />
                           </div>
                           <div className="d-flex">
                             <input
@@ -263,7 +263,8 @@ export default function Template({ categories, teches }) {
                                     id={tech?.name}
                                     name={tech?.name}
                                     value={tech._id}
-                                    onClick={handleTechIds}
+                                    checked={tech.file}
+                                    onChange={handleTechIds}
                                     type="checkbox"
                                   />
                                 </li>
@@ -288,7 +289,6 @@ export default function Template({ categories, teches }) {
                       type="text"
                       id="tags"
                       name="tags"
-                      // defaultValue={productInfo.tags}
                       onKeyDown={handleTags}
                       placeholder="Write some tag and press enter and backspace to delete"
                     />

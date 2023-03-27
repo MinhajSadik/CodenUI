@@ -16,7 +16,6 @@ class ProductController {
     try {
       const { categoryId, name, image, thumbnail } = req.body;
 
-      const fileNames = [image, thumbnail];
       const category = await categoryService.findCategoryById(categoryId);
       const sameProduct = await productService.findProduct({ name });
 
@@ -32,11 +31,20 @@ class ProductController {
         });
       }
 
-      await spaceService.createBucket(process.env.PRODUCT_BUCKET);
+      const fileNames = [image, thumbnail];
 
-      fileNames.forEach(async (fileName, index) => {
+      return fileNames.forEach(async (fileName, index) => {
+
+        await spaceService.createBucket(process.env.PRODUCT_BUCKET);
+
         const imageRes = await imageResponse(fileName);
         const imageType = imageRes.getMIME().split("/")[1];
+
+        const product = await productService.createProduct({
+          ...req.body,
+          image: `${process.env.SPACE_ENDPOINT}/${process.env.PRODUCT_BUCKET}/${generateUniqeName(name)}_${index}.${imageType}`,
+          thumbnail: `${process.env.SPACE_ENDPOINT}/${process.env.PRODUCT_BUCKET}/${generateUniqeName(name)}_${index}.${imageType}`
+        });
 
         await spaceService.uploadFileToBucket({
           Bucket: process.env.PRODUCT_BUCKET,
@@ -46,21 +54,16 @@ class ProductController {
           ContentType: imageRes.getMIME(),
         });
 
-        let product = await productService.createProduct({
-          ...req.body,
-          image: `${process.env.SPACE_ENDPOINT}/${process.env.PRODUCT_BUCKET}/${generateUniqeName(name)}_${index}.${imageType}`,
-          thumbnail: `${process.env.SPACE_ENDPOINT}/${process.env.PRODUCT_BUCKET}/${generateUniqeName(name)}_${index}.${imageType}`
-        });
-
         category.products.push(product._id);
         await category.save();
 
-        return sendResponse(res, statusCode.CREATED, {
-          message: `${product.name} created successfully~`,
-          product: new ProductDto(product),
-        });
+        if (!res.headersSent) {
+          return sendResponse(res, statusCode.CREATED, {
+            message: `${product.name} created successfully~`,
+            product: new ProductDto(product),
+          });
+        }
       });
-      console.log(product)
     } catch (error) {
       return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
         message: error.message,
