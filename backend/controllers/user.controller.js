@@ -53,13 +53,17 @@ class UserController {
         await tokenService.storeRefreshToken(user.id, refreshToken, tokenExpiries)
 
         res.cookie("accessToken", accessToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 3,
           httpOnly: true,
+          secure: true,
+          sameSite: 'None',
+          maxAge: 1000 * 60 * 60 * 24 * 3,
         });
 
         res.cookie("refreshToken", refreshToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 3,
           httpOnly: true,
+          secure: true,
+          sameSite: 'None',
+          maxAge: 1000 * 60 * 60 * 24 * 3,
         });
 
         return sendResponse(res, statusCode.CREATED, {
@@ -121,13 +125,17 @@ class UserController {
 
 
       res.cookie("accessToken", accessToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
+        secure: true,
+        sameSite: 'None',
+        maxAge: 1000 * 60 * 60 * 24 * 3,
       });
 
       res.cookie("refreshToken", refreshToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
+        secure: true,
+        sameSite: 'None',
+        maxAge: 1000 * 60 * 60 * 24 * 3,
       });
 
       return sendResponse(res, statusCode.OK, {

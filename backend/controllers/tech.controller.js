@@ -34,7 +34,7 @@ class TechController {
 
     async findTeches(req, res, next) {
         try {
-            const teches = await techService.findTeches(req.body.file)
+            const teches = await techService.findTeches()
 
             console.log(teches)
 

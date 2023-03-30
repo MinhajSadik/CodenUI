@@ -11,6 +11,8 @@ export default function Template({ categories, teches }) {
   const [tags, setTags] = useState([]);
   const [techIds, setTechIds] = useState([]);
   const [selectedTech, setSelectedTech] = useState('');
+  const [techOpen, setTechOpen] = useState(false);
+  const [categoryOpen, setCategoryOpen] = useState(false);
 
   function captureProductInfo(e) {
     const { name, value } = e.target;
@@ -204,22 +206,32 @@ export default function Template({ categories, teches }) {
 
                               <div className="cu_admin_select_box create">
                                 <select className="cu_admin_select">
-                                  <option className="cu_admin_option" value="">
+                                  <option
+                                    className="cu_admin_option"
+                                    onClick={() => {
+                                      setTechOpen(false);
+                                      setCategoryOpen(false);
+                                    }}
+                                    value=""
+                                    selected
+                                  >
                                     ㊉
                                   </option>
                                   <option
-                                    id="tech"
-                                    name="tech"
-                                    value="tech"
+                                    id="techOpen"
+                                    name="techOpen"
+                                    value="techOpen"
                                     className="cu_admin_option"
+                                    onClick={() => setTechOpen(true)}
                                   >
                                     Create Tech
                                   </option>
                                   <option
-                                    id="category"
-                                    name="category"
-                                    value="category"
+                                    id="categoryOpen"
+                                    name="categoryOpen"
+                                    value="categoryOpen"
                                     className="cu_admin_option"
+                                    onClick={() => setCategoryOpen(true)}
                                   >
                                     Create Category
                                   </option>
@@ -227,16 +239,25 @@ export default function Template({ categories, teches }) {
                               </div>
                             </div>
                           </div>
+                          {techOpen && (
+                            <div className="d-flex">
+                              <input className="cu_admin_input" type="text" />
+                              <input className="cu_admin_input" type="file" />
+                            </div>
+                          )}
                           <div className="d-flex">
-                            <input className="cu_admin_input" type="text" />
-                            <input className="cu_admin_input" type="file" />
-                          </div>
-                          <div className="d-flex">
-                            <input
-                              className="cu_admin_input_bottom"
-                              type="file"
-                              onChange={captureImage}
-                            />
+                            {!techOpen && categoryOpen ? (
+                              <input
+                                className="cu_admin_input_bottom"
+                                type="text"
+                              />
+                            ) : (
+                              <input
+                                className="cu_admin_input_bottom"
+                                type="file"
+                                onChange={captureImage}
+                              />
+                            )}
                             <a className="cu_admin_submit_btn" href="#">
                               Submit
                             </a>
