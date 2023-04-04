@@ -1,4 +1,7 @@
 
+import { extractImageData, imageResponse } from "../helpers/extractImageData.js";
+import { generateUniqeName } from "../helpers/generateUniqeName.js";
+import spaceService from "../services/space.service.js";
 import techService from "../services/tech.service.js";
 import { sendResponse } from "../utils/response.util.js";
 import statusCode from "../utils/statusCode.util.js";
@@ -10,6 +13,18 @@ class TechController {
 
         try {
             const tech = await techService.findTech(name)
+            const fileRes = await imageResponse(file)
+            const imageType = fileRes.getMIME().split("/")[1]
+
+            await spaceService.createBucket(process.env.TECH_BUCKET)
+
+            await spaceService.uploadFileToBucket({
+                Bucket: process.env.USER_BUCKET,
+                Key: `${generateUniqeName(name)}.${imageType}`,
+                ACL: 'public-read',
+                Body: extractImageData(file),
+                ContentType: fileRes.getMIME(),
+            })
 
             if (tech) {
                 const updatedTech = await techService.updateTech(tech._id, file)
@@ -35,8 +50,6 @@ class TechController {
     async findTeches(req, res, next) {
         try {
             const teches = await techService.findTeches()
-
-            console.log(teches)
 
             if (!teches.length) {
                 return sendResponse(res, statusCode.NOT_FOUND, {

@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import { MdClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { createProduct } from '../../../../redux/feature/productSlice';
-import { productInitState } from '../../../utils/initialStates';
+import {
+  productInitialState,
+  techInitialState,
+} from '../../../utils/initialStates';
 
 export default function Template({ categories, teches }) {
   const dispatch = useDispatch();
-  const [productInfo, setProductInfo] = useState(productInitState);
+  const [productInfo, setProductInfo] = useState(productInitialState);
+  const [techInfo, setTechInfo] = useState(techInitialState);
+  console.log(techInfo.name);
   const { name, price, description } = productInfo;
   const [tags, setTags] = useState([]);
   const [techIds, setTechIds] = useState([]);
@@ -22,7 +27,7 @@ export default function Template({ categories, teches }) {
     });
   }
 
-  function captureImage(e) {
+  function captureProductImages(e) {
     const reader = new FileReader();
     const file = e.target.files[0];
     reader.readAsDataURL(file);
@@ -31,6 +36,19 @@ export default function Template({ categories, teches }) {
         ...productInfo,
         [e.target.name]: reader.result,
       });
+    };
+  }
+
+  function captureTechImages(e) {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setTechInfo({
+        ...techInfo,
+        [e.target.name]: reader.result,
+      });
+      console.log(reader.result);
     };
   }
 
@@ -131,7 +149,7 @@ export default function Template({ categories, teches }) {
                         name="thumbnail"
                         id="thumbnail"
                         accept="image/*"
-                        onChange={captureImage}
+                        onChange={captureProductImages}
                         className="form-control file-upload-info"
                         placeholder="Upload Thumbnail"
                       />
@@ -153,7 +171,7 @@ export default function Template({ categories, teches }) {
                         name="image"
                         id="image"
                         accept="image/*"
-                        onChange={captureImage}
+                        onChange={captureProductImages}
                         className="form-control file-upload-info"
                         placeholder="Upload Image"
                       />
@@ -190,7 +208,7 @@ export default function Template({ categories, teches }) {
                               ))}
                               <div className="cu_admin_select_box">
                                 <select className="cu_admin_select">
-                                  <option value="">Select</option>
+                                  <option value="">Technologies</option>
                                   {teches.map(({ name, _id }) => (
                                     <option
                                       key={_id}
@@ -213,9 +231,8 @@ export default function Template({ categories, teches }) {
                                       setCategoryOpen(false);
                                     }}
                                     value=""
-                                    selected
                                   >
-                                    ㊉
+                                    Technology/Category
                                   </option>
                                   <option
                                     id="techOpen"
@@ -241,8 +258,25 @@ export default function Template({ categories, teches }) {
                           </div>
                           {techOpen && (
                             <div className="d-flex">
-                              <input className="cu_admin_input" type="text" />
-                              <input className="cu_admin_input" type="file" />
+                              <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                className="cu_admin_input"
+                                onChange={(e) =>
+                                  setTechInfo({
+                                    ...techInfo,
+                                    [e.target.name]: e.target.value,
+                                  })
+                                }
+                              />
+                              <input
+                                id="logo"
+                                name="logo"
+                                className="cu_admin_input"
+                                type="file"
+                                onChange={captureTechImages}
+                              />
                             </div>
                           )}
                           <div className="d-flex">
@@ -253,9 +287,11 @@ export default function Template({ categories, teches }) {
                               />
                             ) : (
                               <input
+                                id="file"
+                                name="file"
                                 className="cu_admin_input_bottom"
                                 type="file"
-                                onChange={captureImage}
+                                onChange={captureTechImages}
                               />
                             )}
                             <a className="cu_admin_submit_btn" href="#">

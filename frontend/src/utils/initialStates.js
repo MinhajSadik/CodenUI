@@ -1,6 +1,6 @@
 
 
-export const productInitState = {
+export const productInitialState = {
     name: '',
     price: '',
     description: '',
@@ -12,14 +12,20 @@ export const productInitState = {
     tags: [],
 };
 
-export const userUpdateInitState = {
+export const userUpdateInitialState = {
     name: '',
     email: '',
     avatar: '',
 };
 
-export const passwordInitState = {
+export const passwordInitialState = {
     currentPassword: '',
     newPassword: '',
     confirmPassword: '',
 };
+
+export const techInitialState = {
+    name: "",
+    logo: "",
+    file: ""
+}
