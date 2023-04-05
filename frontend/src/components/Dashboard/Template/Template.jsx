@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MdClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { createProduct } from '../../../../redux/feature/productSlice';
+import { createTech } from '../../../../redux/feature/techSlice';
 import {
   productInitialState,
   techInitialState,
@@ -11,7 +12,6 @@ export default function Template({ categories, teches }) {
   const dispatch = useDispatch();
   const [productInfo, setProductInfo] = useState(productInitialState);
   const [techInfo, setTechInfo] = useState(techInitialState);
-  console.log(techInfo.name);
   const { name, price, description } = productInfo;
   const [tags, setTags] = useState([]);
   const [techIds, setTechIds] = useState([]);
@@ -48,7 +48,6 @@ export default function Template({ categories, teches }) {
         ...techInfo,
         [e.target.name]: reader.result,
       });
-      console.log(reader.result);
     };
   }
 
@@ -87,6 +86,10 @@ export default function Template({ categories, teches }) {
       tags: tags,
     });
     dispatch(createProduct(productInfo));
+  }
+
+  function handleTechAndCategorySubmit() {
+    dispatch(createTech(techInfo));
   }
 
   return (
@@ -209,12 +212,19 @@ export default function Template({ categories, teches }) {
                               <div className="cu_admin_select_box">
                                 <select className="cu_admin_select">
                                   <option value="">Technologies</option>
-                                  {teches.map(({ name, _id }) => (
+                                  {teches.map(({ name, _id, logo }) => (
                                     <option
                                       key={_id}
                                       className="cu_admin_option"
                                       value={_id}
-                                      onClick={handleSelectedTech}
+                                      onClick={(e) => {
+                                        setSelectedTech(e.target.value);
+                                        setTechInfo({
+                                          ...techInfo,
+                                          name,
+                                          logo,
+                                        });
+                                      }}
                                     >
                                       {name}
                                     </option>
@@ -294,9 +304,12 @@ export default function Template({ categories, teches }) {
                                 onChange={captureTechImages}
                               />
                             )}
-                            <a className="cu_admin_submit_btn" href="#">
+                            <button
+                              className="cu_admin_submit_btn"
+                              onClick={handleTechAndCategorySubmit}
+                            >
                               Submit
-                            </a>
+                            </button>
                           </div>
                         </div>
 

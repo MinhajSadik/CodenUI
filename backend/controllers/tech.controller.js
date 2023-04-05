@@ -14,20 +14,28 @@ class TechController {
         try {
             const tech = await techService.findTech(name)
             const fileRes = await imageResponse(file)
-            const imageType = fileRes.getMIME().split("/")[1]
+            const logoRes = await imageResponse(logo)
+            const fileType = fileRes.getMIME().split("/")[1]
+            const logoType = logoRes.getMIME().split("/")[1]
+
+            const fileInfo = {
+                ...req.body,
+                logo: `${process.env.SPACE_ENDPOINT}/${process.env.TECH_BUCKET}/${generateUniqeName(name)}.${logoType}`,
+                file: `${process.env.SPACE_ENDPOINT}/${process.env.TECH_BUCKET}/${generateUniqeName(name)}.${fileType}`
+            }
 
             await spaceService.createBucket(process.env.TECH_BUCKET)
 
-            await spaceService.uploadFileToBucket({
-                Bucket: process.env.USER_BUCKET,
-                Key: `${generateUniqeName(name)}.${imageType}`,
-                ACL: 'public-read',
-                Body: extractImageData(file),
-                ContentType: fileRes.getMIME(),
-            })
 
             if (tech) {
-                const updatedTech = await techService.updateTech(tech._id, file)
+                await spaceService.uploadFileToBucket({
+                    Bucket: process.env.TECH_BUCKET,
+                    Key: `${generateUniqeName(name)}.${fileType}`,
+                    ACL: 'public-read',
+                    Body: extractImageData(file),
+                    ContentType: fileRes.getMIME(),
+                })
+                const updatedTech = await techService.updateTech(tech._id, `${process.env.SPACE_ENDPOINT}/${process.env.TECH_BUCKET}/${generateUniqeName(name)}.${fileType}`)
 
                 return sendResponse(res, statusCode.OK, {
                     message: `Tech ${name} Modified`,
@@ -36,7 +44,21 @@ class TechController {
             }
 
             if (!tech) {
-                const newTech = await techService.createTech(req.body)
+                const newTech = await techService.createTech(fileInfo)
+                await spaceService.uploadFileToBucket({
+                    Bucket: process.env.TECH_BUCKET,
+                    Key: `${generateUniqeName(name)}.${logoType}`,
+                    ACL: 'public-read',
+                    Body: extractImageData(logo),
+                    ContentType: fileRes.getMIME(),
+                })
+                await spaceService.uploadFileToBucket({
+                    Bucket: process.env.TECH_BUCKET,
+                    Key: `${generateUniqeName(name)}.${fileType}`,
+                    ACL: 'public-read',
+                    Body: extractImageData(file),
+                    ContentType: fileRes.getMIME(),
+                })
                 return sendResponse(res, statusCode.CREATED, {
                     message: `Tech ${name} created!`,
                     newTech

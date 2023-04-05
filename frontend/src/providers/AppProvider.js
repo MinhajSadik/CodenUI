@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import React, { memo, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { findCategories, findCategoryByName } from '../../redux/feature/categorySlice'
-import { findProducts } from '../../redux/feature/productSlice'
-import { findTeches } from '../../redux/feature/techSlice'
+import { allCategories, findCategoryByName } from '../../redux/feature/categorySlice'
+import { allProducts } from '../../redux/feature/productSlice'
+import { allTeches } from '../../redux/feature/techSlice'
 import { clearError, clearSuccess, countUser } from '../../redux/feature/userSlice'
 import { AppContext } from '../contexts/contexts'
 import { useAutoRefresh } from '../hooks/useAutoRefresh'
@@ -63,10 +63,10 @@ function AppProvider({ children }) {
     }, [loggedIn, route])
 
     useEffect(() => {
-        dispatch(findCategories())
-        dispatch(findProducts())
+        dispatch(allCategories())
+        dispatch(allProducts())
         dispatch(countUser())
-        dispatch(findTeches())
+        dispatch(allTeches())
 
         if (route !== '/') {
             dispatch(findCategoryByName(removeUnused(route, "/")))

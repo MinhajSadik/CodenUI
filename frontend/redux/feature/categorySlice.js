@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import categoryService from '../../services/categoryService';
 
 
-export const findCategories = createAsyncThunk(
+export const allCategories = createAsyncThunk(
     "category/all",
     async (_, { rejectWithValue }) => {
         try {
@@ -42,15 +42,14 @@ const categorySlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(findCategories.pending, (state) => {
+            .addCase(allCategories.pending, (state) => {
                 state.loading = true
             })
-            .addCase(findCategories.fulfilled, (state, { payload }) => {
+            .addCase(allCategories.fulfilled, (state, { payload }) => {
                 state.loading = false
-                state.success = payload.message
                 state.categories = payload.categories
             })
-            .addCase(findCategories.rejected, (state, { payload }) => {
+            .addCase(allCategories.rejected, (state, { payload }) => {
                 state.error = payload
                 state.loading = false
             })
@@ -59,7 +58,6 @@ const categorySlice = createSlice({
             })
             .addCase(findCategoryByName.fulfilled, (state, { payload }) => {
                 state.loading = false
-                state.success = payload.message
                 state.categoryProducts = payload
             })
             .addCase(findCategoryByName.rejected, (state, { payload }) => {
