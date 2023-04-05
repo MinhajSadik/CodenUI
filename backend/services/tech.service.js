@@ -10,6 +10,10 @@ class TechService {
         return await Tech.findOne({ name })
     }
 
+    async findTeches() {
+        return Tech.find({})
+    }
+
     async updateTech(id, payload) {
         return await Tech.findByIdAndUpdate(id, {
             file: payload

@@ -4,7 +4,7 @@ import { Dashboard, Template } from '../../../src/components';
 import { AppContext } from '../../../src/contexts/contexts';
 
 export default function upload() {
-    const { categories } = useContext(AppContext)
+    const { categories, teches } = useContext(AppContext)
     return (
         <>
             <Head>
@@ -14,7 +14,7 @@ export default function upload() {
 
             </Head>
             <Dashboard>
-                <Template categories={categories} />
+                <Template categories={categories} teches={teches} />
             </Dashboard>
         </>
     )

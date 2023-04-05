@@ -1,9 +1,10 @@
 import fs from "fs";
 import handlebars from "handlebars";
-import Jimp from 'jimp';
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import UserDto from "../dtos/user.dto.js";
+import { extractImageData, imageResponse } from "../helpers/extractImageData.js";
+import { generateUniqeName } from "../helpers/generateUniqeName.js";
 import hashService from "../services/hash.service.js";
 import mailService from "../services/mail.service.js";
 import otpService from "../services/otp.service.js";
@@ -34,7 +35,7 @@ class UserController {
       const existedUser = await userService.findUser(email);
 
       if (existedUser) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.BAD_REQUEST, {
           message: `User ${email} already exist!`,
         });
       } else {
@@ -52,22 +53,26 @@ class UserController {
         await tokenService.storeRefreshToken(user.id, refreshToken, tokenExpiries)
 
         res.cookie("accessToken", accessToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 3,
           httpOnly: true,
+          secure: true,
+          sameSite: 'None',
+          maxAge: 1000 * 60 * 60 * 24 * 3,
         });
 
         res.cookie("refreshToken", refreshToken, {
-          maxAge: 1000 * 60 * 60 * 24 * 3,
           httpOnly: true,
+          secure: true,
+          sameSite: 'None',
+          maxAge: 1000 * 60 * 60 * 24 * 3,
         });
 
-        return sendResponse(res, 201, {
+        return sendResponse(res, statusCode.CREATED, {
           message: `${name} Your account created successfully`,
           user,
         });
       }
     } catch (error) {
-      return sendResponse(res, 500, {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
         message: error.message,
       });
     }
@@ -79,7 +84,7 @@ class UserController {
       const user = await userService.findUser(email);
 
       if (!user) {
-        return sendResponse(res, 404, {
+        return sendResponse(res, statusCode.NOT_FOUND, {
           message: `User not found! create one with ${email} or check again`,
         });
       }
@@ -90,7 +95,7 @@ class UserController {
       );
 
       if (!isPasswordMatched) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.BAD_REQUEST, {
           message: `Password is not matched!`,
         });
       }
@@ -113,23 +118,27 @@ class UserController {
         } else
           await tokenService.storeRefreshToken(user._id, refreshToken, tokenExpiries)
       } catch (error) {
-        return sendResponse(res, 500, {
+        return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
           message: error.message
         })
       }
 
 
       res.cookie("accessToken", accessToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
+        secure: true,
+        sameSite: 'None',
+        maxAge: 1000 * 60 * 60 * 24 * 3,
       });
 
       res.cookie("refreshToken", refreshToken, {
-        maxAge: 1000 * 60 * 60 * 24 * 3,
         httpOnly: true,
+        secure: true,
+        sameSite: 'None',
+        maxAge: 1000 * 60 * 60 * 24 * 3,
       });
 
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         message: `User ${user.name} loggedIn successfully`,
         user: new UserDto(user)
       });
@@ -140,19 +149,16 @@ class UserController {
 
   async updateUser(req, res) {
     const { name, avatar } = req.body
-    const buffer = Buffer.from(
-      avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""),
-      "base64"
-    );
-
     try {
       const { id } = req.params;
       const existedUser = await userService.findById(id);
-      const jimpRes = await Jimp.read(buffer)
-      const imageType = jimpRes.getMIME().split("/")[1]
+
+      const avatarRes = await imageResponse(avatar)
+      const imageType = avatarRes.getMIME().split("/")[1]
+
       const user = {
         ...req.body,
-        avatar: `${process.env.SPACE_ENDPOINT}/${process.env.USER_BUCKET}/${id}.${imageType}`
+        avatar: `${process.env.SPACE_ENDPOINT}/${process.env.USER_BUCKET}/${generateUniqeName(name)}.${imageType}`
       }
 
 
@@ -163,13 +169,18 @@ class UserController {
       }
 
       await spaceService.createBucket(process.env.USER_BUCKET)
+      //deleting prev image from storage
+      await spaceService.deleteFileFromBucket({
+        Bucket: process.env.USER_BUCKET,
+        Key: `${generateUniqeName(existedUser?.name)}.${imageType}`,
+      })
 
       await spaceService.uploadFileToBucket({
         Bucket: process.env.USER_BUCKET,
-        Key: `${id}.${imageType}`,
+        Key: `${generateUniqeName(name)}.${imageType}`,
         ACL: 'public-read',
-        Body: buffer,
-        ContentType: jimpRes._originalMime,
+        Body: extractImageData(avatar),
+        ContentType: avatarRes.getMIME(),
       })
 
       const updatedUser = await userService.updateUser(id, user);
@@ -239,7 +250,7 @@ class UserController {
         userData = await tokenService.verifyRefreshToken(refreshTokenFromCookies)
 
       } catch (error) {
-        return sendResponse(res, 500, {
+        return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
           message: error.message
         })
       }
@@ -251,12 +262,12 @@ class UserController {
         );
 
         if (!token) {
-          return sendResponse(res, 401, {
+          return sendResponse(res, statusCode.UNAUTHORIZED, {
             message: "Invalid Token"
           })
         }
       } catch (error) {
-        return sendResponse(res, 500, {
+        return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
           message: error.message
         })
       }
@@ -266,7 +277,7 @@ class UserController {
       const user = await userService.findById({ _id: userData._id })
 
       if (!user) {
-        return sendResponse(res, 404, {
+        return sendResponse(res, statusCode.NOT_FOUND, {
           message: "No user found!"
         })
       }
@@ -281,7 +292,7 @@ class UserController {
       try {
         await tokenService.updateRefreshToken(userData._id, refreshToken)
       } catch (error) {
-        return sendResponse(res, 500, {
+        return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
           message: error.message
         })
       }
@@ -298,13 +309,13 @@ class UserController {
 
       const transformed = new UserDto(user)
 
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         user: transformed,
         loggedIn: true
       })
     }
     else {
-      return sendResponse(res, 404, {
+      return sendResponse(res, statusCode.NOT_FOUND, {
         message: `Your session is over!`
       })
     }
@@ -312,16 +323,21 @@ class UserController {
 
   async logout(req, res) {
     const { refreshToken } = req.cookies
+    try {
+      //deleted refresh token from db
+      await tokenService.removeToken(refreshToken)
 
-    //deleted refresh token from db
-    await tokenService.removeToken(refreshToken);
+      res.clearCookie("refreshToken")
+      res.clearCookie("accessToken")
 
-    res.clearCookie("refreshToken")
-    res.clearCookie("accessToken")
-
-    return sendResponse(res, 200, {
-      message: `You Loggedout Successfully!`
-    })
+      return sendResponse(res, statusCode.OK, {
+        message: `You Loggedout Successfully!`
+      })
+    } catch (error) {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
+        message: error.message
+      })
+    }
   }
 
   async forgotPassword(req, res) {
@@ -329,7 +345,7 @@ class UserController {
     try {
       const user = await userService.findUser(email)
       if (!user) {
-        return sendResponse(res, 404, {
+        return sendResponse(res, statusCode.NOT_FOUND, {
           message: `There are no user with email ${email}`
         })
       }
@@ -354,14 +370,14 @@ class UserController {
 
       await mailService.sentMail(options)
 
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         email,
         forgotten: true,
         hashed: `${hashed}.${expires}`,
         message: `Email sent to ${email}`,
       })
     } catch (error) {
-      return sendResponse(res, 500, {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
         message: error.message
       })
     }
@@ -373,7 +389,7 @@ class UserController {
       const [hashedOtp, expires] = hash.split(".")
 
       if (Date.now() > +expires) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.BAD_REQUEST, {
           message: "OTP expired!"
         })
       }
@@ -383,17 +399,17 @@ class UserController {
       const isValid = await otpService.verifyOtp(hashedOtp, data)
 
       if (!isValid) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.BAD_REQUEST, {
           message: "Invalid OTP"
         })
       }
 
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         message: "otp verified successfully",
         verified: true
       })
     } catch (error) {
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
         message: error.message
       })
     }
@@ -411,13 +427,13 @@ class UserController {
       );
 
       if (isPrevPassUsed) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.BAD_REQUEST, {
           message: 'Your new password must be different to previoulsy used passwords',
         });
       }
 
       if (password !== confirmPassword) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.BAD_REQUEST, {
           message: 'Password is not matched'
         })
       }
@@ -429,12 +445,12 @@ class UserController {
       user.password = hashedPassword
       await user.save()
 
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         newPassword: true,
         message: "Your password changed successfully",
       })
     } catch (error) {
-      return sendResponse(res, 500, {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
         message: error.message
       })
     }
@@ -446,7 +462,7 @@ class UserController {
       const user = await userService.findUser(email)
 
       if (!user) {
-        return sendResponse(res, 404, {
+        return sendResponse(res, statusCode.NOT_FOUND, {
           message: `We could not find any user with ${email}`
         })
       }
@@ -455,13 +471,13 @@ class UserController {
       const isPrevPasswordMached = await hashService.comparePassword(currentPassword, user.password)
 
       if (!isPrevPasswordMached) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.BAD_REQUEST, {
           message: "Your password is not matched with previous password"
         })
       }
 
       if (newPassword !== confirmPassword) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.BAD_REQUEST, {
           message: "Your password is not matched"
         })
       }
@@ -472,12 +488,12 @@ class UserController {
         await user.save()
       }
 
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         user,
         message: "Your password changed successfully"
       })
     } catch (error) {
-      return sendResponse(res, 500, {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
         message: error.message
       })
     }
@@ -489,19 +505,19 @@ class UserController {
       const existedUser = await userService.findUser(email)
 
       if (existedUser) {
-        return sendResponse(res, 400, {
+        return sendResponse(res, statusCode.BAD_REQUEST, {
           message: "You are already subscribed"
         })
       }
 
       const user = await mailService.saveMail({ email })
 
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         message: "You are a subscriber to our newsletter",
         user
       })
     } catch (error) {
-      return sendResponse(res, 500, {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
         message: error.message
       })
     }
@@ -512,17 +528,17 @@ class UserController {
       const users = await userService.countUser()
 
       if (!users) {
-        return sendResponse(res, 404, {
+        return sendResponse(res, statusCode.NOT_FOUND, {
           message: "You have no user!"
         })
       }
 
-      return sendResponse(res, 200, {
+      return sendResponse(res, statusCode.OK, {
         message: `Counted users are available ${users}`,
         users
       })
     } catch (error) {
-      return sendResponse(res, 500, {
+      return sendResponse(res, statusCode.INTERNAL_SERVER_ERROR, {
         message: error.message
       })
     }

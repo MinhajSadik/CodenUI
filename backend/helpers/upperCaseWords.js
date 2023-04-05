@@ -1,5 +1,5 @@
 
 
-export const upperCaseWords = string =>
+export const upperCaseWords = (string) =>
     string.replace(/^(.)|\s+(.)/g, character =>
         character.toUpperCase());

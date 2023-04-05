@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
 import React, { memo, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { findCategories, findCategoryByName } from '../../redux/feature/categorySlice'
-import { findProducts } from '../../redux/feature/productSlice'
+import { allCategories, findCategoryByName } from '../../redux/feature/categorySlice'
+import { allProducts } from '../../redux/feature/productSlice'
+import { allTeches } from '../../redux/feature/techSlice'
 import { clearError, clearSuccess, countUser } from '../../redux/feature/userSlice'
 import { AppContext } from '../contexts/contexts'
 import { useAutoRefresh } from '../hooks/useAutoRefresh'
@@ -10,11 +11,12 @@ import { removeUnused } from '../utils/removeUnused'
 
 function AppProvider({ children }) {
     let { error, success } = useSelector((state) => state.user);
-    const { loggedIn, loading: appLoading, user, users, verified, forgotten, newPassword, products, categories } = useSelector((state) => ({
+    const { teches, loggedIn, loading: appLoading, user, users, verified, forgotten, newPassword, products, categories } = useSelector((state) => ({
         ...state.product,
         ...state.category,
         ...state.user.otp,
         ...state.user,
+        ...state.tech
     }))
     const router = useRouter()
     const dispatch = useDispatch()
@@ -33,7 +35,6 @@ function AppProvider({ children }) {
 
     useEffect(() => {
         error && handleOpen();
-
         const timeoutId = setTimeout(() => {
             if (error) {
                 setShowError(false)
@@ -58,14 +59,19 @@ function AppProvider({ children }) {
             setOpened(false)
         }
 
-        dispatch(findCategories())
-        dispatch(findProducts())
+
+    }, [loggedIn, route])
+
+    useEffect(() => {
+        dispatch(allCategories())
+        dispatch(allProducts())
         dispatch(countUser())
+        dispatch(allTeches())
 
         if (route !== '/') {
             dispatch(findCategoryByName(removeUnused(route, "/")))
         }
-    }, [loggedIn, route])
+    }, [])
 
 
 
@@ -133,6 +139,7 @@ function AppProvider({ children }) {
         success,
         showError,
         showSuccess,
+        teches,
         open,
         route,
         router,

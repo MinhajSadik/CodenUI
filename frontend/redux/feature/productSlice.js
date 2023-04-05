@@ -2,16 +2,28 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import productService from '../../services/productService';
 
 
-export const findProducts = createAsyncThunk(
+export const allProducts = createAsyncThunk(
     "product/all",
     async (_, { rejectWithValue }) => {
         try {
             return await productService.findProducts()
         } catch (error) {
-            return rejectWithValue(error.message);
+            return rejectWithValue(error.response.data.message);
         }
     }
 );
+
+
+export const createProduct = createAsyncThunk(
+    "product/create",
+    async (productInfo, { rejectWithValue }) => {
+        try {
+            return await productService.createProduct(productInfo)
+        } catch (error) {
+            return rejectWithValue(error.response.data.message);
+        }
+    }
+)
 
 const productSlice = createSlice({
     name: "product",
@@ -27,14 +39,25 @@ const productSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(findProducts.pending, (state) => {
+            .addCase(allProducts.pending, (state) => {
                 state.loading = true
             })
-            .addCase(findProducts.fulfilled, (state, { payload }) => {
+            .addCase(allProducts.fulfilled, (state, { payload }) => {
                 state.loading = false
                 state.products = payload
             })
-            .addCase(findProducts.rejected, (state, { payload }) => {
+            .addCase(allProducts.rejected, (state, { payload }) => {
+                state.error = payload
+                state.loading = false
+            })
+            .addCase(createProduct.pending, (state, { payload }) => {
+                state.loading = true
+            })
+            .addCase(createProduct.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.products = payload
+            })
+            .addCase(createProduct.rejected, (state, { payload }) => {
                 state.error = payload
                 state.loading = false
             })

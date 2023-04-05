@@ -2,27 +2,22 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePassword, updateUser } from '../../../redux/feature/userSlice';
 import { withRouter } from '../../components';
+import {
+  passwordInitState,
+  passwordInitialState,
+  userUpdateInitState,
+  userUpdateInitialState,
+} from '../../utils/initialStates';
 import { upperCaseName } from '../../utils/upperCaseName';
-
-const userUpdateInitState = {
-  name: '',
-  email: '',
-  avatar: '',
-};
-
-const passwordInitState = {
-  currentPassword: '',
-  newPassword: '',
-  confirmPassword: '',
-};
+import NextImage from '../Shared/NextImage/NextImage';
 
 function AccountSetting({ email, id }) {
-  const [userUpdateInfo, setUserUpdateInfo] = useState(userUpdateInitState);
-  const { name, email: inputEmail, avatar } = userUpdateInfo;
+  const [userUpdateInfo, setUserUpdateInfo] = useState(userUpdateInitialState);
+  const { name, email: inputEmail } = userUpdateInfo;
 
   const dispatch = useDispatch();
   const { loading, user } = useSelector((state) => state.user);
-  const [passwordInfo, setPasswordInfo] = useState(passwordInitState);
+  const [passwordInfo, setPasswordInfo] = useState(passwordInitialState);
   const { currentPassword, newPassword, confirmPassword } = passwordInfo;
 
   function captureUserInfo(e) {
@@ -96,10 +91,12 @@ function AccountSetting({ email, id }) {
           <div className="cu_account_info_box">
             <div className="cu_avatar_box">
               {user.avatar ? (
-                <img
+                <NextImage
                   className="cu_profile_avatar"
-                  src={user.avatar}
+                  src={user?.avatar}
                   alt="avatar"
+                  width="100"
+                  height="100"
                 />
               ) : (
                 <div className="cu_profile_name_word">
