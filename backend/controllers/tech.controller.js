@@ -12,58 +12,47 @@ class TechController {
         const { name, logo, file } = req.body
 
         try {
+            const files = [logo, file]
             const tech = await techService.findTech(name)
-            const fileRes = await imageResponse(file)
-            const logoRes = await imageResponse(logo)
-            const fileType = fileRes.getMIME().split("/")[1]
-            const logoType = logoRes.getMIME().split("/")[1]
 
-            const fileInfo = {
-                ...req.body,
-                logo: `${process.env.SPACE_ENDPOINT}/${process.env.TECH_BUCKET}/${generateUniqeName(name)}.${logoType}`,
-                file: `${process.env.SPACE_ENDPOINT}/${process.env.TECH_BUCKET}/${generateUniqeName(name)}.${fileType}`
-            }
+            return files.forEach(async (file, index) => {
+                const techRes = await imageResponse(file)
+                const techFileType = techRes.getMIME().split("/")[1]
 
-            await spaceService.createBucket(process.env.TECH_BUCKET)
+                await spaceService.createBucket(process.env.TECH_BUCKET)
 
-
-            if (tech) {
                 await spaceService.uploadFileToBucket({
                     Bucket: process.env.TECH_BUCKET,
-                    Key: `${generateUniqeName(name)}.${fileType}`,
+                    Key: `${generateUniqeName(name)}.${techFileType}`,
                     ACL: 'public-read',
                     Body: extractImageData(file),
-                    ContentType: fileRes.getMIME(),
+                    ContentType: techRes.getMIME(),
                 })
-                const updatedTech = await techService.updateTech(tech._id, `${process.env.SPACE_ENDPOINT}/${process.env.TECH_BUCKET}/${generateUniqeName(name)}.${fileType}`)
 
-                return sendResponse(res, statusCode.OK, {
-                    message: `Tech ${name} Modified`,
-                    updatedTech
-                })
-            }
+                const fileInfo = {
+                    ...req.body,
+                    logo: `${process.env.SPACE_ENDPOINT}/${process.env.TECH_BUCKET}/${generateUniqeName(name)}.${techFileType}`,
+                    file: `${process.env.SPACE_ENDPOINT}/${process.env.TECH_BUCKET}/${generateUniqeName(name)}.${techFileType}`
+                }
 
-            if (!tech) {
-                const newTech = await techService.createTech(fileInfo)
-                await spaceService.uploadFileToBucket({
-                    Bucket: process.env.TECH_BUCKET,
-                    Key: `${generateUniqeName(name)}.${logoType}`,
-                    ACL: 'public-read',
-                    Body: extractImageData(logo),
-                    ContentType: fileRes.getMIME(),
-                })
-                await spaceService.uploadFileToBucket({
-                    Bucket: process.env.TECH_BUCKET,
-                    Key: `${generateUniqeName(name)}.${fileType}`,
-                    ACL: 'public-read',
-                    Body: extractImageData(file),
-                    ContentType: fileRes.getMIME(),
-                })
-                return sendResponse(res, statusCode.CREATED, {
-                    message: `Tech ${name} created!`,
-                    newTech
-                })
-            }
+                if (tech) {
+
+                    const updatedTech = await techService.updateTech(tech._id, `${process.env.SPACE_ENDPOINT}/${process.env.TECH_BUCKET}/${generateUniqeName(name)}.${techFileType}`)
+
+                    return sendResponse(res, statusCode.OK, {
+                        message: `Tech ${name} Modified`,
+                        updatedTech
+                    })
+                }
+
+                if (!tech) {
+                    const newTech = await techService.createTech(fileInfo)
+                    return sendResponse(res, statusCode.CREATED, {
+                        message: `Tech ${name} created!`,
+                        newTech
+                    })
+                }
+            })
         } catch (error) {
             return next(error)
         }
@@ -88,6 +77,10 @@ class TechController {
                 message: error.message
             })
         }
+    }
+
+    async uploadTechFile() {
+
     }
 }
 
